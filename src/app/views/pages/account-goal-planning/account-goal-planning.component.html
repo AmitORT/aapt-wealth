@@ -1,0 +1,274 @@
+<div class="container mb10per">
+	<div class="row mt-4">
+		<div class="col-lg-12">
+			<h4 class="breadcrumb-title"><span [routerLink]="['/mutual-payment-successful']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+		</div>
+	</div>
+    <div class="row mt-2">
+        <div class="col-lg-3 hidden-xs" id="sidebar-main">
+            <app-account-desktop-menu></app-account-desktop-menu>
+        </div>
+        <div class="col-lg-9 tab-detail">
+            <div class="row align-items-center port-row" >
+                <div class="col-6">
+                    <h4 class="breadcrumb-title"><i class="fa fa-arrow-left i-icon"></i> &nbsp;Goal Planning</h4>
+                </div>
+                <div class="col-6 text-end" [routerLink]="['/mutual-create-goal']" >
+                    <button type="button" class="btn btn-primary link-btn mb-3" >Create goal & invest</button>
+                </div>
+            </div>
+
+            <div class="row mt-4 text-center plans">
+                <div class="col-lg-2">
+                    <img src="assets/img/house1.svg"/>
+                    <p class="pt-2">Own House</p>
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/img/car1.svg"/>
+                    <p class="pt-2">New Car</p>
+        
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/img/senior_citizen_plans.svg"/>
+                    <p class="pt-2">Retire Easy</p>
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/img/business_insurance.svg"/>
+                    <p class="pt-2">New Business</p>
+        
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/img/umbrella.svg"/>
+                    <p class="pt-2" >Vacation</p>
+        
+                </div>
+                <div class="col-lg-2">
+                    <img src="assets/img/graduated.svg"/>
+                    <p class="pt-2">Educate Child</p>
+        
+                </div>
+        
+            </div>
+
+            <div class="row mt-4 ">
+                <div class="justify-content-between d-flex">
+                    <h5 class="ofr-head">My Goals (5)</h5>
+                    <h5 class="ofr">View Graph</h5>
+                </div>
+                
+                <div class="col-12">
+                    <div class=" mt-2 finance owl-1">
+                           
+                        <div class="financial-slider trendprod ">
+                        <owl-carousel-o [options]="customOptions">
+                            <ng-template carouselSlide>
+                                <div class="trending-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-2 col-3">
+                                            <img src="assets/img/car.png">
+                                        </div>
+                                        <div class="col-lg-10 col-9 ps-0">
+                                            <p class="trend-name">Buy A New Car</p>
+                                            <p class="sub-desc">in 4 Years at age of 30</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prog-bar pos-rel">
+                                            <div class="pr-value">
+                                                <div class="pr-min"><span>₹ 5 L</span></div>
+                                                <div class="pr-max"><span>₹ 15 L</span></div>
+                                            </div>
+                                            <div class="bg-pr">
+                                                <div class="fill-pr" style="width: 20%"></div>
+                                            </div>
+                                            <div class="pr-range">
+                                                <div class="sub-desc "><span> 5 Months</span></div>
+                                                <div class="sub-desc"><span>168 Months</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="action-btn">
+                                            <div>
+                                                <h5>View Goal</h5>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <div class="trending-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-2 col-3">
+                                            <img src="assets/img/home.png">
+                                        </div>
+                                        <div class="col-lg-10 col-9 ps-0">
+                                            <p class="trend-name">New House</p>
+                                            <p class="sub-desc">in 14 Years at age of 40</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prog-bar pos-rel">
+                                            <div class="pr-value">
+                                                <div class="pr-min"><span>₹ 5 L</span></div>
+                                                <div class="pr-max"><span>₹ 15 L</span></div>
+                                            </div>
+                                            <div class="bg-pr">
+                                                <div class="fill-pr" style="width: 20%"></div>
+                                            </div>
+                                            <div class="pr-range">
+                                                <div class="pr-min"><span> 5 Months</span></div>
+                                                <div class="pr-max"><span>168 Months</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="action-btn">
+                                            <div>
+                                                <h5>View Goal</h5>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <div class="trending-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-2 col-3">
+                                            <img src="assets/img/sea.png">
+                                        </div>
+                                        <div class="col-lg-10 col-9 ps-0">
+                                            <p class="trend-name">Summer Vacation</p>
+                                            <p class="sub-desc">in 8 months</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prog-bar pos-rel">
+                                            <div class="pr-value">
+                                                <div class="pr-min"><span>₹ 5 L</span></div>
+                                                <div class="pr-max"><span>₹ 15 L</span></div>
+                                            </div>
+                                            <div class="bg-pr">
+                                                <div class="fill-pr" style="width: 20%"></div>
+                                            </div>
+                                            <div class="pr-range">
+                                                <div class="pr-min"><span> 5 Months</span></div>
+                                                <div class="pr-max"><span>168 Months</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="action-btn">
+                                            <div>
+                                                <h5>View Goal</h5>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                            <ng-template carouselSlide>
+                                <!-- <div class="trending-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-2 col-3">
+                                            <img src="assets/img/sea.png">
+                                        </div>
+                                        <div class="col-lg-10 col-9 ps-0">
+                                            <p class="trend-name">Summer Vacation</p>
+                                            <p class="sub-desc">in 8 months</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prog-bar pos-rel">
+                                            <div class="pr-value">
+                                                <div class="pr-min"><span>₹ 5 L</span></div>
+                                                <div class="pr-max"><span>₹ 15 L</span></div>
+                                            </div>
+                                            <div class="bg-pr">
+                                                <div class="fill-pr" style="width: 20%"></div>
+                                            </div>
+                                            <div class="pr-range">
+                                                <div class="pr-min"><span> 5 Months</span></div>
+                                                <div class="pr-max"><span>168 Months</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="action-btn">
+                                            <div>
+                                                <h5>View Goal</h5>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="ofr-border ">
+                                    <img src="assets/img/mission.svg" alt="">
+                                    <h5 class="ofr mt-3">+ Add New Goals</h5>
+                                </div>
+                            
+                            </ng-template>
+                            <!-- <ng-template carouselSlide>
+                                <div class="trending-product">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-3 col-3">
+                                            <img src="assets/img/credila.png">
+                                        </div>
+                                        <div class="col-lg-9 col-9 ps-0">
+                                            <p class="trend-name">Buy A New Car</p>
+                                            <p class="sub-desc">in 4 Years at age of 30</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="prog-bar pos-rel">
+                                            <div class="pr-value">
+                                                <div class="pr-min"><span>₹ 5 L</span></div>
+                                                <div class="pr-max"><span>₹ 15 L</span></div>
+                                            </div>
+                                            <div class="bg-pr">
+                                                <div class="fill-pr" style="width: 20%"></div>
+                                            </div>
+                                            <div class="pr-range">
+                                                <div class="pr-min"><span> 5 Months</span></div>
+                                                <div class="pr-max"><span>168 Months</span></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="action-btn">
+                                            <div>
+                                                <h5>View Goal</h5>
+                                            </div>
+                                            <div>
+                                                <i class="fa fa-arrow-right"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template> -->
+        
+        
+                        </owl-carousel-o>
+                        </div>
+                        
+                    
+                    </div>
+                </div>
+            </div>
+        </div>    
+
+    </div>
+    
+</div>    
+

@@ -1,0 +1,181 @@
+<div class="container mb10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/product-listing']" ><i
+            class="fa fa-arrow-left i-icon"></i></span> Product Details</h4>
+    </div>
+    <div class="col-lg-8 col-12">
+      <div class="graph-header d-flex">
+        <div class="d-flex">
+          <img src="assets/img/icici-bank2.png" alt="icici" class="header-img" />
+        </div>
+        <div class="mt-4">
+          <h2>ICICI Prudential Technology Fund</h2>
+          <div class="d-flex">
+            <div class="star-component">
+              <ul class="rating-star">
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+            </div>
+            <span class="badge">Equity</span>
+            <span class="badge">High Risk</span>
+            <span class="badge">Small Cap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="graph-body mt-4">
+        <div class="d-flex justify-content-between">
+          <div class="left-body">
+            <h5>132.64%</h5>
+            <p><span class="text-green">+1.08%</span>1 day Change</p>
+          </div>
+          <div class="right-body">
+            <h5 class="text-blue">Rs. 119.58</h5>
+            <p>1st June 2021</p>
+          </div>
+        </div>
+        <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" />
+        <div class="graph-footer">
+          <ul>
+            <li>6M</li>
+            <li class="active">1Y</li>
+            <li>3Y</li>
+            <li>5Y</li>
+            <li>All</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="overview" data-bs-toggle="tab" data-bs-target="#overview1" type="button"
+            role="tab" aria-controls="overview1" aria-selected="true">Overview</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="assets" data-bs-toggle="tab" data-bs-target="#assets1" type="button" role="tab"
+            aria-controls="assets1" aria-selected="false">Asset Allocation</button>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="overview1" role="tabpanel" aria-labelledby="overview">
+          <div class="overview-box">
+            <div class="d-flex justify-content-between blue-box">
+              <div>
+                <h2>Net Asset Value (NAV)</h2>
+                <p>as on 10th May 2021</p>
+              </div>
+              <div>
+                <h2>Rs. 119.58</h2>
+                <p class="text-green m-0 text-end">+0.6%</p>
+              </div>
+            </div>
+            <hr class="m-0">
+            <div class="overview-details">
+              <div>
+                <h2>AUM</h2>
+                <h3>Rs. 10L</h3>
+              </div>
+              <div>
+                <h2>Min SIP Amount</h2>
+                <h3 class="text-end">Rs. 100</h3>
+              </div>
+            </div>
+            <hr class="m-0">
+            <div class="overview-details">
+              <div>
+                <h2>Expense Ratio</h2>
+                <h3>1.16%</h3>
+              </div>
+              <div>
+                <h2>Exit Load</h2>
+                <h3 class="text-end">5.9%</h3>
+              </div>
+            </div>
+            <hr class="m-0">
+            <div class="overview-details">
+              <div>
+                <h2>Fund Started</h2>
+                <h3>1st Jan 2013</h3>
+              </div>
+              <div>
+                <h2>Fund Size</h2>
+                <h3 class="text-end">Rs 1,818 Cr</h3>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <!-- Return -->
+          <div class="return">
+            <div class="row return-header">
+              <div class="col-lg-7">
+                <h5 class="text-grey"><b>Returns</b></h5>
+              </div>
+              <div class="col-lg-2">
+                <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">1M Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+              </div>
+              <div class="col-lg-3">
+                <h5 class="text-center">Since Inception</h5>
+              </div>
+            </div>
+            <div class="row return-header">
+              <div class="col-lg-7">
+                <h5 class="text-light-grey">Fund Returns</h5>
+              </div>
+              <div class="col-lg-2">
+                <h5 class="text-center"><b>128.4%</b></h5>
+              </div>
+              <div class="col-lg-3">
+                <h5 class="text-center"><b>23.9%</b></h5>
+              </div>
+            </div>
+            <div class="row return-header">
+              <div class="col-lg-7">
+                <h5 class="text-light-grey">Category Average</h5>
+              </div>
+              <div class="col-lg-2">
+                <h5 class="text-center"><b>113.0%</b></h5>
+              </div>
+              <div class="col-lg-3">
+                <h5 class="text-center"><b>-</b></h5>
+              </div>
+            </div>
+            <div class="row return-header">
+              <div class="col-lg-7">
+                <h5 class="text-light-grey">Rank Within Category</h5>
+              </div>
+              <div class="col-lg-2">
+                <h5 class="text-center"><b>1</b></h5>
+              </div>
+              <div class="col-lg-3">
+                <h5 class="text-center"><b>-</b></h5>
+              </div>
+            </div>
+            <p class="text-blue">*All returns are annualized.</p>
+          </div>
+          <!-- Return -->
+        </div>
+        <div class="tab-pane fade" id="assets1" role="tabpanel" aria-labelledby="assets">...</div>
+      </div>
+      <!-- Tabs -->
+
+    </div>
+    <div class="col-lg-4 col-12">
+
+
+    </div>
+
+
+
+  </div>
+</div>

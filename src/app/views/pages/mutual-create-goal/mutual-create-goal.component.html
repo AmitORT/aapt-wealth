@@ -1,0 +1,122 @@
+<div class="container mgb-10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/mutual-select-goal']"><i
+            class="fa fa-arrow-left i-icon"></i></span>Create Goal
+      </h4>
+
+    </div>
+  </div>
+  
+  <div class="row mt-4">
+    <div class="col-lg-2 col-1 ps-0" >
+      <input hidden type="file" #uploader (change)="uploadFile($event)"/>
+      <img id="profileimg" src="assets/img/camera.svg" alt="" class="camera w-75" (click)="uploader.click()">
+    </div>
+    <div class="col-lg-10 col-11 ps-0 pt-5 savings">
+      <input type="text" id="name" placeholder="What are you saving for?" class="form-control" [(ngModel)]="CreateGoal.Savings">
+      <!-- <h4 class="save">What are you saving for?</h4> -->
+    </div>
+  </div>
+  
+  <div class="row pt-5">
+    <div class="col-lg-6">
+      <h6>Select Mode of Payment</h6>
+      <div class="left-box year-div">
+        <ul class="nav nav-tabs " id="year-tabs" role="tablist">
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '1'">
+            <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '1'?'active':''" type="button" role="tab"
+              aria-controls="oy" aria-selected="true">Monthly</button>
+          </li>
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '2'">
+            <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '2'?'active':''" type="button" role="tab"
+              aria-controls="ty" aria-selected="false">Quarterly</button>
+          </li>
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '3'">
+            <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '3'?'active':''" type="button" role="tab"
+              aria-controls="thy" aria-selected="false">One-time</button>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h6>Enter Goal Amount</h6>
+        <div class="position-relative">
+          <input type="text" class="form-control custom-formfield" placeholder="Goal Target Amount" (keypress)="validate.numberOnly($event)" [(ngModel)]="CreateGoal.Goal_Amount"/>
+          <span class="pin-name">INR</span>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <h6>Enter Goal Duration</h6>
+      <div class="position-relative">
+        <input type="text" class="form-control custom-formfield" placeholder="Goal Duration" (keypress)="validate.numberOnly($event)" [(ngModel)]="CreateGoal.Goal_Duartion" />
+        <span class="pin-name">Yrs</span>
+      </div>
+      </div>
+
+      <div class="col-lg-6 position-relative">
+        <div class="d-flex mt-5 install justify-content-between">
+          <h6 >Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}} of every month.</span>
+          </h6>
+          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="datepicker" class="form-control calender">
+          <label for="datepicker"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
+        </div>
+      </div>
+      
+
+      <div class="col-lg-6">
+        <div class="custom-slider mt-5 mb-5">
+          <div class="row align-items-center">
+            <div class="col-lg-8 col-6">
+              <h6 class="mt-1">Expected Rate of Return</h6>
+              <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
+            </div>
+            <div class="col-lg-4 col-6 position-relative">
+              <input type="text" class="form-control" [(ngModel)]="CreateGoal.Return_Rate"/>
+              <span class="percent">%</span>
+            </div>
+          </div>
+          <ngx-slider [(value)]="CreateGoal.Return_Rate" [options]="options12"></ngx-slider>
+        </div>
+      </div>
+
+      <div class="col-lg-6 pt-1">
+        <div class="custom-slider slide-margin">
+          <div class="row align-items-center">
+            <div class="col-lg-8 col-6">
+              <h6 class="mt-1">Rate of Inflation</h6>
+              <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
+            </div>
+            <div class="col-lg-4 col-6 position-relative">
+              <input type="text" class="form-control" [(ngModel)]="CreateGoal.Inflation_Rate" />
+              <span class="percent">%</span>
+            </div>
+          </div>
+          <ngx-slider [(value)]="CreateGoal.Inflation_Rate" [options]="options13"></ngx-slider>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-12 marg">
+        <h6>Monthly Saving Amount</h6>
+        <div>
+          <span class="rupee cursor-pointer">Rs.0</span>
+        </div>
+        <!-- <div *ngIf="RupeeChange" (click)="RupeeChange = false">
+          <span class="rupee cursor-pointer">Rs.25,000</span>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn btn-primary theme-button mt-5" (click)="CreateGoalAndInvest()">
+        Create Goal & Invest
+      </button>
+    </div>
+
+    
+  </div>
+
+  
+

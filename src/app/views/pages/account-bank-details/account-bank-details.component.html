@@ -1,0 +1,91 @@
+<div class="container mb10per">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <h4 class="breadcrumb-title"><span [routerLink]="['/mutual-payment-successful']"><i
+              class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-lg-3 hidden-xs" id="sidebar-main">
+        <app-account-desktop-menu></app-account-desktop-menu>
+      </div>
+      <div class="col-lg-9 tab-detail">
+        <div class="row align-items-center port-row">
+          <div class="col-12 ">
+            <h4 class="breadcrumb-title">Default Bank Mandate</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="accountnumber" placeholder="Account Number" class="form-control">
+              <label for="accountnumber">Account Number</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="accountholdersname" placeholder="Account Holders Name" class="form-control ">
+              <label for="accountholdersname">Account Holders Name</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="bankname" placeholder="Bank Name" class="form-control ">
+              <label for="bankname">Bank Name</label>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="ifsc" placeholder="IFSC Code" class="form-control ">
+              <label for="ifsc">IFSC Code</label>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="!SecondaryBankAccount">
+          <div class="col-lg-6 offset-lg-3 mt-5">
+            <button type="button" (click)="SecondaryBankAccount=true" class="btn dotted-button mb-3 w-100">+ Secondary Bank Account</button>
+          </div>
+        </div>
+        <div class="second-section" *ngIf="SecondaryBankAccount">
+          <div class="row align-items-center port-row mt-3">
+            <div class="col-12 ">
+              <h4 class="breadcrumb-title">Secondary Bank Account</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="accountnumber" placeholder="Account Number" class="form-control">
+                <label for="accountnumber">Account Number</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="accountholdersname" placeholder="Account Holders Name" class="form-control ">
+                <label for="accountholdersname">Account Holders Name</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="bankname" placeholder="Bank Name" class="form-control ">
+                <label for="bankname">Bank Name</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="ifsc" placeholder="IFSC Code" class="form-control ">
+                <label for="ifsc">IFSC Code</label>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="row mt-5">
+            <div class="col-lg-6 offset-lg-3">
+              <button type="button" class="btn btn-primary theme-button mb-3 w-100">Save Changes</button>
+            </div>
+          </div>
+  
+      </div>
+    </div>
+  </div>
+  

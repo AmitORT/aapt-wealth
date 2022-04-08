@@ -1,0 +1,125 @@
+<nav class="navbar navbar-expand-sm navbar-dark header-nav">
+  <div class="container pos-rel">
+    <a class="navbar-brand" [routerLink]="['/']">
+     <img src="assets/img/finizon_logo.png" class="logo" alt="logo">
+   </a>
+    <a class="nav-link nav-toggle mobile-toggle" (click)="handleOpenCloseNav()" href="javascript:void(0)">
+    <img src="assets/img/menu.svg" alt="menu">
+  </a>
+  <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+
+    <form class="d-flex">
+     <ul class="navbar-nav align-items-center">
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)" ><b>Insure</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="javascript:void(0)"><b>Credit</b></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"[routerLink]="['/']"><b>Wealth</b></a>
+      </li>
+      <li class="btn-group hidden-xs">
+       <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-toggle="dropdown"  data-bs-display="static" aria-expanded="false" href="javascript:void(0)">Login / Register</a>
+       <div class="login-popup dropdown-menu dropdown-menu-lg-end">
+        <div class="sign-in">
+          <div class="mb-3">      
+            <input type="email" class="form-control" id="emailmobile" placeholder="Email Id/Mobile No.">
+          </div>
+          <div class="mb-3">        
+            <input type="email" class="form-control" id="password" placeholder="Password">
+          </div>
+          <div class="mb-3">
+            <a class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)">Sign In</a>
+          </div>
+          <hr/>
+          <p class="ask-title">Not yet on Finizon? <span class="open-signup">Register Now</span></p>
+        </div>
+        <div class="sign-up">
+         <div class="up-in-toggle">
+          <input type="radio" id="switch_left" name="switch_2" value="yes" checked/>
+          <label for="switch_left">Customer</label>
+          <input type="radio" id="switch_right" name="switch_2" value="no" />
+          <label for="switch_right">Partner</label>
+        </div>
+        <div class="mb-3">      
+          <input type="text" class="form-control" id="FirstName" placeholder="First Name">
+        </div>
+        <div class="mb-3">      
+          <input type="text" class="form-control" id="LastName" placeholder="Last Name">
+        </div>
+        <div class="mb-3">      
+          <input type="email" class="form-control" id="email1" placeholder="Email Id">
+        </div>
+        <div class="mb-3">        
+          <input type="text" class="form-control" id="mnumber1" placeholder="Mobile Number">
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
+          <label class="form-check-label checklabel">I agree to the <a href="javascript:void(0)">Terms & Conditions</a> of Finizon</label>
+        </div>
+        <div class="mb-3">
+          <a class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)">Register Now</a>
+        </div>
+        <hr/>
+        <p class="ask-title">Already on Finizon? <span class="open-sigin">Sign In</span></p>
+      </div>
+    </div>
+  </li>
+  <li (click)="handleOpenCloseNav()">
+   <a class="pe-0 nav-link nav-toggle" href="javascript:void(0)">
+    <img src="assets/img/menu.svg" alt="menu" class="menu-ic">
+  </a>
+</li>
+</ul>
+
+
+</form>
+</div>
+
+</div>
+</nav>
+
+
+<div id="site-wrapper">
+<nav class="menu" id="site-wrapper-menu" role="navigation">
+<span>
+  <a (click)="handleOpenCloseNav()" class="nav-link nav-toggle show-nav onsidebar">
+    <i class="fas fa-times"></i>
+  </a>
+</span>
+<ul class="hidden-xs hidden-sm">
+  <li><a [routerLink]="['/account-details']" href="javascript:void(0)">My Profile</a></li>
+  <li><a href="javascript:void(0)">Tools</a></li>
+  <li><a href="javascript:void(0)">About Us</a></li>
+  <li><a href="javascript:void(0)">Knowledge Center</a></li>
+  <li><a href="javascript:void(0)">Support</a></li>
+</ul>
+<ul class="hidden-lg">
+  <li><a [routerLink]="['/account-desktop-menu']" href="javascript:void(0)">My Profile</a></li>
+  <li><a [routerLink]="['/']" href="javascript:void(0)">Insure</a></li>
+  <li><a href="javascript:void(0)">Credit</a></li>
+  <li><a href="javascript:void(0)">Wealth</a></li>
+  <li><a href="javascript:void(0)">Tools</a></li>
+  <li><a href="javascript:void(0)">About Us</a></li>
+  <li><a href="javascript:void(0)">Knowledge Center</a></li>
+  <li><a href="javascript:void(0)">Support</a></li>
+</ul>
+<div class="nav-footer">
+  <div class="d-flex term-link">
+    <span>Share & Refer</span>
+    <span>Terms & Conditions</span>
+  </div>
+  <ul class="nav-social">
+    <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
+    <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
+    <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
+  </ul>
+  <div class="nav-copyright">
+    <p>Copyright 2022 Oneroof Technologies</p>
+  </div>
+</div>
+</nav>
+
+</div>

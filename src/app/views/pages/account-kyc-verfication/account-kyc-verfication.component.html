@@ -1,0 +1,42 @@
+<div class="container mb10per">
+	<div class="row mt-4">
+		<div class="col-lg-12">
+			<h4 class="breadcrumb-title"><span [routerLink]="['/mutual-payment-successful']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+		</div>
+	</div>
+    <div class="row mt-2">
+        <div class="col-lg-3 hidden-xs" id="sidebar-main">
+            <app-account-desktop-menu></app-account-desktop-menu>
+        </div>
+        <div class="col-lg-9 tab-detail">
+            <div class="row align-items-center port-row">
+                <div class="col-12 ">
+                    <h4 class="breadcrumb-title">KYC Verification</h4>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <img src="assets/img/kyc_verified.svg" class="w-100"/>
+                </div>
+                <div class="col-lg-6">
+                    <div class="col-12 ">
+                        <h4 class="breadcrumb-title1">KYC Verification</h4>
+                        <p>Your KYC is verified for making investments.</p>
+                        <div class="form-check mb-4">
+                            <input type="checkbox" id="check1" name="option1" value="something" checked="" class="form-check-input">
+                            <label for="check1" class="form-check-label">I hereby declare that my KYC details is upto date</label>
+                        </div>
+                        <div class="btn-div">
+                            <button type="button" [routerLink]="['/kyc-pan-verification']" class="btn btn-primary dashboard-btn me-2"> Update KYC </button>
+                            <button [routerLink]="['/']" type="button" class="btn btn-primary loan-btn"> Start Investing </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+
+    </div>
+</div>

@@ -1,0 +1,264 @@
+<div class="container mgb-10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/']"><i
+            class="fa fa-arrow-left i-icon"></i></span>Risk Profiling
+      </h4>
+    </div>
+  </div>
+  <div class="row  risk1 mt-5" *ngIf="RiskProfiling">
+    <div class="col-lg-6 hidden-xs">
+      <img src="assets/img/risk-profiling1.svg" alt="risk-profiling" class="w-75" />
+    </div>
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-floating mb-3 input-box">
+            <input type="text" id="name" placeholder="First Name" class="form-control name"
+              [(ngModel)]="RiskProfilingData.First_Name">
+            <label for="name">First Name</label>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-floating mb-3 input-box">
+            <input type="text" id="name" placeholder="Last Name" class="form-control name"
+              [(ngModel)]="RiskProfilingData.Last_Name">
+            <label for="name">Last Name</label>
+          </div>
+        </div>
+       
+      </div>
+     
+      <div class="form-floating mb-3 input-box">
+        <input type="date" id="dob" placeholder="Date Of Birth" class="form-control"
+          [(ngModel)]="RiskProfilingData.Date_of_Birth">
+        <label for="dob">Date of Birth</label>
+      </div>
+      <button type="button" class="btn btn-primary theme-button mgt-15per hidden-xs" data-toggle="modal"
+        data-target="#riskModal1" (click)="ProceedTonextStep()">
+        Next
+      </button>
+      <button class="btn btn-primary theme-button
+       step-btn hidden-lg" (click)="ProceedTonextStep()">
+        <img src="assets/img/right-arrow1.png" />
+      </button>
+    </div>
+  </div>
+  <div class="row align-items-center risk2" *ngIf="!RiskProfiling">
+    <div class="col-lg-12">
+      <div class="eligibility-progress">
+        <div class="progress-fill" [style.width.%]="StepsWidth"></div>
+      </div>
+
+      <p class="breadcrumb-sub">It takes hardly 1 minute to complete</p>
+    </div>
+    <div class="col-lg-6 hidden-xs">
+      <img src="assets/img/risk-profiling1.svg" alt="risk-profiling" class="w-75" />
+    </div>
+    <div class="col-lg-6 pos-rel mt-m60">
+      <div class="overlay-div"></div>
+
+      <div class="process-div">
+        <div class="step-one stepsdiv space-qt" [ngClass]="que.Idstep==1?'active':''" id="step{{que.Idstep}}" *ngFor="let que of GetQuestionsData">
+          <h5 class="step-heading">{{que.question}}</h5>
+          <div class="select-box1">
+            <span *ngFor="let ans of que.possibleAnswers" [ngClass]="{'active': que.GivenAnswer == ans.id}"
+              (click)="que.GivenAnswer = ans.id; Steps=que.Idstep; NextStep()">{{ans.answer}}</span>
+          </div>
+          <span class="text-danger error" id="error{{que.Idstep}}">This is mandatory</span>
+        </div>
+
+
+
+        <!-- <div class="step-one stepsdiv active space-qt" id="step1">
+          <h5 class="step-heading">What % of your financial assets do you need to keep liquid for planned or unplanned
+            expenses within the next 3 years?</h5>
+
+          <div class="select-box1">
+            <span [ngClass]="{'active': RiskProfilingData.Que1 == 1}" (click)="RiskProfilingData.Que1 = 1; Steps=1; NextStep()">0%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que1 == 2}" (click)="RiskProfilingData.Que1 = 2; Steps=1; NextStep()">1% to 10%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que1 == 3}" (click)="RiskProfilingData.Que1 = 3; Steps=1;NextStep()">26% to 50%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que1 == 4}" (click)="RiskProfilingData.Que1 = 4; Steps=1;NextStep()">51% to 70%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que1 == 5}" (click)="RiskProfilingData.Que1 = 5; Steps=1;NextStep()">11% to 25%</span>
+          </div>
+        </div>
+
+
+        <div class="step-two stepsdiv space-qt" id="step2">
+          <h5 class="step-heading mt-5">What is your current networth? <span class="fs-25">(Networth is Financial Assets
+              less Liabilities/Loans+ Value of non Self occupied property(s))</span></h5>
+
+          <div class="select-box">
+            <span [ngClass]="{'active': RiskProfilingData.Que2 == 1}" (click)="RiskProfilingData.Que2 = 1; Steps=2; NextStep()">Less than 5
+              Lacs</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que2 == 2}" (click)="RiskProfilingData.Que2 = 2; Steps=2;NextStep()">5 Lacs to 20
+              Lacs</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que2 == 3}" (click)="RiskProfilingData.Que2 = 3; Steps=2;NextStep()">25 Lacs to 50
+              Lacs</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que2 == 4}" (click)="RiskProfilingData.Que2 = 4; Steps=2;NextStep()">50 Lacs to 1
+              Crore</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que2 == 5}" (click)="RiskProfilingData.Que2 = 5; Steps=2; NextStep()">More than 1
+              Crore</span>
+          </div>
+        </div>
+        <div class="step-three stepsdiv space-qt" id="step3">
+          <h5 class="step-heading">What % of your networth is in financial assets?</h5>
+
+          <div class="select-box1">
+            <span [ngClass]="{'active': RiskProfilingData.Que3 == 1}" (click)="RiskProfilingData.Que3 = 1; Steps=3; NextStep()">0%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que3 == 2}" (click)="RiskProfilingData.Que3 = 2;Steps=3;NextStep()">1% to 10%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que3 == 3}" (click)="RiskProfilingData.Que3 = 3; Steps=3; NextStep()">26% to 50%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que3 == 4}" (click)="RiskProfilingData.Que3 = 4; Steps=3;NextStep()">51% to 70%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que3 == 5}" (click)="RiskProfilingData.Que3 = 5; Steps=3; NextStep()">11% to 25%</span>
+          </div>
+        </div>
+        <div class="step-four stepsdiv space-qt" id="step4">
+          <h5 class="step-heading">In how many years do you expect to retire?</h5>
+
+          <div class="select-box1">
+            <span [ngClass]="{'active': RiskProfilingData.Que4 == 1}" (click)="RiskProfilingData.Que4 = 1; Steps=4; NextStep()">Retired</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que4 == 2}" (click)="RiskProfilingData.Que4 = 2; Steps=4; NextStep()">0 to 15 years</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que4 == 3}" (click)="RiskProfilingData.Que4 = 3; Steps=4; NextStep()">5 to 10 years</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que4 == 4}" (click)="RiskProfilingData.Que4 = 4; Steps=4;NextStep()">10 to 20 years</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que4 == 5}" (click)="RiskProfilingData.Que4 = 5; Steps=4; NextStep()">More than 20
+              years</span>
+          </div>
+        </div>
+        <div class="step-five stepsdiv space-qt" id="step5">
+          <h5 class="step-heading">What is your preferred compensation structure?</h5>
+          <div class="select-box w-75">
+            <span [ngClass]="{'active': RiskProfilingData.Que5 == 1}" (click)="RiskProfilingData.Que5 = 1; Steps=5; NextStep()">Fixed Pay structure,
+              no variable bonus</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que5 == 2}" (click)="RiskProfilingData.Que5 = 2; Steps=5; NextStep()">Mostly fixed pay,
+              small variable bonus</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que5 == 3}" (click)="RiskProfilingData.Que5 = 3; Steps=5; NextStep()">Equal mix of fixed
+              pay and variable bonus</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que5 == 4}" (click)="RiskProfilingData.Que5 = 4;Steps=5; NextStep()">All Bonus</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que5 == 5}" (click)="RiskProfilingData.Que5 = 5; Steps=5; NextStep()">Mainly variable
+              bonus</span>
+          </div>
+        </div>
+        <div class="step-six stepsdiv space-qt" id="step6">
+          <h5 class="step-heading">Which of the following best describes you as an investor?</h5>
+          <div class="select-box w-75">
+            <span [ngClass]="{'active': RiskProfilingData.Que6 == 1}" (click)="RiskProfilingData.Que6 = 1; Steps=6; NextStep()">Risk Averse</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que6 == 2}" (click)="RiskProfilingData.Que6 = 2; Steps=6; NextStep()">Cautious</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que6 == 3}" (click)="RiskProfilingData.Que6 = 3; Steps=6; NextStep()">Moderate Risk
+              Taker</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que6 == 4}" (click)="RiskProfilingData.Que6 = 4; Steps=6; NextStep()">Aggressive</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que6 == 5}" (click)="RiskProfilingData.Que6 = 5 ; Steps=6; NextStep()">Fairly
+              Adventurous</span>
+          </div>
+        </div>
+
+        <div class="step-seven stepsdiv space-qt" id="step7">
+          <h5 class="step-heading">What is your main purpose of Investing?</h5>
+
+          <div class="select-box">
+            <span [ngClass]="{'active': RiskProfilingData.Que7 == 1}" (click)="RiskProfilingData.Que7 = 1; Steps=7; NextStep()">Protect
+              Capital</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que7 == 2}" (click)="RiskProfilingData.Que7 = 2; Steps=7; NextStep()">Protect Capital
+              against inflation</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que7 == 3}" (click)="RiskProfilingData.Que7 = 3; Steps=7; NextStep()">Protect Capital +
+              Earn Regular Income</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que7 == 4}" (click)="RiskProfilingData.Que7 = 4; Steps=7; NextStep()">Grow Capital
+              moderately</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que7 == 5}" (click)="RiskProfilingData.Que7 = 5; Steps=7; NextStep()">Grow Capital
+              aggressively</span>
+          </div>
+        </div>
+
+        <div class="step-eight stepsdiv space-qt" id="step8">
+          <h5 class="step-heading">How would you rate your investment knowledge and experience?</h5>
+
+          <div class="select-box w-75">
+            <span [ngClass]="{'active': RiskProfilingData.Que8 == 1}" (click)="RiskProfilingData.Que8 = 1; Steps=8; NextStep()">Somewhat
+              Familiar</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que8 == 2}" (click)="RiskProfilingData.Que8 = 2; Steps=8; NextStep()">Not at all
+              Familiar</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que8 == 3}" (click)="RiskProfilingData.Que8 = 3; Steps=8; NextStep()">Familiar</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que8 == 4}" (click)="RiskProfilingData.Que8 = 4; Steps=8; NextStep()">Experienced
+              Investor</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que8 == 5}" (click)="RiskProfilingData.Que8 = 5; Steps=8; NextStep()">Very Experienced
+              Investor</span>
+          </div>
+        </div>
+
+
+        <div class="step-nine stepsdiv space-qt" id="step9">
+          <h5 class="step-heading">If Nifty falls by 10% in 3 months, what would you do with your portfolio?</h5>
+          <div class="select-box">
+            <span class="w-100 text-start" [ngClass]="{'active': RiskProfilingData.Que9 == 1}"
+              (click)="RiskProfilingData.Que9 = 1; Steps=9; NextStep()">You would be worried but would give your investments a little more
+              time</span>
+            <span class="w-100 text-start" [ngClass]="{'active': RiskProfilingData.Que9 == 2}"
+              (click)="RiskProfilingData.Que9 = 2; Steps=9;NextStep()">You accept volatility and you would keep your investments as they
+              are</span>
+            <span class="w-100 text-start" [ngClass]="{'active': RiskProfilingData.Que9 == 3}"
+              (click)="RiskProfilingData.Que9 = 3; Steps=9;NextStep()">You would add to your investments as this is a good buying
+              opportunity</span>
+            <span class="w-100 text-start" [ngClass]="{'active': RiskProfilingData.Que9 == 4}"
+              (click)="RiskProfilingData.Que9 = 4; Steps=9; NextStep()">Exit and transfer investments to safer asset classes</span>
+            <span class="w-100 text-start" [ngClass]="{'active': RiskProfilingData.Que9 == 5}"
+              (click)="RiskProfilingData.Que9 = 5; Steps=9; NextStep()">Exit and stop making any investments</span>
+          </div>
+        </div>
+
+
+
+        <div class="step-ten stepsdiv space-qt" id="step10">
+          <h5 class="step-heading">How much decline in portfolio value can you tolerate and/or accept before considering
+            to exit.</h5>
+          <div class="select-box2">
+            <span [ngClass]="{'active': RiskProfilingData.Que10 == 1}" (click)="RiskProfilingData.Que10 = 1; Steps=10; GotoCongratulations()">Cannot
+              tolerate any loss to principal</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que10 == 2}" (click)="RiskProfilingData.Que10 = 2; Steps=10; GotoCongratulations()">10%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que10 == 3}" (click)="RiskProfilingData.Que10 = 3; Steps=10; GotoCongratulations()">20%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que10 == 4}" (click)="RiskProfilingData.Que10 = 4; Steps=10; GotoCongratulations()">33%</span>
+            <span [ngClass]="{'active': RiskProfilingData.Que10 == 5}" (click)="RiskProfilingData.Que10 = 5; Steps=10; GotoCongratulations()">50%
+              +</span>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Risk Modal -->
+
+<div class="modal fade" id="riskModal2" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered justify-content-center">
+    <div class="modal-content modal-sm">
+      <div class="modal-body">
+        <div class="row mb-5">
+          <h5>It is recommended to profile yourself to help you select more suitable products.</h5>
+        </div>
+        <div class="btn-div d-flex justify-content-between">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2"
+            [routerLink]="['/wealth-product-listing']">Skip
+            Profile</button>
+          <button type="button" class="btn btn-primary feature-apply" (click)="hidemodal()">Continue Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Risk Modal -->
+<div class="modal fade" id="riskModal1" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered justify-content-center">
+    <div class="modal-content modal-sm">
+      <div class="modal-body">
+        <div class="row mb-5">
+          <h5>To know your Investor Type answer a few questions</h5>
+        </div>
+        <div class="btn-div d-flex justify-content-between mt-5">
+          <button type="button" class="btn btn-primary feature-cancel me-2" data-toggle="modal"
+            data-target="#riskModal2" (click)="showSecondModal()">Skip</button>
+          <button type="button" class="btn btn-primary feature-apply" (click)="hidemodal()">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

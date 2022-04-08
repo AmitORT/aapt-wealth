@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35.657" height="34" viewBox="0 0 35.657 34">
+  <g id="Group_16597" data-name="Group 16597" transform="translate(-263 -1517)">
+    <g id="Rectangle_8265" data-name="Rectangle 8265" transform="translate(263 1517)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="34" height="34" stroke="none"/>
+      <rect x="0.5" y="0.5" width="33" height="33" fill="none"/>
+    </g>
+    <g id="feature_icon" transform="translate(264.657 1518.561)">
+      <path id="Path_26903" data-name="Path 26903" d="M16.292,27.167H3.542A3.709,3.709,0,0,1,0,23.319V4.848A3.709,3.709,0,0,1,3.542,1H30.458A3.709,3.709,0,0,1,34,4.848V23.319a.711.711,0,1,1-1.417,0V4.848a2.225,2.225,0,0,0-2.125-2.309H3.542A2.225,2.225,0,0,0,1.417,4.848V23.319a2.225,2.225,0,0,0,2.125,2.309h12.75a.772.772,0,0,1,0,1.539Z" fill="#00a0ae"/>
+      <path id="Path_26904" data-name="Path 26904" d="M16.5,6.5H3.5c-.276,0-.5-.336-.5-.75S3.224,5,3.5,5h13c.276,0,.5.336.5.75S16.776,6.5,16.5,6.5Z" transform="translate(0 1.746)" fill="#00a0ae"/>
+      <path id="Path_26905" data-name="Path 26905" d="M30.222,10.5H3.778a.75.75,0,1,1,0-1.5H30.222a.75.75,0,1,1,0,1.5Z" transform="translate(0 3.492)" fill="#00a0ae"/>
+      <path id="Path_26906" data-name="Path 26906" d="M11.5,14.5h-8c-.276,0-.5-.336-.5-.75s.224-.75.5-.75h8c.276,0,.5.336.5.75S11.776,14.5,11.5,14.5Z" transform="translate(0 5.238)" fill="#00a0ae"/>
+      <path id="Path_26907" data-name="Path 26907" d="M17.5,19A3.5,3.5,0,1,1,21,15.5,3.5,3.5,0,0,1,17.5,19Zm0-6A2.5,2.5,0,1,0,20,15.5,2.5,2.5,0,0,0,17.5,13Z" transform="translate(10 6.722)" fill="#00a0ae"/>
+      <path id="Path_26908" data-name="Path 26908" d="M19.5,23a.5.5,0,0,1-.354-.146L17.5,21.207l-1.646,1.646A.5.5,0,0,1,15,22.547l-.318-5.509a.5.5,0,0,1,.45-.546.507.507,0,0,1,.545.45l.217,4.452,1.25-1.249a.5.5,0,0,1,.707,0l1.25,1.249.21-4.452a.508.508,0,0,1,.545-.45.5.5,0,0,1,.45.546L20,22.547a.5.5,0,0,1-.5.453Z" transform="translate(10 7.167)" fill="#00a0ae"/>
+    </g>
+  </g>
+</svg>

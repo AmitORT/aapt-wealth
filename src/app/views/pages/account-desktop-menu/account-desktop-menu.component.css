@@ -1,0 +1,157 @@
+.breadcrumb-title1{
+	color: #465A65;
+	font-size: 24px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 15px;
+    padding: 15px;
+}
+.tab-detail .breadcrumb-title1{
+    margin-bottom: 0px;
+}
+.mb10per1{
+    margin-bottom: 10%;
+}
+.i-icon1{
+	color: #4c616b;
+	font-size: 27px;
+}
+.breadcrumb-title1::after
+{
+	content: '';
+	border-bottom: 3px solid #e27e28;
+	width: 50px;
+	position: absolute;
+	left: 15px;
+	bottom: 5px;
+}
+.breadcrumb-sub1 {
+	font-size: 18px;
+	line-height: 30px;
+	color: #222222;
+}
+.profile-menu{
+    border-radius: 8px;
+    border: 1px solid #c7cdd0;
+}
+.user-profile{
+    background-color: #d4dee3;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px 8px 0px 0px;
+}
+.user-profile p{
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #7e8d95;
+}
+.user-profile h5{
+    font-size: 16px;
+    margin-bottom: 0px;
+    color: #222222;
+    font-weight: 600;
+}
+.user-profile img{
+    width: 60px;
+    margin-right: 10px;
+}
+.menu-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menulist-ul{
+    padding-left: 0px;
+    list-style: none;
+    margin-bottom: 0px;
+    height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.menulist-ul::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.menulist-ul {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+}
+.menulist-ul li{
+    border-top: 1px solid #c7cdd0;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+.menu-flex .menu-ic img{
+    margin-right: 5px;
+}
+.menu-flex h5{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.right-arrow img{
+    width: 20px;
+}
+.menu-ic img {
+    fill: #000;
+  }
+
+.active-menu .menu-flex h5{
+
+    color: #e27e28;
+
+}
+
+.active-menu .menu-ic img {
+
+    filter: grayscale(250%) brightness(90%) sepia(300%) hue-rotate(330deg) saturate(395%) contrast(0.9);
+
+}  
+ 
+@media only screen and (max-width: 767px) {
+    .bread-profile h3 {
+        font-size: 26px;
+    }
+    .bread-profile p {
+        font-size: 16px;
+    }
+    .mob-card{
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
+    .profile-menu {
+        border-radius: 8px;
+        border: 0px solid #c7cdd0;
+        padding: 15px;
+    }
+    .user-profile {
+        background-color: #ffffff;
+        border-radius: 8px 8px 8px 8px;
+        margin-bottom: 15px;
+    }
+    .user-profile p {
+        font-size: 20px;
+    }
+    .user-profile h5 {
+        font-size: 20px;
+    }
+    .menulist-ul li{
+        border-top: 0px solid #c7cdd0;
+        padding: 12px 10px;        
+        background: #fff;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+    .menulist-ul {
+        margin-bottom: 60px;
+        height: auto;
+    }
+    .menu-flex h5{
+        font-size: 18px;
+    }
+}

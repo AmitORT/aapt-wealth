@@ -1,0 +1,706 @@
+<div class="container mgb-10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title" (click)="BackRouting()" ><span class="me-3 cursor-pointer"><i
+          class="fa fa-arrow-left i-icon"></i></span>{{HeadingText}}
+      </h4>    
+     
+      <div class="eligibility-progress">
+        <div class="progress-fill" [style.width.%]="StepsWidth"></div>
+      </div>
+
+      <p class="breadcrumb-sub">It takes hardly 1 minute to complete</p>
+
+    </div>
+  </div>
+  <div class="row risk1 mt-5">
+    <div class="col-lg-6 hidden-xs" id="sidebar-main">
+      <div class="left-sidebar" id="sidebar">
+        <img *ngIf="step<12 && step != 9 && step != 11 && step != 12" src="assets/img/pan-man.svg" alt="risk-profiling" class="w-75"/>
+        <img *ngIf="step==9" src="assets/img/video-verify.svg" alt="risk-profiling" class="w-75"/>
+        <img *ngIf="step==11" src="assets/img/video-success.svg" alt="risk-profiling" class="w-75"/> 
+        <img *ngIf="step==12" src="assets/img/congrats-video.svg" alt="risk-profiling" class="w-75"/> 
+
+      </div>
+    </div>
+    <div class="col-lg-6 mb-5 pos-rel pointer">
+      <div class="process-div">
+
+      <!-- Pan Verification -->
+        <div *ngIf="step==1">
+          <div *ngIf="!PanDetails" (click)="PanDetails=true;">
+            <h5 class="upload">Upload a photo of your pan card</h5>
+            <div class="border-dash">
+              <img src="assets/img/camera_icon.svg" alt="">
+              <p class="pt-3">Upload A Picture</p>
+            </div>
+          </div>
+
+          <div *ngIf="PanDetails">
+            <h5 class="upload">Verify pan details and proceed</h5>
+            <div class="row mb-4">
+              <div class="d-flex justify-content-between pt-4">
+                <div class=" d-flex">
+                  <div>
+                    <img src="assets/img/adhar.png" alt="">
+                  </div>
+                  <div class="ps-3">
+                    <h6 class="font pt-2">my_pancard_copy.jpg</h6>
+                    <span class="photo">View Photo</span>
+                  </div>
+                </div>
+
+                <div class="d-flex">
+                  <img src="assets/img/delete_icon1.svg" alt="" class="w-75">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
+                <label for="first_name">Full Name</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Father Name" placeholder="Father Name" class="form-control ">
+                <label for="father_name">Father Name</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="date" id="dob" placeholder="Date Of Birth" class="form-control ">
+                <label for="dob">Date Of Birth</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Pan Number" placeholder="Pan Number" class="form-control ">
+                <label for="pan_number">Pan Number</label>
+              </div>
+            </div>
+
+            <button class="btn btn-primary theme-button step-btn" (click)="step=2; HeadingText='Aadhar Verification';scrolltotop();">
+              <img src="assets/img/right-arrow1.png" />
+            </button>
+
+          </div>
+        </div>
+
+      <!-- Adhar Verification -->
+        <div  *ngIf="step==2">
+          <h5  class="upload">Capture a photo of your front & back side of your aadhar card</h5>
+          <h5 class="upload pt-3">Front side</h5>
+          <div class="border-dash" *ngIf="!PhtoVerify" (click)="PhtoVerify=true;">
+            <img src="assets/img/camera_icon.svg" alt="">
+            <p class="pt-3">Upload A Picture</p>
+          </div>
+
+          <div class="row  " *ngIf="PhtoVerify">
+            <div class="d-flex justify-content-between pt-4">
+              <div class=" d-flex">
+                <div>
+                  <img src="assets/img/adhar.png" alt="">
+                </div>
+                <div class="ps-3">
+                  <h6 class="font pt-2">front_aadharcard_copy.jpg</h6>
+                  <span class="photo">View Photo</span>
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <img src="assets/img/delete_icon1.svg" alt="" class="w-75">
+              </div>
+            </div>
+          </div>
+
+
+          <h5 class="upload pt-4">Back side</h5>
+          <div class="border-dash" *ngIf="!BackPhotoVerify" (click)="BackPhotoVerify=true; StepBtn=true;">
+            <img src="assets/img/camera_icon.svg" alt="">
+            <p class="pt-3">Upload A Picture</p>
+          </div>
+
+          <div class="row " *ngIf="BackPhotoVerify">
+            <div class="d-flex justify-content-between pt-4">
+              <div class=" d-flex">
+                <div>
+                  <img src="assets/img/adhar.png" alt="">
+                </div>
+                <div class="ps-3">
+                  <h6 class="font pt-2">front_aadharcard_copy.jpg</h6>
+                  <span class="photo">View Photo</span>
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <img src="assets/img/delete_icon1.svg" alt="" class="w-75">
+              </div>
+            </div>
+          </div>
+
+          <div class="row pt-5" *ngIf="AdharVerificationComplete">
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
+              <label for="first_name">Full Name</label>
+            </div>
+            <div class="form-floating mb-3 input-box ">
+              <input type="date" id="dob" placeholder="Date Of Birth" class="form-control ">
+              <label for="dob">Date Of Birth</label>
+            </div>
+            <div class="col-lg-12">
+            <ul class="nav nav-tabs mb-3" id="genderTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="male" data-bs-toggle="tab" data-bs-target="#gmale" type="button" role="tab"
+                  aria-controls="gmale" aria-selected="true">Male</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="female" data-bs-toggle="tab" data-bs-target="#gfemale" type="button"
+                  role="tab" aria-controls="gfemale" aria-selected="false">Female</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="others" data-bs-toggle="tab" data-bs-target="#gothers" type="button"
+                  role="tab" aria-controls="gothers" aria-selected="false">Other</button>
+              </li>
+            </ul>
+          </div>
+            
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="first_name" placeholder="Aadhar Number" class="form-control ">
+              <label for="AadharNumber">Aadhar Number</label>
+            </div>
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="first_name" placeholder="Residencial Address" class="form-control ">
+              <label for="Residencial Address">Residencial Address</label>
+            </div>
+            <div class="col-lg-12">
+            <button class="btn btn-primary theme-button step-btn" *ngIf="StepBtn1 ;"
+            (click)="step=3; scrolltotop(); HeadingText='Bank Verification' ">
+            <img src="assets/img/right-arrow1.png" />
+          </button>
+            </div>
+            
+          </div>
+
+         <div class="col-lg-12">
+          <button class="btn btn-primary theme-button step-btn" *ngIf="StepBtn && !AdharVerificationComplete "
+          (click)="AdharVerificationComplete=true;">
+          <img src="assets/img/right-arrow1.png"/>
+        </button>
+         </div>
+          
+        </div>
+
+      <!-- Bank Verification -->
+        <div *ngIf="step==3">
+          <div *ngIf="!BankDetails" (click)="BankDetails=true;">
+            <h5 class="upload">Upload a photo of cancelled cheque</h5>
+            <div class="border-dash">
+              <img src="assets/img/camera_icon.svg" alt="">
+              <p class="pt-3">Upload A Picture</p>
+            </div>
+          </div>
+
+          <div *ngIf="BankDetails">
+            <h5 class="upload"> Verify Cheque details and proceed</h5>
+            <div class="row mb-4">
+              <div class="d-flex justify-content-between pt-4">
+                <div class=" d-flex">
+                  <div>
+                    <img src="assets/img/adhar.png" alt="">
+                  </div>
+                  <div class="ps-3">
+                    <h6 class="font pt-2">Cancel cheque_copy.jpg</h6>
+                    <span class="photo">View Photo</span>
+                  </div>
+                </div>
+
+                <div class="d-flex">
+                  <img src="assets/img/delete_icon1.svg" alt="" class="w-75">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-floating mb-3 input-box">
+                <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
+                <label for="first_name">Account Number</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Father Name" placeholder="Father Name" class="form-control ">
+                <label for="father_name">IFSC Code</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Father Name" placeholder="Father Name" class="form-control ">
+                <label for="father_name">Account Holder's Name</label>
+              </div>
+
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Pan Number" placeholder="Pan Number" class="form-control ">
+                <label for="pan_number">Bank Name</label>
+              </div>
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Pan Number" placeholder="Pan Number" class="form-control ">
+                <label for="pan_number">Bank Address</label>
+              </div>
+              <div class="row m-0 mobile">
+                <div class="col-3 ps-0 pe-0">
+                  <select class="form-select country-drop form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>+91</option>
+                    <option value="1">+91</option>
+                    <option value="2">+209</option>
+                    <option value="3">+21</option>
+                  </select>
+                </div>
+                <div class="col-9 pe-0 ps-0">
+                  <div class="form-floating mb-3 input-box mobile-input">
+                    <input type="text" id="mobile" placeholder="Mobile Number" class="form-control">
+                    <label for="mobile">Mobile Number</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-12">
+              <button class="btn btn-primary theme-button step-btn" (click)="BankModal(); scrolltotop();">      
+              <img src="assets/img/right-arrow1.png"/> 
+              </button>
+            </div>
+            
+
+          </div>
+        </div>
+
+      <!-- Personal Details -->
+        <div class="personal" id="personalDetails"  >
+          <div *ngIf="step==4">
+
+            <h5 class="upload">We require your personal information to get you KYC Details</h5>
+
+            <h5 class="pt-5 pb-2">Select Gender</h5>
+            <div class="col-lg-12">
+              <ul class="nav nav-tabs mb-3" id="genderTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="male" data-bs-toggle="tab" data-bs-target="#gmale" type="button" role="tab"
+                    aria-controls="gmale" aria-selected="true">Male</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="female" data-bs-toggle="tab" data-bs-target="#gfemale" type="button"
+                    role="tab" aria-controls="gfemale" aria-selected="false">Female</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="others" data-bs-toggle="tab" data-bs-target="#gothers" type="button"
+                    role="tab" aria-controls="gothers" aria-selected="false">Other</button>
+                </li>
+              </ul>
+            </div>
+            
+
+            <h5 class="pt-3 pb-2">Are you Single or Married</h5>
+            <div class="col-lg-12">
+              <ul class="nav nav-tabs mb-3" id="StatusTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="male" data-bs-toggle="tab" data-bs-target="#gmale" type="button" role="tab"
+                    aria-controls="gmale" aria-selected="true">Single</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="female" data-bs-toggle="tab" data-bs-target="#gfemale" type="button"
+                    role="tab" aria-controls="gfemale" aria-selected="false">Married</button>
+                </li>
+                
+              </ul>
+            </div>
+          
+
+            <div class="form-floating mb-3 input-box ">
+              <input type="text" id="Pan Number" placeholder="Pan Number" class="form-control ">
+              <label for="pan_number">Name of Father/Spouse</label>
+            </div>
+
+            <h5 class="pt-3 pb-2">Relationship with Above</h5>
+
+            <div class="selectbox">
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="0">Brother </option>
+                  <option value="1">Mother</option>
+                  <option value="2">Sister</option>
+                </select>
+                <label for="floatingSelect">Relationship</label>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Maiden Name(Your Birth Surname)</label>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Name of Mother</label>
+              </div>
+
+             <div class="mb-3 ms-2">
+               <p class="mb-0 font">PanCard Number</p>
+               <b>DETCF6789K</b>
+             </div>
+
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Residencial Status</label>
+              </div>
+            </div>
+
+            <h5 class="pt-3 pb-2">Citizenship</h5>
+
+            <div class="selectbox">
+
+              <div class="col-lg-12">
+                <ul class="nav nav-tabs mb-3" id="StatusTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="male" data-bs-toggle="tab" data-bs-target="#gmale" type="button" role="tab"
+                      aria-controls="gmale" aria-selected="true">Indian</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="female" data-bs-toggle="tab" data-bs-target="#gfemale" type="button"
+                      role="tab" aria-controls="gfemale" aria-selected="false">Other</button>
+                  </li>
+                  
+                </ul>
+              </div>
+
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Pan Number" placeholder="Pan Number" class="form-control ">
+                <label for="pan_number">Email ID</label>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Occupation Type</label>
+              </div>
+
+              <div class="row mobile">
+                <div class="col-3 pe-0">
+                  <select class="form-select country-drop form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>+91</option>
+                    <option value="1">+91</option>
+                    <option value="2">+209</option>
+                    <option value="3">+21</option>
+                  </select>
+                </div>
+                <div class="col-9 ps-0">
+                  <div class="form-floating mb-3 input-box mobile-input">
+                    <input type="text" id="mobile" placeholder="Mobile Number" class="form-control ">
+                    <label for="mobile">Mobile Number</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Communication Address Type</label>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Permanent Address Type</label>
+              </div>
+
+              <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Annual Income</label>
+              </div>
+
+              <!-- <div class="form-floating">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Place of Birth</label>
+              </div> -->
+              <div class="form-floating mb-3 input-box ">
+                <input type="text" id="Place of Birth" placeholder="Place of Birth" class="form-control ">
+                <label for="Place of Birth">Place of Birth</label>
+              </div>
+
+            </div>
+
+            <button class="btn btn-primary theme-button step-btn" (click)="step=5; scrolltotop();">
+              <img src="assets/img/right-arrow1.png" />
+            </button>
+
+          </div>
+
+          <div *ngIf="step==5" class="person1">
+            <h5 class="pb-4">Are you a politically exposed person (PEP)?</h5>
+            <div class="select-box pb-4">
+              <span>Yes</span>
+              <span>No</span>
+            </div>
+
+            <h5 class="mt-3 pb-4 ">Are you related to a politically exposed person (PEP)?</h5>
+            <div class="select-box pb-4">
+              <span>Yes</span>
+              <span>No</span>
+            </div>
+
+            <h5 class="mt-3 pb-4 ">Are you a residence outside of India?</h5>
+            <div class="select-box pb-3">
+              <span (click)="Arrow=true; selectedItem1 = 1;" [ngClass]="{'active-year': selectedItem1 == 1}">Yes</span>
+              <span (click)="selectedItem1 = 2 ;" [ngClass]="{'active-year': selectedItem1 == 2}">No</span>
+            </div>
+
+            <div *ngIf="Arrow">
+              <div class="form-floating mt-3">
+                <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="1">Brother </option>
+                  <option value="2">Mother</option>
+                  <option value="3">Sister</option>
+                </select>
+                <label for="floatingSelect">Select Residing Country</label>
+              </div>
+            </div>
+
+            <h5 class="mt-4 pb-4">Are you a related person to this Investor?</h5>
+            <div class="select-box pb-5">
+              <span (click)="Arrow=true; selectedItem = 1;" [ngClass]="{'active-year': selectedItem == 1}">Yes</span>
+              <span (click)="selectedItem = 2 ;" [ngClass]="{'active-year': selectedItem == 2}">No</span>
+            </div>
+
+            <div *ngIf="Arrow">
+              <div class="d-flex justify-content-between identity" *ngIf="!Identity" (click)="Identity = true">
+                <p class="photo mt-3 ps-2">Upload Proof of Identity</p>
+                <img src="assets/img/upload_icon.svg" alt="" class="pe-2 uploadimg">
+              </div>
+
+              <div class="d-flex justify-content-between" *ngIf="Identity" (click)="Identity = false">
+                <span>
+                  <h6> <b>Proof of Identity</b></h6>
+                  <p>November_2020_statement.pdf</p>
+                </span>
+                <span>
+                  <img src="assets/img/delete_icon1.svg" alt="" class=" pt-2">
+                </span>
+              </div>
+
+              <div *ngIf="Arrow">
+                <button class="btn btn-primary theme-button step-btn" (click)="step=6; scrolltotop(); HeadingText='Signature'">
+                  <img src="assets/img/right-arrow1.png" />
+                </button>
+              </div>
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      <!-- Signature -->
+        <div  *ngIf="step==6">
+          <h5 class="upload">Upload a photo of your Signature</h5>
+          <div *ngIf="!Signature" (click)="Signature=true; ">
+            <div class="border-dash">
+              <img src="assets/img/camera_icon.svg" alt="">
+              <p class="pt-3">Upload A Picture</p>
+            </div>
+          </div>
+
+          <div *ngIf="Signature">
+
+            <div class="signature">
+              <img src="assets/img/signature.png" alt="">
+              <h5>Re-take Picture</h5>
+            </div>
+
+            <div class="form-check mb-4">
+              <input type="checkbox" id="check1" name="option1" value="something" checked="" class="form-check-input">
+              <label for="check1" class="form-check-label">I am an Indian citizen, born and residing in India.</label>
+            </div>
+            <div class="form-check mb-4">
+              <input type="checkbox" id="check1" name="option1" value="something" checked="" class="form-check-input">
+              <label for="check1" class="form-check-label">The declaration asks explicitly to include the USA as a
+                country of residence if you are a US citizen or a green cardholder.</label>
+            </div>
+
+            <button class="btn btn-primary theme-button step-btn" (click)="step=7; scrolltotop(); HeadingText='Photo'">
+              <img src="assets/img/right-arrow1.png" />
+            </button>
+
+          </div>
+        </div>
+
+      <!-- Photo Verification -->
+        <div  *ngIf="step==7">
+          <h5 class="upload">Capture your photo</h5>
+          <div *ngIf="!photo ; photo1" (click)="photo=true;">
+            <div class="border-dash">
+              <img src="assets/img/camera_icon.svg" alt="">
+              <p class="pt-3">Capture your photo</p>
+            </div>
+          </div>
+
+          <div *ngIf="photo">
+            <img src="assets/img/man_photo (1).png" alt="" class="w-75 man-image pt-3">
+            <p class="pt-4" (click)="photo1=true; photo=false">Picture not clear? then <span class="changepic">Click
+                Again</span></p>
+
+            <button class="btn btn-primary theme-button step-btn" (click)="step=8; scrolltotop(); HeadingText='Video Recording'">
+              <img src="assets/img/right-arrow1.png" />
+            </button>
+          </div>
+
+        </div>
+
+      <!-- video recording 1 -->
+        <div  *ngIf="step==8">
+          <div *ngIf="Capture">
+            <h5 class="upload">Keep your face at the center of the recording area</h5>
+          </div>
+
+          <div *ngIf="!video" (click)="video=true;showvideodiv()" >
+            <div class="border-dash" >
+              <img src="assets/img/videocam_black.svg" alt="">
+              <p class="pt-3">Click here to start</p>
+            </div>
+          </div>
+          <!-- </div> -->
+
+          <!-- <div  *ngIf="step==9"> -->
+          <div *ngIf="video" id="video">
+            <!-- <h5 class="upload">Keep your face at the center of the recording area</h5> -->
+
+            <div class="w-75 man-image pos-rel">
+              <img src="assets/img/fullman.png" alt="" class="w-100 man-image pt-2">
+              <div class="pos">
+                <p>Speak aloud following number</p>
+                <ul>
+                  <li>1</li>
+                  <li>2</li>
+                  <li>3</li>
+                  <li>4</li>
+                  <li>5</li>
+                  <li>6</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- <button class="btn btn-primary theme-button step-btn"
+              (click)="step=9; scrolltotop(); HeadingText='Video Verification' ">
+              <img src="assets/img/right-arrow1.png" />
+            </button> -->
+
+          </div>
+        </div>
+      
+      <!-- Video Verification -->
+        <div  *ngIf="step==9">
+          <div>
+            <h4 class="breadcrumb-title1 mt-5">Video Upload Successful</h4>
+            <p class="color-222">Your video has been successfully uploaded for verification<br> purpose.</p>
+
+            <div class="butn btn-div">
+              <button type="button" class="btn btn-primary dashboard-btn me-2"
+                (click)="video=true; Capture=true ;"> Re-take Video </button>
+              <button type="button" class="btn btn-primary video-btn ms-5" (click)="step=10 ;  scrolltotop(); HeadingText='Video Recording ' ">
+                Proceed </button>
+            </div>
+          </div>
+          </div>
+
+      <!-- Video Recording 2 -->
+          <div  *ngIf="step==10">
+            <div>
+            <h5 class="upload">How would you like to sign the contract?</h5>
+            <div class="esign select-box">
+
+              <span class="w-75 m-0 mt-5">Aadhar esign</span>
+              <span class="w-75 ms-0 mt-4">Smart esign</span>
+            </div>
+            <button class="btn btn-primary theme-button step-btn" (click)="step=11">
+              <img src="assets/img/right-arrow1.png" />
+            </button>
+            </div>
+          </div>
+           
+      <!-- Transaction Successful-->
+            <div *ngIf="step==11">
+
+            <h4 class="breadcrumb-title1">Transaction Successful</h4>
+            <p class="color-222">Your signed contract has been successfully generated.</p>
+            <div class="risk-note">
+              <span>
+                <b>Transaction ID : VADE0B248932ACRAF23DB3C4</b>
+                <p>Timestamp : 22/01/2022, 12:54:00 PM.</p>
+              </span>
+            </div>
+
+            <div class="butn down btn-div ">
+              <button type="button" class="btn btn-primary dashboard-btn me-5"> Download File
+              </button>
+              <button type="button" class="btn btn-primary video-btn ms-5"
+                (click)="step=12">Submit Now </button>
+            </div>
+
+          </div>
+          
+      <!-- Congratulations-->
+          <div *ngIf="step==12">
+            <h4 class="breadcrumb-title1 mt-5">Congratulations!</h4>
+            <p class="color-222">Begin investing NOW !</p>
+            <div class="risk-note mb-5">
+              <b>Rejections/Discrepancies will be informed to you in 24-72 hours.</b>
+            </div>
+            <div>
+            <div [routerLink]="['/risk-profiling']">
+              <button type="button" class="btn btn-primary video-btn float-start mt-5">Start Investing</button>
+            </div>
+          </div>
+          
+      </div>
+
+    </div>
+  
+  </div>
+</div>
+
+<!-- Modal -->
+
+
+<div class="modal fade" id="bank-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true" *ngIf="BankModall">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <img src="assets/img/Money-received.gif" alt="" class="gif">
+          <h5 class="activetxtModal">We are depositing Rs.1 in your bank</h5>
+          <p class="text-center">This will take 30 secs...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

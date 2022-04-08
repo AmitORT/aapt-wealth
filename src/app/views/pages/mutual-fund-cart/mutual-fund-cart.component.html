@@ -1,0 +1,231 @@
+<div class="container mgb-10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/mutual-select-goal']"><i
+            class="fa fa-arrow-left i-icon"></i></span>Fund Cart
+      </h4>
+
+    </div>
+  </div>
+  <div class="row align-items-center risk1 mt-5">
+    <div class="col-lg-6 hidden-xs">
+      <img src="assets/img/fund-cart.svg" alt="risk-profiling" class="w-75" />
+    </div>
+    <div class="col-lg-6">
+      <div class="container1">
+       <div class="row">
+        <div class="col-lg-10 col-10">
+          <div class="d-flex">
+            <img src="assets/img/ICICI.png" alt="">
+            <h5>ICICI PRUDENTIAL TECHNOLOGY</h5>
+          </div>
+        </div>
+        <div class="col-lg-2 col-2">
+          <img src="assets/img/delete_icon1.svg" alt="" class="del-icon">
+        </div>
+
+       </div>
+       <div class="row mfc-tabs">
+         <div class="col-lg-12">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Monthly SIP</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Lumpsum</button>
+            </li>
+            
+          </ul>
+          
+         </div>
+       </div>
+
+        <div class="row amount">
+          <div class="col-lg-10 col-10">
+            <p>₹ 5000<span>15 Units</span></p>
+        </div>
+          
+          <div class="col-lg-2 col-2 position-relative text-end">
+            <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender">
+            <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
+            <!-- <img src="assets/img/orange-cal.svg" class="c-icon"> -->
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <p class="n-line">SIP Date Installment will be deducted on <b>15th of every month.</b></p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal">
+        <img src="assets/img/shopping-cart-add.svg" alt="">
+        <p class="ps-2 pt-3 colr">Add New Instrument</p>
+      </div>
+
+      <button type="button" class="btn btn-primary theme-button mt-5" [routerLink]="['/mutual-payment-successful']">
+        Proceed to Payment
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Compare Products Modal -->
+<div class="modal fade" id="compare-products-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between pb-0 ">
+        <!-- <span class="mob-tab-dash"></span> -->
+
+        <span class="otp-title ">Add Instrument to Cart</span>
+        <span class="explore" (click)="RedirectPopup()">Explore Funds</span>
+
+      </div>
+      <!-- <button type="button" class="btn-close hidden-xs" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      <div>
+        <i class="fa fa-search" aria-hidden="true"></i>
+        <input type="text" class="form-control" id="exampleSearch" aria-describedby="Search" placeholder="Search">
+      </div>
+
+      <div class="modal-body">
+        <div class="row pop-scroll">
+          <div class="mob-p0">
+            <div class="d-flex justify-content-between mx-2">
+              <div class="d-flex compare-left-view">
+                <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/digit_logo.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>Mirae Asset Emerging Bluechip Fund</h4>
+                    <span class="d-flex">Invested Amount: <b> &nbsp;₹ 466.72 Cr </b>
+                      <p>&nbsp; (2500 Units)</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
+              </div>
+              <div class="d-flex ">
+                <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton"
+                  (click)="SelectedButton=true">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton"
+                  (click)="SelectedButton=false">Selected</button>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="mob-p0">
+            <div class="d-flex justify-content-between mx-2">
+              <div class="d-flex compare-left-view">
+                <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/digit_logo.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>TATA Capital</h4>
+                    <span class="d-flex">Invested Amount: <b> &nbsp;₹ 466.72 Cr </b>
+                      <p>&nbsp; (2500 Units)</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
+              </div>
+              <div class="d-flex ">
+                <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton1"
+                  (click)="SelectedButton1=true">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton1"
+                  (click)="SelectedButton1=false">Selected</button>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="mob-p0">
+            <div class="d-flex justify-content-between mx-2">
+              <div class="d-flex compare-left-view">
+                <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/aditya-birla-capital-logo.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>Aditiya Birla Capital</h4>
+                    <span class="d-flex">Invested Amount: <b> &nbsp;₹ 466.72 Cr </b>
+                      <p>&nbsp; (2500 Units)</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
+              </div>
+              <div class="d-flex ">
+                <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton2"
+                  (click)="SelectedButton2=true">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton2"
+                  (click)="SelectedButton2=false">Selected</button>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <div class="mob-p0">
+            <div class="d-flex justify-content-between mx-2">
+              <div class="d-flex compare-left-view">
+                <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/yes-bank.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>YES Bank</h4>
+                    <span class="d-flex">Invested Amount: <b> &nbsp;₹ 466.72 Cr </b>
+                      <p>&nbsp; (2500 Units)</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
+              </div>
+              <div class="d-flex ">
+                <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton3"
+                  (click)="SelectedButton3=true">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton3"
+                  (click)="SelectedButton3=false">Selected</button>
+              </div>
+            </div>
+            <hr>
+          </div>
+
+          <div class="mob-p0">
+            <div class="d-flex justify-content-between mx-2">
+              <div class="d-flex compare-left-view">
+                <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/ICICI.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>ICICI Bank</h4>
+                    <span class="d-flex">Invested Amount: <b> &nbsp;₹ 466.72 Cr </b>
+                      <p>&nbsp; (2500 Units)</p>
+                    </span>
+                  </div>
+                </div>
+                <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
+              </div>
+              <div class="d-flex ">
+                <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton4"
+                  (click)="SelectedButton4=true">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton4"
+                  (click)="SelectedButton4=false">Selected</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button data-bs-dismiss="modal" type="button" class="btn red  w-mob-50 w-10">Cancel</button>
+        <button type="button" class="btn btn-primary theme-button w-mob-50" (click)="CompareProduct()">Add Fund</button>
+      </div>
+    </div>
+  </div>
+</div>

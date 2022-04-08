@@ -1,0 +1,173 @@
+
+    <div class="col-lg-12  mb-4 mt-4 hidden-lg">
+        <h4 class="breadcrumb-title1"><span [routerLink]="['/dashboard']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+    </div>
+
+    <div class="left-sidebar">
+        <div class="profile-menu">
+            <div class="user-profile">
+                <div>
+                    <img src="assets/img/test-user.png"/>
+                </div>
+                <div>
+                    <p>Hello</p>
+                    <h5>Vincent Wade</h5>
+                </div>
+            </div>
+            <div class="profile-menulist">
+                <ul class="menulist-ul">
+                    <li [ngClass]="{'active-menu': route.url === '/account-profile-details'}" [routerLink]="['/account-profile-details']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/profile_details.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Profile Details</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-kyc-verfication'}"  [routerLink]="['/account-kyc-verfication']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/kyc_verification.svg"/>
+                                </span>
+                                <span>
+                                    <h5>KYC Verification</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-linked-profiles'}" [routerLink]="['/account-linked-profiles']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/linked_profiles.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Linked Profiles</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/mutual-investment' || route.url === '/account-portfolio'} " [routerLink]="['/mutual-investment']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/portfolio_management.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Portfolio</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-goal-planning'}" [routerLink]="['/account-goal-planning']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/portfolio_management.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Goal Planning</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-risk-profiling'}" [routerLink]="['/account-risk-profiling']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/risk_profiling.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Risk Profiling</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-bank-details'}" [routerLink]="['/account-bank-details']">
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/bank_details.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Bank Details</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li [ngClass]="{'active-menu': route.url === '/account-transactions'}" [routerLink]="['/account-transactions']">
+                        <div class="menu-flex" >
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/transaction_history.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Transactions</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li>
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/settings_menu.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Settings</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                    <li>
+                        <div class="menu-flex">
+                            <div class="d-flex align-items-center">
+                                <span class="menu-ic">
+                                    <img src="assets/img/help_faq.svg"/>
+                                </span>
+                                <span>
+                                    <h5>Help & Faqs</h5>
+                                </span>
+                            </div>
+                            <div class="right-arrow">
+                                <img src="assets/img/arrow_right.svg"/>
+                            </div>
+                        </div>                              
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+

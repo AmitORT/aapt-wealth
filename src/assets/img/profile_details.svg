@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="profile_details" transform="translate(-106 -827)">
+    <rect id="icon_container" width="32" height="32" transform="translate(106 827)" fill="none"/>
+    <g id="user" transform="translate(112.667 831)">
+      <path id="Path_27455" data-name="Path 27455" d="M12,12A6,6,0,1,0,6,6a6,6,0,0,0,6,6ZM12,2A4,4,0,1,1,8,6a4,4,0,0,1,4-4Z" transform="translate(-3)" fill="#b4b4b4"/>
+      <path id="Path_27456" data-name="Path 27456" d="M12,14a9.01,9.01,0,0,0-9,9,1,1,0,1,0,2,0,7,7,0,0,1,14,0,1,1,0,0,0,2,0A9.01,9.01,0,0,0,12,14Z" transform="translate(-3)" fill="#b4b4b4"/>
+    </g>
+  </g>
+</svg>

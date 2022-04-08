@@ -1,0 +1,994 @@
+<div class="container mb10per">
+  <div class="row mt-4 pos-rel">
+
+    <div class="dropdown sort-position hidden-xs">
+      <button class="btn dropdown-toggle" type="button" id="sort-drop" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="assets/img/sort_icon.svg">
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="sort-drop">
+        <li><a class="dropdown-item" href="javascript:void(0)"><b>Sort By</b></a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)">Popularity</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)">Ratings - High to Low</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)">Returns - High to Low</a></li>
+        <li><a class="dropdown-item" href="javascript:void(0)">Recommended for your Risk Profile</a></li>
+      </ul>
+    </div>
+
+    <div class="col-10">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/applicant-details']"></span>Mutual Funds </h4>
+      <p class="breadcrumb-sub hidden-xs">Select from a curated list of funds based on your investor profile</p>
+    </div>
+    <div class="col-2">
+      <div class="dropdown sort-position hidden-lg">
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#sortby-screen">
+          <img src="assets/img/sort_icon.svg">
+        </button>
+      </div>
+      <button class="btn hidden-lg filter-btn" type="button" data-bs-toggle="modal" data-bs-target="#filtermodal">
+        <img src="assets/img/settings_icon.svg">
+      </button>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="hidden-lg">
+      <div class="left-box">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h5>Showing Plan for</h5>
+            <h1>Self (31), Spouse (30)</h1>
+          </div>
+          <img src="assets/img/edit_icon.svg" class="orange-pencil" [routerLink]="['/select-members']">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 br-right hidden-xs">
+      <h5 class="fw-600 mb-1 mt-4">Filters</h5>
+      <hr />
+      <div class="left-scroll">
+        
+        <!-- <div class="accordion" id="accordionExample">
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                AMC
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Category
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                aria-expanded="true" aria-controls="collapseThree">
+                Risk
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Fund Size
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Available to Invest
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+              </div>
+            </div>
+          </div>
+
+        </div> -->
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                AMC
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="position-relative search-box">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                  <input type="text" class="form-control search" id="exampleSearch" aria-describedby="Search" placeholder="Search Mutual Fund Companies">
+                </div>
+                <div class="acc-check mt-4">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Aditya Birla Sun Life Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Axis Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      BNP Paribas Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      BOI AXA Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Baroda Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Canara Robeco Mutual Fund
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Category
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="acc-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Debt
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                     Equity
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Hybrid
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Others
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Baroda Mutual Fund
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Canara Robeco Mutual Fund
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Risk
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="acc-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Low
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Moderately Low
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Moderate
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Moderately High
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      High
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Very High
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Fund Size
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="acc-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Upto 1,000Cr
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Upto 2,000Cr
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      Upto 5,000Cr
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      Upto 10,000Cr
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Available to Invest
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="acc-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      SIP
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                    <label class="form-check-label" for="flexCheckChecked">
+                      ONE-TIME
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary theme-button mt-2">
+          Filter
+        </button>
+      </div> -->
+    </div>
+
+    <div class="col-md-9">
+      <div class="row page-result ms-0 me-0 hidden-xs">
+        <p>Showing 6 of 12 results</p>
+      </div>
+      <div class="product-scroll">
+
+        <!-- Recommended -->
+        <div class="position-relative">
+          <span class="orange-offer">Recommended</span>
+          <div class="row product-card ms-0 me-0">
+            <div class="col-lg-12">
+              <div class="row align-items-center">
+                <div class="col-lg-2 hidden-xs text-center ">
+                  <img src="assets/img/icici-bank2.png" class="w-80" />
+                </div>
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-10 bank-name">
+                      <div>
+                        <img src="assets/img/icici-bank2.png" class="hidden-lg" />
+                      </div>
+                      <div>
+                        <h5>ICICI Prudential Technology</h5>
+                        <div class="d-flex">
+                          <p>3 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                              class="green-dot"></span>High Risk <span class="green-dot"></span>Equity </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-2">
+                      <div class="comp-share">
+                        <span class="hidden-xs">
+                          <div class="form-check mb-0">
+                            <input class="form-check-input" type="checkbox" id="compare21" [(ngModel)]="Comapare1">
+                            <label class="form-check-label" for="compare21">
+                              Compare Offers
+                            </label>
+                          </div>
+                        </span>
+                        <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                          <img src="assets/img/share_icon.svg">
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="custom-hr" />
+                    </div>
+                  </div>
+
+                  <div class="row apply-div">
+                    <div class="col-lg-3 l-div col-4">
+                      <p>1 year</p>
+                      <h5>0.35%</h5>
+                    </div>
+                    <div class="col-lg-3 c-div col-4">
+                      <p>3 year</p>
+                      <h5>25.2%</h5>
+                    </div>
+                    <div class="col-lg-3 r-div col-4">
+                      <p>5 year</p>
+                      <h5>20.1%</h5>
+                    </div>
+                    <div class="col-6 mb-comapre hidden-lg">
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare1">
+                        <label class="form-check-label" for="compare27">
+                          Compare Funds
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center" [routerLink]="['/wealth-product-details']" >
+                      <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                          alt="Right arrow"></a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Recommended -->
+
+        <!-- Trending Fund -->
+        <div class="position-relative">
+          <span class="green-offer">Trending Fund</span>
+          <div class="row product-card ms-0 me-0">
+            <div class="col-lg-12">
+              <div class="row align-items-center">
+                <div class="col-lg-2 hidden-xs text-center ">
+                  <img src="assets/img/Axis-Bank-Logo.png" class="w-80" />
+                </div>
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-10 bank-name">
+                      <div>
+                        <img src="assets/img/Axis-Bank-Logo.png" class="hidden-lg" />
+                      </div>
+                      <div>
+                        <h5>Axis Bluechip Fund</h5>
+                        <div class="d-flex">
+                          <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                              class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-2">
+                      <div class="comp-share">
+                        <span class="hidden-xs">
+                          <div class="form-check mb-0">
+                            <input class="form-check-input" type="checkbox" id="compare21" [(ngModel)]="Comapare1">
+                            <label class="form-check-label" for="compare21">
+                              Compare Offers
+                            </label>
+                          </div>
+                        </span>
+                        <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                          <img src="assets/img/share_icon.svg">
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="custom-hr" />
+                    </div>
+                  </div>
+
+                  <div class="row apply-div">
+                    <div class="col-lg-3 l-div col-4">
+                      <p>1 year</p>
+                      <h5>0.35%</h5>
+                    </div>
+                    <div class="col-lg-3 c-div col-4">
+                      <p>3 year</p>
+                      <h5>25.2%</h5>
+                    </div>
+                    <div class="col-lg-3 r-div col-4">
+                      <p>5 year</p>
+                      <h5>20.1%</h5>
+                    </div>
+                    <div class="col-6 mb-comapre hidden-lg">
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare1">
+                        <label class="form-check-label" for="compare27">
+                          Compare Funds
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center" [routerLink]="['/wealth-product-details']">
+                      <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                          alt="Right arrow"></a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Trending Fund -->
+
+        <div class="position-relative">
+          <div class="row product-card ms-0 me-0">
+            <div class="col-lg-12">
+              <div class="row align-items-center">
+                <div class="col-lg-2 hidden-xs text-center ">
+                  <img src="assets/img/quant.png" class="w-80" />
+                </div>
+                <div class="col-lg-10">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-10 bank-name">
+                      <div>
+                        <img src="assets/img/quant.png" class="hidden-lg" />
+                      </div>
+                      <div>
+                        <h5>Quant Tax Plan</h5>
+                        <div class="d-flex">
+                          <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                              class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-6 col-2">
+                      <div class="comp-share">
+                        <span class="hidden-xs">
+                          <div class="form-check mb-0">
+                            <input class="form-check-input" type="checkbox" id="compare21" [(ngModel)]="Comapare1">
+                            <label class="form-check-label" for="compare21">
+                              Compare Offers
+                            </label>
+                          </div>
+                        </span>
+                        <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                          <img src="assets/img/share_icon.svg">
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <hr class="custom-hr" />
+                    </div>
+                  </div>
+
+                  <div class="row apply-div">
+                    <div class="col-lg-3 l-div col-4">
+                      <p>1 year</p>
+                      <h5>0.35%</h5>
+                    </div>
+                    <div class="col-lg-3 c-div col-4">
+                      <p>3 year</p>
+                      <h5>25.2%</h5>
+                    </div>
+                    <div class="col-lg-3 r-div col-4">
+                      <p>5 year</p>
+                      <h5>20.1%</h5>
+                    </div>
+                    <div class="col-6 mb-comapre hidden-lg">
+                      <div class="form-check mb-0">
+                        <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare1">
+                        <label class="form-check-label" for="compare27">
+                          Compare Funds
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center" [routerLink]="['/wealth-product-details']">
+                      <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                          alt="Right arrow"></a>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row align-items-center mt-2 ms-0 me-0">
+          <div class="col-12">
+            <div class="loadmore-btn">
+              <span><i class="fas fa-redo"></i> Load More Offers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
+<div class="compare-section" *ngIf="Comapare1!=0 || Comapare2!=0 || Comapare3!=0 || Comapare4!=0 || Comapare5!=0 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mb-10">
+        <h4>Compare Products <span>(2 Selected)</span></h4>
+      </div>
+      <div class="col-lg-2 col-4">
+        <div class="cmp-prd">
+          <div class="cmp-logo">
+            <span class="fa fa-times "></span>
+            <img src="assets/img/kotak_bank.png" />
+          </div>
+          <div class="cmp-name">
+            <p>Kotak Mahindra Bank</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-4">
+        <div class="cmp-prd">
+          <div class="cmp-logo">
+            <span class="fa fa-times "></span>
+            <img src="assets/img/HDFC.png" />
+          </div>
+          <div class="cmp-name">
+            <p>HDFC Bank</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 hidden-xs">
+        <div class="cmp-prd">
+          <div class="cmp-logo">
+            <span class="fa fa-times "></span>
+            <img src="assets/img/ICICI.png" />
+          </div>
+          <div class="cmp-name">
+            <p>ICICI Bank</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-4">
+        <div class="cmp-prd add">
+          <div class="cmp-logo">
+            <i class="fa fa-plus"></i>
+          </div>
+          <div class="cmp-name">
+            <p>Select plan to Compare</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6 cmpr1">
+        <button type="button" [routerLink]="['/compare-products']" class="btn btn-primary apply-btn"> Compare </button>
+      </div>
+      <div class="col-lg-2 col-6 cmpr2">
+        <button type="button" class="btn btn-primary cmpare-cncel"> Cancel </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Share Modal -->
+<div class="modal fade" id="share-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Share this Offer</h5>
+      </div>
+      <div class="modal-body">
+        <ul class="share-link">
+          <li>
+            <a href="javascript:void(0)"><img src="assets/img/facebook-1.svg"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"><img src="assets/img/instagram-1.svg"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"><img src="assets/img/linkedin-1.svg"></a>
+          </li>
+          <li>
+            <a href="javascript:void(0)"><img src="assets/img/twitter-1.svg"></a>
+          </li>
+        </ul>
+        <div class="cancel-btn">
+          <a href="javascript:void(0)" data-bs-dismiss="modal">Cancel</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Feature Modal -->
+<div class="modal fade" id="view-feature" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="feature-head">
+            <div class="bankname-img">
+              <div> <img src="assets/img/kotak_bank.png"></div>
+              <div>
+                <h5>KOTAK MAHINDRA BANK</h5>
+              </div>
+            </div>
+            <div data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#share-modal">
+              <img src="assets/img/share_icon.svg" class="feature-share">
+            </div>
+          </div>
+        </div>
+        <div class="row feature-detail">
+          <div class="col-lg-4 col-4">
+            <p>Processing Fee</p>
+            <h5>₹ 2,000</h5>
+          </div>
+          <div class="col-lg-4 col-4">
+            <p>Hospitals</p>
+            <h5>256</h5>
+          </div>
+          <div class="col-lg-4 col-4">
+            <p>EMI/Month</p>
+            <h5>₹ 4,188</h5>
+          </div>
+        </div>
+        <div class="row ms-0 me-0">
+          <ul class="features-list">
+            <li>Part payment charges are Not Allowed.</li>
+            <li>Foreclosure charges are allowed after 6 months at 3%.</li>
+            <li>Borrowers within the age group of 21 and 60 years.</li>
+            <li>Loan Tenure 12 to 60 months.</li>
+            <li>Part payment charges are allowed at 2-4%.</li>
+          </ul>
+          <div class="btn-div">
+            <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2"> Cancel </button>
+            <button type="button" class="btn btn-primary feature-apply"> Apply
+            </button>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Filter Modal -->
+<div class="modal fade" id="filtermodal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Edit Details
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="custom-slider mb-5">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-6">
+                      <h5 class="mb-0">Sum Insured</h5>
+                    </div>
+                  </div>
+                  <ngx-slider [(value)]="value11" [options]="options11"></ngx-slider>
+                </div>
+                <hr />
+                <div class="custom-slider mt-4 mb-5">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-6">
+                      <h5 class="mb-0">Tenure <span>(Years)</span></h5>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <input type="text" class="form-control" [(ngModel)]="value12" />
+                    </div>
+                  </div>
+                  <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Filter By
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="custom-slider mt-4 mb-5">
+                  <div class="row align-items-center">
+                    <div class="col-lg-12 col-12">
+                      <h5 class="mb-0">Insurer</h5>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="horizontal-slider">
+                        <ul>
+                          <li><img src="assets/img/product-list11.svg" alt="insurers" class="insurer"></li>
+                          <li><img src="assets/img/product-list21.svg" alt="insurers" class="insurer"></li>
+                          <li><img src="assets/img/product-list31.svg" alt="insurers" class="insurer"></li>
+                          <li><img src="assets/img/product-list41.svg" alt="insurers" class="insurer"></li>
+                          <li><img src="assets/img/product-list51.svg" alt="insurers" class="insurer"></li>
+                          <li><img src="assets/img/product-list7.png" alt="insurers" class="insurer"></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="custom-slider mt-4 mb-5 hide-higher-limit">
+                  <div class="row align-items-center">
+                    <div class="col-lg-6 col-6">
+                      <h5 class="mb-0">Premium Range</h5>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Monthly
+                        <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                      </div>
+                      <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">Yearly
+                        <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                      </div>
+                    </div>
+                  </div>
+                  <ngx-slider [(value)]="value13" [options]="options13"></ngx-slider>
+                </div>
+                <hr />
+                <div class="custom-slider my-4">
+                  <div class="row align-items-center">
+                    <div class="col-lg-12 col-12">
+                      <h5 class="mb-0">Product Features</h5>
+                    </div>
+                  </div>
+
+                  <div class="horizontal-slider1">
+                    <div class="d-flex mt-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="feature1">
+                        <label class="form-check-label" for="feature1">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="feature2">
+                        <label class="form-check-label" for="feature2">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="feature3">
+                        <label class="form-check-label" for="feature3">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="feature4">
+                        <label class="form-check-label" for="feature4">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="feature5">
+                        <label class="form-check-label" for="feature5">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div class="custom-slider mt-4 mb-5">
+                  <div class="row align-items-center">
+                    <div class="col-lg-12 col-12">
+                      <h5 class="mb-0">Addons</h5>
+                    </div>
+                  </div>
+                  <div class="horizontal-slider1">
+                    <div class="d-flex mt-3">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="addon1">
+                        <label class="form-check-label" for="addon1">
+                          Covid Care
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="addon2">
+                        <label class="form-check-label" for="addon2">
+                          Enhance
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="addon3">
+                        <label class="form-check-label" for="addon3">
+                          Supra super topup
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="addon4">
+                        <label class="form-check-label" for="addon4">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="addon5">
+                        <label class="form-check-label" for="addon5">
+                          Lorem ipsum
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button mt-5">
+          Update
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- otp Modal -->
+<div class="modal fade" id="otp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <h3 class="otp-title">Enter OTP</h3>
+          <p class="otp-text mt-4">OTP sent on <b>+91 1234567890. </b> <span class="link-text">Edit Number</span></p>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-2 px-2">
+            <input type="number" class="form-control otp-field" maxlength="1" />
+          </div>
+          <div class="col-12">
+            <p class="otp-bottomtext">Didn't recieve OTP? <br class="hidden-lg" /> <span class="link-text">Resend
+                OTP</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <div class="">
+          <a class="cancel-btn2" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- sort by Modal -->
+<div class="modal fade" id="sortby-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span class="mob-tab-dash"></span>
+        <ul class="sort-mob">
+          <li class="title"><b>Sort By</b></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Claim Settlement</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Hospitals</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Premium (Low to High)</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

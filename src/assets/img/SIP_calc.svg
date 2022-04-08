@@ -1,0 +1,13 @@
+<svg id="SIP_calc." xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+  <g id="ICONS">
+    <g id="sip_calculator">
+      <rect id="Rectangle_8162" data-name="Rectangle 8162" width="95.8" height="96" transform="translate(0.2)" fill="none"/>
+      <path id="Path_26856" data-name="Path 26856" d="M73.31,82a2,2,0,0,1-1.23-.59l-11-8.84a1.962,1.962,0,0,1,1.22-3.5h5.55c1.59,0,1.82-.76,1.82-1.46H62.28a2,2,0,0,1-.07-3.96h9c-.39-1.57-1.78-1.7-3.45-1.7H62.28a2,2,0,0,1-2-1.87A1.93,1.93,0,0,1,62.05,58H77.78a2,2,0,0,1,.08,4H74.41a6.34,6.34,0,0,1,.45,1.7h2.92a2,2,0,1,1,0,3.92H74.65c0,3.7-3.81,5.4-6.76,5.43l6.71,5.48a1.995,1.995,0,0,1-1.23,3.53h-.06Z" transform="translate(-0.158)" fill="#e27e28"/>
+      <path id="Path_26857" data-name="Path 26857" d="M34,76H10A10,10,0,0,1,0,66V18A10,10,0,0,1,10,8H70A10,10,0,0,1,80,18V34a2,2,0,0,1-4,0V18a6,6,0,0,0-6-6H10a6,6,0,0,0-6,6V66a6,6,0,0,0,6,6H34a2,2,0,0,1,0,4Z" fill="#e27e28"/>
+      <path id="Path_26858" data-name="Path 26858" d="M78,28H2a2,2,0,0,1,0-4H78a2,2,0,0,1,0,4Z" fill="#e27e28"/>
+      <path id="Path_26859" data-name="Path 26859" d="M18,20a2,2,0,0,1-2-2V2a2,2,0,0,1,4,0V18A2,2,0,0,1,18,20Z" transform="translate(-0.035)" fill="#e27e28"/>
+      <path id="Path_26860" data-name="Path 26860" d="M62,20a2,2,0,0,1-2-2V2a2,2,0,0,1,4,0V18A2,2,0,0,1,62,20Z" transform="translate(-0.13)" fill="#e27e28"/>
+      <path id="Path_26861" data-name="Path 26861" d="M70,96A26,26,0,1,1,96,70,26,26,0,0,1,70,96Zm0-48A22,22,0,1,0,92,70,22,22,0,0,0,70,48Z" transform="translate(-0.2)" fill="#e27e28"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,495 @@
+<div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
+              class="fa fa-arrow-left i-icon"></i></span> Product Details</h4>
+      </div>
+    </div>
+<div class="row mb-5">
+  <div class="col-lg-8">
+    <div class="graph-header d-flex">
+      <div class="d-flex">
+        <img src="assets/img/icici_pru_logo.png" alt="icici" class="header-img" />
+      </div>
+      <div class="mt-4">
+        <h2>ICICI Prudential Technology Fund - Direct Plan</h2>
+        <p>Purchased on 4th April 2021</p>
+      </div>
+    </div>
+
+    <div class="graph-body mt-4">
+      <div class="d-flex justify-content-between">
+        <div class="left-body">
+          <h5>Net Asset Value (NAV)</h5>
+          <p>as on 10th May 2021</p>
+          <h5><b>132.64%</b></h5>
+          <p><span class="text-green">+1.08%</span>1 day Change</p>
+        </div>
+        <div class="right-body">
+          <h5>Rs. 119.58</h5>
+          <p class="text-green text-end">+0.6%</p>
+          <h5 class="text-orange"><b>Rs. 119.58</b></h5>
+          <p>1st June 2021</p>
+        </div>
+      </div>
+      <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" />
+      <div class="graph-footer">
+        <ul>
+          <li>6M</li>
+          <li class="active">1Y</li>
+          <li>3Y</li>
+          <li>5Y</li>
+          <li>All</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-3 pd-tabs">
+    
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        
+        <li class="nav-item">
+          <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Overview</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#menu2">Transactions</a>
+        </li>
+      </ul>
+    
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div id="menu1" class="container tab-pane active p0"><br>
+        
+    
+      <div class="row result-div">
+        <div class="col-lg-4">
+          <h5>Fund Details</h5>
+        </div>
+        <div class="col-lg-8 text-end">
+          <button type="button" class="af mr-1"> + Add Funds </button>
+          <button type="button" class="rfs">Request Folio Statement</button>
+        </div> 
+      </div>
+
+
+      <div class="row fd-div">
+        <div class="col-lg-6 col-6">
+          <h6>Current Value</h6>
+          <p>₹ 82,188</p>
+        </div>
+        <div class="col-lg-6 col-6 text-end">
+          <h6>Invested Value</h6>
+          <p>₹ 82,188</p>
+        </div>
+        <div class="col-lg-6 col-6">
+          <h6>IRR</h6>
+          <p>2.9%</p>
+        </div>
+        <div class="col-lg-6 col-6 text-end">
+          <h6>Gain/Loss</h6>
+          <p>Rs. 2,665 (21.87%)</p>
+        </div>
+        <div class="col-lg-6 col-6">
+          <h6>STCG</h6>
+          <p>₹ 50,876</p>
+        </div>
+        <div class="col-lg-6 col-6 text-end">
+          <h6>LTCG</h6>
+          <p>₹ 35,876</p>
+        </div>
+        <div class="col-lg-6 col-6">
+          <h6>Units Held</h6>
+          <p>2.9%</p>
+        </div>
+        <div class="col-lg-6 col-6 text-end">
+          <h6>Weights(%)</h6>
+          <p>125%</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="custom-slider mb-4">         
+            <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+          </div>
+          
+        </div>
+      </div>
+     
+      <div class="row result-div-mob">
+        
+        <div class="col-12">
+          <button type="button" class="rfs">Request Folio Statement</button>
+        </div> 
+        <div class="col-12">
+        <button type="button" class="af mr-1"> + Add Funds </button>
+      </div>
+      </div>
+      <hr>
+      <div class="row">
+    
+          <div class="pt-4 finance owl-1">
+            <div class="row align-items-center">
+              <div class="col-lg-12">
+                <h5><b>Similar Funds</b></h5>
+              </div>
+            </div>
+            <div class="financial-slider trendprod ">
+              <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide>
+                  <div class="trending-product">
+                    <div class="bod-bot">
+                    <div class="row align-items-center">
+                      <div class="col-lg-2 col-2 co-logo">
+                        <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+                      </div>
+                      <div class="col-lg-7 col-7">
+                        <h5 class="trend-name trend-head">ICICI Prudential Technology</h5>
+                        <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+                      </div>
+                      <div class="col-lg-3 col-3 text-end">
+                        <h5><span class="blue-text">0.35%</span></h5>
+                        <p>1 Year</p>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row l-values">
+                    <div class="col-lg-6 col-6">
+                       <p class="cf">Compare Fund</p>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <button class="nav-link btn btn-primary theme-button">Invest</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                  <div class="trending-product">
+                    <div class="bod-bot">
+                    <div class="row align-items-center">
+                      <div class="col-lg-2 col-2 co-logo">
+                        <img src="assets/img/axis_bank.png" class="img-fluid" alt="image">
+                      </div>
+                      <div class="col-lg-7 col-7">
+                        <h5 class="trend-name trend-head">Axis Bluechip Fund</h5>
+                        <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+                      </div>
+                      <div class="col-lg-3 col-3 text-end">
+                        <h5><span class="blue-text">0.35%</span></h5>
+                        <p>1 Year</p>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row l-values">
+                    <div class="col-lg-6 col-6">
+                       <p class="cf">Compare Fund</p>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <button class="nav-link btn btn-primary theme-button">Invest</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                  <div class="trending-product">
+                    <div class="bod-bot">
+                    <div class="row align-items-center">
+                      <div class="col-lg-2 col-2 co-logo">
+                        <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+                      </div>
+                      <div class="col-lg-7 col-7">
+                        <h5 class="trend-name trend-head">ICICI Prudential Technology</h5>
+                        <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+                      </div>
+                      <div class="col-lg-3 col-3 text-end">
+                        <h5><span class="blue-text">0.35%</span></h5>
+                        <p>1 Year</p>
+                      </div>
+                    </div>
+              
+                  </div>
+                  <div class="row l-values">
+                    <div class="col-lg-6 col-6">
+                       <p class="cf">Compare Fund</p>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <button class="nav-link btn btn-primary theme-button">Invest</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                  <div class="trending-product">
+                    <div class="bod-bot">
+                    <div class="row align-items-center">
+                      <div class="col-lg-2 col-2 co-logo">
+                        <img src="assets/img/axis_bank.png" class="img-fluid" alt="image">
+                      </div>
+                      <div class="col-lg-7 col-7">
+                        <h5 class="trend-name trend-head">Axis Bluechip Fund</h5>
+                        <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+                      </div>
+                      <div class="col-lg-3 col-3 text-end">
+                        <h5><span class="blue-text">0.35%</span></h5>
+                        <p>1 Year</p>
+                      </div>
+                    </div>
+                  
+                  </div>
+                  <div class="row l-values">
+                    <div class="col-lg-6 col-6">
+                       <p class="cf">Compare Fund</p>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <button class="nav-link btn btn-primary theme-button">Invest</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </ng-template>
+                <ng-template carouselSlide>
+                  <div class="trending-product">
+                    <div class="bod-bot">
+                    <div class="row align-items-center">
+                      <div class="col-lg-2 col-2 co-logo">
+                        <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+                      </div>
+                      <div class="col-lg-7 col-7">
+                        <h5 class="trend-name trend-head">ICICI Prudential Technology</h5>
+                        <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+                      </div>
+                      <div class="col-lg-3 col-3 text-end">
+                        <h5><span class="blue-text">0.35%</span></h5>
+                        <p>1 Year</p>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="row l-values">
+                    <div class="col-lg-6 col-6">
+                       <p class="cf">Compare Fund</p>
+                    </div>
+                    <div class="col-lg-6 col-6">
+                      <button class="nav-link btn btn-primary theme-button">Invest</button>
+                    </div>
+                    
+                  </div>
+                  </div>
+                </ng-template>
+                
+              </owl-carousel-o>
+            </div>
+                
+          </div>
+      </div>
+
+    </div>
+    <div id="menu2" class="container tab-pane fade"><br>
+      <div class="form-scroll">
+      <div class="bg-white">
+      <div class="row">
+      <div class="col-lg-2 col-1">
+        <img src="assets/img/share.png">
+      </div>
+      <div class="col-lg-8 col-7 offset-1">
+        <h4>Redeem funds</h4>
+        <h5 class="text-orange">In - Process</h5>
+      </div>
+      <div class="col-lg-2 col-3 text-end">
+        <h6>12/02/2021</h6>
+        <p>₹ 2000</p>
+      </div>
+    </div>
+  </div>
+  <div class="bg-white">
+    <div class="row">
+    <div class="col-lg-2 col-1">
+      <img src="assets/img/plan.png">
+    </div>
+    <div class="col-lg-8 col-7 offset-1">
+      <h4>Systematic Withdraw plan</h4>
+      <h5 class="text-green">Approved</h5>
+    </div>
+    <div class="col-lg-2 col-3 text-end">
+      <h6>12/02/2021</h6>
+      <p>₹ 3200</p>
+    </div>
+  </div>
+</div>
+<div class="bg-white">
+  <div class="row">
+  <div class="col-lg-2 col-1">
+    <img src="assets/img/switch-fund.png">
+  </div>
+  <div class="col-lg-8 col-7 offset-1">
+    <h4>Switch funds</h4>
+    <h5 class="text-red">Pending</h5>
+  </div>
+  <div class="col-lg-2 col-3 text-end">
+    <h6>12/02/2021</h6>
+    <p>₹ 1200</p>
+  </div>
+</div>
+</div>
+<div class="bg-white">
+  <div class="row">
+  <div class="col-lg-2 col-1">
+    <img src="assets/img/transfer-plan.png">
+  </div>
+  <div class="col-lg-8 col-7 offset-1">
+    <h4>Systematic transfer plan</h4>
+    <h5 class="text-orange">In - Process</h5>
+  </div>
+  <div class="col-lg-2 col-3 text-end">
+    <h6>12/02/2021</h6>
+    <p>₹ 2800</p>
+  </div>
+</div>
+</div>
+<div class="bg-white">
+  <div class="row">
+  <div class="col-lg-2 col-1">
+    <img src="assets/img/purchase.svg">
+  </div>
+  <div class="col-lg-8 col-7 offset-1">
+    <h4>Purchase</h4>
+    <h5 class="text-red">Pending</h5>
+  </div>
+  <div class="col-lg-2 col-3 text-end">
+    <h6>12/02/2021</h6>
+    <p>₹ 3850</p>
+  </div>
+</div>
+</div>
+</div>
+   
+    </div>
+  </div>
+    
+    </div>
+  </div>
+
+<div class="col-lg-4">
+  <div class="right-box  d-none d-lg-block d-md-block d-sm-block">
+    <h5>Sell your Fund by</h5>         
+    <ul class="nav nav-tabs" id="year-tabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly" aria-selected="true">Amount</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl" type="button" role="tab" aria-controls="otl" aria-selected="false">Unit</button>
+      </li>
+      
+    </ul> 
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+        <div class="row mt-3">
+          <div class="col-lg-7 col-7">
+            <p class="pt-2"><b>Enter Amount</b></p>
+          </div>
+          
+          <div class="col-lg-12">
+            <h1>₹ 0</h1>
+            <p>Units 00</p>
+          </div>
+          
+          <div class="col-lg-12 col-12">
+            <button type="button" class="btn btn-primary sip-btn" [routerLink]="['/switch-redeem-funds']"> Redeem/Switch Funds </button>
+          </div>
+        </div> 
+      </div>
+      <div class="tab-pane fade" id="otl" role="tabpanel" aria-labelledby="otl-tab">
+        <div class="row mt-3">
+          <div class="col-lg-7 col-7">
+            <p class="pt-2"><b>Enter Unit</b></p>
+          </div>
+          <div class="col-lg-12">
+            <h1>₹ 0</h1>
+            <p>Units 00</p>
+          </div>
+          
+          <div class="col-lg-12">
+            <button type="button" class="btn btn-primary sip-btn">Redeem/Switch Funds </button>
+          </div>
+        </div> 
+      </div>
+     
+    </div>
+                 
+</div> 
+
+
+<div class="right-box-mob d-block d-lg-none d-md-none d-sm-none">
+  <button type="button" class="btn btn-primary sip-btn" data-bs-toggle="modal" data-bs-target="#sortby-screen">Redeem/Switch Funds </button>
+  <!-- <button class="btn dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#sortby-screen"> -->
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+  </div>
+  <!-- sort by Modal -->
+<div class="modal fade" id="sortby-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span class="mob-tab-dash"></span>
+        <h5>Sell your Fund by</h5>         
+        <ul class="nav nav-tabs" id="year-tabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#amount-mob" type="button" role="tab" aria-controls="amount-mob" aria-selected="true">Amount</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#unit-mob" type="button" role="tab" aria-controls="unit-mob" aria-selected="false">Unit</button>
+          </li>
+          
+        </ul> 
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="amount-mob" role="tabpanel" aria-labelledby="unit-mob-tab">
+            <div class="row mt-3">
+              <div class="col-lg-7 col-7">
+                <p class="pt-2"><b>Enter Amount</b></p>
+              </div>
+              
+              <div class="col-lg-12">
+                <h1>₹ 0</h1>
+                <p>Units 00</p>
+              </div>
+              
+              <div class="col-lg-12 col-12">
+                <button type="button" class="btn btn-primary sip-btn"> Redeem/Switch Funds </button>
+              </div>
+            </div> 
+          </div>
+          <div class="tab-pane fade" id="unit-mob" role="tabpanel" aria-labelledby="unit-mob-tab">
+            <div class="row mt-3">
+              <div class="col-lg-7 col-7">
+                <p class="pt-2"><b>Enter Unit</b></p>
+              </div>
+              <div class="col-lg-12">
+                <h1>₹ 0</h1>
+                <p>Units 00</p>
+              </div>
+              
+              <div class="col-lg-12">
+                <button type="button" class="btn btn-primary sip-btn">Redeem/Switch Funds </button>
+              </div>
+            </div> 
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

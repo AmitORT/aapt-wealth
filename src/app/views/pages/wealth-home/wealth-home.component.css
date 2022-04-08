@@ -1,0 +1,984 @@
+
+  
+  .totalpremiumtext p {
+	font-size: 16px;
+	color: #465A65;
+	margin-bottom: 0;
+  }
+  
+  .totalpremiumtext h4 {
+	font-size: 16px;
+    color: #222222;
+    margin: 0;
+  }
+  
+  .totalpremiumtext h4 a {
+	font-size: 16px;
+	color: #E27E28;
+  }
+
+
+.slider-head{
+	font-size: 44px;
+	font-weight: 600;
+	color: #242424;
+}
+.slider-head span{
+	color: #00a0ae;
+}
+.slider-txt{
+	font-size: 20px;
+}
+.carousel-control-prev-icon {
+	background-image: url('../../../../assets/img/arrow_left.svg');
+}
+.carousel-control-next-icon{
+	background-image: url('../../../../assets/img/arrow_right.svg');
+}
+.carousel-control-next-icon, .carousel-control-prev-icon {
+	width: 3rem;
+	height: 3rem;
+}
+.carousel-control-next, .carousel-control-prev {
+	position: absolute;
+	top: 45%;
+	width: 15%;
+	height: 10%;
+}
+.carousel-control-prev{
+	left: -10%;
+}
+.carousel-control-next{
+	right: -10%;
+}
+
+#testimonial .carousel-indicators{
+	display: none;
+}
+.carousel-indicators [data-bs-target]{
+	width: 12px;
+	height: 12px;
+	background-color: #465A65;
+	border-radius: 50px;
+	border: 0px;
+}
+.carousel-indicators{
+	bottom: -35px;
+}
+.loan-type{
+	text-align: center;
+}
+.loan-type img {
+	width: 28%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+}
+.loan-type p{
+	margin-bottom: 0px;
+	margin-top: 10px;
+	color: #465A65;
+}
+::ng-deep .owl-next:before , ::ng-deep .owl-prev:before{
+	display: none;
+}
+::ng-deep .owl-prev i , ::ng-deep .owl-next i{
+	color: #a9b7b9;
+	font-size: 30px;
+}
+::ng-deep .owl-prev, ::ng-deep .owl-next {
+	width: 35px;
+	height: 35px;
+}
+.money-mng{
+	text-align: center;
+	cursor: pointer;
+}
+.money-mng img{
+	width: 26%;
+	margin-bottom: 10px;
+}
+.money-mng p{
+	margin-bottom: 0px;
+	color: #465A65;
+}
+.partner-txt{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	width: 100%;
+	padding: 0 20%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.partner-txt h3{
+	font-size: 36px;
+	color: #fff;
+	font-weight: 600;
+}
+.partner-txt p{
+	font-size: 21px;
+	color: #fff;
+	font-weight: 500;
+	margin-bottom: 30px;
+	text-align: center;
+}
+.user-img{
+	margin-bottom: 20px;
+}
+#testimonial h4{
+	color: #222222;
+	font-weight: 600;
+	font-size: 30px;
+}
+#testimonial p{
+	font-size: 20px;
+	padding: 1% 20%;
+}
+#testimonial .carousel-control-prev{
+	left: -6%;
+}
+#testimonial .carousel-control-next{
+	right: -6%;
+}
+.upquote{
+	position: absolute;
+	top: 0px;
+	width: 15%;
+	right: 0%;
+}
+.downquote{
+	position: absolute;
+	bottom: 0px;
+	width: 16%;
+	left: 0%;
+}
+.view-all{
+	color: #00A0AE;
+	text-decoration: none;
+	font-size: 18px;
+	font-weight: 600;
+}
+.trending-product {
+	border: 1px solid #bbc0c3;
+	margin-left: 8px;
+	border-radius: 14px;
+	padding: 15px;
+	margin-bottom: 15px;
+	background: #fbfbfb;
+	min-height: 8rem;
+}
+.trending-product img{
+	width: 100%;
+	margin-bottom: 0px;
+}
+.trending-product p{
+	font-size: 18px;
+	color: #222222;
+	font-weight: 500;
+	text-align: center;
+}
+.trending-product p.trend-head{
+	min-height: 45px;
+	align-items: center;
+	display: flex;
+}
+.finance-news{
+	margin: 0 5px;
+	/*margin-left: 37px;*/
+}
+/*.financial-slider .slick-slide{
+	opacity: 0.3;
+}
+.financial-slider .slick-slide.slick-active{
+	opacity: 1;
+	}*/
+	::ng-deep .financial-slider.trendprod .owl-prev {
+		left: -5px;
+		background: #eef8fa!important;
+		z-index: 999;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		height: 100px!important;
+		width: 40px!important;
+		top: 13px;
+		box-shadow: 0px 0px 5px #0000001c;
+		opacity: .9;
+	}
+	::ng-deep .financial-slider.trendprod .owl-next {
+		right: -5px;
+		background: #eef8fa!important;
+		z-index: 999;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		height: 100px!important;
+		width: 40px!important;
+		top: 13px;
+		box-shadow: 0px 0px 5px #0000001c;
+		opacity: .9;
+	}
+	::ng-deep .financial-slider.fin .owl-prev {
+		left: -5px;
+		background: #eef8fa!important;
+		z-index: 999;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		height: 124px!important;
+		width: 40px!important;
+		top: 35px;
+		box-shadow: 0px 0px 5px #0000001c;
+		opacity: .9;
+	}
+	::ng-deep .financial-slider.fin .owl-next {
+		right:  -5px;
+		background: #eef8fa!important;
+		z-index: 999;
+		display: flex;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		height: 124px!important;
+		width: 40px!important;
+		top: 35px;
+		box-shadow: 0px 0px 5px #0000001c;
+		opacity: .9;
+	}
+	::ng-deep .financial-slider .owl-nav img {
+		width: 70%;
+		opacity: .8;
+	}
+	::ng-deep .financial-slider .owl-nav{
+		opacity: 0!important;
+		transition: all 0.5s ease;
+	}
+	::ng-deep .financial-slider:hover .owl-nav{
+		opacity: 0.9!important
+	}
+
+	.finance-news img{
+		width: 100%;
+		margin-bottom: 15px;
+	}
+	.finance-news p{
+		font-size: 18px;
+		color: #222222;
+		font-weight: 500;
+	}
+	.financial-slider .slick-initialized .slick-slide {
+		padding-left: 20px;
+	}
+	.plr-15{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	.price-tag{
+		background: #D4DEE3;
+		padding: 10px;
+		border-radius: 12px;
+		margin-top: 10px;
+	}
+	.financial-slider .slick-initialized .slick-slide {
+		padding-left: 20px;
+	}
+	.cta h3{
+		color: #222222;
+		font-size: 42px;
+		font-weight: 600;
+	}
+	.cta{
+		box-shadow: 0px 4px 8px #0000003D;
+		border-radius: 30px;
+		padding: 20px 20px;
+		background: #fff;
+		z-index: 1;
+		position: relative;
+	}
+	.m0-auto{
+		margin: 0 auto;
+	}
+	.col {
+		flex: 1 0 0%!important;
+	}
+	.hidden-lg{
+		display: none;
+	}
+	.protect p{
+		font-size: 20px;
+		margin-bottom: 35px;
+		letter-spacing: 1px;
+	}
+	.br-btm{
+		width: 100px;
+		border-bottom: 2px solid #e27e28;
+		margin-bottom: 15px;
+	}
+	.protect .title-head{
+		margin-bottom: 5px!important;
+	}
+	p.trend-name{
+		font-size: 15px !important;
+		line-height: 18px !important;
+		color: #222 !important;
+		margin-bottom: 0px;
+	}
+	.title-head2 {
+		color: #222222;
+		font-size: 32px;
+		font-weight: 600;
+	}
+	.font18{
+		font-size: 18px;
+	}
+	.flow-row{
+		flex-flow: row;
+		margin-top: 30px;
+	}
+	.loan-opt .money-mng img {
+		width: 5rem;
+	}
+	.flow-row .money-mng {
+		text-align: center;
+		width: auto;
+		margin: 1%;
+	}
+	.flow-row .money-mng img {
+		width: 58%;
+	}
+	@media only screen and (max-width: 767px){
+
+		.slider-head {
+			font-size: 25px;
+			font-weight: 600;
+			color: #242424;
+			margin-top: 30px;
+		}
+		.loan-type p {
+			margin-bottom: 0px;
+			margin-top: 10px;
+			font-size: 13px;
+		}
+		.order1{
+			order: 1;
+		}
+		.order2{
+			order: 2;
+		}
+		.slider-txt {
+			font-size: 14px;
+		}
+		.carousel-control-prev {
+			left: -3%;
+		}
+		.carousel-control-next {
+			right: -3%;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2rem;
+			height: 2rem;
+		}
+		.about p{
+			text-align: justify;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		.about .text-end p{
+			text-align: right;
+		}
+		.about{
+			margin-bottom: 35px;
+		}
+		.about img.w-100{
+			width: 100%!important;
+			margin: 0 auto;
+		}
+		.about .col-lg-4{
+			text-align: center;
+		}
+		.about .title-head2 {
+			font-size: 16px;
+			margin-bottom: 10px!important;
+			text-align: left;
+		}
+		.about .text-end .title-head2{
+			text-align: right;
+		}
+		p.trend-name {
+			font-size: 14px;
+		}
+		.money-mng p{
+			font-size: 14px;
+		}
+
+		.money-mng img {
+			width: 33%;
+		}
+		.protect{
+			text-align: center;
+		}
+		.protect .title-head1 {
+			font-size: 24px;
+			text-align: left;
+			margin-top: 0px;
+			margin-bottom: 8px!important;
+		}
+		.protect .br-btm {
+			margin: 0 auto 0 0px;
+			margin-bottom: 15px;
+		}
+		.protect p {
+			text-align: left;
+			font-size: 15px;
+			margin-bottom: 5px;
+		}
+		.protect .theme-button{
+			margin: 0 auto 0 0;
+		}
+		.trending-product {  
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.money-invest .col{
+			flex: 1 0 50%!important;
+		}
+		.money-mng.mob-inv img{
+			width: 55%;
+		}
+		.flow-row {
+			margin-top: 0px;
+		}
+		.money-mng {
+			margin-bottom: 20px;
+		}
+
+		.partner-txt h3 {
+			font-size: 26px;
+		}
+		.partner-txt p {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+		.partner-txt {
+			left: 0;
+			width: 100%;
+			padding: 0 5%;
+		}
+		#testimonial p {
+			font-size: 16px;
+			padding: 1% 10%;
+		}
+		#testimonial h4 {
+			font-size: 24px;
+		}
+		.client-img img{
+			width: 100%;
+		}
+		.col-6 {
+			flex: 0 0 auto!important;
+			width: 50%;
+		}
+		.hidden-xs{
+			display: none;
+		}
+		.hidden-lg{
+			display: block;
+		}
+		.finance .title-head1 {
+			font-size: 28px;
+			text-align: center;
+		}
+		.trending-product {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.trending-product p {
+			text-align: left;
+		}
+
+		.finance .title-head1 {
+			font-size: 28px;
+			text-align: left;
+		}
+		.finance-news p {
+			text-align: left;
+		}
+		.finance-news {
+			margin-left: 0px;
+			margin-right: 0px;
+		}
+		.mob-center{
+			text-align: center;
+		}
+		.cta h3 {
+			font-size: 20px;
+			text-align: left;
+		}
+		.cta .mob-center img {
+			width: 100%;
+		}
+	}
+
+	@media only screen and (max-width: 991px) and (min-width: 768px){
+		#demo .slider-head {
+			font-size: 36px;
+			padding-top: 60px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		#demo .carousel-item .col-lg-5 {
+			text-align: center;
+		}
+		#demo .carousel-item .col-lg-5 .w-100{
+			width: 75%!important;
+			margin-top: 15px;
+		}
+		#demo .slider-txt {
+			font-size: 24px;
+		}
+		.money-invest.loan-opt .align-items-center{
+			align-items: baseline!important;
+		}
+		.loan-opt .money-mng img {
+			width: 48%;
+		}
+		.partner-txt p {
+			font-size: 16px;
+			margin-bottom: 20px;
+		}
+		.about{
+			margin-bottom: 30px;
+		}
+		.cta h3 {
+			color: #222222;
+			font-size: 30px;
+		}
+		.cta .mob-center img{
+			width: 95%;
+		}
+	}
+
+
+	@media (min-width: 1200px){
+		.container, .container-lg, .container-md, .container-sm, .container-xl {
+			max-width: 1035px;
+		}
+	}
+	/*-------------------new mobile media-------------*/
+	@media only screen and (max-width: 767px){
+		#demo .carousel-control-next, #demo .carousel-control-prev{
+			display: none;
+		}
+		.horizontal-scroll1{
+			display: flex;
+			overflow-x: scroll;
+			height: 9rem;
+			flex-wrap: nowrap;
+		}
+		.horizontal-scroll1::-webkit-scrollbar{
+			display: none;
+		}
+		/* .carousel-control-prev, .carousel-control-next{
+			display: none;
+		} */
+		.loan-opt .money-mng img {
+			width: 40%;
+		}
+		.money-invest.loan-opt .align-items-center{
+			align-items: baseline!important;
+		}
+		.money-invest .col {
+			flex: 1 0 33%!important;
+		}
+		.slider-head {
+			font-size: 34px;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 1rem!important;
+		}
+		.cta {
+			background: #fff0;
+			box-shadow: none;
+		}
+		.footer{
+			background-image: none;
+		}
+	}
+
+	/*-------------------1366x768-------------*/
+	@media only screen and (min-width: 1350px) and (max-width: 1370px){
+		.slider-head{
+			font-size: 38px;
+			line-height: 50px;
+			font-weight: 600;
+			color: #242424;
+		}
+		.slider-txt {
+			font-size: 18px;
+			line-height: 30px;
+			color: #222222;
+		}
+		.w-100.wd90{
+			width: 90%!important;
+		}
+		.loan-type img {
+			width: 24%;
+		}
+		.flow-row .money-mng img {
+			width: 48%;
+		}
+		.flow-row{
+			flex-flow: row;
+			margin-top: 10px;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 1rem!important
+		}
+		.pt-70.common-pt-50{
+			padding-top: 50px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		.carousel-item .col-lg-4{
+			text-align: right;
+		}
+		.why-finizon p{
+			padding-right: 45px;
+		}
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.why-finizon .col-lg-4{
+			text-align: right;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+	}
+	/*-------------------1280x800-------------*/
+	@media only screen and (min-width: 1270px) and (max-width: 1290px){
+		.slider-head{
+			font-size: 38px;
+			font-weight: 600;
+			color: #242424;
+			line-height: 50px;
+		}
+		.slider-txt {
+			font-size: 18px;
+			line-height: 30px;
+			color: #222222;
+		}
+		.w-100.wd90{
+			width: 100%!important;
+		}
+		.loan-type p {
+			color: #465A65;
+			font-size: 18px;
+		}
+		.loan-type img {
+			width: 28%;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 1rem!important
+		}
+		.pt-70.common-pt-50{
+			padding-top: 50px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		.carousel-item .col-lg-4{
+			text-align: right;
+		}
+		.money-mng p {
+			color: #465A65;
+			font-size: 18px;
+		}
+		.money-mng img{
+			width: 29%;
+		}
+		.why-finizon p{
+			padding-right: 45px;
+		}
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.why-finizon .col-lg-4{
+			text-align: right;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+	}
+	/*-------------------1440x900-------------*/
+	@media only screen and (min-width: 1430px) and (max-width: 1450px){
+		.slider-head{
+			font-size: 40px;
+			font-weight: 600;
+			color: #242424;
+			line-height: 50px;
+		}
+		.slider-txt {
+			font-size: 21px;
+			line-height: 30px;
+			color: #222222;
+		}
+		.w-100.wd90{
+			width: 100%!important;
+		}
+		.loan-type p{
+			font-size: 18px;
+		}
+		.loan-type img {
+			width: 30%;
+		}
+		.money-mng p{
+			font-size: 20px;
+		}
+		.money-mng img{
+			width: 30%;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 1.5rem!important
+		}
+		.pt-70.common-pt-50{
+			padding-top: 60px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		.carousel-item .col-lg-4{
+			text-align: right;
+		}
+		.why-finizon p{
+			padding-right: 45px;
+		}
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.why-finizon .col-lg-4{
+			text-align: right;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+		.loan-opt .money-mng img {
+			width: 38%;
+		}
+		.flow-row .money-mng img {
+			width: 54%;
+		}
+		.protect p {
+			font-size: 24px;
+		}
+
+	}
+	/*-------------------1536x864-------------*/
+	@media only screen and (min-width: 1530px) and (max-width: 1540px){
+		.slider-head{
+			font-size: 38px;
+			font-weight: 600;
+			color: #242424;
+			line-height: 50px;
+		}
+		.slider-txt {
+			font-size: 18px;
+			line-height: 30px;
+			margin-bottom: 25px;
+			color: #222222;
+		}
+		.w-100.wd90{
+			width: 90%!important;
+		}
+		.loan-type p{
+			font-size: 18px;
+		}
+		.loan-type img {
+			width: 24%;
+		}
+		.loan-opt .money-mng img {
+			width: 38%;
+		}
+		.flow-row .money-mng img {
+			width: 62%;
+		}
+		.protect p {
+			font-size: 24px;
+		}
+		.money-mng img {
+			width: 29%;
+		}
+		.money-mng p{
+			font-size: 18px;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 2.5rem!important
+		}
+		.pt-70.common-pt-50{
+			padding-top: 75px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		.carousel-item .col-lg-4{
+			text-align: right;
+		}
+		.why-finizon p{
+			padding-right: 45px;
+		}
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.why-finizon .col-lg-4{
+			text-align: right;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+	}
+	@media only screen and (min-width: 1590px) and (max-width: 1610px){
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+	}
+	@media only screen and (min-width: 1900px) and (max-width: 1950px){
+		.container, .container-lg, .container-md, .container-sm, .container-xl {
+			max-width: 1320px;
+		}
+		.slider-head{
+			font-size: 50px;
+			font-weight: 600;
+			color: #242424;
+			line-height: 65px;
+		}
+		.slider-txt {
+			font-size: 24px;
+			line-height: 36px;
+			color: #222222;
+			margin-top: 15px;
+			margin-bottom: 30px;
+		}
+		.w-100.wd90{
+			width: 100%!important;
+		}
+		.loan-type img {
+			width: 32%;
+		}
+		.mt-5.common-mt-3{
+			margin-top: 3.5rem!important
+		}
+		.pt-70.common-pt-50{
+			padding-top: 90px;
+		}
+		.carousel-control-next-icon, .carousel-control-prev-icon {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+		.carousel-item .col-lg-4{
+			text-align: right;
+		}
+		.why-finizon p{
+			padding-right: 45px;
+			font-size: 24px;
+		}
+
+		.about .col-lg-4 img{
+			width: 80%!important;
+		}
+		.about{
+			padding-bottom: 30px;
+		}
+		.why-finizon .col-lg-4{
+			text-align: right;
+		}
+		.money-mng p, .loan-type p{
+			font-size: 24px;
+		}
+		.client-img .col img{
+			width: 85%;
+		}
+		.finance-news p {
+			font-size: 21px;
+		}
+		.finance-news {
+			margin-left: 45px;
+		}
+		.title-head2{
+			font-size: 40px;
+		}
+		.about .font18{
+			font-size: 24px;
+			line-height: 32px;
+		}
+		#testimonial h4{
+			color: #222222;
+			font-weight: 600;
+			font-size: 40px;
+		}
+
+		#testimonial p{
+			font-size: 24px;
+			padding: 1% 17%;
+		}
+		.partner-txt h3 {
+			font-size: 40px;
+			margin-bottom: 30px;
+			color: #fff;
+			font-weight: 600;
+		}
+		.partner-txt p {
+			font-size: 24px;
+			font-weight: 300;
+		}
+		.theme-button {
+			padding: 15px;
+			font-weight: 600;
+			width: 180px;
+			font-size: 18px!important;
+		}
+		.protect p {
+			font-size: 32px;
+		}
+		.money-mng img {
+			width: 30%;
+			margin-top: 20px;
+			margin-bottom: 15px;
+		}
+		.loan-opt .money-mng img {
+			width: 38%;
+		}
+		.flow-row .money-mng img {
+			width: 56%;
+		}
+	}

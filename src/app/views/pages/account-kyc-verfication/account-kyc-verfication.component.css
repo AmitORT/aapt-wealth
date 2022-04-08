@@ -1,0 +1,75 @@
+.breadcrumb-title{
+	color: #465A65;
+	font-size: 30px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 15px;
+	cursor: pointer;
+}
+.tab-detail .breadcrumb-title{
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+.mb10per{
+    margin-bottom: 10%;
+}
+.i-icon{
+	color: #4c616b;
+	font-size: 27px;
+}
+.breadcrumb-title::after
+{
+	content: '';
+	border-bottom: 3px solid #e27e28;
+	width: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 5px;
+}
+.breadcrumb-sub {
+	font-size: 18px;
+	line-height: 30px;
+	color: #222222;
+}
+.breadcrumb-title1{
+	color: #465A65;
+	font-size: 22px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 15px;
+}
+.breadcrumb-title1::after
+{
+	content: '';
+	border-bottom: 3px solid #e27e28;
+	width: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 5px;
+}
+.loan-btn{
+	padding: 10px;
+    color: #fff!important;
+    font-weight: 500;
+    background-color: #E27E28;
+    width: 200px;
+    border-color: #E27E28;
+    border-radius: 12px;
+    font-size: 16px!important;
+}
+.dashboard-btn{
+	padding: 10px;
+    color: #E27E28!important;
+    font-weight: 500;
+    background-color: transparent;
+    width: 200px;
+    border-color: #E27E28;
+    border-radius: 12px;
+    font-size: 16px!important;	
+}
+.btn-div{
+	justify-content: flex-start;
+    width: 100%;
+    display: flex;
+	margin-top: 8%;
+}

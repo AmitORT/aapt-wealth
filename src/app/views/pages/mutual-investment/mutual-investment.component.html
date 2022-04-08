@@ -1,0 +1,1439 @@
+<div class="container mb10per">
+    <div class="row mt-4">
+       <div class="col-lg-12 d-none d-lg-block d-md-block d-sm-block">
+         <h4 class="breadcrumb-title"><span [routerLink]="['/dashboard']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+       </div>
+    </div>
+    <div class="row mt-2">
+       <div class="col-lg-3" id="sidebar-main">
+          <app-account-desktop-menu></app-account-desktop-menu>
+       </div>
+       <div class="col-lg-9 pd-right-div">
+          <div class="row">
+             <div class="col-md-12">
+                <div class="row">
+                   <div class="col-lg-9 col-7">
+                      <h4>                       
+                          <i class="fa fa-arrow-left i-icon d-block d-lg-none d-md-none d-sm-none"></i>Portfolio</h4>
+                   </div>
+                   <div class="col-lg-3 col-5">
+                      <div class="select-dropdown">
+                         <select>
+                            <option value="Option 1">Select</option>
+                            <option value="Option 2">Myself</option>
+                            <option value="Option 3">Option Number 3</option>
+                         </select>
+                      </div>
+                   </div>
+                </div>
+
+                <div class="mob-cs">
+                    <div class="row">
+                        <div class="col-6">
+                         <p>Invested Value</p>                        
+                         <p>Absolute Return : + 24%</p>
+                         <p>XIRR : + 19.25%</p>
+                        </div>
+                        <div class="col-6 text-end">
+                            <h5>₹ 5,50,800</h5>
+                        </div>                   
+                    </div>
+                </div>
+                <div class="white-bg">
+                    <div class="row">
+                        <div class="col-6">
+                            <p>My Insurances</p>                        
+                            <h4>3 Insurances</h4>
+                        </div>
+                        <div class="col-6 text-start">
+                            <p>My Loans</p>
+                            <h4>₹ 20,50,200</h4>
+                        </div>                   
+                    </div>
+                </div>
+                <div class="white-bg-below">
+                    <div class="row">
+                        <div class="col-6">
+                            <p>Credit Score</p>  
+                        </div>
+                        <div class="col-6 text-start">
+                            <p><b>550/900</b></p>
+                        </div>                   
+                    </div>
+                </div>
+                
+                <!--desktop tabs-->
+                <div class="d-none d-lg-block d-md-block d-sm-block">
+                <ul class="nav nav-tabs pt-select pt-3"  role="tablist">
+                   <li class="nav-item mb-2 col-lg-4 col-12" role="presentation">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#intval" type="button" role="tab" aria-controls="intval" aria-selected="true">
+                         <p>Invested Value</p>
+                         <h5>₹ 5,50,800</h5>
+                         <p>Absolute Return : <span class="text-green">+ 24%</span></p>
+                         <p>XIRR :  <span class="text-green">+ 19.25%</span></p>
+                      </button>
+                   </li>
+                   <li class="nav-item mb-2 col-lg-4 col-12" role="presentation">
+                      <button class="nav-link myins" data-bs-toggle="tab" data-bs-target="#myins" type="button" role="tab" aria-controls="myins" aria-selected="false">
+                         <p>My Insurances</p>
+                         <h5>3 Insurances</h5>
+                      </button>
+                   </li>
+                   <li class="nav-item mb-2 col-lg-4 col-12 mt4-mob" role="presentation">
+                      <button class="nav-link myloans" data-bs-toggle="tab" data-bs-target="#myloans" type="button" role="tab" aria-controls="myloans" aria-selected="false">
+                         <p>My Loans</p>
+                         <h5>₹ 20,50,200</h5>
+                      </button>
+                   </li>
+                </ul>
+
+               
+                <div class="form-scroll" >
+                   <div class="tab-content mt-2" id="nav-tabContent">
+                      <div class="tab-pane fade show active" id="intval" role="tabpanel" aria-labelledby="nav-home-tab">
+                         <div class="row">
+                            <div class="col-lg-6 col-12" [routerLink]="['/account-portfolio']">
+                               <div class="main-div" >
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/mutual-funds.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Mutual Funds</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr <span class="text-green">(133.2%)</span></p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/aif.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>AIF <span class="small-text"> (Alternate Investment Funds)</span></h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/pms.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>PMS <span class="small-text">(Portfolio Management Services)</span></h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/fd.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Fixed Deposit</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/bond.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Bonds</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>21%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/digital-gold.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Digital Gold</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>0</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>0</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>0</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>0</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="tab-pane fade" id="myins" role="tabpanel" aria-labelledby="nav-profile-tab">
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 col-6 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Bajaj Allianz</h5>
+                                        <p>Two-Wheeler Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/hdfc-brand_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>HDFC Ergo General Insurance</h5>
+                                        <p>Health Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Bajaj Allianz</h5>
+                                        <p>Two-Wheeler Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/hdfc-brand_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>HDFC Ergo General Insurance</h5>
+                                        <p>Health Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Bajaj Allianz</h5>
+                                        <p>Two-Wheeler Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-5 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Bajaj Allianz</h5>
+                                        <p>Two-Wheeler Insurance</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Policy Status</h5>
+                                     <p>Policy Issued</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Renewal Due on</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Policy Premium</h5>
+                                     <p class="blue-text">₹ 1,019/Yearly</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-1 ps-2 pe-2 text-center">
+                                  <i class="fa fa-download" aria-hidden="true"></i>                             
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-3 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/kotak_bank.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Kotak Mahindra Bank</h5>
+                                        <p>Personal Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI Start Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI End Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-3 text-center">
+                                  <div class="invests">
+                                     <h5>EMI due on 08 Dec, 2021</h5>
+                                     <p class="blue-text">₹ 1,019</p>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="tab-pane fade" id="myloans" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <h4>All Loans</h4>
+                            </div>
+                            <div class="col-lg-6 text-end">
+                                <div class="dropdown menu-btn">
+                                
+                                        <i class="fa fa-filter" aria-hidden="true" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                    
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a class="dropdown-item" href="#">Applied Loans</a></li>
+                                    <li><a class="dropdown-item" href="#">Active Loans</a></li>
+                                    
+                                    </ul>
+                                </div> 
+                                
+                            </div>
+                        </div>
+                        <div class="table-row mt-3">
+                            <span class="orange-offer">Processing Application</span>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-6 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Mahindra Finance Bank</h5>
+                                        <p>Home Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Rate of Interest</h5>
+                                     <p>15%</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>EMI/Month</h5>
+                                     <p>₹ 12,188</p>
+                                  </div>
+                               </div>
+                               
+                            </div>
+                         </div>
+                         <div class="table-row mb-4">
+                            <div class="row">
+                               <div class="col-lg-3 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/kotak_bank.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Kotak Mahindra Bank</h5>
+                                        <p>Personal Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI Start Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI End Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-3 text-center">
+                                  <div class="invests">
+                                     <h5>EMI due on 08 Dec, 2021</h5>
+                                     <p class="blue-text">₹ 1,019</p>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <span class="green-offer">Application Approved</span>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-6 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>ICICI Bank</h5>
+                                        <p>Education Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Rate of Interest</h5>
+                                     <p>15%</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>EMI/Month</h5>
+                                     <p>₹ 12,188</p>
+                                  </div>
+                               </div>
+                               
+                            </div>
+                         </div>
+                         <div class="table-row mt-4">
+                            <span class="orange-offer">Processing Application</span>
+                            <div class="row">
+                               
+                               <div class="col-lg-6 col-6 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/bajaj_logo.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Mahindra Finance Bank</h5>
+                                        <p>Home Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-l col-6 ps-2 pe-2">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>Rate of Interest</h5>
+                                     <p>15%</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                  <div class="invests">
+                                     <h5>EMI/Month</h5>
+                                     <p>₹ 12,188</p>
+                                  </div>
+                               </div>
+                               
+                            </div>
+                         </div>
+                         <div class="table-row">
+                            <div class="row">
+                               <div class="col-lg-3 ps-2 pe-2">
+                                  <div class="table-flex">
+                                     <div class="bank-logo">
+                                        <img src="assets/img/kotak_bank.png"/>
+                                     </div>
+                                     <div class="my-bank">
+                                        <h5>Kotak Mahindra Bank</h5>
+                                        <p>Personal Loan</p>
+                                     </div>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-l col-6">
+                                  <div class="returns">
+                                     <h5>Loan Amount</h5>
+                                     <p>₹ 50,00,000</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI Start Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-2 mb-bg-r col-6">
+                                  <div class="invests">
+                                     <h5>EMI End Date</h5>
+                                     <p>06 May, 2022</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-3 text-center">
+                                  <div class="invests">
+                                     <h5>EMI due on 08 Dec, 2021</h5>
+                                     <p class="blue-text">₹ 1,019</p>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                        <div class="table-row mt-4">
+                            <span class="red-offer">Application Rejected</span>
+                            <div class="row">
+                            
+                            <div class="col-lg-6 col-6 ps-2 pe-2">
+                                <div class="table-flex">
+                                    <div class="bank-logo">
+                                        <img src="assets/img/HDFC2.png"/>
+                                    </div>
+                                    <div class="my-bank">
+                                        <h5>HDFC Bank</h5>
+                                        <p>Home Loan</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 mb-bg-l col-6 ps-2 pe-2">
+                                <div class="returns">
+                                    <h5>Loan Amount</h5>
+                                    <p>₹ 50,00,000</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                <div class="invests">
+                                    <h5>Rate of Interest</h5>
+                                    <p>15%</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-6 mb-bg-r col-6 ps-2 pe-2">
+                                <div class="invests">
+                                    <h5>EMI/Month</h5>
+                                    <p>₹ 12,188</p>
+                                </div>
+                            </div>
+                            
+                            </div>
+                        </div>
+
+
+                      </div>
+                   </div>
+                </div>
+                </div>
+
+                 <!--mobile tabs-->
+                <div class="mob-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="invmob-tab" data-bs-toggle="tab" data-bs-target="#invmob" type="button" role="tab" aria-controls="invmob" aria-selected="false">Investments</button>
+                    </li>
+                    
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="insmob-tab" data-bs-toggle="tab" data-bs-target="#insmob" type="button" role="tab" aria-controls="insmob" aria-selected="false">My Insurance</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="loan-tab" data-bs-toggle="tab" data-bs-target="#loan" type="button" role="tab" aria-controls="loan" aria-selected="false">Loans</button>
+                    </li>
+                  </ul>
+
+                  <div class="form-scroll">
+                  <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="invmob" role="tabpanel" aria-labelledby="invmob-tab">
+                        <div class="row">
+                            <div class="col-lg-6 col-12">
+                               <div class="main-div" [routerLink]="['/mutual-investment']">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/mutual-funds.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Mutual Funds</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr <span class="text-green">(133.2%)</span></p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/aif.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>AIF <span class="small-text"> (Alternate Investment Funds)</span></h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/pms.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>PMS <span class="small-text">(Portfolio Management Services)</span></h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/fd.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Fixed Deposit</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>24.5%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/bond.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Bonds</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>21%</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>₹ 296.16 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>₹ 127.01 Cr</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>₹ 169.15 Cr (133.2%)</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-lg-6 col-12 pt-2">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/digital-gold.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-7">
+                                        <h5>Digital Gold</h5>
+                                     </div>
+                                     <div class="col-lg-3 col-3">
+                                        <h6>Weights (%)</h6>
+                                        <p>0</p>
+                                     </div>
+                                     <div class="col-lg-12">
+                                       <div class="bg-pr">
+                                          <div class="fill-pr" style="width: 20%"></div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Current Value</h5>
+                                           <p>0</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Invested Value</h5>
+                                           <p>0</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>Gain/Loss</h5>
+                                           <p>0</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                    </div>
+                    <div class="tab-pane fade" id="insmob" role="tabpanel" aria-labelledby="insmob-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="main-div">
+                                    <div class="row outer-bg">
+                                       <div class="col-lg-2 col-2">
+                                          <img src="assets/img/bajaj_logo.png" class="img-fluid">
+                                       </div>
+                                       <div class="col-lg-7 col-8">
+                                        <h5>Bajaj Allianz</h5>
+                                        <h6>Two-Wheeler Insurance</h6>
+                                       </div>
+                                       <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                       
+                                    </div>
+                                    <div class="lb-bg">
+                                       <div class="row">
+                                          <div class="col-6 cv">
+                                             <h5>Policy Status</h5>
+                                             <p>Policy Issued</p>
+                                          </div>
+                                          <div class="col-6 iv">
+                                             <h5>Renewal Due on</h5>
+                                             <p>06 May, 2022</p>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                  <div class="row inmob">                                        
+                                        <div class="col-lg-7 col-6">
+                                             <h5>₹ 1,019/Yearly</h5>
+                                        </div>
+                                        <div class="col-lg-3 col-6 text-end">
+                                            <button  class="nav-link">Download Policy</button>
+                                        </div>
+                                        
+                                     </div>
+                                 </div>
+                                 <div class="main-div">
+                                    <div class="row outer-bg">
+                                       <div class="col-lg-2 col-2">
+                                          <img src="assets/img/bajaj_logo.png" class="img-fluid">
+                                       </div>
+                                       <div class="col-lg-7 col-8">
+                                        <h5>Bajaj Allianz</h5>
+                                        <h6>Two-Wheeler Insurance</h6>
+                                       </div>
+                                       <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                       
+                                    </div>
+                                    <div class="lb-bg">
+                                       <div class="row">
+                                          <div class="col-6 cv">
+                                             <h5>Policy Status</h5>
+                                             <p>Policy Issued</p>
+                                          </div>
+                                          <div class="col-6 iv">
+                                             <h5>Renewal Due on</h5>
+                                             <p>06 May, 2022</p>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                  <div class="row inmob">                                        
+                                        <div class="col-lg-7 col-6">
+                                             <h5>₹ 1,019/Yearly</h5>
+                                        </div>
+                                        <div class="col-lg-3 col-6 text-end">
+                                            <button  class="nav-link">Download Policy</button>
+                                        </div>
+                                        
+                                     </div>
+                                 </div>
+                                 <div class="main-div">
+                                    <div class="row outer-bg">
+                                       <div class="col-lg-2 col-2">
+                                          <img src="assets/img/bajaj_logo.png" class="img-fluid">
+                                       </div>
+                                       <div class="col-lg-7 col-8">
+                                        <h5>Bajaj Allianz</h5>
+                                        <h6>Two-Wheeler Insurance</h6>
+                                       </div>
+                                       <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                       
+                                    </div>
+                                    <div class="lb-bg">
+                                       <div class="row">
+                                          <div class="col-6 cv">
+                                             <h5>Policy Status</h5>
+                                             <p>Policy Issued</p>
+                                          </div>
+                                          <div class="col-6 iv">
+                                             <h5>Renewal Due on</h5>
+                                             <p>06 May, 2022</p>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                  <div class="row inmob">                                        
+                                        <div class="col-lg-7 col-6">
+                                             <h5>₹ 1,019/Yearly</h5>
+                                        </div>
+                                        <div class="col-lg-3 col-6 text-end">
+                                            <button  class="nav-link">Download Policy</button>
+                                        </div>
+                                        
+                                     </div>
+                                 </div>
+                                 <div class="main-div">
+                                    <div class="row outer-bg">
+                                       <div class="col-lg-2 col-2">
+                                          <img src="assets/img/bajaj_logo.png" class="img-fluid">
+                                       </div>
+                                       <div class="col-lg-7 col-8">
+                                        <h5>Bajaj Allianz</h5>
+                                        <h6>Two-Wheeler Insurance</h6>
+                                       </div>
+                                       <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                       
+                                    </div>
+                                    <div class="lb-bg">
+                                       <div class="row">
+                                          <div class="col-6 cv">
+                                             <h5>Policy Status</h5>
+                                             <p>Policy Issued</p>
+                                          </div>
+                                          <div class="col-6 iv">
+                                             <h5>Renewal Due on</h5>
+                                             <p>06 May, 2022</p>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                  <div class="row inmob">                                        
+                                        <div class="col-lg-7 col-6">
+                                             <h5>₹ 1,019/Yearly</h5>
+                                        </div>
+                                        <div class="col-lg-3 col-6 text-end">
+                                            <button  class="nav-link">Download Policy</button>
+                                        </div>
+                                        
+                                     </div>
+                                 </div>
+                                 <div class="main-div">
+                                    <div class="row outer-bg">
+                                       <div class="col-lg-2 col-2">
+                                          <img src="assets/img/bajaj_logo.png" class="img-fluid">
+                                       </div>
+                                       <div class="col-lg-7 col-8">
+                                        <h5>Bajaj Allianz</h5>
+                                        <h6>Two-Wheeler Insurance</h6>
+                                       </div>
+                                       <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                       
+                                    </div>
+                                    <div class="lb-bg">
+                                       <div class="row">
+                                          <div class="col-6 cv">
+                                             <h5>Policy Status</h5>
+                                             <p>Policy Issued</p>
+                                          </div>
+                                          <div class="col-6 iv">
+                                             <h5>Renewal Due on</h5>
+                                             <p>06 May, 2022</p>
+                                          </div>
+                                          
+                                       </div>
+                                    </div>
+                                  <div class="row inmob">                                        
+                                        <div class="col-lg-7 col-6">
+                                             <h5>₹ 1,019/Yearly</h5>
+                                        </div>
+                                        <div class="col-lg-3 col-6 text-end">
+                                            <button  class="nav-link">Download Policy</button>
+                                        </div>
+                                        
+                                     </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="loan" role="tabpanel" aria-labelledby="loan-tab">
+                        <div class="row">
+                            <div class="col-10">
+                               <h4>All Loans</h4>
+                            </div>
+                            <div class="col-2 text-end">
+                                <div class="dropdown menu-btn">
+                                
+                                    <i class="fa fa-filter" aria-hidden="true" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                                
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a class="dropdown-item" href="#">Applied Loans</a></li>
+                                <li><a class="dropdown-item" href="#">Active Loans</a></li>
+                                
+                                </ul>
+                            </div>
+                             </div>
+                            <div class="col-lg-6 col-12">
+                               <div class="main-div">
+                                  <div class="row outer-bg">
+                                     <div class="col-lg-2 col-2">
+                                        <img src="assets/img/icici-bank.png" class="img-fluid">
+                                     </div>
+                                     <div class="col-lg-7 col-8">
+                                        <h5>ICICI Bank</h5>
+                                        <p>Education Loan</p>
+                                     </div>
+                                     <div class="col-lg-3 col-2 text-end">
+                                        <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                       </div>
+                                     
+                                  </div>
+                                  <div class="lb-bg">
+                                     <div class="row">
+                                        <div class="col-lg-4 col-4 cv">
+                                           <h5>Loan Amount</h5>
+                                           <p>₹ 50,00,000</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 iv">
+                                           <h5>Rate of Interest</h5>
+                                           <p>15%</p>
+                                        </div>
+                                        <div class="col-lg-4 col-4 gl">
+                                           <h5>EMI/Month</h5>
+                                           <p>₹ 12,188</p>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-8">
+                                          <p class="orange-offer">Processing Application</p>
+                                      </div>
+                                  </div>
+                               </div>
+                               <div class="main-div">
+                                <div class="row outer-bg">
+                                   <div class="col-lg-2 col-2">
+                                      <img src="assets/img/kotak_bank.png" class="img-fluid">
+                                   </div>
+                                   <div class="col-lg-7 col-8">
+                                      <h5>Kotak Mahindra Bank</h5>
+                                      <p>Home Loan</p>
+                                   </div>
+                                   <div class="col-lg-3 col-2 text-end">
+                                      <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                     </div>
+                                   
+                                </div>
+                                <div class="lb-bg">
+                                   <div class="row">
+                                      <div class="col-lg-4 col-4 cv">
+                                         <h5>Loan Amount</h5>
+                                         <p>₹ 50,00,000</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 iv">
+                                         <h5>EMI Start Date</h5>
+                                         <p>12 Apr, 2021</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 gl">
+                                         <h5>EMI End Date</h5>
+                                         <p>12 Apr, 2024</p>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="row emi-due">
+                                    <div class="col-6">
+                                        <p>EMI due on 08 Dec, 2021</p>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <h5>₹ 8,852</h5>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="main-div">
+                                <div class="row outer-bg">
+                                   <div class="col-lg-2 col-2">
+                                      <img src="assets/img/icici-bank.png" class="img-fluid">
+                                   </div>
+                                   <div class="col-lg-7 col-8">
+                                      <h5>ICICI Bank</h5>
+                                      <p>Education Loan</p>
+                                   </div>
+                                   <div class="col-lg-3 col-2 text-end">
+                                      <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                     </div>
+                                   
+                                </div>
+                                <div class="lb-bg">
+                                   <div class="row">
+                                      <div class="col-lg-4 col-4 cv">
+                                         <h5>Loan Amount</h5>
+                                         <p>₹ 50,00,000</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 iv">
+                                         <h5>Rate of Interest</h5>
+                                         <p>15%</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 gl">
+                                         <h5>EMI/Month</h5>
+                                         <p>₹ 12,188</p>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p class="green-offer">Application Applied</p>
+                                    </div>
+                                </div>
+                             </div>
+                             <div class="main-div">
+                                <div class="row outer-bg">
+                                   <div class="col-lg-2 col-2">
+                                      <img src="assets/img/icici-bank.png" class="img-fluid">
+                                   </div>
+                                   <div class="col-lg-7 col-8">
+                                      <h5>ICICI Bank</h5>
+                                      <p>Education Loan</p>
+                                   </div>
+                                   <div class="col-lg-3 col-2 text-end">
+                                      <i class="fa fa-arrow-right blue-text" aria-hidden="true"></i>
+                                     </div>
+                                   
+                                </div>
+                                <div class="lb-bg">
+                                   <div class="row">
+                                      <div class="col-lg-4 col-4 cv">
+                                         <h5>Loan Amount</h5>
+                                         <p>₹ 50,00,000</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 iv">
+                                         <h5>Rate of Interest</h5>
+                                         <p>15%</p>
+                                      </div>
+                                      <div class="col-lg-4 col-4 gl">
+                                         <h5>EMI/Month</h5>
+                                         <p>₹ 12,188</p>
+                                      </div>
+                                   </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p class="red-offer">Application Rejected</p>
+                                    </div>
+                                </div>
+                             </div>
+
+                            </div>
+                            </div>
+
+
+
+
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                  
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>

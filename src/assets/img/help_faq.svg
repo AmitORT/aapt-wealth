@@ -1,0 +1,8 @@
+<svg id="help_faq" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect id="icon_container" width="32" height="32" fill="none"/>
+  <g id="interrogation" transform="translate(4 4)">
+    <path id="Path_27448" data-name="Path 27448" d="M12,0A12,12,0,1,0,24,12,12,12,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10,10,0,0,1,12,22Z" transform="translate(0 0)" fill="#b4b4b4"/>
+    <path id="Path_27449" data-name="Path 27449" d="M12.717,5.063A4,4,0,0,0,8,9a1,1,0,1,0,2,0,2,2,0,0,1,2.371-1.967,2.024,2.024,0,0,1,1.6,1.6,2,2,0,0,1-1,2.125A3.954,3.954,0,0,0,11,14.257V15a1,1,0,0,0,2,0v-.743a1.982,1.982,0,0,1,.93-1.752,4,4,0,0,0-1.213-7.442Z" transform="translate(0 0)" fill="#b4b4b4"/>
+    <rect id="Rectangle_8309" data-name="Rectangle 8309" width="2" height="2" rx="1" transform="translate(11.067 17.333)" fill="#b4b4b4"/>
+  </g>
+</svg>

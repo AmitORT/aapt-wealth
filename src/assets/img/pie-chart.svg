@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="202" height="202" viewBox="0 0 202 202">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Subtraction_1" data-name="Subtraction 1" d="M101,202A101.027,101.027,0,0,1,61.686,7.937a101.026,101.026,0,0,1,78.628,186.126A100.371,100.371,0,0,1,101,202Zm0-167.789A66.79,66.79,0,1,0,167.791,101,66.865,66.865,0,0,0,101,34.211Z" transform="translate(9074 1519)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_63" data-name="Mask Group 63" transform="translate(-9074 -1519)" clip-path="url(#clip-path)">
+    <rect id="Rectangle_8866" data-name="Rectangle 8866" width="202" height="202" transform="translate(9074 1519)" fill="#00a0ae"/>
+    <rect id="Rectangle_8874" data-name="Rectangle 8874" width="101" height="202" transform="translate(9074 1519)" fill="#f29f05"/>
+    <rect id="Rectangle_8872" data-name="Rectangle 8872" width="202" height="101" transform="translate(9074 1620)" fill="#e27e28"/>
+    <rect id="Rectangle_8873" data-name="Rectangle 8873" width="101" height="101" transform="translate(9074 1620)" fill="#57c47c"/>
+    <path id="Path_33098" data-name="Path 33098" d="M0,78.211,100.815,0V100.815H0Z" transform="translate(9074 1619.816)" fill="#0074db"/>
+  </g>
+</svg>

@@ -1,0 +1,206 @@
+.title{
+  color: #465A65;
+  font-size: 28px;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 2rem;
+}
+.i-icon{
+color: #4c616b;
+font-size: 27px;
+}
+.breadcrumb-title{
+color: #465A65;
+font-size: 30px;
+font-weight: 600;
+position: relative;
+padding-bottom: 15px;
+  margin-bottom: 0px;
+}
+.breadcrumb-title::after {
+  content: '';
+  border-bottom: 3px solid #e27e28;
+  width: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0.5rem;
+}
+.title::after {
+  content: '';
+  border-bottom: 3px solid #e27e28;
+  width: 50px;
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+}
+.container1 {
+  background-color: #D4DEE3;
+  margin-left: 0px;
+  margin-top: 25px;
+  border-radius: 12px;
+  opacity: 1;
+  padding: 0.25rem 1rem 1rem;
+  width: 85%;
+  color: #000000;
+}
+.note{
+    font-weight: 600;
+}
+p {
+  color: #222222;
+  font-size: 18px;
+}
+.transparent-button{
+  margin-right: 25px;
+}
+.cutoff{
+  color: #E27E2B;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.carelogo {
+  margin-top: 15px;
+  margin-left: 10px;
+}
+
+.carelogo .logo {
+  width: 35px;
+}
+
+.carelogo span {
+  font-size: 16px;
+  margin-left: 5px;
+  color: #222222;
+  text-transform: uppercase;
+  opacity: 1;
+  font-weight: 600;
+}
+
+.shareicon {
+  width: 20px;
+}
+
+.share {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.covers {
+  background-color: #D6F0F3;
+  padding-top: 2px;
+  margin: 20px 0.5rem 0;
+}
+
+.coverstext p {
+  font-size: 12px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: #465A65;
+  opacity: 1;
+}
+
+.coverstext h5 {
+  font-size: 16px;
+  text-align: center;
+  font-weight: 800;
+  color: #222222;
+  opacity: 1;
+}
+
+.coverAmunt {
+  width: 100%;
+  min-height: 40px;
+  background-color: #fff;
+  padding-top: 8px;
+  border-radius: 8px;
+  padding-bottom: 0px;
+
+}
+
+.coverAmunt p {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #465A65;
+}
+
+.coverdmemberdiv {
+  width: 100%;
+  height: 18px;
+}
+
+.spousetext {
+  padding: 0 1.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.spousetext h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.spousetext a {
+  font-size: 14px;
+  color: #348BF5;
+  cursor: pointer;
+  font-weight: 700;
+}
+.trans-footer{
+  position: absolute;
+  bottom: 0;
+}
+.transparent-button{
+    padding: 10px;
+    color: #E27E28 !important;
+    font-weight: 600;
+    background-color: transparent !important;
+    width: 150px;
+    border: 1px solid #E27E28;
+    border-radius: 8px;
+    font-size: 16px!important;
+    text-align: center;
+}
+@media only screen and (max-width: 767px){
+.transaction-success-img{
+  margin: 0 auto;
+  display: block;
+}
+.right-sec{
+  height: 55vh;
+}
+.title {
+  color: #465A65;
+  font-size: 25px;
+}
+
+.theme-button{
+  width: 10rem;
+  font-size: 14px!important;
+}
+.transparent-button{
+  width: 10rem;
+  font-size: 14px!important;
+}
+.trans-footer{
+  width: 90% !important;
+}
+.container1{
+  width: 100%;
+}
+}
+
+@media only screen and (min-width: 310px) and (max-width: 330px){
+.right-sec {
+  height: 80vh;
+}
+
+}
+
+@media only screen and (min-width: 350px) and (max-width: 380px){
+  .right-sec {
+    height: 63vh;
+}
+
+  }

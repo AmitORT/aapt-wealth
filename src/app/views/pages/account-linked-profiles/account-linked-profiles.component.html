@@ -1,0 +1,297 @@
+<div class="container mb10per">
+	<div class="row mt-4">
+		<div class="col-lg-12">
+			<h4 class="breadcrumb-title"><span [routerLink]="['/mutual-payment-successful']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Linked Profiles</h4>
+		</div>
+	</div>
+    <div class="row mt-2">
+        <div class="col-lg-3 hidden-xs" id="sidebar-main">
+            <app-account-desktop-menu></app-account-desktop-menu>
+        </div>
+        <div class="col-lg-9 tab-detail">
+            <div *ngIf="LinkedDetails">
+            <div class="row align-items-center port-row" >
+                <div class="col-6">
+                    <h4 class="breadcrumb-title">Linked Profiles</h4>
+                </div>
+                <div class="col-6 text-end">
+                    <button type="button" class="btn btn-primary link-btn mb-3" (click)="LinkFamily= true; LinkedDetails=false">+ Link Family Members</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" (click)="LinkedProfile= true ; LinkedDetails=false">
+                    <div class="profile-card">
+                        <div class="prof-detail">
+                            <div>
+                                <img src="assets/img/test-user.png"/>
+                            </div>
+                            <div>
+                                <h5>Brandon Wade</h5>
+                                <p>
+                                    <span>Father</span>
+                                    <span>56 yrs</span>
+                                </p>                                
+                            </div>
+                        </div>
+                        <div>
+                            <img src="assets/img/arrow_right.svg" class="arrow-right"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" (click)="LinkedProfile= true ; LinkedDetails=false">
+                    <div class="profile-card">
+                        <div class="prof-detail">
+                            <div>
+                                <img src="assets/img/test-user.png"/>
+                            </div>
+                            <div>
+                                <h5>John Wade</h5>
+                                <p>
+                                    <span>Spouse</span>
+                                    <span>28 yrs</span>
+                                </p>                                
+                            </div>
+                        </div>
+                        <div>
+                            <img src="assets/img/arrow_right.svg" class="arrow-right"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" (click)="LinkedProfile= true ; LinkedDetails=false">
+                    <div class="profile-card">
+                        <div class="prof-detail">
+                            <div>
+                                <img src="assets/img/test-user.png"/>
+                            </div>
+                            <div>
+                                <h5>Frank Garett</h5>
+                                <p>
+                                    <span>Friend</span>
+                                    <span>40 yrs</span>
+                                </p>                                
+                            </div>
+                        </div>
+                        <div>
+                            <img src="assets/img/arrow_right.svg" class="arrow-right"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <div class=" tab-detail  " *ngIf="LinkedProfile">
+                <div class="row align-items-center port-row">
+                    <div class="col-12 ">
+                        <h4 class="breadcrumb-title"  (click)="LinkedProfile= false ; LinkedDetails=true"><i class="fa fa-arrow-left i-icon"></i>&nbsp; Linked Profile Details</h4>
+                    </div>
+                </div>
+                <div class="row mb-3 align-items-center">
+                    <div class=" col-lg-8 col-7">
+                        <div class="uploaded-pic">
+                            <div>
+                                <img id="profileimg" src="assets/img/test-user.png" class=""/>
+                            </div>
+                            <div>
+                                <p>Upload picture or click a new picture</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-5 text-end">
+                        <input hidden type="file" #uploader (change)="uploadFile($event)"/>
+                        <button type="button" class="btn btn-primary upload-btn me-2" (click)="uploader.click()"> Change Picture  </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
+                            <label for="first_name" >Full Name</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="date" id="dob" placeholder="Date Of Birth" class="form-control ">
+                            <label for="dob" >Date Of Birth</label>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="last_name" placeholder="Email Id" class="form-control ">
+                            <label for="last_name" >Email Id</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-3 pe-0">
+                                <select class="form-select country-drop form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <option selected>+91</option>
+                                    <option value="1">+91</option>
+                                    <option value="2">+209</option>
+                                    <option value="3">+21</option>
+                                </select>
+                            </div>
+                            <div class="col-9 ps-0">
+                                <div  class="form-floating mb-3 input-box mobile-input">
+                                    <input type="text" id="mobile" placeholder="Mobile Number" class="form-control ">
+                                    <label for="mobile" >Mobile Number</label>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row m-0 mb-3">
+                            <div class="col-4 m-div" [ngClass]="{'activetxt': gendervalue === '1'}" (click)="gendervalue = '1';">
+                                <span>Male</span>
+                            </div>
+                            <div class="col-4 f-div" [ngClass]="{'activetxt': gendervalue === '2'}" (click)="gendervalue = '2';">
+                                <span>Female</span>
+                            </div>
+                            <div class="col-4 o-div" [ngClass]="{'activetxt': gendervalue === '3'}" (click)="gendervalue = '3';">
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="pancard" placeholder="Pancard Number" class="form-control ">
+                            <label for="pancard" >Pancard Number</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <div  class="form-floating mb-3 input-box ">
+                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                
+                                 <option selected>Father</option>
+                                 <option value="1">Mother</option>
+                                 <option value="2">Sister</option>
+                             </select>
+                             <label for="floatingSelect">Relationship to User</label>
+                            <!-- <input type="email" id="email_id" placeholder="Primary Address" class="form-control ">
+                            <label for="email_id" >Primary Address</label> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-primary theme-button mb-3 mt-5">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" tab-detail  " *ngIf="LinkFamily">
+                <div class="row align-items-center port-row">
+                    <div class="col-12 ">
+                        <h4 class="breadcrumb-title"  (click)="LinkedProfile= false ; LinkedDetails=true ; LinkFamily=false"><i class="fa fa-arrow-left i-icon"></i>&nbsp; Link new Profile</h4>
+                    </div>
+                </div>
+                <div class="row mb-3 align-items-center">
+                    <div class=" col-lg-8 col-7">
+                        <div class="uploaded-pic">
+                            <div>
+                                <img id="profileimg" src="assets/img/test-user.png" class=""/>
+                            </div>
+                            <div>
+                                <p>Upload picture or click a new picture</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-5 text-end">
+                        <input hidden type="file" #uploader (change)="uploadFile($event)"/>
+                        <button type="button" class="btn btn-primary upload-btn me-2" (click)="uploader.click()"> Change Picture  </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
+                            <label for="first_name" >Full Name</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="date" id="dob" placeholder="Date Of Birth" class="form-control ">
+                            <label for="dob" >Date Of Birth</label>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="last_name" placeholder="Email Id" class="form-control ">
+                            <label for="last_name" >Email Id</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-3 pe-0">
+                                <select class="form-select country-drop form-select-lg mb-3" aria-label=".form-select-lg example">
+                                    <option selected>+91</option>
+                                    <option value="1">+91</option>
+                                    <option value="2">+209</option>
+                                    <option value="3">+21</option>
+                                </select>
+                            </div>
+                            <div class="col-9 ps-0">
+                                <div  class="form-floating mb-3 input-box mobile-input">
+                                    <input type="text" id="mobile" placeholder="Mobile Number" class="form-control ">
+                                    <label for="mobile" >Mobile Number</label>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row m-0 mb-3">
+                            <div class="col-4 m-div" [ngClass]="{'activetxt': gendervalue === '1'}" (click)="gendervalue = '1';">
+                                <span>Male</span>
+                            </div>
+                            <div class="col-4 f-div" [ngClass]="{'activetxt': gendervalue === '2'}" (click)="gendervalue = '2';">
+                                <span>Female</span>
+                            </div>
+                            <div class="col-4 o-div" [ngClass]="{'activetxt': gendervalue === '3'}" (click)="gendervalue = '3';">
+                                <span>Other</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div  class="form-floating mb-3 input-box ">
+                            <input type="text" id="pancard" placeholder="Pancard Number" class="form-control ">
+                            <label for="pancard" >Pancard Number</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <div  class="form-floating mb-3 input-box ">
+                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                
+                                 <option selected>Father</option>
+                                 <option value="1">Mother</option>
+                                 <option value="2">Sister</option>
+                             </select>
+                             <label for="floatingSelect">Relationship to User</label>
+                            <!-- <input type="email" id="email_id" placeholder="Primary Address" class="form-control ">
+                            <label for="email_id" >Primary Address</label> -->
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <button type="button" class="btn btn-primary theme-button mb-3 mt-5">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div> 
+
+
+        
+
+
+
+
+    </div> 
+</div>

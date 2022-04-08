@@ -1,0 +1,768 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
+            class="fa fa-arrow-left i-icon"></i></span> Product Details</h4>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class="col-lg-8">
+      <div class="graph-header d-flex">
+        <div class="d-flex">
+          <img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/>
+        </div>
+        <div class="mt-4">
+          <h2>{{ProductOverview?.name}}</h2>
+          <div class="d-flex">
+            <div class="star-component">
+              <ul class="rating-star">
+                <li><i class="fa fa-star rated"></i></li>
+                <li><i class="fa fa-star rated"></i></li>
+                <li><i class="fa fa-star rated"></i></li>
+                <li><i class="fa fa-star"></i></li>
+                <li><i class="fa fa-star"></i></li>
+              </ul>
+            </div>
+            <span class="badge">Equity</span>
+            <span class="badge">High Risk</span>
+            <span class="badge">Small Cap</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="graph-body mt-4">
+        <div class="d-flex justify-content-between">
+          <div class="left-body">
+            <h5>132.64%</h5>
+            <p><span class="text-green">+1.08%</span>1 day Change</p>
+          </div>
+          <div class="right-body">
+            <h5 class="text-blue">Rs. 119.58</h5>
+            <p>1st June 2021</p>
+          </div>
+        </div>
+        <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" />
+        <div class="graph-footer">
+          <ul>
+            <li>6M</li>
+            <li class="active">1Y</li>
+            <li>3Y</li>
+            <li>5Y</li>
+            <li>All</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-3 pd-tabs">
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Asset Allocation</a>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="menu1" class="container tab-pane active p0"><br>
+            <div class="overview-box">
+              <div class="d-flex justify-content-between blue-box">
+                <div>
+                  <h2>Net Asset Value (NAV)</h2>
+                  <p>as on {{ProductOverview?.navDate}}</p>
+                </div>
+                <div>
+                  <h2>Rs. {{ProductOverview?.fundNav}}</h2>
+                  <p class="text-green m-0 text-end">+0.6%</p>
+                </div>
+              </div>
+              <hr class="m-0">
+              <div class="overview-details">
+                <div>
+                  <h2>AUM</h2>
+                  <h3>Rs. 10L</h3>
+                </div>
+                <div>
+                  <h2>Min SIP Amount</h2>
+                  <h3 class="text-end">Rs. {{ProductOverview?.minSipAmount}}</h3>
+                </div>
+              </div>
+              <hr class="m-0">
+              <div class="overview-details">
+                <div>
+                  <h2>Expense Ratio</h2>
+                  <h3>{{ProductOverview?.expenseRatio}}%</h3>
+                </div>
+                <div>
+                  <h2>Exit Load</h2>
+                  <h3 class="text-end">5.9%</h3>
+                </div>
+              </div>
+              <hr class="m-0">
+              <div class="overview-details">
+                <div>
+                  <h2>Fund Started</h2>
+                  <h3>{{ProductOverview?.fundStarted}}</h3>
+                </div>
+                <div>
+                  <h2>Fund Size</h2>
+                  <h3 class="text-end">Rs 1,818 Cr</h3>
+                </div>
+              </div>
+            </div>
+
+            <hr>
+            <div class="row result-div">
+              <div class="col-lg-6 col-4">
+                <h5>Result</h5>
+                <p>Fund Returns</p>
+                <p>Category Average</p>
+                <p>Rank Within Category</p>
+                <p class="blue-text">*All returns are annualized.</p>
+              </div>
+              <div class="col-lg-3 col-4">
+                <div class="monthly justify-content-center" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y
+                  Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <div class="monthly justify-content-center" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y
+                  Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <p class="val"><b>128.4%</b></p>
+                <p class="val"><b>113.0%</b></p>
+                <p class="val"><b>-</b></p>
+              </div>
+              <div class="col-lg-3 col-4">
+                <h5 class="text-center">Since Inception</h5>
+                <p class="val"><b>23.9%</b></p>
+                <p class="val"><b>1</b></p>
+                <p class="val"><b>-</b></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <h5><b>Investment Returns Calculator</b></h5>
+              <div class="col-lg-5 col-7 irc-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#sip">SIP</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#one-time">One Time</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-lg-7 col-5">
+                <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-lg-6 col-6">
+                <p>Select Investment Amount</p>
+              </div>
+              <div class="col-lg-6 col-6 text-end">
+                <p><b>Rs. 3,700</b></p>
+              </div>
+              <div class="col-lg-7 col-7">
+                <p><b>SIP Amount</b></p>
+              </div>
+              <div class="col-lg-5 col-5 position-relative">
+                <input type="text" class="form-control ps-4" [(ngModel)]="value12" />
+                <span class="rupee-symbol">₹</span>
+              </div>
+              <div class="col-lg-12">
+                <div class="custom-slider my-4">
+                  <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+                </div>
+                <p class="text-orange">*Minimum SIP amount need to be Rs. 100</p>
+              </div>
+            </div>
+            <div class="row tm-div">
+              <div class="col-lg-7 col-7">
+                <h5><b>Total Maturity</b></h5>
+                <p>with 116.1% returns per annum</p>
+              </div>
+              <div class="col-lg-5 col-5 text-end">
+                <p class="blue-text"><b>Rs. 104,356</b></p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-lg-12 about-fund">
+                <h5>About the Fund</h5>
+                <h6 class="pt-2 pb-2">{{ProductOverview?.fundDescription}}</h6>
+              </div>
+              <hr>
+              <div class="col-lg-12 mb-4">
+                <h5 class="text-grey">Fund Managers</h5>
+                <div class="blue-bg">
+                  <img src="assets/img/test-user.png">
+                  <div>
+                    <h6><b>{{ProductManager?.primaryFundManager}}</b></h6>
+                    <p class="mb-0">21 Years experience</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="col-lg-12 cf-div">
+                <h5 class="text-grey">Compare Funds</h5>
+
+                <div class="row outer">
+                  <div class="col-lg-6">
+                    <div class="row ls">
+                      <div class="col-lg-2">
+                        <img src="assets/img/icici-bank.png">
+                      </div>
+                      <div class="col-lg-10">
+                        <h5>ICICI Prudential Technology</h5>
+                        <p>3 High Risk</p>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-lg-6">
+                    <input type="text" placeholder="Compare Fund with" class="form-control custom-formfield">
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+
+          </div>
+          <div id="menu2" class="container tab-pane fade"><br>
+            <div class="row graph-div">
+              <div class="col-lg-12">
+                <h5><b>Fund Distribution</b></h5>
+                <p class="text-orange">Size Breakup</p>
+                <img src="assets/img/asset-allocation-graph.svg" class="img-fluid pb-3">
+              </div>
+              <div class="col-lg-3 col-6">
+                <div class="row">
+                  <div class="col-lg-6 col-6">
+                    <p><i class="fa fa-circle c1" aria-hidden="true"></i> Mid cap</p>
+                  </div>
+                  <div class="col-lg-6 col-6">
+                    <p>36.56%</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-6">
+                <div class="row">
+                  <div class="col-lg-6 col-6">
+                    <p><i class="fa fa-circle c2" aria-hidden="true"></i> Small cap</p>
+                  </div>
+                  <div class="col-lg-6 col-6">
+                    <p>22.09%</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-6">
+                <div class="row">
+                  <div class="col-lg-6 col-6">
+                    <p><i class="fa fa-circle c3" aria-hidden="true"></i> Micro cap</p>
+                  </div>
+                  <div class="col-lg-6 col-6">
+                    <p>36.56%</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-6">
+                <div class="row">
+                  <div class="col-lg-6 col-6">
+                    <p><i class="fa fa-circle c4" aria-hidden="true"></i> Mid cap</p>
+                  </div>
+                  <div class="col-lg-6 col-6">
+                    <p>36.56%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row sector-div">
+              <div class="col-lg-12 col-12">
+                <h5>Sector Allocation</h5>
+              </div>
+              <div class="col-lg-6 col-12" *ngFor="let sector of ProductSectorDetails">
+                <div class="row">
+
+                  <div class="col-lg-9 col-9">
+                    <p>{{sector.name}}</p>
+                    <!-- <p>Industrial</p>
+          <p>Materials</p> -->
+                  </div>
+                  <div class="col-lg-3 col-3 text-end">
+                    <p>{{sector.percentage.toFixed(2)}}%</p>
+                    <!-- <p>28%</p>
+         <p>28%</p> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-12">
+
+              </div>
+
+
+              <div class="col-lg-3 offset-lg-9">
+                <p class="va">View All</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row sector-div">
+              <h5>Holdings (40)</h5>
+              <div class="col-lg-9 col-6">
+
+                <h6>Top 10 Holdings (40)</h6>
+                <p>Infosys.Ltd.</p>
+                <p>HCL Technologies Ltd.</p>
+                <p>Tech Mahindra Ltd.</p>
+                <p>Tata Consultancy Services Ltd.</p>
+                <p>Persistent Systems Ltd.</p>
+                <p class="purple-text">See all Holdings</p>
+              </div>
+              <div class="col-lg-3 col-6">
+                <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Assets
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">Instrument
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+                <!-- <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Sector
+          <img src="assets/img/unfold_more.svg" class="orange-pencil">
+        </div>
+        <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">Value
+          <img src="assets/img/unfold_more.svg" class="orange-pencil">
+        </div> -->
+                <p class="val">18.89%</p>
+                <p class="val">18.89%</p>
+                <p class="val">18.89%</p>
+                <p class="val">18.89%</p>
+                <p class="val">18.89%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-lg-4 d-none d-lg-block d-md-block d-sm-block" id="sidebar-main">
+      <div class="left-sidebar" id="sidebar">
+        <div class="right-box">
+          <h5>Select Mode of Investment</h5>
+          <ul class="nav nav-tabs" id="year-tabs" role="tablist">
+            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab"
+                aria-controls="monthly" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">Monthly</button>
+            </li>
+            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
+              <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl" type="button" role="tab"
+                aria-controls="otl" aria-selected="false" [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">One-time Lumpsum</button>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+              <div class="row mt-3">
+                <div class="col-lg-7 col-7">
+                  <p class="pt-2"><b>SIP Amount</b></p>
+                </div>
+                <div class="col-lg-5 col-5 position-relative">
+                  <input type="text" class="form-control ps-4" [(ngModel)]="value13" />
+                  <span class="rupee-symbol">₹</span>
+                </div>
+                <div class="col-lg-12">
+                  <div class="custom-slider mb-5">
+                    <ngx-slider [(value)]="value13" [options]="options13"></ngx-slider>
+                  </div>
+                  <p>Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}}th of every month.</span></p>
+                </div>
+                <div class="col-lg-12 col-12 position-relative">
+                  <div class="row">
+                    <div class="col-lg-2">
+                      <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender" [(ngModel)]="ModeOfInvestment.DateForMonth">
+                      <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image"></label>
+                    </div>
+                    <!-- <div class="form-floating mb-3 input-box">
+                  <input type="date" class="form-control calendar-button">
+                  </div> -->
+                    <div class="col-lg-10">
+                      <button type="button" (click)="CreateSip()"  class="btn btn-primary sip-btn">
+                        Create Monthly SIP </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="otl" role="tabpanel" aria-labelledby="otl-tab">
+              <div class="row mt-3">
+                <div class="col-lg-7 col-7">
+                  <p class="pt-2"><b>SIP Amount</b></p>
+                </div>
+                <div class="col-lg-5 col-5 position-relative">
+                  <input type="text" class="form-control ps-4" [(ngModel)]="value14" />
+                  <span class="rupee-symbol">₹</span>
+                </div>
+                <div class="col-lg-12">
+                  <div class="custom-slider mb-5">
+                    <ngx-slider [(value)]="value14" [options]="options14"></ngx-slider>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-12">
+                  <h5>Select Amount</h5>
+                </div>
+                <div class="col-lg-4 col-4">
+                  <p class="amt">+ Rs 5000</p>
+                </div>
+                <div class="col-lg-4 col-4">
+                  <p class="amt">+ Rs 5000</p>
+                </div>
+                <div class="col-lg-4 col-4">
+                  <p class="amt">+ Rs 5000</p>
+                </div>
+
+                <div class="col-lg-12">
+                  <button type="button" [routerLink]="['/mutual-select-goal']"
+                    class="btn btn-primary sip-btn w-100 ms-0"> Invest Now </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class=" pt-4 finance owl-1">
+      <div class="row align-items-center">
+        <div class="col-lg-12">
+          <h5 class="text-grey">Similar Funds</h5>
+        </div>
+      </div>
+      <div class="financial-slider trendprod ">
+        <owl-carousel-o [options]="customOptions">
+          <ng-template carouselSlide *ngFor="let funds of SimilarProducts">
+            <div class="trending-product">
+              <div class="bod-bot">
+                <div class="row align-items-center">
+                  <div class="col-lg-2 col-3 co-logo">
+                    <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+                  </div>
+                  <div class="col-lg-10 col-9">
+                    <h5 class="trend-name trend-head " title="{{funds.name}}">{{funds.name}}</h5>
+                    <p>3<i class="fa fa-star" aria-hidden="true"></i> {{funds.asset}}</p>
+                  </div>
+                </div>
+                <div class="row values">
+                  <div class="col-lg-4 col-4">
+                    <h6>1 Year</h6>
+                    <p>{{funds.returnFor1Year.toFixed(2)}}%</p>
+                  </div>
+                  <div class="col-lg-4 col-4">
+                    <h6>3 Year</h6>
+                    <p>{{funds.returnFor3Year.toFixed(2)}}%</p>
+                  </div>
+                  <div class="col-lg-4 col-4">
+                    <h6>5 Year</h6>
+                    <p>{{funds.returnFor5Year.toFixed(2)}}%</p>
+                  </div>
+                </div>
+              </div>
+              <div class="row l-values">
+                <div class="col-lg-6 col-6">
+                  <p class="cf">Compare Fund</p>
+                </div>
+                <div class="col-lg-6 col-6">
+                  <button class="nav-link btn btn-primary invest-button">Invest</button>
+                </div>
+              </div>
+
+            </div>
+          </ng-template>
+          <!-- <ng-template carouselSlide>
+        <div class="trending-product">
+          <div class="bod-bot">
+          <div class="row align-items-center">
+            <div class="col-lg-2 col-3 co-logo">
+              <img src="assets/img/axis_bank.png" class="img-fluid" alt="image">
+            </div>
+            <div class="col-lg-10 col-9">
+              <h5 class="trend-name trend-head">Axis Bluechip Fund</h5>
+              <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+            </div>
+          </div>
+          <div class="row values">
+            <div class="col-lg-4 col-4">
+               <h6>1 Year</h6>
+               <p>0.35%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>3 Year</h6>
+               <p>25.2%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>5 Year</h6>
+               <p>20.1%</p>
+            </div>
+          </div>
+        </div>
+        <div class="row l-values">
+          <div class="col-lg-6 col-6">
+             <p class="cf">Compare Fund</p>
+          </div>
+          <div class="col-lg-6 col-6">
+            <button class="nav-link btn btn-primary theme-button">Invest</button>
+          </div>
+          
+        </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="trending-product">
+          <div class="bod-bot">
+          <div class="row align-items-center">
+            <div class="col-lg-2 col-3 co-logo">
+              <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+            </div>
+            <div class="col-lg-10 col-9">
+              <h5 class="trend-name trend-head">ICICI Prudential Technology</h5>
+              <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+            </div>
+          </div>
+          <div class="row values">
+            <div class="col-lg-4 col-4">
+               <h6>1 Year</h6>
+               <p>0.35%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>3 Year</h6>
+               <p>25.2%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>5 Year</h6>
+               <p>20.1%</p>
+            </div>
+          </div>
+        </div>
+        <div class="row l-values">
+          <div class="col-lg-6 col-6">
+             <p class="cf">Compare Fund</p>
+          </div>
+          <div class="col-lg-6 col-6">
+            <button class="nav-link btn btn-primary theme-button">Invest</button>
+          </div>
+          
+        </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="trending-product">
+          <div class="bod-bot">
+          <div class="row align-items-center">
+            <div class="col-lg-2 col-3 co-logo">
+              <img src="assets/img/axis_bank.png" class="img-fluid" alt="image">
+            </div>
+            <div class="col-lg-10 col-9">
+              <h5 class="trend-name trend-head">Axis Bluechip Fund</h5>
+              <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+            </div>
+          </div>
+          <div class="row values">
+            <div class="col-lg-4 col-4">
+               <h6>1 Year</h6>
+               <p>0.35%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>3 Year</h6>
+               <p>25.2%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>5 Year</h6>
+               <p>20.1%</p>
+            </div>
+          </div>
+        </div>
+        <div class="row l-values">
+          <div class="col-lg-6 col-6">
+             <p class="cf">Compare Fund</p>
+          </div>
+          <div class="col-lg-6 col-6">
+            <button class="nav-link btn btn-primary theme-button">Invest</button>
+          </div>
+          
+        </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="trending-product">
+          <div class="bod-bot">
+          <div class="row align-items-center">
+            <div class="col-lg-2 col-3 co-logo">
+              <img src="assets/img/icici-bank.png" class="img-fluid" alt="image">
+            </div>
+            <div class="col-lg-10 col-9">
+              <h5 class="trend-name trend-head">ICICI Prudential Technology</h5>
+              <p>3<i class="fa fa-star" aria-hidden="true"></i> High Risk Equity</p>
+            </div>
+          </div>
+          <div class="row values">
+            <div class="col-lg-4 col-4">
+               <h6>1 Year</h6>
+               <p>0.35%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>3 Year</h6>
+               <p>25.2%</p>
+            </div>
+            <div class="col-lg-4 col-4">
+              <h6>5 Year</h6>
+               <p>20.1%</p>
+            </div>
+          </div>
+        </div>
+        <div class="row l-values">
+          <div class="col-lg-6 col-6">
+             <p class="cf">Compare Fund</p>
+          </div>
+          <div class="col-lg-6 col-6">
+            <button class="nav-link btn btn-primary theme-button">Invest</button>
+          </div>
+          
+        </div>
+        </div>
+      </ng-template> -->
+
+
+        </owl-carousel-o>
+      </div>
+
+    </div>
+  </div>
+  <div class="row d-block d-lg-none d-md-none d-sm-none">
+    <div class="applybtn-mob">
+
+      <div class="col-12">
+        <button type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal" data-bs-target="#invest-screen">
+          Invest Now
+        </button>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+<!-- invest Modal -->
+<div class="modal fade" id="invest-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+
+          <div class="right-box">
+            <h5>Select Mode of Investment</h5>
+            <ul class="nav nav-tabs" id="invest-tabs" role="tablist">
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly-mob" type="button"
+                  role="tab" aria-controls="monthly-mob" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">Monthly</button>
+              </li>
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl-mob" type="button" role="tab"
+                  aria-controls="otl-mob" aria-selected="false" [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">One-time Lumpsum</button>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="monthly-mob" role="tabpanel" aria-labelledby="monthly-tab">
+                <div class="row mt-3">
+                  <div class="col-lg-7 col-7">
+                    <p class="pt-2"><b>SIP Amount</b></p>
+                  </div>
+                  <div class="col-lg-5 col-5 position-relative">
+                    <input type="text" class="form-control ps-4" [(ngModel)]="value13" />
+                    <span class="rupee-symbol">₹</span>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="custom-slider mb-5">
+                      <ngx-slider [(value)]="value13" [options]="options13"></ngx-slider>
+                    </div>
+                    <p>Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}}th of every month.</span></p>
+                  </div>
+                  <div class="col-lg-12 col-12 position-relative">
+                    <div class="row">
+                      <div class="col-2">
+                        <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender" [(ngModel)]="ModeOfInvestment.DateForMonth">
+                        <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image"></label>
+                      </div>
+                      <div class="col-10">
+                        <button type="button" [routerLink]="['/mutual-select-goal']" class="btn btn-primary sip-btn">
+                          Create
+                          Monthly SIP </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="otl-mob" role="tabpanel" aria-labelledby="otl-tab">
+                <div class="row mt-3">
+                  <div class="col-lg-7 col-7">
+                    <p class="pt-2"><b>SIP Amount</b></p>
+                  </div>
+                  <div class="col-lg-5 col-5 position-relative">
+                    <input type="text" class="form-control ps-4" [(ngModel)]="value14" />
+                    <span class="rupee-symbol">₹</span>
+                  </div>
+                  <div class="col-lg-12">
+                    <div class="custom-slider mb-5">
+                      <ngx-slider [(value)]="value14" [options]="options14"></ngx-slider>
+                    </div>
+
+                  </div>
+
+                  <div class="col-lg-12">
+                    <h5>Select Amount</h5>
+                  </div>
+                  <div class="col-lg-4 col-4">
+                    <p class="amt">+ Rs 5000</p>
+                  </div>
+                  <div class="col-lg-4 col-4">
+                    <p class="amt">+ Rs 5000</p>
+                  </div>
+                  <div class="col-lg-4 col-4">
+                    <p class="amt">+ Rs 5000</p>
+                  </div>
+
+                  <div class="col-lg-12">
+                    <button type="button" [routerLink]="['/mutual-select-goal']"
+                      class="btn btn-primary sip-btn w-100 ms-0"> Invest Now </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

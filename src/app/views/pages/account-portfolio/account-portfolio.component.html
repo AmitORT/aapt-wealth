@@ -1,0 +1,650 @@
+<div class="container mb10per">
+    <div class="row mt-4">
+       <div class="col-lg-12">
+          <h4 class="breadcrumb-title"><span [routerLink]="['/dashboard']"><i class="fa fa-arrow-left i-icon"></i></span> &nbsp;Account Details</h4>
+       </div>
+    </div>
+    <div class="row mt-2">
+       <div class="col-lg-3 col-md-4" id="sidebar-main">
+          <app-account-desktop-menu></app-account-desktop-menu>
+       </div>
+       <div class="col-lg-9 col-md-8 pd-right-div">
+          <div class="row">
+             <div class="col-sm-12 col-lg-6 p0-mob">
+                <div class="main-div">
+                <div class="row outer-bg">
+                    <div class="col-lg-1 col-1">
+                        <i class="fa fa-arrow-left i-icon"></i>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-7">
+                       <h5>Mutual Funds</h5>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-4">
+                       <h6>Weights (%)</h6>
+                       <p>24.5%</p>
+                    </div>
+                    <div class="col-lg-12">
+                       <div class="border"></div>
+                    </div>
+                 </div>
+                 <div class="lb-bg">
+                    <div class="row">
+                       <div class="col-lg-6 col-6">
+                          <h5>Current Value</h5>
+                          <p>₹ 296.16 Cr</p>
+                       </div>
+                       <div class="col-lg-6 col-6">
+                          <h5>Invested Value</h5>
+                          <p>₹ 127.01 Cr</p>
+                       </div>
+                       <div class="col-lg-6 col-6 pt-4">
+                        <h5>IRR</h5>
+                        <p>5.4%</p>
+                     </div>
+                       <div class="col-lg-6 col-6 pt-4 gl">
+                          <h5>Gain/Loss</h5>
+                          <p>₹ 169.15 Cr <span class="text-green">(133.2%)</span></p>
+                       </div>
+                       <div class="col-lg-6 col-6 pt-4">
+                        <h5>STCG</h5>
+                        <p>₹ 54.00 L</p>
+                     </div>
+                     <div class="col-lg-6 col-6 pt-4">
+                        <h5>LTCG</h5>
+                        <p>₹ 168.91 Cr</p>
+                     </div>
+                     <div class="col-lg-6 col-6 pt-4">
+                        <h5>Absolute Returns</h5>
+                        <p>78.4%</p>
+                     </div>
+                     <div class="col-lg-6 col-6 pt-4">
+                        <h5>Annualized Returns</h5>
+                        <p>15.4%</p>
+                     </div>
+                    </div>
+                 </div>
+                 <div class="col-lg-12">
+                     <p class="note-line">** Investment up by more than<span class="text-green"> 20%</span> since investment</p>
+                 </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 col-sm-12 aa-div d-none d-lg-block d-md-block d-sm-block">
+                <h5>Asset Allocation</h5>
+                <img src="assets/img/honeycomb.svg" class="img-fluid">
+                
+            </div>
+        </div>
+
+        <div class="row mf-div">
+            <ul class="nav nav-tabs" id="dashboardTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                   <button class="nav-link active" id="invest-tab" data-bs-toggle="tab" data-bs-target="#myinvest" type="button" role="tab" aria-controls="home" aria-selected="true">My Holdings</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                   <button class="nav-link" id="insure-tab" data-bs-toggle="tab" data-bs-target="#myinsure" type="button" role="tab" aria-controls="profile" aria-selected="false">Pending Orders</button>
+                </li>
+            </ul>
+       
+         <div class="tab-content tabscroll" id="dashTabContent">
+             <div class="tab-pane fade show active" id="myinvest" role="tabpanel" aria-labelledby="invest-tab">
+                 <div class="row table-row" [routerLink]="['/account-portfolio-product-details']">
+                     <div class="col-lg-6 col-sm-7 ps-2 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/icici-bank.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>ICICI Prudential Technology</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-sm-5 mb-bg-l col-6 ps-2 pe-2">
+                         <div class="returns">
+                             <h5>Absolute Returns</h5>
+                             <p>+ ₹ 5,001 <span>(+11.29%)</span></p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-sm-6 mb-bg-r col-6 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Total Investment</h5>
+                             <p>₹ 20,50,200</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 col-sm-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-6 col-sm-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/birla.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>Aditya Birla Sun Life Digital India Fund Direct Plan</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-sm-5 mb-bg-l col-6 ps-2 pe-2">
+                         <div class="returns">
+                             <h5>Absolute Returns</h5>
+                             <p>+ ₹ 5,001 <span>(+11.29%)</span></p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-sm-6 mb-bg-r col-6 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Total Investment</h5>
+                             <p>₹ 20,50,200</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 col-sm-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-6 col-sm-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/icici-bank.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>ICICI Prudential Technology</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-sm-5 mb-bg-l col-6 ps-2 pe-2">
+                         <div class="returns">
+                             <h5>Absolute Returns</h5>
+                             <p>+ ₹ 5,001 <span>(+11.29%)</span></p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-sm-6 mb-bg-r col-6 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Total Investment</h5>
+                             <p>₹ 20,50,200</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 col-sm-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-6 col-sm-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/birla.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>Aditya Birla Sun Life Digital India Fund Direct Plan</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-sm-5 mb-bg-l col-6 ps-2 pe-2">
+                         <div class="returns">
+                             <h5>Absolute Returns</h5>
+                             <p>+ ₹ 5,001 <span>(+11.29%)</span></p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-sm-6 mb-bg-r col-6 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Total Investment</h5>
+                             <p>₹ 20,50,200</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 col-sm-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-6 col-sm-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/birla.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>Aditya Birla Sun Life Digital India Fund Direct Plan</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-3 col-sm-5 mb-bg-l col-6 ps-2 pe-2">
+                         <div class="returns">
+                             <h5>Absolute Returns</h5>
+                             <p>+ ₹ 5,001 <span>(+11.29%)</span></p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-sm-6 mb-bg-r col-6 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Total Investment</h5>
+                             <p>₹ 20,50,200</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 col-sm-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+             </div>
+             <div class="tab-pane fade" id="myinsure" role="tabpanel" aria-labelledby="insure-tab">
+                 <div class="row table-row">
+                     <div class="col-lg-7 col-12 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/hdfc_ergo.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>HDFC Ergo General Insurance</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                                 <p>Placed on 24th April 2021</p>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Units Bought</h5>
+                             <p>55</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="premium">
+                             <h5>Purchase Amount</h5>
+                             <p>₹ 10,500</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 ins-pre col-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/hdfc_ergo.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>HDFC Ergo General Insurance</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                                 <p>Placed on 24th April 2021</p>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Units Bought</h5>
+                             <p>55</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="premium">
+                             <h5>Purchase Amount</h5>
+                             <p>₹ 10,500</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 ins-pre col-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                                
+                     </div>
+                 </div>
+                 <div class="row table-row">
+                     <div class="col-lg-7 pe-2">
+                         <div class="table-flex">
+                             <div class="bank-logo">
+                                 <img src="assets/img/hdfc_ergo.png"/>
+                             </div>
+                             <div class="my-bank">
+                                 <h5>HDFC Ergo General Insurance</h5>
+                                 <p>
+                                     <span>3 <i class="fa fa-star"></i></span>
+                                     <span> High Risk</span>
+                                     <span> Equity</span>
+                                 </p>
+                                 <p>Placed on 24th April 2021</p>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="invests">
+                             <h5>Units Bought</h5>
+                             <p>55</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-2 col-6 mb-bg-l1 ps-2 pe-2">
+                         <div class="premium">
+                             <h5>Purchase Amount</h5>
+                             <p>₹ 10,500</p>
+                         </div>
+                     </div>
+                     <div class="col-lg-1 ins-pre col-6 ps-2 pe-2 text-center">
+                         <div class="dropdown menu-btn">
+                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <i class="fas fa-ellipsis-h"></i>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                               <li><a class="dropdown-item" href="">View Fund</a></li>
+                               <li><a class="dropdown-item" href="">Redeem Fund</a></li>
+                               <li><a class="dropdown-item" href="">Switch Fund</a></li>
+                             </ul>
+                           </div>                               
+                     </div>
+                 </div>
+             </div>
+           
+         </div>
+        </div>
+
+         <div class="row pie-chart-div">
+           
+            <div class="col-lg-6">
+              <div class="bg-white">
+               <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#eqt1">Equity Sector Exposure</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#eqt2">Equity Security Exposure</a>
+                  </li>
+                </ul>
+
+                <!-- Tab panes -->
+               <div class="tab-content">
+                  <div class="tab-pane container active" id="eqt1">
+                    <img src="assets/img/blue.svg" class="img-fluid" alt="image">
+                    
+
+                     <div class="row mt-10">
+                        <div class="col-lg-7 col-7">
+                           <p><i class="fa fa-circle c1" aria-hidden="true"></i>Consumer Durables</p>
+                           <p><i class="fa fa-circle c2" aria-hidden="true"></i>Consumer Products</p>
+                           <p><i class="fa fa-circle c3" aria-hidden="true"></i>Healthcare</p>
+                           <p><i class="fa fa-circle c4" aria-hidden="true"></i>Building Products</p>
+                           <p><i class="fa fa-circle c5" aria-hidden="true"></i>Retail</p>
+                        </div>
+                        <div class="col-lg-5 col-5 text-end">
+                           <p>10.3%</p>
+                           <p>2.32%</p>
+                           <p>2.72%</p>
+                           <p>0.79%</p>
+                           <p>0.71%</p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <ul id="pagination">
+                              <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#" class="active">3</a></li>
+                              <li><a href="#">4</a></li>
+                              <li><a href="#">5</a></li>
+                              <li><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            </ul> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="tab-pane container fade" id="eqt2">
+                      
+                    <img src="assets/img/blue.svg" class="img-fluid" alt="image">
+                    
+
+                    <div class="row mt-10">
+                       <div class="col-lg-7 col-7">
+                          <p><i class="fa fa-circle c1" aria-hidden="true"></i>Consumer Durables</p>
+                          <p><i class="fa fa-circle c2" aria-hidden="true"></i>Consumer Products</p>
+                          <p><i class="fa fa-circle c3" aria-hidden="true"></i>Healthcare</p>
+                          <p><i class="fa fa-circle c4" aria-hidden="true"></i>Building Products</p>
+                          <p><i class="fa fa-circle c5" aria-hidden="true"></i>Retail</p>
+                       </div>
+                       <div class="col-lg-5 col-5 text-end">
+                          <p>10.3%</p>
+                          <p>2.32%</p>
+                          <p>2.72%</p>
+                          <p>0.79%</p>
+                          <p>0.71%</p>
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-lg-12">
+                          <ul id="pagination">
+                             <li><a href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                             <li><a href="#">1</a></li>
+                             <li><a href="#">2</a></li>
+                             <li><a href="#" class="active">3</a></li>
+                             <li><a href="#">4</a></li>
+                             <li><a href="#">5</a></li>
+                             <li><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                           </ul> 
+                       </div>
+                    </div>
+                  </div>
+               </div>
+            </div>
+            </div>
+            
+            <div class="col-lg-6">
+               <div class="bg-white">
+               <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#debt1">Debt Rating Exposure</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#debt2">Debt Security Exposure</a>
+                  </li>
+                </ul>
+
+               
+               <div class="tab-content">
+                  <div class="tab-pane container active" id="debt1">
+                    <img src="assets/img/pink.svg" class="img-fluid" alt="image">
+                    
+                     <div class="row mt-10">
+                        <div class="col-lg-7 col-7">
+                           <p><i class="fa fa-circle c1" aria-hidden="true"></i>Unrated</p>
+                           <p><i class="fa fa-circle c2" aria-hidden="true"></i>AA-</p>
+                           <p><i class="fa fa-circle c3" aria-hidden="true"></i>A1+</p>
+                           <p><i class="fa fa-circle c4" aria-hidden="true"></i>AAA</p>
+                           <p><i class="fa fa-circle c5" aria-hidden="true"></i>AA+</p>
+                        </div>
+                        <div class="col-lg-5 col-5 text-end">
+                           <p>10.3%</p>
+                           <p>2.32%</p>
+                           <p>2.72%</p>
+                           <p>0.79%</p>
+                           <p>0.71%</p>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-lg-12">
+                           <ul id="pagination">
+                              <li><a class="" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                              <li><a href="#">1</a></li>
+                              <li><a href="#">2</a></li>
+                              <li><a href="#" class="active">3</a></li>
+                              <li><a href="#">4</a></li>
+                              <li><a href="#">5</a></li>
+                              <li><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                            </ul> 
+                        </div>
+                     </div>
+
+
+                  </div>
+                  <div class="tab-pane container fade" id="debt2">
+                    <img src="assets/img/pink.svg" class="img-fluid" alt="image">
+                    
+                    <div class="row mt-10">
+                       <div class="col-lg-7 col-7">
+                          <p><i class="fa fa-circle c1" aria-hidden="true"></i>Unrated</p>
+                          <p><i class="fa fa-circle c2" aria-hidden="true"></i>AA-</p>
+                          <p><i class="fa fa-circle c3" aria-hidden="true"></i>A1+</p>
+                          <p><i class="fa fa-circle c4" aria-hidden="true"></i>AAA</p>
+                          <p><i class="fa fa-circle c5" aria-hidden="true"></i>AA+</p>
+                       </div>
+                       <div class="col-lg-5 col-5 text-end">
+                          <p>10.3%</p>
+                          <p>2.32%</p>
+                          <p>2.72%</p>
+                          <p>0.79%</p>
+                          <p>0.71%</p>
+                       </div>
+                    </div>
+                    <div class="row">
+                       <div class="col-lg-12">
+                          <ul id="pagination">
+                             <li><a class="" href="#"><i class="fa fa-chevron-left" aria-hidden="true"></i></a></li>
+                             <li><a href="#">1</a></li>
+                             <li><a href="#">2</a></li>
+                             <li><a href="#" class="active">3</a></li>
+                             <li><a href="#">4</a></li>
+                             <li><a href="#">5</a></li>
+                             <li><a href="#"><i class="fa fa-chevron-right" aria-hidden="true"></i></a></li>
+                           </ul> 
+                       </div>
+                    </div>
+                  </div>
+               </div>
+             </div>
+            </div>
+            
+         </div>
+         <div class="col-lg-6 aa-div d-block d-lg-none d-md-none d-sm-none">
+                
+            <h5>Asset Allocation</h5>
+            <img src="assets/img/honeycomb.svg" class="img-fluid">
+            
+        </div>
+         
+
+         <div class="row rene-mat-div">
+<div class="col-lg-12">
+   <table class="table table-bordered">
+      <thead>
+         <tr>      
+            <th>Renewal & Maturities</th>
+            </tr>
+        <tr>      
+          <th colspan="3">Asset Details</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>      
+          <td colspan="3">ICICI Prudential Technology<br><b>Maturity Amount:</b><span> Rs. 75,84,500</span></td>      
+          <td>07/04/1927</td>
+        </tr>
+        <tr>      
+         <td colspan="3">Shriram Transport Finance<br><b>Maturity Amount:</b><span> Rs. 46,75,150</span></td>     
+         <td>07/04/1927</td>
+       </tr>
+       <tr>      
+         <td colspan="3">The South Indian Bank Limited<br><b>Maturity Amount:</b><span> Rs. 46,75,150</span></td>      
+         <td>08/08/1921</td>
+       </tr>
+        
+      </tbody>
+    </table>
+</div>
+         </div>
+
+
+     </div>
+       </div>
+
+    </div>
+

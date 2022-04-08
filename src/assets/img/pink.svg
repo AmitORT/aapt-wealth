@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="213.007" height="218.219" viewBox="0 0 213.007 218.219">
+  <g id="pink" transform="translate(-1122 -294.781)">
+    <g id="Group_18764" data-name="Group 18764">
+      <g id="Ring_Chart3" data-name="Ring Chart3" transform="translate(-3.174 -6.219)">
+        <path id="Path_33136" data-name="Path 33136" d="M-62.6-85.128A111.906,111.906,0,0,1,3.177-106.5v33.624a78.282,78.282,0,0,0-46.013,14.95Z" transform="translate(1228.5 407.5)" fill="#f8adb3"/>
+      </g>
+      <g id="Ring_Chart4" data-name="Ring Chart4">
+        <path id="Path_33137" data-name="Path 33137" d="M0-106.5A106.5,106.5,0,0,1,101.288-32.91,106.5,106.5,0,0,1,62.6,86.16a106.5,106.5,0,0,1-125.2,0l14.107-19.416a82.5,82.5,0,0,0,96.985,0,82.5,82.5,0,0,0,29.97-92.238A82.5,82.5,0,0,0,0-82.5Z" transform="translate(1228.5 406.5)" fill="#fcd6ca"/>
+        <path id="Path_33138" data-name="Path 33138" d="M-62.6,86.16A106.5,106.5,0,0,1-106.5,0,106.5,106.5,0,0,1-62.6-86.16l14.107,19.416A82.5,82.5,0,0,0-82.5,0,82.5,82.5,0,0,0-48.492,66.744Z" transform="translate(1228.5 406.5)" fill="#e2a19f"/>
+      </g>
+    </g>
+    <text id="_10.3_" data-name="10.3%" transform="translate(1166 376.77)" fill="#231f20" font-size="32" font-family="DaxPro-Bold, Dax Pro" font-weight="700"><tspan x="18.916" y="32">10.3%</tspan></text>
+    <text id="Unrated" transform="translate(1166 418.77)" fill="#b4b4b4" font-size="14" font-family="DaxPro, Dax Pro"><tspan x="39.463" y="14">Unrated</tspan></text>
+  </g>
+</svg>

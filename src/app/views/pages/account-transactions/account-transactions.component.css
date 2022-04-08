@@ -1,0 +1,179 @@
+.breadcrumb-title{
+	color: #465A65;
+	font-size: 30px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 15px;
+}
+.tab-detail .breadcrumb-title{
+    margin-bottom: 0px;
+    font-size: 24px;
+}
+.mb10per{
+    margin-bottom: 10%;
+}
+.i-icon{
+	color: #4c616b;
+	font-size: 27px;
+}
+.breadcrumb-title::after
+{
+	content: '';
+	border-bottom: 3px solid #e27e28;
+	width: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 5px;
+}
+.breadcrumb-sub {
+	font-size: 18px;
+	line-height: 30px;
+	color: #222222;
+}
+.breadcrumb-title1{
+	color: #465A65;
+	font-size: 22px;
+	font-weight: 600;
+	position: relative;
+	padding-bottom: 15px;
+}
+.breadcrumb-title1::after
+{
+	content: '';
+	border-bottom: 3px solid #e27e28;
+	width: 50px;
+	position: absolute;
+	left: 0;
+	bottom: 5px;
+}
+
+.transact-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    padding: 14px 13px 8px 12px;
+    cursor: pointer;
+}
+.transact-detail{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+.transact-detail img{
+    margin-right: 8px;
+    width: 45px;
+}
+.transact-detail h5{
+    font-size: 16px;
+    margin-bottom: 0px;
+    color: #465A65;
+    font-weight: 600;
+}
+.transact-detail p{
+    margin-bottom: 0px;
+}
+.transact-detail p span{
+    font-size: 14px;
+    color: #222222;
+    margin-bottom: 0px;
+    margin-right: 10px;
+    position: relative;
+}
+.transact-history h5{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.transact-history p{
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+.transact-history p.withdraw{
+    color: #F54B4B;
+}
+.transact-history p.credit{
+    color: #57C47C;
+}
+.transact-tab .nav-tabs {
+    border-bottom: 1px solid #B4B4B4;
+    border-top: 1px solid #B4B4B4;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+.transact-tab .nav-item h5{
+    margin-bottom: 0px;
+    font-size: 16px;
+    color: #465A65;
+}
+.transact-tab .nav-tabs .nav-link {
+    margin-bottom: -1px;
+    background: 0 0;
+    border: 2px solid transparent;
+}
+.transact-tab .nav-tabs .nav-item.show .nav-link, .transact-tab .nav-tabs .nav-link.active {
+    color: #e27e28;
+    background-color: transparent;
+    border-color: transparent transparent #e27e28;
+}
+.transact-tab .nav-tabs .nav-link.active h5{
+    color: #e27e28;  
+}
+.orange-offer {
+    background-color: #EBAE20;
+    color: #fff;
+    height: 19px;
+    font-size: 12px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+    position: absolute;
+    z-index: 9;
+    margin-top: -10%;
+    left: 0;
+}
+.green-offer {
+    background-color: #57C47C;
+    color: #fff;
+    height: 19px;
+    font-size: 12px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+    position: absolute;
+    z-index: 9;
+    margin-top: -10%;
+    left: 0;
+}
+.pink-offer {
+    background-color: #F54B4B;
+    color: #fff;
+    height: 19px;
+    font-size: 12px;
+    width: 6rem;
+    text-align: center;
+    border-radius: 4px 4px 0 0;
+    position: absolute;
+    z-index: 9;
+    margin-top: -10%;
+    left: 0; 
+}
+.date{
+    font-size: 12px !important;
+    color: #b4b4b4;
+}
+.bank{
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 767px){
+    .transact-tab .nav-tabs .nav-link {
+       padding: 10px 5px;
+    }
+    .transact-tab .nav-item h5{
+        font-size: 13px;
+    }
+}

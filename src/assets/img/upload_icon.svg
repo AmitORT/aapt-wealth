@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34">
+  <g id="upload_icon" transform="translate(-286 -442)">
+    <rect id="Rectangle_1025" data-name="Rectangle 1025" width="34" height="34" transform="translate(286 442)" fill="none"/>
+    <g id="fi-rr-upload" transform="translate(288.831 444.831)">
+      <path id="Path_33103" data-name="Path 33103" d="M25.951,17.18V21.9a1.18,1.18,0,0,1-1.18,1.18H3.539a1.18,1.18,0,0,1-1.18-1.18V17.18A1.18,1.18,0,0,0,1.18,16h0A1.18,1.18,0,0,0,0,17.18V21.9a3.539,3.539,0,0,0,3.539,3.539H24.772A3.539,3.539,0,0,0,28.31,21.9V17.18A1.18,1.18,0,0,0,27.131,16h0A1.18,1.18,0,0,0,25.951,17.18Z" transform="translate(0 2.874)" fill="#e27e2b"/>
+      <path id="Path_33104" data-name="Path 33104" d="M21.169,6.443l-5.41-5.411a3.547,3.547,0,0,0-5,0L5.346,6.443A1.18,1.18,0,1,0,7.014,8.111l5.064-5.063V21.233a1.18,1.18,0,0,0,2.359,0V3.047L19.5,8.111a1.18,1.18,0,1,0,1.668-1.668Z" transform="translate(0.898 0)" fill="#e27e2b"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,30 @@
+<div class="container mgb-10per">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title hidden-xs"><span class="me-3 cursor-pointer" [routerLink]="['/risk-profiling']"><i
+            class="fa fa-arrow-left i-icon"></i></span>Congratulations
+      </h4>
+    </div>
+  </div>
+  <div class="row align-items-center applicant1 mt-5">
+    <div class="col-lg-6 col-12 mob-center">
+      <img src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+    </div>
+    <div class="col-lg-6 mt-5">
+      <div class="position-relative mb-3">
+        <h4 class="title">Conservative</h4>
+        <div class="orange-dash"></div>
+      </div>
+      <div>
+        <p class="center">{{RiskProfilesubmitResponse.description}}</p>
+        <div class="grey-box">
+          <p>{{RiskProfilesubmitResponse.validDate}}</p>
+        </div>
+      </div>
+     
+        <div class="btn-div">
+          <button type="button" class="btn theme-button" [routerLink]="['/wealth-product-listing']">Start Investing</button>
+        </div>
+    </div>
+  </div>
+</div>
