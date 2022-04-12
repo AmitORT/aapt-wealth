@@ -120,17 +120,14 @@ export class MutualCreateGoalComponent implements OnInit {
       this.toastr.error('Rate of Inflation is mandatory');
     }
     else {
-   
-      // this.CreateGoal.ImageOfGoal=Image;
-      // for (let i = 0; i < this.CreateGoal.length; i++){
-        this.CreateGoalList.push(this.CreateGoal);
-      // }
 
-      // console.log("after Goals",this.CreateGoalList)
+      this.CreateGoalList.push(this.CreateGoal);
+  
       let encrypted=this.crypto.Encrypt(this.CreateGoalList);
       localStorage.setItem("MyGoals",encrypted);
 
       this.route.navigate(['/mutual-fund-cart']);
+      
     }
   }
 }

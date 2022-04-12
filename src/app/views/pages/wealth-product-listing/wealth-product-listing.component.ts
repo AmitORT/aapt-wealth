@@ -174,8 +174,6 @@ export class WealthProductListingComponent implements OnInit {
     if(resp.response.n==1){      
       this.ProductOfferForBinding = resp.data;
 
-      // this.ProductOffer = resp.data;
-      // this.GetOfferToBind();
 
     }else{
       alert(resp.response.Msg)
@@ -215,9 +213,6 @@ cancelcompare(){
 }
 
 SelectFund(){
-  this.toastr.error('Select a plan to compare');
+  this.toastr.warning('Select a product from above list');
 }
-
-
-
 }

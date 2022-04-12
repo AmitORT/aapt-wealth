@@ -81,6 +81,14 @@ a {
   scrollbar-width: none;
   /* Firefox */
 }
+.form-control:focus {
+  outline: 0;
+  box-shadow: none;
+}
+.btn-check:focus+.btn-primary, .btn-primary:focus {
+  outline: 0;
+  box-shadow: none;
+}
 
 @font-face {
   font-family: myfont;

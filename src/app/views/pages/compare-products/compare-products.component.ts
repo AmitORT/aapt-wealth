@@ -19,6 +19,7 @@ export class CompareProductsComponent implements OnInit {
   PreminumTime:boolean=false;
   PreminumTime2:boolean=false;
   PreminumTime1:boolean=false;
+  PremiumTimeModel:any;
 
   constructor(private crypto:AescryptoService,public validate:ValidateService,private api:ApiService,private route:Router) { }
 
@@ -26,6 +27,10 @@ export class CompareProductsComponent implements OnInit {
 
     this.MutualProductCompareFund=this.crypto.Decrypt(localStorage.getItem("MutualProductCompareFund"));
     console.log("MutualProductCompareFund",this.MutualProductCompareFund)
+    this.MutualProductCompareFund.forEach((element: any) => {
+      element.selectedYear=1;
+      element.Rate=element.returnFor1Year.toFixed(2);
+    });
     this.OffersForCompare=this.MutualProductCompareFund.filter((a:any)=>a.checkforcompare==1);
     console.log("OffersForCompare",this.OffersForCompare)
     
@@ -47,6 +52,23 @@ export class CompareProductsComponent implements OnInit {
      console.log("compareoffer",this.OffersForCompare);
    }
   }
+  
+  showTenureForPopup(index:number):any{
+    if(this.validate.isNullEmptyUndefined(this.MutualProductCompareFund[index].selectedYear)){
+      this.MutualProductCompareFund[index].selectedYear=1;
+      this.MutualProductCompareFund[index].Rate=this.MutualProductCompareFund[index].returnFor1Year.toFixed(2);
+    }else if(this.MutualProductCompareFund[index].selectedYear==1){
+      this.MutualProductCompareFund[index].selectedYear=3;
+      this.MutualProductCompareFund[index].Rate=this.MutualProductCompareFund[index].returnFor3Year.toFixed(2);
+    }else if(this.MutualProductCompareFund[index].selectedYear==3){
+      this.MutualProductCompareFund[index].selectedYear=5;
+      this.MutualProductCompareFund[index].Rate=this.MutualProductCompareFund[index].returnFor5Year.toFixed(2);
+    }else if(this.MutualProductCompareFund[index].selectedYear==5){
+      this.MutualProductCompareFund[index].selectedYear=1;
+      this.MutualProductCompareFund[index].Rate=this.MutualProductCompareFund[index].returnFor1Year.toFixed(2);
+    }
+  }
+
 
 
 }

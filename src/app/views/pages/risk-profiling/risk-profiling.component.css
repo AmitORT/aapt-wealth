@@ -130,6 +130,7 @@
   left: 0;
   border-radius: 13px;
   height: 10px;
+  transition: all 1.5s ease;
 }
 
 .w-75 {

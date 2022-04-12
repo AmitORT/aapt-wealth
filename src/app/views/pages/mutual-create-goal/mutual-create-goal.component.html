@@ -8,13 +8,13 @@
     </div>
   </div>
   
-  <div class="row mt-4">
-    <div class="col-lg-2 col-1 ps-0" >
+  <div class="row mt-4 mb-5-mob align-items-end">
+    <div class="col-lg-2 col-3 ps-0 pr-mob">
       <input hidden type="file" #uploader (change)="uploadFile($event)"/>
-      <img id="profileimg" src="assets/img/camera.svg" alt="" class="camera w-75" (click)="uploader.click()">
+      <img id="profileimg" src="assets/img/camera.svg" alt="" class="camera img-fluid" (click)="uploader.click()">
     </div>
-    <div class="col-lg-10 col-11 ps-0 pt-5 savings">
-      <input type="text" id="name" placeholder="What are you saving for?" class="form-control" [(ngModel)]="CreateGoal.Savings">
+    <div class="col-lg-10 col-9 ps-0 savings">
+      <input type="text" id="name" placeholder="What are you saving for?" class=" form-control" [(ngModel)]="CreateGoal.Savings">
       <!-- <h4 class="save">What are you saving for?</h4> -->
     </div>
   </div>
@@ -23,8 +23,8 @@
     <div class="col-lg-6">
       <h6>Select Mode of Payment</h6>
       <div class="left-box year-div">
-        <ul class="nav nav-tabs " id="year-tabs" role="tablist">
-          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '1'">
+        <ul class="nav nav-tabs" id="year-tabs" role="tablist">
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '1'" >
             <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '1'?'active':''" type="button" role="tab"
               aria-controls="oy" aria-selected="true">Monthly</button>
           </li>
@@ -41,27 +41,28 @@
       </div>
 
       <div class="col-lg-6">
-        <h6>Enter Goal Amount</h6>
+        <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Amount</h6>
         <div class="position-relative">
-          <input type="text" class="form-control custom-formfield" placeholder="Goal Target Amount" (keypress)="validate.numberOnly($event)" [(ngModel)]="CreateGoal.Goal_Amount"/>
+          <input type="text" class="form-control custom-formfield" placeholder="Goal Target Amount" [(ngModel)]="CreateGoal.Goal_Amount"/>
           <span class="pin-name">INR</span>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <h6>Enter Goal Duration</h6>
+        <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Duration</h6>
       <div class="position-relative">
-        <input type="text" class="form-control custom-formfield" placeholder="Goal Duration" (keypress)="validate.numberOnly($event)" [(ngModel)]="CreateGoal.Goal_Duartion" />
+        <input type="text" class="form-control custom-formfield" placeholder="Goal Duration" [(ngModel)]="CreateGoal.Goal_Duartion" />
         <span class="pin-name">Yrs</span>
       </div>
       </div>
 
       <div class="col-lg-6 position-relative">
         <div class="d-flex mt-5 install justify-content-between">
-          <h6 >Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}} of every month.</span>
+          <h6 class="d-none d-lg-block d-md-block d-sm-block">Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}} of every month.</span>
           </h6>
-          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="datepicker" class="form-control calender">
-          <label for="datepicker"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
+          <h6 class="d-block d-lg-none d-md-none d-sm-none">Select a Date for SIP</h6>
+          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="dob" placeholder="Date Of Birth" class="form-control calender">
+          <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
         </div>
       </div>
       
@@ -109,7 +110,7 @@
       </div>
     </div>
 
-    <div class="row">
+    <div class="row m0-mob">
       <button type="button" class="btn btn-primary theme-button mt-5" (click)="CreateGoalAndInvest()">
         Create Goal & Invest
       </button>

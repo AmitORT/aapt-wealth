@@ -708,10 +708,62 @@ input[type=date]::-webkit-inner-spin-button {
 }
 
 @media only screen and (max-width: 767px) {
+
+#invest-screen .modal-content {
+    border-radius: 12px 12px 0px 0px !important;
+    max-width: 100%;
+}
+.space1{
+    padding-bottom: 15px;
+
+}
+
+#invest-screen .modal-body{
+  padding: 0 !important;
+}
+.space{
+  margin: 0 !important;
+}
+.right-box {
+  border-radius:12px 12px 0px 0px !important;
+}
+.tm-div p {
+  font-size: 14px;
+}
+.blue-text {
+  color: #00A3B1;
+  font-size: 18px !important;
+}
+.blue-box h2 {
+  font-size: 16px;
+}
+.blue-box p{
+  font-size: 14px;
+}
+.blue-box{
+  padding: 0.75rem;
+}
+.monthly{
+  font-size: 19px;
+
+}
+#invest-screen .modal-dialog {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  align-items: end;
+  max-width: 100%;
+}
   .graph-header .header-img {
     height: 44px;
     margin-right: 4px;
     margin-top: 30px;
+  }
+  .l-values .invest-button{
+    padding: 10px 35px !important;
+  }
+  .irc-tabs .nav-tabs .nav-link{
+    font-size: 16px;
   }
   .graph-header h2 {
     font-size: 20px;
@@ -747,6 +799,8 @@ input[type=date]::-webkit-inner-spin-button {
     width: 100%;
     padding: 4%;
     background: #0000002e;
+    z-index: 9;
+
 }
 .applybtn-mob .invest-btn {
   padding: 15px;
@@ -773,5 +827,18 @@ input[type=date]::-webkit-inner-spin-button {
   border: 1px solid #D4D4D4;
   padding: 4px;
   border-radius: 8px;
+}
+}
+@media only screen and (min-width: 412px) and (max-width: 425px) {
+  .graph-header .badge {
+    font-size: 16px;
+}
+}
+@media only screen and (min-width: 360px) and (max-width: 370px) {
+  .graph-header .badge {
+    font-size: 11px;
+}
+.irc-tabs .nav-tabs .nav-link {
+  font-size: 15px;
 }
 }

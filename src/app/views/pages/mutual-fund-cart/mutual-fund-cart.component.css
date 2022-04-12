@@ -514,6 +514,20 @@ input[type=date]::-webkit-inner-spin-button {
   .just-center{
     justify-content: center;
   }
+  .risk1 .container1 {
+    margin-top: 0px;
+    margin-bottom: 25px;
+    padding: 5px 12px;
+}
+  .theme-button {
+    width: 100%;
+    border-radius: 12px;
+}
+
+.border1{
+  padding: 0px 0;
+  margin-bottom: 6rem;
+}
   .mgt-15per{
     position: absolute;
     bottom: 4rem;

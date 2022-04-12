@@ -170,20 +170,47 @@ p {
   width: 95%;
   margin: auto;
 }
+.title::after {
+  content: '';
+  display: none;
+  border-bottom: 3px solid #e27e28;
+  width: 50px;
+  position: absolute;
+  left: 0;
+  bottom: -0.5rem;
+}
+.orange-dash {
+  width: 50px;
+  height: 3px;
+  background-color: #e27e28;
+  display: block;
+  margin: auto;
+}
 .right-sec{
   height: 45vh;
 }
 .theme-button{
-  width: 10rem;
+  width: 50%;
+  padding: 13px;
+  border-radius: 8px !important;
 }
 .transparent-button{
-  width: auto;
+  width: 50%;
+  padding: 13px;
 }
 .trans-footer{
   width: 90% !important;
 }
 .container1{
   width: 100%;
+}
+.title{
+  text-align: center;
+  margin-bottom: 0rem !important;
+}
+p{
+  text-align: center !important; 
+  margin-top: 1rem;
 }
 }
 

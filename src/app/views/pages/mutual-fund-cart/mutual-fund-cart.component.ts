@@ -19,19 +19,28 @@ export class MutualFundCartComponent implements OnInit {
   SelectedButton4:boolean=false;
   ShowSelectedDetails:boolean=false;
   ModeOfInvestment:any;
+  ProductOverview:any;
+  date:any;
 
   constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
+  
   ngOnInit(): void {
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     console.log("ModeOfInvestment",this.ModeOfInvestment)
+
+    // let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
+    // localStorage.setItem("ModeOfInvestment",encrypted);
+
+    this.ProductOverview=this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+    console.log("ProductOverview",this.ProductOverview)
   }
 
   CompareProduct(){
     $('#compare-products-modal').modal('hide');
     this.ShowSelectedDetails=true;
   }
-
+  
   RedirectPopup(){
     $('#compare-products-modal').modal('hide');
     this.route.navigate(['/wealth-product-listing']);

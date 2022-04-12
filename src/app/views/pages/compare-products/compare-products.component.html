@@ -378,8 +378,12 @@
                   <div>
                     <h4>{{list.name}}</h4>
                     <div class="d-flex">
-
-                      <div class="monthly cursor-pointer ms-0" *ngIf="!PreminumTime1 ; PreminumTime"
+                      <div class="monthly cursor-pointer ms-0"
+                        (click)="showTenureForPopup(i)"><span class="return ">{{list.Rate}} %</span>
+                        {{list.selectedYear}} Year
+                        <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                      </div>
+                      <!-- <div class="monthly cursor-pointer ms-0" *ngIf="!PreminumTime1 ; PreminumTime"
                         (click)="PreminumTime1 = true"><span class="return ">{{list.returnFor1Year.toFixed(2)}} %</span>
                         1 Year
                         <img src="assets/img/unfold_more.svg" class="orange-pencil">
@@ -389,7 +393,7 @@
                         <span class="return ">{{list.returnFor3Year.toFixed(2)}} %</span>
                         3 Year
                         <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                      </div>
+                      </div> -->
                    
                     </div>
                   </div>

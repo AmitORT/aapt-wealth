@@ -86,7 +86,11 @@ export class RiskProfilingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.toastr.success("hello");
+
+    $('#dob').datepicker({
+      viewMode: 'days',
+      format: 'DD/MM/YYYY'
+  });  
 
     $("#riskModal1").modal("show");
     this.GetQuestions();
@@ -112,8 +116,6 @@ export class RiskProfilingComponent implements OnInit {
           element.Idstep=Idstep; 
           Idstep++;
         });
-
-        // console.log("GetQuestionsData with given ans",this.GetQuestionsData);
       }
     })
   }

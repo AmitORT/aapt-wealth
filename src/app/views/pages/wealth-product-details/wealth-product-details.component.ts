@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ValidateService } from 'src/app/services/Validate/validate.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { ToastrService } from 'ngx-toastr';
 declare var $ : any;
 
 @Component({
@@ -58,35 +59,36 @@ export class WealthProductDetailsComponent implements OnInit {
     }     
   };
 
-  value13:any = 500; 
-  options13: Options = {
+  monthly_amt:any = 500; 
+  monthly_amt1: Options = {
     floor: 500,
     ceil: 100000,
     hidePointerLabels:true,
-    translate: (value13: number, label: any): string => {  
+    translate: (monthly_amt: number, label: any): string => {  
       switch (label) {  
           case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + value13; 
+              return "<b>₹ 3,700</b> ₹" + monthly_amt; 
           case label.High:  
-              return "<b>₹ 5,300</b> ₹" + value13;  
+              return "<b>₹ 5,300</b> ₹" + monthly_amt;  
           default:  
-              return "₹ &nbsp;" + value13 + "&nbsp;" ;  
+              return "₹ &nbsp;" + monthly_amt + "&nbsp;" ;  
       }  
     }     
   };
-  value14:any = 500; 
-  options14: Options = {
+  
+  yearly_amt:any = 500; 
+  yearly_amt1: Options = {
     floor: 500,
     ceil: 100000,
     hidePointerLabels:true,
-    translate: (value14: number, label: any): string => {  
+    translate: (yearly_amt: number, label: any): string => {  
       switch (label) {  
           case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + value14; 
+              return "<b>₹ 3,700</b> ₹" + yearly_amt; 
           case label.High:  
-              return "<b>₹ 5,300</b> ₹" + value14;  
+              return "<b>₹ 5,300</b> ₹" + yearly_amt;  
           default:  
-              return "₹ &nbsp;" + value14 + "&nbsp;" ;  
+              return "₹ &nbsp;" + yearly_amt + "&nbsp;" ;  
       }  
     }     
   };
@@ -96,18 +98,24 @@ export class WealthProductDetailsComponent implements OnInit {
   ProductOverview:any;
   Productreturn:any;
   ProductSectorDetails:any;
-  holdings:any
+  holdings:any;
+  select_amt:any;
  
   ModeOfInvestment:any={
     "Payment_mode":"",
-    "DateForMonth":""
+    "DateForMonth":"",
+    "monthly_amt":"",
+    "yearly_amt":""
   }
+  resp: any;
 
-  constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
+  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
-    
-    console.log("Data of Date",this.ModeOfInvestment)
+    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
+    console.log("ModeOfInvestment",this.ModeOfInvestment)
+
+    // console.log("Data of Date",this.ModeOfInvestment)
 
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
@@ -129,12 +137,27 @@ export class WealthProductDetailsComponent implements OnInit {
     this.GetProductDetail();
   }
 
+  scrolltotop(){
+    $('.body-color').animate({
+      scrollTop: 0
+  }, 0);
+  }
+
   CreateSip(){
-
-    let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
-    localStorage.setItem("ModeOfInvestment",encrypted);
-
-    this.route.navigate(['/mutual-select-goal']);
+   
+    if(this.validate.isNullEmptyUndefined(this.ModeOfInvestment.Payment_mode)){
+      this.toastr.error('Payment Mode is mandatory');
+    }
+    else if(this.ModeOfInvestment.Payment_mode == 1 && this.validate.isNullEmptyUndefined(this.ModeOfInvestment.DateForMonth)){
+      this.toastr.error('Date is mandatory');
+    }
+    else{
+      $("#invest-screen").modal("hide");
+      let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
+      localStorage.setItem("ModeOfInvestment",encrypted);
+  
+      this.route.navigate(['/mutual-select-goal']);
+    } 
   }
 
   GetProductDetail(){
@@ -159,6 +182,10 @@ export class WealthProductDetailsComponent implements OnInit {
         this.ProductSectorDetails=resp.data.productSectorDetails;
         this.SimilarProducts=resp.data.similarProducts;  
         this.holdings=resp.data.fetchHoldings.instrumentHoldings;   
+        
+        let encrypted=this.crypto.Encrypt(this.ProductOverview);
+        localStorage.setItem("ProductOverview",encrypted);
+        
       }else{
         alert(resp.response.Msg)
       }
