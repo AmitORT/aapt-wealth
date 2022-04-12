@@ -87,10 +87,6 @@ export class RiskProfilingComponent implements OnInit {
   ngOnInit(): void {
 
 
-    $('#dob').datepicker({
-      viewMode: 'days',
-      format: 'DD/MM/YYYY'
-  });  
 
     $("#riskModal1").modal("show");
     this.GetQuestions();
