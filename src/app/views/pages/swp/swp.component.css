@@ -232,6 +232,9 @@ color: #222222;
     cursor: pointer;
     margin-right: 5px;
 }
+.delete {
+    right: 0.75rem;
+}
 .unit-button {
 
   margin-left: 5px;

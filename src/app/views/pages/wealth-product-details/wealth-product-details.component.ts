@@ -100,6 +100,7 @@ export class WealthProductDetailsComponent implements OnInit {
   ProductSectorDetails:any;
   holdings:any;
   select_amt:any;
+  SetModeOfInvestment:any;
  
   ModeOfInvestment:any={
     "Payment_mode":"",
@@ -114,6 +115,9 @@ export class WealthProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     console.log("ModeOfInvestment",this.ModeOfInvestment)
+
+    // this.SetModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("SetModeOfInvestment"));
+    // console.log("SetModeOfInvestment",this.SetModeOfInvestment)
 
     // console.log("Data of Date",this.ModeOfInvestment)
 

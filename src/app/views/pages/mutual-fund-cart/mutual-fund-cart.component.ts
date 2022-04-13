@@ -29,8 +29,12 @@ export class MutualFundCartComponent implements OnInit {
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     console.log("ModeOfInvestment",this.ModeOfInvestment)
 
+    let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
+    localStorage.setItem("ModeOfInvestment",encrypted);
+
     // let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
-    // localStorage.setItem("ModeOfInvestment",encrypted);
+    // localStorage.setItem("SetModeOfInvestment",encrypted);
+    // console.log("SetModeOfInvestment",this.ModeOfInvestment)
 
     this.ProductOverview=this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
     console.log("ProductOverview",this.ProductOverview)

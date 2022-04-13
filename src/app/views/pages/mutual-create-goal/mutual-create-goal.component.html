@@ -43,7 +43,7 @@
       <div class="col-lg-6">
         <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Amount</h6>
         <div class="position-relative">
-          <input type="text" class="form-control custom-formfield" placeholder="Goal Target Amount" [(ngModel)]="CreateGoal.Goal_Amount"/>
+          <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)" placeholder="Goal Target Amount" [(ngModel)]="CreateGoal.Goal_Amount"/>
           <span class="pin-name">INR</span>
         </div>
       </div>
@@ -51,7 +51,7 @@
       <div class="col-lg-6">
         <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Duration</h6>
       <div class="position-relative">
-        <input type="text" class="form-control custom-formfield" placeholder="Goal Duration" [(ngModel)]="CreateGoal.Goal_Duartion" />
+        <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)" placeholder="Goal Duration" [(ngModel)]="CreateGoal.Goal_Duartion" />
         <span class="pin-name">Yrs</span>
       </div>
       </div>
