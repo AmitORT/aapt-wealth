@@ -9,9 +9,9 @@
   </div>
   
   <div class="row mt-4 mb-5-mob align-items-end">
-    <div class="col-lg-2 col-3 ps-0 pr-mob">
+    <div class="col-lg-2 col-3 pr-mob">
       <input hidden type="file" #uploader (change)="uploadFile($event)"/>
-      <img id="profileimg" src="assets/img/camera.svg" alt="" class="camera img-fluid" (click)="uploader.click()">
+      <img id="profileimg" src="assets/img/cam.svg" alt="" class="camera img-fluid" (click)="uploader.click()">
     </div>
     <div class="col-lg-10 col-9 ps-0 savings">
       <input type="text" id="name" placeholder="What are you saving for?" class=" form-control" [(ngModel)]="CreateGoal.Savings">
