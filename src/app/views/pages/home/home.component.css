@@ -74,13 +74,13 @@
 	cursor: pointer;
 }
 .money-mng img{
-	width: 5rem;
+	width: 26%;
 	margin-bottom: 10px;
 }
 .money-mng p{
 	margin-bottom: 0px;
 	color: #465A65;
-	font-size: 20px;
+	/* font-size: 20px; */
 }
 .partner-txt{
 	position: absolute;
