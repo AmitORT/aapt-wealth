@@ -170,6 +170,18 @@ p {
   width: 95%;
   margin: auto;
 }
+.title::after {
+  content: '';
+  border-bottom:none;
+}
+.orange-dash {
+  width: 50px;
+  height: 3px;
+  background-color: #e27e28;
+  display: block;
+  margin: auto;
+  margin-bottom: 25px;
+}
 .right-sec{
   height: 50vh;
 }
@@ -185,6 +197,15 @@ p {
 }
 .container1{
   width: 100%;
+}
+.mob-center{
+  text-align: center;
+}
+p{
+  font-size: 16px;
+}
+.title{
+  margin-bottom: 0.50rem;
 }
 }
 

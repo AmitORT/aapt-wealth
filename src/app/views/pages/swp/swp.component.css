@@ -225,6 +225,34 @@ color: #222222;
   .just-center{
     justify-content: center;
   }
+  .applybtn-mob {
+    display: flex;
+    /* display: none; */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 2%;
+    background: #e1e1e1;
+    }
+    .applybtn-mob h5 {
+      font-weight: 600;
+      color: #000;
+      }
+      .applybtn-mob p {
+       margin: 0;
+      }
+      .applybtn-mob .proceed-btn {
+      padding: 10px;
+        color: #fff!important;
+        font-weight: 500;
+        background-color: #E27E28;
+        border-color: #E27E28;
+        border-radius: 8px;
+        font-size: 16px!important;
+        text-align: center;
+        width: 150px;
+        float: right;
+      }
   .theme-button {
     width: 180px;
     border-radius: 8px;
@@ -232,13 +260,17 @@ color: #222222;
     cursor: pointer;
     margin-right: 5px;
 }
+.unit-button{
+  padding: 0.75rem 0px !important;
+  text-align: center;
+  cursor: pointer;
+  margin: AUTO;
+  margin-left: 0px;
+}
 .delete {
     right: 0.75rem;
 }
-.unit-button {
 
-  margin-left: 5px;
-}
   .mgt-15per{
     position: absolute;
     bottom: 4rem;
@@ -283,4 +315,10 @@ color: #222222;
     .select-box span{
       width: 45%;
     }
+}
+
+@media only screen and (min-width: 410px) and (max-width: 420px) {
+  .unit-button{
+    margin-left: 20px !important ;
+}
 }

@@ -14,6 +14,16 @@ export class SwpComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    $(".applybtn-mob").hide();
+    $(".body-color").scroll(function() {
+      if ($(".body-color").scrollTop() > 150) {
+      $(".applybtn-mob").show();
+      }
+      else {
+      $(".applybtn-mob").hide();
+      }
+      });
+      
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
       $('#sidebar').css('position','fixed');

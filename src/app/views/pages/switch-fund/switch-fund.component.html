@@ -16,7 +16,7 @@
       
       <div class="col-lg-6">
         <div>
-          <img src="assets/img/delete_icon1.svg" alt="" class="delete">
+          <!-- <img src="assets/img/delete_icon1.svg" alt="" class="delete"> -->
           <div class="accordion" id="accordionExample-desk">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingOne">
@@ -109,23 +109,28 @@
                     <p>95/100 units remaining</p>
                   </div>
 
+                 
                   <div>
                     <h5 class="instrument" (click)="ShowAccordion() ;  scrolltotop()">+ Add New Scheme</h5>
                   </div>
+
+                <div class="hidden-xs">
                   <p class="d-none d-lg-block d-md-block d-sm-block">Total Amount <span class="rupee">Rs. 1,500</span></p>
                   
                   <div class="redeem mt-2 d-none d-lg-block d-md-block d-sm-block">
                     <a class="btn-primary theme-button"  [routerLink]="['/fund-switch-suceesful']">Proceed</a>
                   </div>
+                 </div>
+                  
 
                   <div class="right-box-mob d-block d-lg-none d-md-none d-sm-none">
                     <div class="row">
                       <div class="applybtn-mob">
-                      <div class="col-md-6 col-6">
-                          <p>Total Premium</p>
+                      <div class="col-md-6 col-6 ">
+                          <p>Total Amount</p>
                           <h5>₹ 12,287</h5>
                       </div>
-                      <div class="col-md-6 col-6">
+                      <div class="col-md-6 col-6 m-auto">
                           <button type="button" class="btn btn-primary proceed-btn" data-bs-display="static" 
                           aria-expanded="false" href="javascript:void(0)" [routerLink]="['/fund-switch-suceesful']"> Proceed
                         </button>  
@@ -238,11 +243,32 @@
                   <div>
                     <h5 class="instrument" (click)="ShowAccordion() ;  scrolltotop()">+ Add New Scheme</h5>
                   </div>
-                  <p>Total Amount <span class="rupee">Rs. 1,500</span></p>
                   
-                  <div class="redeem mt-2">
-                    <a class="btn-primary theme-button"  [routerLink]="['/fund-switch-suceesful']">Proceed</a>
+                  <div class="hidden-xs">
+                    <p class="d-none d-lg-block d-md-block d-sm-block">Total Amount <span class="rupee">Rs. 1,500</span></p>
+                    
+                    <div class="redeem mt-2 d-none d-lg-block d-md-block d-sm-block">
+                      <a class="btn-primary theme-button"  [routerLink]="['/fund-switch-suceesful']">Proceed</a>
+                    </div>
+                   </div>
+
+                   <div class="right-box-mob d-block d-lg-none d-md-none d-sm-none">
+                    <div class="row">
+                      <div class="applybtn-mob">
+                      <div class="col-md-6 col-6 ">
+                          <p>Total Amount</p>
+                          <h5>₹ 12,287</h5>
+                      </div>
+                      <div class="col-md-6 col-6 m-auto">
+                          <button type="button" class="btn btn-primary proceed-btn" data-bs-display="static" 
+                          aria-expanded="false" href="javascript:void(0)" [routerLink]="['/fund-switch-suceesful']"> Proceed
+                        </button>  
+                      </div>
+                  </div> 
+                  </div> 
+                  
                   </div>
+                   
                 </div>
               </div>
             </div>

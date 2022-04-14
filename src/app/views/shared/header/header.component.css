@@ -132,6 +132,9 @@
     border-color: rgb(226 126 40);
     background: #e27e28;
   }
+  .navbar-expand-sm{
+    z-index: 11;
+  }
 
   .navbar-collapse {
     background: #efefef;
@@ -181,6 +184,7 @@
 @media (min-width: 576px) {
   .navbar-expand-sm {
     margin-bottom: 20px;
+
   }
 }
 

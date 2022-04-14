@@ -50,4 +50,8 @@ export class MutualFundCartComponent implements OnInit {
     this.route.navigate(['/wealth-product-listing']);
   }
 
+  GetOnlyDay(){    
+    this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
+   }
+
 }

@@ -39,7 +39,7 @@ h5{
     color: #E27E28 !important;
     font-weight: 600;
     background-color: transparent !important;
-    /* width: 150px; */
+    width: 40%;
     border: 1px solid #E27E28;
     border-radius: 8px;
     font-size: 16px!important;
@@ -269,6 +269,53 @@ color: #222222;
     }
     .select-box span{
       width: 45%;
+    }
+    .r-img {
+      margin: 0 auto;
+      display: block;
+    }
+    .mob-center {
+      text-align: center;
+      padding-top: 10%;
+    }
+    .border {
+      border: unset!important;
+      color: #348BF5;
+      text-align: center;
+      padding: 0;
+      border-radius: 8px;
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+      cursor: pointer;
+  }
+
+  .applybtn-mob {
+    display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 2%;
+  background: #e1e1e1;
+  }
+  .applybtn-mob h5 {
+    font-weight: 600;
+    color: #000;
+    }
+    .applybtn-mob p {
+     margin: 0;
+    }
+    .applybtn-mob .proceed-btn {
+      padding: 10px;
+      color: #E27E28;
+      font-weight: 500;
+      background-color: transparent;
+      border-color: #E27E28;
+      border-radius: 8px;
+      font-size: 16px!important;
+      text-align: center;
+      width: 150px;
+      float: right;
+      margin-top: 8px;
     }
 }
 @media only screen and (min-width: 310px) and (max-width: 340px) {

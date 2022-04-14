@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Router } from '@angular/router';
+declare var $ : any;
 
 
 @Component({
@@ -87,9 +89,15 @@ export class AccountPortfolioProductDetailsComponent implements OnInit {
       }  
     }     
   };
-  constructor() { }
+  constructor(public route:Router) { }
 
   ngOnInit(): void {
+  }
+
+  RedeemFunds(){
+    $("#sortby-screen").modal("hide");
+    this.route.navigate(["/switch-redeem-funds"]);
+   
   }
 
 }

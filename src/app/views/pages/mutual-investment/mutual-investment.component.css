@@ -429,12 +429,18 @@ display: none;
   border-radius: 8px;
 }
 .pd-right-div button {
+  /* padding: 10px 20px 10px 15px;
+  background: #fff;
+  border-radius: 8px;
+  text-align: left;
+  width: 95%;
+  height: 18vh; */
   padding: 10px 20px 10px 15px;
   background: #fff;
   border-radius: 8px;
   text-align: left;
   width: 95%;
-  height: 18vh;
+  height: 135px;
 }
 .pt-select .nav-link.active {
     color: #495057;

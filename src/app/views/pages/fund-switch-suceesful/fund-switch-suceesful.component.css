@@ -170,11 +170,36 @@ p {
   width: 95%;
   margin: auto;
 }
+.mob-center{
+  text-align: center;
+}
+.title::after {
+  content: '';
+  border-bottom: none !important;
+}
+.title{
+  margin-bottom: 0.50rem;
+}
+.orange-dash {
+  width: 50px;
+  height: 3px;
+  background-color: #e27e28;
+  display: block;
+  margin: auto;
+  margin-bottom: 25px;
+}
 .right-sec{
   height: 30vh;
 }
 .theme-button{
   width: 10rem;
+  border-radius: 8px !important;
+}
+p{
+  font-size: 16px !important;
+}
+.title{
+  text-align: center;
 }
 .transparent-button{
   width: 10rem;
@@ -193,6 +218,7 @@ p {
 @media only screen and (min-width: 310px) and (max-width: 380px) {
   .theme-button {
     font-size: 13px !important;
+    padding: 12px !important;
   }
   .transparent-button {
     width: 10rem;

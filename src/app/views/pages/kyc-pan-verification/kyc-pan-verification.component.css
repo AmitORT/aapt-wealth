@@ -40,10 +40,14 @@
 }
 
 .step-btn{
-  margin-top: 15%;
+  /* margin-top: 15%;
   padding: 0;
   width: 48px;
-  height: 48px;
+  height: 48px; */
+  margin-top: 10%;
+  padding: 0;
+  width: 55px;
+  height: 55px;
 }
 .step-heading{
     font-size: 30px;
@@ -219,13 +223,20 @@ text-align: center;
 .mgt-15per{
     margin-top: 32%;
 }
-input[type=date]::-webkit-calendar-picker-indicator,
+/* input[type=date]::-webkit-calendar-picker-indicator,
 input[type=date]::-webkit-inner-spin-button {
   background: url("/assets/img/fi-calendar.svg") top right no-repeat;
   cursor: pointer;
   background-size: 23px;
 
+} */
+input[type=date]::-webkit-calendar-picker-indicator,
+input[type=date]::-webkit-inner-spin-button {
+  background: url("/assets/img/fi-calendar.svg") top right no-repeat;
+  cursor: pointer;
+  background-size: 20px;
 }
+
 .dropdown.country-drop a {
   width: 100%;
   padding-bottom: 0.5rem;
