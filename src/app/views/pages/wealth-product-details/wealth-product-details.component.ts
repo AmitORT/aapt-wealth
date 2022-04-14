@@ -108,7 +108,7 @@ export class WealthProductDetailsComponent implements OnInit {
     "monthly_amt":"",
     "yearly_amt":""
   }
-  resp: any;
+ 
 
   constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
 
@@ -146,6 +146,10 @@ export class WealthProductDetailsComponent implements OnInit {
       scrollTop: 0
   }, 0);
   }
+
+  GetOnlyDay(){    
+    this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
+   }
 
   CreateSip(){
    
@@ -195,5 +199,7 @@ export class WealthProductDetailsComponent implements OnInit {
       }
     });
   }
+
+  
 
 }

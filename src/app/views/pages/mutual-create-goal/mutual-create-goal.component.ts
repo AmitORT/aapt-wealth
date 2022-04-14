@@ -55,6 +55,7 @@ export class MutualCreateGoalComponent implements OnInit {
     var Image:any;
     var reader = new FileReader();
     reader.readAsDataURL($event.target.files[0]);
+     Image=$event.target.files[0];
     reader.onload = function () {
     var ThumbnailBase64 = reader.result;
     console.log("thumbnail ",ThumbnailBase64);
@@ -62,6 +63,7 @@ export class MutualCreateGoalComponent implements OnInit {
     // Image=ThumbnailBase64;
     }
     console.log($event.target.files[0]); // outputs the first file
+    console.log("Image",Image)
     }
 
   options12: Options = {
@@ -95,6 +97,7 @@ export class MutualCreateGoalComponent implements OnInit {
       }  
     }     
   };
+  // highvalue:any=1000;
 
   CreateGoalAndInvest(){
 
@@ -130,4 +133,12 @@ export class MutualCreateGoalComponent implements OnInit {
       
     }
   }
+
+  GetOnlyDay(){    
+    this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);
+  }
+
+
+
+
 }

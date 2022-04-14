@@ -145,7 +145,7 @@
 }
 
 .step-heading {
-  font-size: 30px;
+  font-size: 28px;
   margin-bottom: 2rem;
   color: #222222;
 }
@@ -273,9 +273,12 @@
 }
 
 .select-box1 span {
-  padding: 1rem;
+  /* padding: 1rem;
   min-width: 30%;
-  max-width: 48%;
+  max-width: 48%; */
+  padding: 10px;
+  min-width: 30%;
+  max-width: 45%;
   border-radius: 8px;
   color: #858585;
   text-align: center;
@@ -505,4 +508,19 @@ max-width: 100%;
   /* .select-box span {
     width: 45%;
   } */
+}
+@media only screen and (min-width: 1350px) and (max-width: 1370px){
+
+  .process-div {
+    height: 500px;
+}
+
+.process-div {
+  padding-top: 70px;
+}
+
+.btn-div {
+  margin-top: 5rem;
+}
+
 }

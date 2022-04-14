@@ -270,7 +270,7 @@
   background-color: #ffffff;
   padding: 15px 0px;
   position: relative;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .bank-name h5 {
@@ -347,7 +347,7 @@
   /* max-height: 450px;
   overflow-y: auto;
   overflow-x: hidden; */
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

@@ -290,7 +290,7 @@ color: #222222;
 position: fixed;
 bottom: 0;
 width: 100%;
-padding: 4%;
+padding: 2%;
 background: #e1e1e1;
 }
 .applybtn-mob h5 {
@@ -311,5 +311,17 @@ background: #e1e1e1;
     text-align: center;
     width: 150px;
     float: right;
+  }
+}
+@media only screen and (min-width: 310px) and (max-width: 340px) {
+  .unit-button, .theme-button{
+    width: 145px;
+    padding: 10px;
+}
+}
+@media only screen and (min-width: 360px) and (max-width: 380px) {
+  .unit-button, .theme-button{
+    width: 165px;
+    padding: 10px;
   }
 }

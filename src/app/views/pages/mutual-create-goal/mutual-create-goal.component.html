@@ -58,10 +58,10 @@
 
       <div class="col-lg-6 position-relative">
         <div class="d-flex mt-5 install justify-content-between">
-          <h6 class="d-none d-lg-block d-md-block d-sm-block">Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}} of every month.</span>
+          <h6 class="d-none d-lg-block d-md-block d-sm-block">Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}}th of every month.</span>
           </h6>
           <h6 class="d-block d-lg-none d-md-none d-sm-none">Select a Date for SIP</h6>
-          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="dob" placeholder="Date Of Birth" class="form-control calender">
+          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="dob" placeholder="Date Of Birth" class="form-control calender" (change)="GetOnlyDay()">
           <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
         </div>
       </div>
@@ -80,6 +80,8 @@
             </div>
           </div>
           <ngx-slider [(value)]="CreateGoal.Return_Rate" [options]="options12"></ngx-slider>
+          <!-- <span>(min)</span>
+          <span>(max)</span> -->
         </div>
       </div>
 

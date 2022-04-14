@@ -36,7 +36,7 @@
   font-size: 14px;
 }
 .risk1 .container1{
-    height: auto;
+    min-height: 201px;
     background-color: #fff;
     border: 1px solid #B4B4B4;
     margin-left: 0px;
@@ -159,7 +159,8 @@
     margin: 0 1rem;
   }
   .pop-scroll{
-    height: 430px;
+    /* height: 430px; */
+    height: 400px;
     overflow-y: scroll;
     overflow-x: hidden;
   }
@@ -476,7 +477,7 @@ input[type=date]::-webkit-inner-spin-button {
     color: #00A0AD;
     border-radius: 4px;
     padding: 5px 10px;
-    margin-top: -3px;
+    /* margin-top: -3px; */
     border: 1px solid #00A0AD;
     font-size: 14px;
 }
@@ -492,27 +493,52 @@ input[type=date]::-webkit-inner-spin-button {
 .calender~label{
   padding-right: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.remove-btn{
+  padding: 10px;
+  color: #F54B4B !important;
+  font-weight: 600;
+  background-color: transparent !important;
+  width: 100%;
+  border: 2px solid #F54B4B !important;
+  border-radius: 12px;
+  font-size: 16px !important;
+}
 
 
 
 @media only screen and (max-width: 767px){
   .just-center{
     justify-content: center;
+  }
+  .remove-btn{
+    font-size: 14px;
+  }
+  .otp-title{
+    font-size: 18px;
+  }
+  .explore{
+    font-size: 18px;
+  }
+  .transper-btn{
+    font-size: 14px;
+  }
+  .modal-content {
+    border-radius: 12px 12px 0px 0px!important;
+}
+.pop-scroll{
+  height: 300px;
+}
+#compare-products-modal .modal-dialog{
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  align-items: end;
+}
+  .amount p{
+    font-size: 20px;
+  }
+  .amount span{
+    font-size: 10px;
   }
   .risk1 .container1 {
     margin-top: 0px;
@@ -581,11 +607,11 @@ input[type=date]::-webkit-inner-spin-button {
       padding: 0 !important;
   }
   .compare-img-wd {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
 }
 .compare-left-view h4 {
-  font-size: 16px;
+  font-size: 14px;
 }
 .me-3 {
   margin-right: 10px!important;
@@ -597,7 +623,7 @@ input[type=date]::-webkit-inner-spin-button {
     margin: 0;
 }
 .pop-scroll span {
-  font-size: 13px;
+  font-size: 11px;
 }
 .pop-scroll span p {
   margin: 0px;

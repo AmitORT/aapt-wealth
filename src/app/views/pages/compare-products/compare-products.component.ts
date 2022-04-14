@@ -69,6 +69,4 @@ export class CompareProductsComponent implements OnInit {
     }
   }
 
-
-
 }

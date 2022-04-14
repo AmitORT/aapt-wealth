@@ -1,5 +1,6 @@
 .body-color {
-  background-image: linear-gradient(#BFE6EC 40%, #fff 100%);
+  /* background-image: linear-gradient(#BFE6EC 40%, #fff 100%); */
+  background-image: linear-gradient(#BFE6EC 30%,#fff 80%, #fff 100%);
   height: 100vh;
   width: 100%;
   background-attachment: fixed;
@@ -10,8 +11,12 @@
   overflow-y: scroll;
   font-family: myfont;
 }
+.ngx-slider-pointer-min:focus-visible {
+  outline: 0 !important;
+}
 #site-wrapper {
-  margin-top: 7rem;
+  /* margin-top: 7rem; */
+  margin-top: 5.5rem;
 }
 .form-floating>.form-control:focus{
   border: 1px solid #00A3B1;
@@ -114,7 +119,7 @@ a {
   display: none;
 }
 
-.theme-button {
+/* .theme-button {
   padding: 13px;
   color: #fff !important;
   font-weight: 400;
@@ -122,6 +127,17 @@ a {
   width: 150px;
   border-color: #E27E28;
   border-radius: 8px;
+  font-size: 16px !important;
+  text-align: center;
+} */
+.theme-button {
+  padding: 10px;
+  color: #fff !important;
+  font-weight: 600;
+  background-color: #E27E28;
+  width: 150px;
+  border-color: #E27E28;
+  border-radius: 12px;
   font-size: 16px !important;
   text-align: center;
 }

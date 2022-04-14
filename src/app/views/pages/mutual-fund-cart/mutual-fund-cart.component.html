@@ -47,8 +47,8 @@
 
         <div class="tab-content">
 
-          <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab" 
-          [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">
+          <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
+            [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">
             <div class="row amount">
               <div class="col-lg-10 col-10">
                 <p>₹ {{ModeOfInvestment.monthly_amt}}<span>15 Units</span></p>
@@ -56,21 +56,21 @@
 
               <div class="col-lg-2 col-2 position-relative text-end">
                 <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
-                  [(ngModel)]="ModeOfInvestment.DateForMonth">
+                  [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
                 <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
               </div>
             </div>
 
             <div class="row">
               <div class="col-lg-12">
-                <p class="n-line">SIP Date Installment will be deducted on <b>{{ModeOfInvestment.DateForMonth}} th of
+                <p class="n-line">SIP Date Installment will be deducted on <b>{{ModeOfInvestment.DateForMonth}}th of
                     every month.</b></p>
               </div>
             </div>
           </div>
 
-          <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab" 
-          [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
+          <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
+            [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
             <div class="row amount">
               <div class="col-lg-10 col-10">
                 <p>₹ {{ModeOfInvestment.yearly_amt}}<span>15 Units</span></p>
@@ -82,7 +82,7 @@
 
       </div>
 
-      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal" >
+      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal">
         <img src="assets/img/shopping-cart-add.svg" alt="">
         <p class="ps-2 pt-3 colr">Add New Instrument</p>
       </div>
@@ -132,8 +132,8 @@
               <div class="d-flex ">
                 <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton"
                   (click)="SelectedButton=true">+ Add</button>
-                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton"
-                  (click)="SelectedButton=false">Selected</button>
+                <button type="button" class="btn btn-primary theme-button w-10 remove-btn" *ngIf="SelectedButton"
+                  (click)="SelectedButton=false">Remove</button>
               </div>
             </div>
             <hr>
@@ -235,8 +235,8 @@
               <div class="d-flex ">
                 <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="!SelectedButton4"
                   (click)="SelectedButton4=true">+ Add</button>
-                <button type="button" class="btn btn-primary theme-button w-10 " *ngIf="SelectedButton4"
-                  (click)="SelectedButton4=false">Selected</button>
+                <button type="button" class="btn btn-primary theme-button remove-btn w-10 " *ngIf="SelectedButton4"
+                  (click)="SelectedButton4=false">Remove</button>
               </div>
             </div>
 

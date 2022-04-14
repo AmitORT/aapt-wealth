@@ -328,6 +328,12 @@
     height: 100vh;
     align-items: end;
   }
+  .compare-left-view h4{
+    font-size: 12px;
+  }
+  .monthly{
+    font-size: 12px;
+  }
   .bank-dtl-empty .plus-icon{
     height: 40px;
     width: 40px;
@@ -353,13 +359,6 @@
     flex-direction: column;
   }
 
-  /* .compare-left-view span{
-    padding: 5px 1rem;
-    min-width: 2rem;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  } */
   #compare-products-modal .modal-header {
     margin-left: 1rem;
     display: block;
@@ -373,16 +372,16 @@
 
   .search i {
     position: absolute;
-    margin-top: 1rem;
+    margin-top: 14px;
     margin-left: 0.75rem;
     color: #b4b4b4;
-    font-size: 22px;
+    font-size: 15px;
   }
 
   .search .form-control {
     padding-left: 2.5rem;
-    height: 50px;
-    font-size: 20px;
+    height: 40px;
+    font-size: 14px;
     color: #b4b4b4;
   }
 
@@ -396,17 +395,18 @@
 
   .pop-scroll {
     height: 300px;
+    margin-top: 0.5rem!important;
   }
 
   .w-10 {
-    width: max-content !important;
-    height: max-content;
-    padding: 5px 10px !important;
+    width: 80px !important;
+    height: 40px;
+    padding: 0 !important;
   }
 
   .compare-img-wd {
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
   }
 
   .w-mob-50 {
@@ -416,9 +416,10 @@
 
   .otp-title {
     font-weight: 500;
-    font-size: 26px;
-    line-height: 30px;
+    font-size: 22px;
+    line-height: 0px;
     margin-bottom: 1.5rem;
+    font-weight: 600;
   }
 
   .cm-table .hidden-lg {
@@ -466,6 +467,9 @@
 
   .transper-btn {
     padding: 5px 10px;
+    font-size: 14px !important;
+  }
+  .remove-btn{
     font-size: 14px !important;
   }
 

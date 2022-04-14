@@ -342,10 +342,15 @@ p {
 }
 
 .blue-bg {
+  /* background-color: #D6F0F3;
+  border-radius: 8px;
+  padding: 15px 15px;
+  display: flex; */
   background-color: #D6F0F3;
   border-radius: 8px;
   padding: 15px 15px;
   display: flex;
+  align-items: center;
 }
 
 .blue-bg h6 {
@@ -495,7 +500,7 @@ p {
 }
 
 .trending-product p {
-  font-size: 16px;
+  font-size: 14px;
   color: #222222;
   font-weight: 500;
 }
@@ -513,7 +518,7 @@ p {
 }
 
 .trending-product h5 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   margin: 0;
   white-space: nowrap; 
@@ -524,6 +529,7 @@ p {
 
 .values {
   padding: 0 5px;
+  text-align: center;
 }
 
 .values p {
@@ -554,6 +560,11 @@ p {
 
 .values h6 {
   margin: 0px;
+  font-size: 14px;
+}
+
+.graph-header {
+  align-items: center;
 }
 
 .l-values {
@@ -645,11 +656,18 @@ p {
 }
 
 .amt {
-  background-color: #E27E283D;
+  /* background-color: #E27E283D;
   border: 1px solid #e27e28;
   border-radius: 4px;
   font-size: 15px !important;
   padding: 4px 6px;
+  text-align: center;
+  cursor: pointer; */
+  background-color: #E27E283D;
+  border: 1px solid #e27e28;
+  border-radius: 4px;
+  font-size: 14px !important;
+  padding: 4px 5px;
   text-align: center;
   cursor: pointer;
 }
@@ -698,7 +716,7 @@ input[type=date]::-webkit-calendar-picker-indicator,
 input[type=date]::-webkit-inner-spin-button {
   background: url("/assets/img/fi-calendar.svg") top right no-repeat;
   cursor: pointer;
-  background-size: 23px;
+  background-size: 20px;
 }
 
 .rupee-symbol{
@@ -716,6 +734,16 @@ input[type=date]::-webkit-inner-spin-button {
 .space1{
     padding-bottom: 15px;
 
+}
+.rating-star{
+  padding-left: 0px;
+    list-style: none;
+    display: inline-flex;
+    width: 60%;
+    margin-bottom: 10px;
+}
+.m-block{
+  display: block!important;
 }
 
 #invest-screen .modal-body{
@@ -773,6 +801,8 @@ input[type=date]::-webkit-inner-spin-button {
   }
   .rating-star i {
     font-size: 12px;
+    justify-content: start;
+    display: flex;
   }
 
   .cf-div .outer {
@@ -816,6 +846,10 @@ input[type=date]::-webkit-inner-spin-button {
   font-size: 16px;
   width: 100%;
 }
+.graph-header .badge{
+  margin-left: 0rem;
+  margin-right: 10px;
+}
 #invest-tabs .nav-link {
   font-size: 14px;
   border-radius: 8px;
@@ -841,4 +875,15 @@ input[type=date]::-webkit-inner-spin-button {
 .irc-tabs .nav-tabs .nav-link {
   font-size: 15px;
 }
+}
+@media only screen and (min-width: 1000px) and (max-width: 1370px){
+
+  .l-values .invest-button {
+    padding: 9px 35px !important;
+  }
+
+  .custom-slider.mb-5{
+    margin-bottom: 3rem !important;
+  }
+
 }
