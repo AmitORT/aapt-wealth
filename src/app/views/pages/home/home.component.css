@@ -3,7 +3,7 @@
 	font-weight: 600;
 	color: #242424;
 }
-.slider-head span{
+.setBlueColor{
 	color: #00a0ae;
 }
 .slider-txt{
@@ -107,7 +107,9 @@
 	text-align: center;
 }
 .user-img{
-	margin-bottom: 20px;
+	margin-bottom: 15px;
+    border-radius: 50%;
+    width: 100px;
 }
 #testimonial h4{
 	color: #222222;
@@ -965,6 +967,11 @@
 		.container-sm,
 		.container-xl {
 		  max-width: 1035px;
+		}
+		.money-invest.loan-opt .col {
+			flex: 0 0 auto!important;
+			max-width: 20%;
+			margin-bottom: 15px;
 		}
 	  }
 	  

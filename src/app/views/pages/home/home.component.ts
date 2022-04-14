@@ -1,11 +1,16 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ApiService } from 'src/app/services/api/api.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  wealthbannerList:any;
+  tesimonialwealthdata:any;
+  productwealthdata:any;
   customOptions: OwlOptions = {
     items: 3,
 		margin: 3,
@@ -33,9 +38,35 @@ export class HomeComponent implements OnInit {
 
   showGrid:boolean=false;
 
-  constructor() { }
+  constructor(private api:ApiService,private route:Router) { }
 
   ngOnInit(): void {
+    this.getwealthBanner();
+    this.TestimonialWealth();
+    this.ProductsWealth();
   }
-  
+  getwealthBanner(){
+    this.api.get("banner?vertical=3").subscribe((resp)=>{
+      this.wealthbannerList = resp.data;
+      // console.log("banner data", this.wealthbannerList);
+    });
+  }
+  TestimonialWealth(){
+    this.api.get("testimonial?vertical=3").subscribe((resp)=>{
+      this.tesimonialwealthdata = resp.data;
+      // console.log("Testimonial data", this.tesimonialwealthdata);
+    });
+  }
+  ProductsWealth(){
+    this.api.get("vertical/product?vertical=3").subscribe((resp)=>{
+      this.productwealthdata = resp.data;
+      console.log("product data", this.productwealthdata);
+    });
+  }
+  GotoRecommendedOffers(Product:any){
+    console.log('products',Product.path)
+    this.route.navigate([Product.path]);
+    // [routerLink]="['{{products?.path}}']"
+  }
+
 }

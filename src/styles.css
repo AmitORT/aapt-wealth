@@ -605,3 +605,7 @@ p {
       max-width: 1400px;
     }
   }
+/* wealth banner span color */
+.setBlueColor{
+	color: #00a0ae;
+}
