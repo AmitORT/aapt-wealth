@@ -11,38 +11,24 @@
 
     <!-- The slideshow/carousel -->
 		<div class="carousel-inner">
-			<div class="carousel-item active">
+			<div class="carousel-item active" *ngFor="let banners of wealthbannerList; let i= index" [ngClass]="i==0?'active':''">
 				<div class="row align-items-center">
 					<div class="col-12 hidden-lg hidden-sm">
 						<h4 class="slider-head">Plan your <span>Investment</span> to reach your <span>Goals.</span></h4>
 					</div>
 					<div class="col-lg-8 col-7">
-						<!-- <h4 class="slider-head hidden-xs">Plan your Goals to <span>Grow<br class="hidden-xs" /> your Income</span></h4> -->
-						<h4 class="slider-head hidden-xs">Plan your <span>Investment</span> to <br class="hidden-xs" /> reach your <span>Goals.</span></h4>
-						<p class="slider-txt">Create your financials goal, monitor and watch it grow.</p>
+						<!-- <h4 class="slider-head hidden-xs">Plan your <span class="setBlueColor">Investment</span> to <br class="hidden-xs" /> reach your <span class="setBlueColor">Goals.</span></h4> -->
+            <h4 class="slider-head hidden-xs" [innerHTML]="banners?.heading"></h4>
+						<!-- <p class="slider-txt">Create your financials goal, monitor and watch it grow.</p> -->
+            <p class="slider-txt" [innerHTML]="banners?.description"></p>
 						<button class="nav-link btn btn-primary theme-button">Know More</button>
 					</div>
 					<div class="col-lg-4 col-5">
-						<img src="assets/img/wealth_banner_illustration.svg" alt="slider1" class="w-100 wd90">
+						<img src="{{banners?.banner}}" alt="slider1" class="w-100 wd90">
 					</div>
 				</div>
 			</div>
-			<div class="carousel-item">
-				<div class="row align-items-center">
-					<div class="col-12 hidden-lg hidden-sm">
-						<h4 class="slider-head">Plan your <span>Investment</span> to reach your <span>Goals.</span></h4>
-					</div>
-					<div class="col-lg-8 col-7">
-            <h4 class="slider-head hidden-xs">Plan your <span>Investment</span> to <br class="hidden-xs" /> reach your <span>Goals.</span></h4>
-						<p class="slider-txt">Create your financials goal, monitor and watch it grow.</p>
-						<button class="nav-link btn btn-primary theme-button">Know More</button>
-					</div>
-					<div class="col-lg-4 col-5">
-						<img src="assets/img/wealth_banner_illustration.svg" alt="slider1" class="w-100 wd90">
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
+			<!-- <div class="carousel-item">
 				<div class="row align-items-center">
 					<div class="col-12 hidden-lg hidden-sm">
 						<h4 class="slider-head">Plan your <span>Investment</span> to reach your <span>Goals.</span></h4>
@@ -56,7 +42,22 @@
 						<img src="assets/img/wealth_banner_illustration.svg" alt="slider1" class="w-100 wd90">
 					</div>
 				</div>
-			</div>
+			</div> -->
+			<!-- <div class="carousel-item">
+				<div class="row align-items-center">
+					<div class="col-12 hidden-lg hidden-sm">
+						<h4 class="slider-head">Plan your <span>Investment</span> to reach your <span>Goals.</span></h4>
+					</div>
+					<div class="col-lg-8 col-7">
+            <h4 class="slider-head hidden-xs">Plan your <span>Investment</span> to <br class="hidden-xs" /> reach your <span>Goals.</span></h4>
+						<p class="slider-txt">Create your financials goal, monitor and watch it grow.</p>
+						<button class="nav-link btn btn-primary theme-button">Know More</button>
+					</div>
+					<div class="col-lg-4 col-5">
+						<img src="assets/img/wealth_banner_illustration.svg" alt="slider1" class="w-100 wd90">
+					</div>
+				</div>
+			</div> -->
 		</div>
 
     <!-- Left and right controls/icons -->
@@ -71,37 +72,37 @@
 
 <!-- Desktop -->
 <div class="container pt-70 mb-3  common-pt-50 more-product money-invest loan-opt">
-  <div class="row align-items-center">
-		<div class="col" [routerLink]="['/risk-profiling']">
+  <div class="row align-items-center justify-content-center">
+		<div class="col" *ngFor="let product of productwealthdata"[routerLink]="['/risk-profiling']">
 			<div class="money-mng">
-				<img src="assets/img/grow_investment_icon.svg" alt="l1">
-				<p>Mutual Funds</p>
+				<img src="{{product?.logo}}" alt="l1">
+				<p>{{product?.name}}</p>
 			</div>
 		</div>
-		<div class="col">
+		<!-- <div class="col">
 			<div class="money-mng">
 				<img src="assets/img/fixed_deposits.svg" alt="l1">
 				<p>Fixed Deposits</p>
 			</div>
-		</div>
-		<div class="col">
+		</div> -->
+		<!-- <div class="col">
 			<div class="money-mng">
 				<img src="assets/img/digital_gold.svg" alt="l1">
 				<p>Digital Gold</p>
 			</div>
-		</div>
-		<div class="col">
+		</div> -->
+		<!-- <div class="col">
 			<div class="money-mng">
 				<img src="assets/img/bonds.svg" alt="l1">
 				<p>Bond</p>
 			</div>
-		</div>
-		<div class="col">
+		</div> -->
+		<!-- <div class="col">
 			<div class="money-mng ">
 				<img src="assets/img/portfolio_management_services.svg" alt="l1">
 				<p>Portfolio Management Services</p>
 			</div>
-		</div>
+		</div> -->
 		<div class="col hidden-lg">
 			<div class="money-mng">
 				<img src="assets/img/alternate_investing_funds.svg" alt="l1">
@@ -110,14 +111,14 @@
 		</div>
   </div>
 </div>
-<div class="container pt-1 hidden-xs common-pt-50 money-invest loan-opt">
+<!-- <div class="container pt-1 hidden-xs common-pt-50 money-invest loan-opt">
   <div class="row align-items-center justify-content-center flow-row">
 		<div class="money-mng hidden-xs mob-inv">
 			<img src="assets/img/alternate_investing_funds.svg" alt="l1">
 			<p>Alternate Investing <br/>Funds</p>
 		</div>
   </div>
-</div>
+</div> -->
 <!-- Desktop -->
 
 <div class="container pt-70">
@@ -395,7 +396,16 @@
     <!-- The slideshow/carousel -->
     <div class="carousel-inner pos-rel pt-50 pb-50">
       <img src="assets/img/upquote.png" class="upquote">
-      <div class="carousel-item active">
+      <div class="carousel-item " *ngFor=" let testimonial of tesimonialwealthdata; let i=index" [ngClass]="i==0?'active':''">
+        <div class="row align-items-center">
+          <div class="col-lg-12 text-center">
+            <img src="{{testimonial?.profilePhoto}}" class="user-img">
+            <h4>{{testimonial?.firstName}} {{testimonial?.lastName}}</h4>
+            <p>{{testimonial?.profileReview}}</p>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="carousel-item">
         <div class="row align-items-center">
           <div class="col-lg-12 text-center">
             <img src="assets/img/test-user.png" class="user-img">
@@ -404,8 +414,8 @@
               dolore magna aliqua.</p>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
+      </div> -->
+      <!-- <div class="carousel-item">
         <div class="row align-items-center">
           <div class="col-lg-12 text-center">
             <img src="assets/img/test-user.png" class="user-img">
@@ -414,17 +424,7 @@
               dolore magna aliqua.</p>
           </div>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row align-items-center">
-          <div class="col-lg-12 text-center">
-            <img src="assets/img/test-user.png" class="user-img">
-            <h4>Brandon Foster</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua.</p>
-          </div>
-        </div>
-      </div>
+      </div> -->
       <img src="assets/img/downquote.png" class="downquote">
     </div>
 
