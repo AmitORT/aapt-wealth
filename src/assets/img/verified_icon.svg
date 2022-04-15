@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="verified_icon" transform="translate(-8740 -833)">
+    <rect id="Rectangle_8261" data-name="Rectangle 8261" width="24" height="24" transform="translate(8740 833)" fill="none"/>
+    <g id="check_box" transform="translate(8743 836)">
+      <rect id="Rectangle_8225" data-name="Rectangle 8225" width="18" height="18" rx="9" fill="#57c47c"/>
+      <g id="tick_mark" transform="translate(4878.138 29466.275) rotate(45)">
+        <line id="Line_1368" data-name="Line 1368" y2="8" transform="translate(-24271.5 -17391.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+        <line id="Line_1369" data-name="Line 1369" x2="4" transform="translate(-24275.5 -17383.5)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

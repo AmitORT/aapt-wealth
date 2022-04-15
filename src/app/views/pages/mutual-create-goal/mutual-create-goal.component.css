@@ -11,6 +11,14 @@
   font-size: 32px;
 }
 
+@media only screen and (min-width: 1000px)  {
+  .pr-mob img{
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+  }
+}
+
 .breadcrumb-title::after {
   content: '';
   border-bottom: 3px solid #e27e28;
@@ -311,9 +319,20 @@ h6 span {
     font-size: 14px;
     padding: 15px 30px;
     background: #fff;
-    margin: 7px;
+    margin: 0px;
     border: 1px solid #B4B4B4;
   }
+  .pr-mob img{
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+  }
+  #year-tabs{
+    justify-content: space-between;
+  }
+  #year-tabs li {
+    width: 32%;
+}
 
   .img-fluid {
     max-width: 100%;
@@ -388,7 +407,7 @@ h6 span {
   #year-tabs .nav-link {
     font-size: 14px;
     padding: 11px 18px;
-    margin: 4px;
+    /* margin: 4px; */
   }
 
 }
@@ -398,7 +417,7 @@ h6 span {
   #year-tabs .nav-link {
     font-size: 14px;
     padding: 11px 23px;
-    margin: 5px;
+    /* margin: 5px; */
   }
 
 }
@@ -407,7 +426,7 @@ h6 span {
   #year-tabs .nav-link {
     font-size: 14px;
     padding: 11px 26px;
-    margin: 5px;
+    /* margin: 5px; */
   }
 
 }

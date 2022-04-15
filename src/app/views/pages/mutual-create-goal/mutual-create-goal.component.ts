@@ -39,6 +39,7 @@ export class MutualCreateGoalComponent implements OnInit {
   constructor(public route:Router,private toastr: ToastrService, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
+
     
     if(localStorage.getItem("MyGoals") != null){
       this.CreateGoalList=this.crypto.Decrypt(localStorage.getItem("MyGoals"));

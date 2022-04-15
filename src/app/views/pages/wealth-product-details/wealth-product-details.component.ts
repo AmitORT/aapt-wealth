@@ -101,6 +101,7 @@ export class WealthProductDetailsComponent implements OnInit {
   holdings:any;
   select_amt:any;
   SetModeOfInvestment:any;
+  ShowCarousel:any;
  
   ModeOfInvestment:any={
     "Payment_mode":"",
@@ -124,7 +125,7 @@ export class WealthProductDetailsComponent implements OnInit {
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
       $('#sidebar').css('position','fixed');
-      $('#sidebar').css('top','10%');
+      $('#sidebar').css('top','13%');
       $('#sidebar').css('width',$("#sidebar-main").width()+'px');
 
       }
@@ -133,19 +134,19 @@ export class WealthProductDetailsComponent implements OnInit {
       $('#sidebar').css('top','');
       $('#sidebar').css('width','');
       }
-      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-200) {
-      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+200));
+      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-225) {
+      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+225));
       }
       });
 
     this.GetProductDetail();
   }
 
-  scrolltotop(){
-    $('.body-color').animate({
-      scrollTop: 0
-  }, 0);
-  }
+  // scrolltotop(){
+  //   $('.body-color').animate({
+  //     scrollTop: 0
+  // }, 0);
+  // }
 
   GetOnlyDay(){    
     this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
@@ -165,6 +166,10 @@ export class WealthProductDetailsComponent implements OnInit {
       localStorage.setItem("ModeOfInvestment",encrypted);
   
       this.route.navigate(['/mutual-select-goal']);
+
+      $('.body-color').animate({
+        scrollTop: 0
+    }, 0);
     } 
   }
 
@@ -177,7 +182,7 @@ export class WealthProductDetailsComponent implements OnInit {
     postData.append("instrumentId","191394");
     postData.append("limit","10");
     postData.append("offset","0");
-    postData.append("holdinglimit","5");
+    postData.append("holdinglimit","10");
     postData.append("orderBy",JSON.stringify(orderby));
     postData.append("whereClause","{}");
 

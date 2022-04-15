@@ -14,7 +14,7 @@
       <img id="profileimg" src="assets/img/cam.svg" alt="" class="camera img-fluid" (click)="uploader.click()">
     </div>
     <div class="col-lg-10 col-9 ps-0 savings">
-      <input type="text" id="name" placeholder="What are you saving for?" class=" form-control" [(ngModel)]="CreateGoal.Savings">
+      <input type="text" (keypress)="validate.alphabetOnly($event)" id="name" placeholder="What are you saving for?" class=" form-control" [(ngModel)]="CreateGoal.Savings">
       <!-- <h4 class="save">What are you saving for?</h4> -->
     </div>
   </div>
@@ -75,7 +75,7 @@
               <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
             </div>
             <div class="col-lg-4 col-6 position-relative">
-              <input type="text" class="form-control" [(ngModel)]="CreateGoal.Return_Rate"/>
+              <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="CreateGoal.Return_Rate"/>
               <span class="percent">%</span>
             </div>
           </div>
@@ -93,7 +93,7 @@
               <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
             </div>
             <div class="col-lg-4 col-6 position-relative">
-              <input type="text" class="form-control" [(ngModel)]="CreateGoal.Inflation_Rate" />
+              <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="CreateGoal.Inflation_Rate" />
               <span class="percent">%</span>
             </div>
           </div>

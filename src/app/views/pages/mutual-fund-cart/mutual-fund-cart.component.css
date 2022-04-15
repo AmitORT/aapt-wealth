@@ -599,17 +599,18 @@ input[type=date]::-webkit-inner-spin-button {
       width: 45%;
     }
     .container1 {
-      height: 9.5rem;
+      height: auto;
+      min-height: auto !important;
     }
     .w-10 {
       width: 80px !important;
       height: 35px;
       padding: 0 !important;
-  }
+    }
   .compare-img-wd {
     height: 30px;
     width: 30px;
-}
+  }
 .compare-left-view h4 {
   font-size: 14px;
 }

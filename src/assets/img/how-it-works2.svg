@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="Group_18918" data-name="Group 18918" transform="translate(21840 -15997)">
+    <g id="Rectangle_9684" data-name="Rectangle 9684" transform="translate(-21840 15997)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="48" height="48" stroke="none"/>
+      <rect x="0.5" y="0.5" width="47" height="47" fill="none"/>
+    </g>
+    <g id="renewable" transform="translate(-21838 15999)">
+      <g id="Group_18892" data-name="Group 18892" transform="translate(33 3.667)">
+        <path id="Path_34896" data-name="Path 34896" d="M24.417,9.333h-5.5a.917.917,0,0,1,0-1.833H23.5V2.917a.917.917,0,1,1,1.833,0v5.5A.917.917,0,0,1,24.417,9.333Z" transform="translate(-18 -2)" fill="#e27e2b"/>
+      </g>
+      <g id="Group_18893" data-name="Group 18893">
+        <path id="Path_34897" data-name="Path 34897" d="M22,44A22,22,0,1,1,39.7,8.974a.917.917,0,0,1-1.479,1.084A20.133,20.133,0,1,0,42.167,22a18.3,18.3,0,0,0-.174-2.62.917.917,0,0,1,1.815-.26A20.052,20.052,0,0,1,44,22,22.024,22.024,0,0,1,22,44Z" fill="#e27e2b"/>
+      </g>
+      <g id="Group_18894" data-name="Group 18894" transform="translate(11 11)">
+        <path id="Path_34898" data-name="Path 34898" d="M17,31.667a.889.889,0,0,1-.356-.073C16.208,31.412,6,27,6,17.983V10.321a.919.919,0,0,1,.623-.869l10.083-3.4a.918.918,0,0,1,.587,0l10.083,3.4a.919.919,0,0,1,.623.869v7.662C28,27,17.792,31.412,17.356,31.6a.92.92,0,0,1-.356.071ZM7.833,10.98v7c0,6.939,7.434,10.923,9.167,11.759,1.731-.838,9.167-4.836,9.167-11.759v-7L17,7.885Z" transform="translate(-6 -6)" fill="#e27e2b"/>
+      </g>
+      <g id="Group_18895" data-name="Group 18895" transform="translate(16.5 19.25)">
+        <path id="Path_34899" data-name="Path 34899" d="M13.584,18.75a.48.48,0,0,1-.051,0,.919.919,0,0,1-.665-.343L9.2,13.822a.917.917,0,0,1,1.432-1.146l3.027,3.784,5.692-5.692a.917.917,0,1,1,1.3,1.3l-6.417,6.417A.905.905,0,0,1,13.584,18.75Z" transform="translate(-9 -10.5)" fill="#e27e2b"/>
+      </g>
+    </g>
+  </g>
+</svg>

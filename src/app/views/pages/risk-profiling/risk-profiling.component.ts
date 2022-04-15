@@ -86,12 +86,31 @@ export class RiskProfilingComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.DOB();
 
     $("#riskModal1").modal("show");
     this.GetQuestions();
 
   }
+
+  DOB(){
+    debugger
+    var year  = new Date().getFullYear();
+     var month = new Date().getMonth();
+     var day   = new Date().getDate();
+     var date  = new Date(year - 18, month, day);
+     var monthbefore = (date.getMonth() + 1).toString();
+     var daybefore = (date.getDate()).toString();
+     var yearbefore = date.getFullYear();
+     if(parseInt(monthbefore) < 10){
+      monthbefore = '0' + monthbefore.toString();
+     }
+     if(parseInt(daybefore) < 10){
+      daybefore = '0' + daybefore.toString();
+     }
+     var maxDate = yearbefore + '-' + monthbefore + '-' + daybefore;
+     $('#dob').attr('max', maxDate);
+   }
 
   GetQuestions(){ 
     let data=new FormData();

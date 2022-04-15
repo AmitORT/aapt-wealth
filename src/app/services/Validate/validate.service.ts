@@ -20,4 +20,11 @@ export class ValidateService {
     }
     return true;
   }
+  alphabetOnly(event:any): boolean {
+    var keyCode = (event.which) ? event.which : event.keyCode
+    if ((keyCode < 65 || keyCode > 90) && (keyCode < 97 || keyCode > 123) && keyCode != 32){
+      return false;
+    }  
+    return true;
+  }
 }

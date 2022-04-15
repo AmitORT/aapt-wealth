@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+  <g id="refresh_icon" transform="translate(-886 -479)">
+    <rect id="Rectangle_8250" data-name="Rectangle 8250" width="18" height="18" transform="translate(886 479)" fill="none"/>
+    <g id="fi-rr-refresh" transform="translate(887.5 480.5)">
+      <path id="Path_12461" data-name="Path 12461" d="M15,12a.614.614,0,0,0-.617.549A6.238,6.238,0,0,1,3.7,16.375H5.418a.625.625,0,0,0,0-1.25h-2.5a1.25,1.25,0,0,0-1.25,1.25v2.5a.625.625,0,1,0,1.25,0V17.351a7.482,7.482,0,0,0,12.7-4.664A.629.629,0,0,0,15,12Z" transform="translate(-0.623 -4.503)" fill="#0074db"/>
+      <path id="Path_12462" data-name="Path 12462" d="M13.325,0A.625.625,0,0,0,12.7.623V2.147A7.482,7.482,0,0,0,0,6.811.629.629,0,0,0,.623,7.5.614.614,0,0,0,1.24,6.95,6.238,6.238,0,0,1,11.916,3.123H10.2a.625.625,0,0,0,0,1.25h2.5a1.25,1.25,0,0,0,1.25-1.25V.623A.625.625,0,0,0,13.325,0Z" transform="translate(0.004 0.004)" fill="#0074db"/>
+    </g>
+  </g>
+</svg>

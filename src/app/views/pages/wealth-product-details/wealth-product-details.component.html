@@ -58,11 +58,11 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
 
-          <li class="nav-item">
-            <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Overview</a>
+          <li class="nav-item" (click)="ShowCarousel = '1'">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu1" [ngClass]="ShowCarousel == '1'?'active':''">Overview</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Asset Allocation</a>
+          <li class="nav-item" (click)="ShowCarousel = '2'">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu2" [ngClass]="ShowCarousel == '2'?'active':''">Asset Allocation</a>
           </li>
         </ul>
 
@@ -177,7 +177,7 @@
                 <p><b>SIP Amount</b></p>
               </div>
               <div class="col-lg-5 col-5 position-relative">
-                <input type="text" class="form-control ps-4" [(ngModel)]="value12" />
+                <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="value12" />
                 <span class="rupee-symbol">₹</span>
               </div>
               <div class="col-lg-12">
@@ -241,7 +241,7 @@
             </div>
 
           </div>
-          <div id="menu2" class="container tab-pane fade"><br>
+          <div id="menu2" class="container tab-pane fade ps-0 pe-0" ><br>
             <div class="row graph-div">
               <div class="col-lg-12">
                 <h5><b>Fund Distribution</b></h5>
@@ -310,46 +310,50 @@
                 </div>
               </div>
 
-              <div class="col-lg-6 col-12">
-
-              </div>
-
 
               <div class="col-lg-3 offset-lg-9">
                 <p class="va">View All</p>
               </div>
             </div>
             <hr>
-            <div class="row sector-div">
-              <h5>Holdings (40)</h5>
-              <div class="col-lg-9 col-6">
 
-                <h6>Top 10 Holdings (40)</h6>
-                <p>Infosys.Ltd.</p>
-                <p>HCL Technologies Ltd.</p>
+            <div class="sector-div">
+              <h5>Holdings (40)</h5>
+              <h6>Top 10 Holdings (40)</h6>
+            </div>
+            
+            <div class="row sector-div" *ngFor="let holding of holdings">
+              
+              <div class="col-lg-9 col-6" >
+
+                
+                <p>{{holding.name}}</p>
+                <!-- <p>HCL Technologies Ltd.</p>
                 <p>Tech Mahindra Ltd.</p>
                 <p>Tata Consultancy Services Ltd.</p>
-                <p>Persistent Systems Ltd.</p>
-                <p class="purple-text">See all Holdings</p>
+                <p>Persistent Systems Ltd.</p> -->
+
+                <!-- <p class="purple-text">See all Holdings</p> -->
               </div>
               <div class="col-lg-3 col-6">
-                <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Assets
+                <!-- <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Assets
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
                 </div>
                 <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">Instrument
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                </div>
+                </div> -->
+
                 <!-- <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">Sector
           <img src="assets/img/unfold_more.svg" class="orange-pencil">
         </div>
         <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">Value
           <img src="assets/img/unfold_more.svg" class="orange-pencil">
         </div> -->
+                <p class="val">{{holding.weight}}</p>
+                <!-- <p class="val">18.89%</p>
                 <p class="val">18.89%</p>
                 <p class="val">18.89%</p>
-                <p class="val">18.89%</p>
-                <p class="val">18.89%</p>
-                <p class="val">18.89%</p>
+                <p class="val">18.89%</p> -->
               </div>
             </div>
           </div>
@@ -382,7 +386,7 @@
                   <p class="pt-2"><b>SIP Amount</b></p>
                 </div>
                 <div class="col-lg-5 col-5 position-relative">
-                  <input type="text" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.monthly_amt"/>
+                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.monthly_amt"/>
                   <span class="rupee-symbol">₹</span>
                 </div>
                 <div class="col-lg-12">
@@ -416,7 +420,7 @@
                   <p class="pt-2"><b>SIP Amount</b></p>
                 </div>
                 <div class="col-lg-5 col-5 position-relative">
-                  <input type="text" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.yearly_amt" />
+                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.yearly_amt" />
                   <span class="rupee-symbol">₹</span>
                 </div>
                 <div class="col-lg-12">
@@ -449,7 +453,7 @@
       </div>
     </div>
 
-    <div class=" pt-4 finance owl-1">
+    <div class=" pt-4 finance owl-1" *ngIf="ShowCarousel == '1'">
       <div class="row align-items-center">
         <div class="col-lg-12">
           <h5 class="text-grey">Similar Funds</h5>

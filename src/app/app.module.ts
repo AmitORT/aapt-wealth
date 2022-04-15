@@ -45,6 +45,8 @@ import { FundSwitchSuceesfulComponent } from './views/pages/fund-switch-suceesfu
 import { StpSetupSuceesfulComponent } from './views/pages/stp-setup-suceesful/stp-setup-suceesful.component';
 import { AccountPortfolioComponent } from './views/pages/account-portfolio/account-portfolio.component';
 import { AccountPortfolioProductDetailsComponent } from './views/pages/account-portfolio-product-details/account-portfolio-product-details.component';
+import { DigitalGoldProductDetailsComponent } from './views/pages/digital-gold-product-details/digital-gold-product-details.component';
+import { DigitalGoldPurchasedSuccessfulComponent } from './views/pages/digital-gold-purchased-successful/digital-gold-purchased-successful.component';
 
 
 @NgModule({
@@ -86,7 +88,9 @@ import { AccountPortfolioProductDetailsComponent } from './views/pages/account-p
     FundSwitchSuceesfulComponent,
     StpSetupSuceesfulComponent,
     AccountPortfolioComponent,
-    AccountPortfolioProductDetailsComponent
+    AccountPortfolioProductDetailsComponent,
+    DigitalGoldProductDetailsComponent,
+    DigitalGoldPurchasedSuccessfulComponent
 
 
   ],

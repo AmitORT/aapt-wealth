@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { ValidateService } from 'src/app/services/Validate/validate.service';
 declare var $ : any;
 
 @Component({
@@ -10,8 +15,9 @@ export class RedeemFundsComponent implements OnInit {
 
   DisplayAccordion:boolean=false;
   Steps:number= 1;
+  fund:any;
   
-  constructor() { }
+  constructor(public route:Router, private toastr: ToastrService, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
     $(".body-color").scroll(function () {
@@ -48,6 +54,21 @@ export class RedeemFundsComponent implements OnInit {
       $("#collapseOne").collapse('hide');
       $("#collapseTwo").collapse('show');
   }
+
+  RedeemNow(){
+    if(this.validate.isNullEmptyUndefined(this.fund)){
+      this.toastr.error()
+    }
+    else if(this.validate.isNullEmptyUndefined(this.fund)){
+      this.toastr.error()
+    }
+    else{
+      this.route.navigate(["/order-placed"]);
+    }
+    
+  }
+
+
 
 
 }

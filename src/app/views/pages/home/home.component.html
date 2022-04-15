@@ -73,7 +73,7 @@
 <!-- Desktop -->
 <div class="container pt-70 mb-3  common-pt-50 more-product money-invest loan-opt">
   <div class="row align-items-center justify-content-center">
-		<div class="col" *ngFor="let product of productwealthdata"[routerLink]="['/risk-profiling']">
+		<div class="col" *ngFor="let product of productwealthdata" (click)="GotoRecommendedOffers(product)">
 			<div class="money-mng">
 				<img src="{{product?.logo}}" alt="l1">
 				<p>{{product?.name}}</p>
@@ -103,12 +103,12 @@
 				<p>Portfolio Management Services</p>
 			</div>
 		</div> -->
-		<div class="col hidden-lg">
+		<!-- <div class="col hidden-lg">
 			<div class="money-mng">
 				<img src="assets/img/alternate_investing_funds.svg" alt="l1">
 				<p>Alternate Investing Funds</p>
 			</div>
-		</div>
+		</div> -->
   </div>
 </div>
 <!-- <div class="container pt-1 hidden-xs common-pt-50 money-invest loan-opt">
