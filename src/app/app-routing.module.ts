@@ -37,6 +37,16 @@ import { AccountPortfolioComponent } from './views/pages/account-portfolio/accou
 import { AccountPortfolioProductDetailsComponent } from './views/pages/account-portfolio-product-details/account-portfolio-product-details.component';
 import { DigitalGoldProductDetailsComponent } from './views/pages/digital-gold-product-details/digital-gold-product-details.component';
 import { DigitalGoldPurchasedSuccessfulComponent } from './views/pages/digital-gold-purchased-successful/digital-gold-purchased-successful.component';
+import { FdDetailsComponent } from './views/pages/fd-details/fd-details.component';
+import { FdEligibilityComponent } from './views/pages/fd-eligibility/fd-eligibility.component';
+import { FdOpenComponent } from './views/pages/fd-open/fd-open.component';
+import { FdPaymentSuccessfulComponent } from './views/pages/fd-payment-successful/fd-payment-successful.component';
+import { FdProductListComponent } from './views/pages/fd-product-list/fd-product-list.component';
+import { BondProductListComponent } from './views/pages/bond-product-list/bond-product-list.component';
+import { BondProductDetailsComponent } from './views/pages/bond-product-details/bond-product-details.component';
+import { BondEligibilityComponent } from './views/pages/bond-eligibility/bond-eligibility.component';
+import { BondSuccessfulComponent } from './views/pages/bond-successful/bond-successful.component';
+
 
 
 
@@ -77,6 +87,26 @@ const routes: Routes = [
   { path: 'account-portfolio-product-details',component:AccountPortfolioProductDetailsComponent},
   { path: 'digital-gold-product-details',component:DigitalGoldProductDetailsComponent},
   { path: 'digital-gold-purchased-successful',component:DigitalGoldPurchasedSuccessfulComponent},
+  { path: 'FD-details',component:FdDetailsComponent},
+  { path: 'FD-eligible',component:FdEligibilityComponent},
+  { path: 'FD-open',component:FdOpenComponent},
+  { path: 'FD-successful',component:FdPaymentSuccessfulComponent},
+  { path: 'fd-product-list',component:FdProductListComponent},
+  { path: 'bond-product-List',component:BondProductListComponent},
+  { path: 'bond-details',component:BondProductDetailsComponent},
+  { path: 'bond-eligibility',component:BondEligibilityComponent},
+  { path: 'bond-successful',component:BondSuccessfulComponent}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

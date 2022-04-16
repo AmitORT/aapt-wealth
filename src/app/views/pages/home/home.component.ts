@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
   }
   GotoRecommendedOffers(Product:any){
     console.log('products',Product.path)
-    this.route.navigate([Product.path]);
+    this.route.navigate([Product.path.trim()]);
     // [routerLink]="['{{products?.path}}']"
   }
 

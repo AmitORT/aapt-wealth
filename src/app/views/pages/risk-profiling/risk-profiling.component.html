@@ -31,7 +31,7 @@
      
       <div class="form-floating mb-3 input-box">
         <input type="date" id="dob" placeholder="Date Of Birth" class="form-control"
-          [(ngModel)]="RiskProfilingData.Date_of_Birth" >
+          [(ngModel)]="RiskProfilingData.Date_of_Birth" (click)="DOB()" >
         <label for="dob">Date of Birth</label>
       </div>
       <button type="button" class="btn btn-primary theme-button mgt-15per hidden-xs" data-toggle="modal"

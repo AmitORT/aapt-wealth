@@ -1,0 +1,178 @@
+<div class="container mgb-10per">
+    <div class="row mt-4">
+      <div class="col-lg-8">
+        <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/FD-details']"><i
+              class="fa fa-arrow-left i-icon"></i></span>Applicant Details
+        </h4>
+      </div>
+      <!-- <div class="col-lg-4 hidden-lg">
+          <p class="progress-prcnt">0% Complete</p>
+      </div>
+      <div class="col-lg-12 hidden-lg">
+        <div class="progress">
+            <div class="progress-bar w-1" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <p class="breadcrumb-sub">It takes hardly 1 minute to complete</p>
+
+      </div> -->
+
+      <div class="row  risk1 mt-5">
+        <div class="col-lg-6 hidden-xs">
+          <img src="assets/img/FD/pan-man.svg" alt="risk-profiling" class="w-100" />
+        </div>
+        <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box">
+                <input type="text" id="name" placeholder="First Name" class="form-control name"
+                  >
+                <label for="name">First Name</label>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-floating mb-3 input-box">
+                <input type="text" id="name" placeholder="Last Name" class="form-control name"
+                  >
+                <label for="name">Last Name</label>
+              </div>
+            </div>
+           <div class="col-lg-12">
+            <div class="input-group mb-3">
+                <button class="btn dropdown-toggle" type="button">+91</button>
+                <div class="form-floating flex-grow-1">
+                    <input type="tel" class="form-control" name="mob" placeholder="Mobile Number">
+                    <label for="mob">Mobile Number</label>
+                </div>
+              </div>
+              </div>
+    
+
+           <div class="col-lg-12">
+            <div class="form-floating mb-3 input-box">
+                <input type="text" id="email" placeholder="Email Id" class="form-control name"
+                  >
+                <label for="name">Email Id</label>
+              </div>
+           </div>
+           <div class="col-lg-12 my-3">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked">
+                    By proceeding, you agree and consent to the <a href="#">terms & conditions.</a>
+                </label>
+              </div>
+           </div>
+          </div>
+
+          <button type="button" class="btn btn-primary theme-button mgt-15per hidden-xs" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+             >
+            Next
+          </button>
+          <!-- <button class="btn btn-primary theme-button
+           step-btn hidden-lg" >
+            <img src="assets/img/right-arrow1.png" />
+          </button> -->
+        </div>
+      </div>
+
+      <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Enter OTP</h5>
+            </div>
+            <div class="modal-body">
+                <div class="model-body-header">
+               <p>OTP sent on <b>+91 98545 28743</b>.<a href="#">Edit Number</a></p>
+               <div class="row">
+                   <div class="col-2 otp">
+                       <input type="tel" class="form-control">
+                   </div>
+                   <div class="col-2 otp">
+                    <input type="tel" class="form-control">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control">
+                </div>
+                
+               </div>
+               <p class="mt-2">Didn't receive OTP? <a href="#">Resend OTP</a></p>
+
+                </div>
+            </div>
+            <hr>
+            <div class="modal-footer">
+              <button type="button" class="btn " data-bs-dismiss="modal" [routerLink]="['/bond-successful']">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row d-block d-lg-none d-md-none d-sm-none">
+        <div class="applybtn-mob">
+    
+          <div class="col-12">
+            <button type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal" data-bs-target="#invest-screen">
+              Submit
+            </button>
+    
+    
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="invest-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="staticBackdropLabel">Enter OTP</h5>
+            </div>
+            <div class="modal-body">
+                <div class="model-body-header">
+               <p>OTP sent on <b>+91 98545 28743</b>.<a href="#">Edit Number</a></p>
+               <div class="row">
+                   <div class="col-2 otp">
+                       <input type="tel" class="form-control" maxlength="1">
+                   </div>
+                   <div class="col-2 otp">
+                    <input type="tel" class="form-control" maxlength="1">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control" maxlength="1">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control" maxlength="1">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control" maxlength="1">
+                </div>
+                <div class="col-2 otp">
+                    <input type="tel" class="form-control" maxlength="1">
+                </div>
+                
+               </div>
+               <p class="mt-2">Didn't receive OTP? <a href="#">Resend OTP</a></p>
+
+                </div>
+            </div>
+            <hr>
+            <div class="modal-footer">
+              <button type="button" class="btn " data-bs-dismiss="modal"  [routerLink]="['/bond-successful']">Cancel</button>
+            </div>
+          </div>
+              </div>
+              </div>
+
+
+
+
+    </div>

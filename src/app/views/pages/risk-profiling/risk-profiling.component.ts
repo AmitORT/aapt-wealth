@@ -94,7 +94,6 @@ export class RiskProfilingComponent implements OnInit {
   }
 
   DOB(){
-    debugger
     var year  = new Date().getFullYear();
      var month = new Date().getMonth();
      var day   = new Date().getDate();
@@ -232,20 +231,7 @@ export class RiskProfilingComponent implements OnInit {
     });    
   }
 
-  ShowDisease(){
-    this.Disease = true;
-    if(this.Disease == true){
-      this.CheckEligibility = false;
-    }
-  }
 
-  ShowCheckEligibility(){
-    this.CheckEligibility = true;
-    if(this.CheckEligibility == true){
-      this.Disease = false;
-      this.selectedItem='';
-    }
-  }
 
   
 }

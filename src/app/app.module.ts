@@ -47,6 +47,16 @@ import { AccountPortfolioComponent } from './views/pages/account-portfolio/accou
 import { AccountPortfolioProductDetailsComponent } from './views/pages/account-portfolio-product-details/account-portfolio-product-details.component';
 import { DigitalGoldProductDetailsComponent } from './views/pages/digital-gold-product-details/digital-gold-product-details.component';
 import { DigitalGoldPurchasedSuccessfulComponent } from './views/pages/digital-gold-purchased-successful/digital-gold-purchased-successful.component';
+import { FdDetailsComponent } from './views/pages/fd-details/fd-details.component';
+import { FdEligibilityComponent } from './views/pages/fd-eligibility/fd-eligibility.component';
+import { FdOpenComponent } from './views/pages/fd-open/fd-open.component';
+import { FdPaymentSuccessfulComponent } from './views/pages/fd-payment-successful/fd-payment-successful.component';
+import { FdProductListComponent } from './views/pages/fd-product-list/fd-product-list.component';
+import { BondEligibilityComponent } from './views/pages/bond-eligibility/bond-eligibility.component';
+import { BondProductDetailsComponent } from './views/pages/bond-product-details/bond-product-details.component';
+import { BondProductListComponent } from './views/pages/bond-product-list/bond-product-list.component';
+import { BondSuccessfulComponent } from './views/pages/bond-successful/bond-successful.component';
+
 
 
 @NgModule({
@@ -90,7 +100,17 @@ import { DigitalGoldPurchasedSuccessfulComponent } from './views/pages/digital-g
     AccountPortfolioComponent,
     AccountPortfolioProductDetailsComponent,
     DigitalGoldProductDetailsComponent,
-    DigitalGoldPurchasedSuccessfulComponent
+    DigitalGoldPurchasedSuccessfulComponent,
+    FdDetailsComponent,
+    FdEligibilityComponent,
+    FdOpenComponent,
+    FdPaymentSuccessfulComponent,
+    FdProductListComponent,
+    BondEligibilityComponent,
+    BondProductDetailsComponent,
+    BondProductListComponent,
+    BondSuccessfulComponent,
+  
 
 
   ],

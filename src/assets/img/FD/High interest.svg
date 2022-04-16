@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48.221" height="48.201" viewBox="0 0 48.221 48.201">
+  <g id="High_interest" data-name="High interest" transform="translate(19422.1 -8871.898)">
+    <g id="Rectangle_9630" data-name="Rectangle 9630" transform="translate(-19422 8872)" fill="#fff" stroke="#707070" stroke-width="1" opacity="0">
+      <rect width="48" height="48" stroke="none"/>
+      <rect x="0.5" y="0.5" width="47" height="47" fill="none"/>
+    </g>
+    <g id="High_interest-2" data-name="High interest" transform="translate(-19422 8872)">
+      <path id="Path_34663" data-name="Path 34663" d="M7,32H1a1,1,0,0,1-1-1V13a1,1,0,0,1,1-1c6.8,0,10.4,2.292,10.546,2.39a1,1,0,0,1,.422,1.084l-4,15.772A1,1,0,0,1,7,32ZM2,30H6.222L9.838,15.74A20,20,0,0,0,2,14.018Z" transform="translate(0 12.001)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+      <path id="Path_34664" data-name="Path 34664" d="M22.719,30.5c-4.712,0-13.844-3.97-18.865-6.336a1,1,0,0,1,.852-1.808C13,26.26,19.562,28.5,22.719,28.5c4.866,0,16.33-5.714,19.627-7.414A4.317,4.317,0,0,0,38.719,19.5a24.117,24.117,0,0,0-6.45,1.454,25.308,25.308,0,0,1-7.05,1.546c-4.128,0-9.612-1.976-9.842-2.06a1,1,0,0,1,.684-1.88c.052.02,5.384,1.94,9.158,1.94a24.117,24.117,0,0,0,6.45-1.454,25.308,25.308,0,0,1,7.05-1.546c4.668,0,5.9,3.534,5.95,3.684a1,1,0,0,1-.478,1.2C43.569,22.714,28.9,30.5,22.719,30.5Z" transform="translate(3.28 17.5)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+      <path id="Path_34665" data-name="Path 34665" d="M28.179,25.36a1,1,0,0,1-1-1v-1a2.964,2.964,0,0,0-2.288-2.906L5.586,15.792a1,1,0,1,1,.47-1.944l19.3,4.66a4.95,4.95,0,0,1,3.826,4.852v1a1,1,0,0,1-1,1Z" transform="translate(4.82 13.82)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+      <path id="Path_34666" data-name="Path 34666" d="M18,8a4,4,0,1,1,4-4A4,4,0,0,1,18,8Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,18,2Z" transform="translate(13.999 0)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+      <path id="Path_34667" data-name="Path 34667" d="M24,14a4,4,0,1,1,4-4A4,4,0,0,1,24,14Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,24,8Z" transform="translate(19.999 6)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+      <path id="Path_34668" data-name="Path 34668" d="M16,20a1,1,0,0,1-.79-1.614l14-18a1,1,0,0,1,1.578,1.23l-14,18A1,1,0,0,1,16,20Z" transform="translate(14.998 0)" fill="#e27e28" stroke="#e27e28" stroke-width="0.2"/>
+    </g>
+  </g>
+</svg>

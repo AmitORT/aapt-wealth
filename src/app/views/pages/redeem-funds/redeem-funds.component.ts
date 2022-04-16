@@ -56,15 +56,15 @@ export class RedeemFundsComponent implements OnInit {
   }
 
   RedeemNow(){
-    if(this.validate.isNullEmptyUndefined(this.fund)){
-      this.toastr.error()
-    }
-    else if(this.validate.isNullEmptyUndefined(this.fund)){
-      this.toastr.error()
-    }
-    else{
+    // if(this.validate.isNullEmptyUndefined(this.fund)){
+    //   this.toastr.error()
+    // }
+    // else if(this.validate.isNullEmptyUndefined(this.fund)){
+    //   this.toastr.error()
+    // }
+    // else{
       this.route.navigate(["/order-placed"]);
-    }
+    // }
     
   }
 
