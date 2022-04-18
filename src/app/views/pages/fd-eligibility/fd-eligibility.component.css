@@ -444,11 +444,12 @@ box-shadow: none;
     border-radius: 8px;
     width: 100%;
     text-align: left;
-    height: 50px;
+    height: 53px;
     justify-content: space-between;
     display: flex;
     align-items: center;
   }
+ 
   
   .applicant-dropdown .btn-secondary.dropdown-toggle::after {
     display: inherit;
@@ -460,7 +461,23 @@ box-shadow: none;
     border-bottom: 0;
     border-left: .3em solid transparent;
   }
-  
+  .form-select.country-drop {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 1.5rem;
+    font-size: 14px;
+    text-align: center;
+    background-color: #D4DEE3;
+    color: #465A65;
+    font-weight: 600;
+    height: 58px;
+    border-radius: 8px 0px 0px 8px !important;
+    border-right: 0px;
+}
+.mobile .mobile-input .form-control{
+  border-radius: 0px 8px 8px 0px!important;
+}
   .applicant-dropdown .btn-secondary.dropdown-toggle:hover {
     color: #222;
     background-color: #fff;
