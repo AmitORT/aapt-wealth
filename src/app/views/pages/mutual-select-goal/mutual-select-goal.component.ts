@@ -19,7 +19,7 @@ export class MutualSelectGoalComponent implements OnInit {
 		stagePadding: 64,
 		responsive:{
 			0:{items:1,stagePadding: 30},
-			480:{items:1,stagePadding: 30},
+			480:{items:1,stagePadding: 60},
 			600:{items:2,stagePadding: 30},
 			1000:{items:3},
 			1200:{items:3}
@@ -44,8 +44,8 @@ export class MutualSelectGoalComponent implements OnInit {
 
   ngOnInit(): void {
 
-  this.CreateGoalResponse=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
-  console.log("CreateGoalList",this.CreateGoalResponse)
+  // this.CreateGoalResponse=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
+  // console.log("CreateGoalList",this.CreateGoalResponse)
   }
 
 

@@ -644,11 +644,11 @@ h1 {
 
 
 
-
-
-
-
-
+@media only screen and (min-width: 1400px){ 
+  .theme-button{
+    width: 150px!important;
+  }
+}
 @media only screen and (max-width: 767px){ 
   .graph-header .header-img {
     height: 55px;

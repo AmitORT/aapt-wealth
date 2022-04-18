@@ -14,7 +14,7 @@ declare var $ : any;
   styleUrls: ['./wealth-product-details.component.css']
 })
 export class WealthProductDetailsComponent implements OnInit {
-
+  flag:boolean=false;
   PreminumTime:boolean=true;
 
   customOptions: OwlOptions = {
@@ -198,7 +198,7 @@ export class WealthProductDetailsComponent implements OnInit {
         
         let encrypted=this.crypto.Encrypt(this.ProductOverview);
         localStorage.setItem("ProductOverview",encrypted);
-        
+        console.log(this.ProductSectorDetails)
       }else{
         alert(resp.response.Msg)
       }

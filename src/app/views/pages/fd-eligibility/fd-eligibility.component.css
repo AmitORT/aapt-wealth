@@ -633,9 +633,6 @@ box-shadow: none;
       margin-top: 50%;
     }
 
-    /* .select-box span {
-      width: 45%;
-    } */
   }
   .progress{
     background-color: #D4DEE3;
@@ -666,5 +663,6 @@ box-shadow: none;
  background-color:  #D4DEE3;
  height: 58px;
  margin-right: -7px;
+ border-radius: 8px 0px 0px 8px;
 
 }

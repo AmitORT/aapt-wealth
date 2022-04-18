@@ -298,6 +298,11 @@
     font-size: 16px !important;
     letter-spacing: 0.2px;
   }
+  .years{
+      position: absolute;
+      top: 0.5rem;
+      right: 4.5rem;
+  }
   
   .irc-tabs .nav-tabs .nav-link.active {
     color: #00A3B1 !important;
@@ -397,7 +402,7 @@
   }
   
   ::ng-deep .financial-slider.trendprod .owl-prev {
-    left: -5px;
+    left: -3px;
     background: #eef8fa !important;
     z-index: 999;
     display: flex;
@@ -406,13 +411,13 @@
     justify-content: center;
     height: 100px !important;
     width: 40px !important;
-    top: 13px;
+    top: 45px;
     box-shadow: 0px 0px 5px #0000001c;
     opacity: .9;
   }
   
   ::ng-deep .financial-slider.trendprod .owl-next {
-    right: -5px;
+    right: 3px;
     background: #eef8fa !important;
     z-index: 999;
     display: flex;
@@ -421,13 +426,13 @@
     justify-content: center;
     height: 100px !important;
     width: 40px !important;
-    top: 13px;
+    top: 45px;
     box-shadow: 0px 0px 5px #0000001c;
     opacity: .9;
   }
   
   ::ng-deep .financial-slider.fin .owl-prev {
-    left: -5px;
+    left: -3px;
     background: #eef8fa !important;
     z-index: 999;
     display: flex;
@@ -442,7 +447,7 @@
   }
   
   ::ng-deep .financial-slider.fin .owl-next {
-    right: -5px;
+    right: 4px;
     background: #eef8fa !important;
     z-index: 999;
     display: flex;
@@ -480,7 +485,7 @@
   
   .trending-product {
     border: 1px solid #bbc0c3;
-    margin-left: 8px;
+    margin-right: 8px;
     border-radius: 14px;
     /* padding: 15px; */
     margin-bottom: 15px;
@@ -495,7 +500,7 @@
   }
   
   .trending-product p {
-    font-size: 13px;
+    font-size: 15px;
     color: #B4B4B4;
     display: flex;
     align-items: center;
@@ -674,7 +679,7 @@
     padding: 13px;
     color: #E27E28 !important;
     font-weight: 400;
-    background-color: white;
+    background-color: transparent;
     width: 108px;
     border-color: #E27E28;
     border-radius: 8px;
@@ -854,12 +859,56 @@ color: black;
     left: 1.25rem;
     top: 0.4rem;
   }
+  .toggle-none .form-check.form-switch {
+    display: flex;
+    flex-direction: column;
+}
+.form-switch {
+  padding-left: 2.5em;
+}
+
+.toggle-none .form-switch .form-check-input {
+  width: 5em;
+  height: 30px;
+  margin-left: 0;
+  box-shadow: none;
+  outline: none;
+  margin-bottom: 5px;
+  background-image: url(/assets/img/no.svg);
+  /* border: 3px solid #fff; */
+  background-color: #f7f7f7;
+    border: 3px solid #f7f7f7;
+}
+.toggle-none .form-switch .form-check-input:checked {
+  background-color: #e27e28 ;
+  border: 3px solid #e27e28 !important;
+  background-image: url(/assets/img/ya.svg) !important;
+}
+
+
+
+
+  @media only screen and (min-width: 1400px) {
+    .theme-button{
+      width: 155px!important;
+    }
+    
+  }
   
   @media only screen and (max-width: 767px) {
   
     .breadcrumb-title {
       color: #465A65;
 
+    }
+    .theme-button{
+      padding: 8px;
+    }
+    .trending-product p{
+      font-size: 11px;
+    }
+    .right-box{
+      border-radius: 12px 12px 0px 0px;
     }
 
 
@@ -997,9 +1046,10 @@ padding: 0;
       bottom: 0;
       width: 100%;
       padding: 4%;
+      z-index: 9;
   }
   .applybtn-mob .invest-btn {
-    padding: 15px;
+    padding: 10px;
       background: #E27E28;
       border-color: #E27E28;
       width: 100%;
@@ -1019,6 +1069,7 @@ padding: 0;
     border: unset;
     padding: 0.5rem 0em;
   }
+ 
   #invest-tabs {
     border: 1px solid #D4D4D4;
     padding: 4px;
@@ -1063,7 +1114,7 @@ padding: 0;
   .form-switch .form-check-input {
     width: 3.3em;
     background-image: url("/assets/img/FD/no.svg");
-    background-size: 18px;
+    background-size: 24px;
    
   }
   .form-check-input {

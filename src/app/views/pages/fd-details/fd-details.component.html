@@ -92,12 +92,12 @@
                             <p class="pt-2"><b>Investment Amount</b></p>
                           </div>
                           <div class="col-5 position-relative">
-                            <input type="text" class="form-control ps-4" placeholder="0" />
+                            <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="monthly_amt"  />
                             <span class="rupee-symbol">₹</span>
                           </div>
                           <div class="col-12 mb-2">
                             <div class="custom-slider mb-4">
-                              <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                              <ngx-slider [(value)]="monthly_amt" [options]="monthly_amt1"></ngx-slider>
                             </div>
                           </div>
                       </div>
@@ -108,11 +108,12 @@
                       <p class="pt-2"><b>Tenure</b></p>
                     </div>
                     <div class="col-5 position-relative">
-                      <input type="text" class="form-control ps-4" placeholder=" " value="5 Years" />
+                      <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="yearly_amt" value="5 Years" />
+                      <span class="years">years</span>
                     </div>
                     <div class="col-12 mb-2">
                       <div class="custom-slider mb-4">
-                        <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                        <ngx-slider [(value)]="yearly_amt" [options]="yearly_amt1"></ngx-slider>
                       </div>
                     </div>
                 
@@ -126,9 +127,9 @@
                 <p class="pt-2"><b>Are you a senior citizen ?</b></p>
                 <span class="intrst">you will earn 8% p.a. interest.</span>
                 </div>
-                <div class="col-lg-2 mb-5">
+                <div class="col-lg-2 mb-5 toggle-none">
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1">
                   </div>
                 </div>
                 </div>
@@ -147,7 +148,7 @@
               </div>
                     
                       <div class="col-lg-12 col-12 position-relative">
-                            <button type="button"  class="btn btn-primary sip-btn" [routerLink]="['/FD-eligible']">
+                            <button type="button"  class="btn btn-primary sip-btn" (click)="GetEligibility()" >
                               Invest Now </button>
                       </div>
                     </div>
@@ -801,12 +802,12 @@
                               <p class="pt-2"><b>Investment Amount</b></p>
                             </div>
                             <div class="col-5 position-relative">
-                              <input type="text" class="form-control ps-4" placeholder="0" />
+                              <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="monthly_amt" placeholder="0" />
                               <span class="rupee-symbol">₹</span>
                             </div>
                             <div class="col-12 mb-2">
                               <div class="custom-slider mb-4">
-                                <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                                <ngx-slider [(value)]="monthly_amt" [options]="monthly_amt1"></ngx-slider>
                               </div>
                             </div>
                         </div>
@@ -817,11 +818,12 @@
                         <p class="pt-2"><b>Tenure</b></p>
                       </div>
                       <div class="col-5 position-relative">
-                        <input type="text" class="form-control ps-4" placeholder=" " value="5 Years" />
+                        <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="yearly_amt" value="5 Years" />
+                        <span class="years">years</span>
                       </div>
                       <div class="col-12 mb-2">
                         <div class="custom-slider mb-4">
-                          <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                          <ngx-slider [(value)]="yearly_amt" [options]="yearly_amt1"></ngx-slider>
                         </div>
                       </div>
                   
@@ -835,7 +837,7 @@
                   <p class="pt-2"><b>Are you a senior citizen ?</b></p>
                   <span class="intrst">you will earn 8% p.a. interest.</span>
                   </div>
-                  <div class="col-2 mb-5">
+                  <div class="col-2 mb-5 toggle-none">
                     <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                     </div>
@@ -856,7 +858,7 @@
                 </div>
                       
                         <div class="col-12 position-relative">
-                              <button type="button"  class="btn btn-primary sip-btn" [routerLink]="['/FD-eligible']">
+                              <button type="button" (click)="GetEligibility()"  class="btn btn-primary sip-btn" >
                                 Invest Now </button>
                         </div>
                       </div>

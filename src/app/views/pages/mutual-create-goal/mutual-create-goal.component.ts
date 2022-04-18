@@ -19,7 +19,7 @@ export class MutualCreateGoalComponent implements OnInit {
   RupeeChange:boolean=false;
   dateFormat:any;
  
-  CreateGoal?:any={
+  CreateGoal:any={
     "ImageOfGoal":"",
     "Savings":"",
     "Payment_Mode":"",
@@ -41,17 +41,12 @@ export class MutualCreateGoalComponent implements OnInit {
   ngOnInit(): void {
 
     
-    if(localStorage.getItem("MyGoals") != null){
-      this.CreateGoalList=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
-      console.log("Goals", this.CreateGoalList);      
-    }
+    // if(localStorage.getItem("MyGoals") != null){
+    //   this.CreateGoalList=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
+    //   console.log("Goals", this.CreateGoalList);      
+    // }
   } 
 
-  getDateofInstallment(){   
-    // const d = new Date();
-    // let day = d.getDate();
-  }
-  
   uploadFile($event:any) {
     var Image:any;
     var reader = new FileReader();
@@ -98,7 +93,7 @@ export class MutualCreateGoalComponent implements OnInit {
       }  
     }     
   };
-  // highvalue:any=1000;
+ 
 
   CreateGoalAndInvest(){
 
@@ -125,12 +120,31 @@ export class MutualCreateGoalComponent implements OnInit {
     }
     else {
 
-      this.CreateGoalList.push(this.CreateGoal);
-  
-      let encrypted=this.crypto.Encrypt(this.CreateGoalList);
-      localStorage.setItem("MyGoals",encrypted);
+      var postData=new FormData();
+      postData.append("type",'1');
+      postData.append("investmentMode",this.CreateGoal.Payment_Mode);
+      postData.append("targetAmount",this.CreateGoal.Goal_Amount);
+      postData.append("targetDate",this.CreateGoal.Date_For_Installments);
+      postData.append("expectedCorpus",'0');
+      postData.append("rateInflation",this.CreateGoal.Inflation_Rate);
+      postData.append("rateReturn",this.CreateGoal.Return_Rate);
+      postData.append("name",this.CreateGoal.Savings);
+      postData.append("sms",'0');
+      this.api.post("sipCalculator/create-goal",postData).subscribe(response=>{
+        if(response.response.n==1){
+          this.toastr.success(response.response.Msg);
+        }
+        else{
+          this.toastr.error(response.response.Msg);
+        }
+      })
 
-      this.route.navigate(['/mutual-fund-cart']);
+      // this.CreateGoalList.push(this.CreateGoal);
+  
+      // let encrypted=this.crypto.Encrypt(this.CreateGoalList);
+      // localStorage.setItem("MyGoals",encrypted);
+
+      // this.route.navigate(['/mutual-fund-cart']);
       
     }
   }
@@ -138,6 +152,8 @@ export class MutualCreateGoalComponent implements OnInit {
   GetOnlyDay(){    
     this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);
   }
+
+
 
 
 

@@ -974,7 +974,7 @@ text-align: center;
     .apply-div .c-div,
     .apply-div .r-div {
       background-color: #d7f0f3;
-      padding-bottom: 5px;
+      padding-bottom: 0px;
       padding-top: 3px;
     }
   
@@ -1058,7 +1058,7 @@ text-align: center;
     #share-modal .modal-dialog {
       margin: 0;
       display: flex;
-      height: 50vh;
+      height: 100vh;
       align-items: end;
     }
   

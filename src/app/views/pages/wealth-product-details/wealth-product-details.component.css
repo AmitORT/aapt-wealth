@@ -704,6 +704,7 @@ p {
   color: #6C63FF;
   font-size: 15px !important;
   text-align: right;
+  cursor: pointer;
 }
 
 .calendar-button{
@@ -724,7 +725,9 @@ input[type=date]::-webkit-inner-spin-button {
   left: 1.25rem;
   top: 0.4rem;
 }
-
+.hidden-lg{
+  display: none !important;
+}
 @media only screen and (max-width: 767px) {
 
 #invest-screen .modal-content {
@@ -772,8 +775,22 @@ input[type=date]::-webkit-inner-spin-button {
   padding: 0.75rem;
 }
 .monthly{
-  font-size: 19px;
-
+  font-size: 16px;
+}
+.result-div p {
+  font-size: 16px;
+}
+.graph-body .blue-box{
+  background-color: transparent;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+.graph-body h5 {
+  color: #221E1F;
+  font-weight: 700;
+  font-size: 16px;
 }
 #invest-screen .modal-dialog {
   margin: 0;
@@ -781,6 +798,12 @@ input[type=date]::-webkit-inner-spin-button {
   height: 100vh;
   align-items: end;
   max-width: 100%;
+}
+.graph-body .left-body{
+  text-align: left;
+}
+.graph-body .right-body{
+  text-align: right;
 }
   .graph-header .header-img {
     height: 44px;
@@ -862,7 +885,12 @@ input[type=date]::-webkit-inner-spin-button {
   padding: 4px;
   border-radius: 8px;
 }
+.hidden-lg{
+  display: flex !important;
 }
+}
+
+
 @media only screen and (min-width: 412px) and (max-width: 425px) {
   .graph-header .badge {
     font-size: 16px;
@@ -874,6 +902,32 @@ input[type=date]::-webkit-inner-spin-button {
 }
 .irc-tabs .nav-tabs .nav-link {
   font-size: 15px;
+}
+}
+@media only screen and (max-width: 767px){
+.hidden-xs {
+    display: none!important;
+}
+.header-img{
+   width:27%;
+}
+.fund{
+  font-weight: 600;
+}
+
+.overview-box{
+  background-color: transparent;
+  border: 0;
+}
+.overview-box hr{
+  display: none;
+}
+.overview-details{
+  padding: 1rem 0rem;
+}
+.result-div h5 {
+ 
+  font-size: 16px;
 }
 }
 @media only screen and (min-width: 1000px) and (max-width: 1370px){

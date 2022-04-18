@@ -1,15 +1,20 @@
 <div class="container">
   <div class="row mt-4">
-    <div class="col-lg-12">
-      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
+    <div class="col-lg-12 hidden-xs">
+      <h4 class="breadcrumb-title "><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
             class="fa fa-arrow-left i-icon"></i></span> Product Details</h4>
+    </div>
+    <div class="col-lg-12 hidden-lg">
+      <h4 class=" "><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
+            class="fa fa-arrow-left i-icon"></i></span><img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/></h4>
     </div>
   </div>
   <div class="row mb-5">
     <div class="col-lg-8">
       <div class="graph-header d-flex">
         <div class="d-flex">
-          <img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/>
+          <!-- <span class="hidden-lg hidden-sm"><i class="fa fa-arrow-left i-icon"></i></span> -->
+          <!-- <img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/> -->
         </div>
         <div class="mt-4">
           <h2>{{ProductOverview?.name}}</h2>
@@ -31,7 +36,18 @@
       </div>
 
       <div class="graph-body mt-4">
+        <div class="d-flex justify-content-between blue-box hidden-lg">
+          <div>
+            <h2>Net Asset Value (NAV)</h2>
+            <p>as on {{ProductOverview?.navDate}}</p>
+          </div>
+          <div>
+            <h2>Rs. {{ProductOverview?.fundNav}}</h2>
+            <p class="text-green m-0 text-end">+0.6%</p>
+          </div>
+        </div>
         <div class="d-flex justify-content-between">
+        
           <div class="left-body">
             <h5>132.64%</h5>
             <p><span class="text-green">+1.08%</span>1 day Change</p>
@@ -70,7 +86,8 @@
         <div class="tab-content">
           <div id="menu1" class="container tab-pane active p0"><br>
             <div class="overview-box">
-              <div class="d-flex justify-content-between blue-box">
+              <h5 class="hidden-lg fund">Fund Details</h5>
+              <div class="d-flex justify-content-between blue-box hidden-xs">
                 <div>
                   <h2>Net Asset Value (NAV)</h2>
                   <p>as on {{ProductOverview?.navDate}}</p>
@@ -220,10 +237,10 @@
                 <div class="row outer">
                   <div class="col-lg-6">
                     <div class="row ls">
-                      <div class="col-lg-2">
+                      <div class="col-lg-2 col-2">
                         <img src="assets/img/icici-bank.png">
                       </div>
-                      <div class="col-lg-10">
+                      <div class="col-lg-10 col-10">
                         <h5>ICICI Prudential Technology</h5>
                         <p>3 High Risk</p>
                       </div>
@@ -231,6 +248,7 @@
 
                   </div>
                   <div class="col-lg-6">
+                    <h6 class="hidden-lg fund">Compare fund with</h6>
                     <input type="text" placeholder="Compare Fund with" class="form-control custom-formfield">
                   </div>
                 </div>
@@ -294,7 +312,7 @@
               <div class="col-lg-12 col-12">
                 <h5>Sector Allocation</h5>
               </div>
-              <div class="col-lg-6 col-12" *ngFor="let sector of ProductSectorDetails">
+              <div class="col-lg-6 col-12" *ngFor="let sector of (flag ? ProductSectorDetails : ProductSectorDetails.slice(0,8))">
                 <div class="row">
 
                   <div class="col-lg-9 col-9">
@@ -312,7 +330,7 @@
 
 
               <div class="col-lg-3 offset-lg-9">
-                <p class="va">View All</p>
+                <p class="va" (click)="flag = !flag" *ngIf="ProductSectorDetails.length > 8 && !flag">View All</p>
               </div>
             </div>
             <hr>
