@@ -3,34 +3,36 @@
     <a class="navbar-brand" [routerLink]="['/']">
      <img src="assets/img/finizon_logo.png" class="logo" alt="logo">
    </a>
-    <a class="nav-link nav-toggle mobile-toggle" (click)="handleOpenCloseNav()" href="javascript:void(0)">
+    <a class="nav-link nav-toggle mobile-toggle" (click)="handleOpenCloseNav()">
     <img src="assets/img/menu.svg" alt="menu">
   </a>
   <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
 
-    <form class="d-flex">
+    <form class="d-flex 	">
      <ul class="navbar-nav align-items-center">
       <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)" ><b>Insure</b></a>
+        <a class="nav-link" href="{{InsuranceUrl}}" target="_blank">Insure</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="javascript:void(0)"><b>Credit</b></a>
+        <a class="nav-link" href="{{CreditUrl}}">Credit</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link"[routerLink]="['/']"><b>Wealth</b></a>
+        <a class="nav-link" href="{{WealthUrl}}">Wealth</a>
       </li>
       <li class="btn-group hidden-xs">
-       <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-toggle="dropdown"  data-bs-display="static" aria-expanded="false" href="javascript:void(0)">Login / Register</a>
-       <div class="login-popup dropdown-menu dropdown-menu-lg-end">
+        <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" [hidden]="isLoggedIn" data-bs-toggle="dropdown" data-bs-display="dynamic" aria-expanded="false" href="javascript:void(0)">Login / Register</a>
+        <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-display="dynamic" (click)="Logout()" [hidden]="!isLoggedIn" aria-expanded="false" href="javascript:void(0)">Logout</a>
+        <div [hidden]="isLoggedIn" class="login-popup dropdown-menu dropdown-menu-lg-end">
         <div class="sign-in">
-          <div class="mb-3">      
-            <input type="email" class="form-control" id="emailmobile" placeholder="Email Id/Mobile No.">
-          </div>
-          <div class="mb-3">        
-            <input type="email" class="form-control" id="password" placeholder="Password">
+          <div class="mb-3">
+            <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control" id="emailmobile" placeholder="Email Id/Mobile No.">
           </div>
           <div class="mb-3">
-            <a class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)">Sign In</a>
+            <input [hidden]="!isOTPSent" type="email" name="otpLogin1" [(ngModel)]="otp1" class="form-control" id="otpLogin1" placeholder="OTP">
+          </div>
+          <div class="mb-3">
+            <a [hidden]="isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="otpToggle($event, 'login')">Send OTP</a>
+            <a [hidden]="!isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="verifyOtpBtn()">Sign In</a>
           </div>
           <hr/>
           <p class="ask-title">Not yet on Finizon? <span class="open-signup">Register Now</span></p>
@@ -42,24 +44,29 @@
           <input type="radio" id="switch_right" name="switch_2" value="no" />
           <label for="switch_right">Partner</label>
         </div>
-        <div class="mb-3">      
-          <input type="text" class="form-control" id="FirstName" placeholder="First Name">
+        <div class="mb-3">
+          <input type="text" [(ngModel)]="FormFirstName" class="form-control" name="FirstName" placeholder="First Name">
         </div>
-        <div class="mb-3">      
-          <input type="text" class="form-control" id="LastName" placeholder="Last Name">
+        <div class="mb-3">
+          <input type="text" [(ngModel)]="FormLastName" class="form-control" name="LastName" placeholder="Last Name">
         </div>
-        <div class="mb-3">      
-          <input type="email" class="form-control" id="email1" placeholder="Email Id">
+        <div class="mb-3">
+          <input type="email" [(ngModel)]="FormEmail" class="form-control" name="email1" placeholder="Email Id">
         </div>
-        <div class="mb-3">        
-          <input type="text" class="form-control" id="mnumber1" placeholder="Mobile Number">
+        <div class="mb-3">
+          <input type="text" [(ngModel)]="FormMobileNo" class="form-control" name="mnumber1" placeholder="Mobile Number">
+        </div>
+        <div [hidden]="!isOTPSent" class="mb-3">
+          <input type="text" class="form-control" [(ngModel)]="otp1" name="reg-OTP" id="rOTP"
+          placeholder="OTP">
         </div>
         <div class="form-check">
           <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
-          <label class="form-check-label checklabel">I agree to the <a href="javascript:void(0)">Terms & Conditions</a> of Finizon</label>
+          <label class="form-check-label checklabel">I agree to the <a href="#">Terms & Conditions</a> of Finizon</label>
         </div>
         <div class="mb-3">
-          <a class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)">Register Now</a>
+          <a [hidden]="isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="otpToggle($event)">Send OTP</a>
+          <a [hidden]="!isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="verifyOtpBtn()">Register Now</a>
         </div>
         <hr/>
         <p class="ask-title">Already on Finizon? <span class="open-sigin">Sign In</span></p>
@@ -67,7 +74,7 @@
     </div>
   </li>
   <li (click)="handleOpenCloseNav()">
-   <a class="pe-0 nav-link nav-toggle" href="javascript:void(0)">
+   <a class="nav-link pe-0 nav-toggle" href="javascript:void(0)">
     <img src="assets/img/menu.svg" alt="menu" class="menu-ic">
   </a>
 </li>
@@ -82,6 +89,7 @@
 
 
 <div id="site-wrapper">
+<div id="site-backdrop"></div>
 <nav class="menu" id="site-wrapper-menu" role="navigation">
 <span>
   <a (click)="handleOpenCloseNav()" class="nav-link nav-toggle show-nav onsidebar">
@@ -89,21 +97,19 @@
   </a>
 </span>
 <ul class="hidden-xs hidden-sm">
-  <li><a [routerLink]="['/account-details']" href="javascript:void(0)">My Profile</a></li>
-  <li><a href="javascript:void(0)">Tools</a></li>
-  <li><a href="javascript:void(0)">About Us</a></li>
-  <li><a href="javascript:void(0)">Knowledge Center</a></li>
-  <li><a href="javascript:void(0)">Support</a></li>
+  <li><a href="#">Tools</a></li>
+  <li><a href="#">About Us</a></li>
+  <li><a href="#">Knowledge Center</a></li>
+  <li><a href="#">Support</a></li>
 </ul>
 <ul class="hidden-lg">
-  <li><a [routerLink]="['/account-desktop-menu']" href="javascript:void(0)">My Profile</a></li>
-  <li><a [routerLink]="['/']" href="javascript:void(0)">Insure</a></li>
-  <li><a href="javascript:void(0)">Credit</a></li>
-  <li><a href="javascript:void(0)">Wealth</a></li>
-  <li><a href="javascript:void(0)">Tools</a></li>
-  <li><a href="javascript:void(0)">About Us</a></li>
-  <li><a href="javascript:void(0)">Knowledge Center</a></li>
-  <li><a href="javascript:void(0)">Support</a></li>
+  <li><a href="#">Insurance</a></li>
+  <li><a [routerLink]="['/']">Credit</a></li>
+  <li><a href="#">Wealth</a></li>
+  <li><a href="#">Tools</a></li>
+  <li><a href="#">About Us</a></li>
+  <li><a href="#">Knowledge Center</a></li>
+  <li><a href="#">Support</a></li>
 </ul>
 <div class="nav-footer">
   <div class="d-flex term-link">
@@ -111,15 +117,17 @@
     <span>Terms & Conditions</span>
   </div>
   <ul class="nav-social">
-    <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-    <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-    <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-    <li><a href="javascript:void(0)"><i class="fab fa-linkedin-in"></i></a></li>
+    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
   </ul>
   <div class="nav-copyright">
     <p>Copyright 2022 Oneroof Technologies</p>
   </div>
 </div>
 </nav>
+
+<!-- <a href="#" class="nav-toggle"><span class="fa fa-bars"></span></a> -->
 
 </div>

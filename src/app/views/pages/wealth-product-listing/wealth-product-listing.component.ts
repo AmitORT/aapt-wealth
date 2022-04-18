@@ -3,7 +3,7 @@ import { Options } from '@angular-slider/ngx-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ValidateService } from 'src/app/services/Validate/validate.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastrService } from 'ngx-toastr';
@@ -169,7 +169,7 @@ export class WealthProductListingComponent implements OnInit {
   postData.append("limit","10");
   postData.append("offset","0");
   
-  this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp)=>{
+  this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp: any)=>{
     console.log("resp",resp)
     if(resp.response.n==1){      
       this.ProductOfferForBinding = resp.data;

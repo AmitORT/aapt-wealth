@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Router } from '@angular/router';
-import { ValidateService } from 'src/app/services/Validate/validate.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ToastrService } from 'ngx-toastr';
@@ -186,7 +186,7 @@ export class WealthProductDetailsComponent implements OnInit {
     postData.append("orderBy",JSON.stringify(orderby));
     postData.append("whereClause","{}");
 
-    this.api.post("wealthfy/get-product-overview",postData).subscribe((resp)=>{
+    this.api.post("wealthfy/get-product-overview",postData).subscribe((resp: any)=>{
       console.log("resp",resp)
       if(resp.response.n==1){
         this.ProductManager=resp.data.productManager;

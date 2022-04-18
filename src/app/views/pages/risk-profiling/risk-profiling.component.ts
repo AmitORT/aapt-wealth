@@ -2,7 +2,7 @@ import { Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
-import { ValidateService } from 'src/app/services/Validate/validate.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastrService } from 'ngx-toastr';
@@ -116,7 +116,7 @@ export class RiskProfilingComponent implements OnInit {
       data.append("include",'[{"relation":"possibleAnswers"}]');
       data.append("isActive",'1');
 
-    this.api.post("wealthfy/get-risk-profile-questions",data).subscribe((resp)=>{
+    this.api.post("wealthfy/get-risk-profile-questions",data).subscribe((resp: any)=>{
       // console.log(resp);
       if(resp.response.n==1){
         this.GetQuestionsData = resp.data;
@@ -219,7 +219,7 @@ export class RiskProfilingComponent implements OnInit {
       postData.append("riskProfileType",this.GetQuestionsData[0].type);
       postData.append("recalculateRiskProfile",'1');
     
-    this.api.post("wealthfy/submit-risk-profile-questions",postData).subscribe((resp)=>{
+    this.api.post("wealthfy/submit-risk-profile-questions",postData).subscribe((resp: any)=>{
       if(resp.response.n==1){    
         let encrypted=this.crypto.Encrypt(resp.data);
         localStorage.setItem("RiskProfilesubmitResponse",encrypted);

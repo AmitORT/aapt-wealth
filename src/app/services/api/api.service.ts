@@ -23,6 +23,10 @@ export class ApiService {
   
   public get(url: string,auth=false): Observable<any>{
     url = this.serverUrl + url;
+    if(auth){
+      let token=this.crypto.Decrypt(localStorage.getItem("CustToken")).token;
+      this.header.headers=this.header.headers.set("Authorization","Bearer "+token);
+    }
      return this.httpClient.get<any>(url,this.header).pipe(
       catchError(this.handleError)
     );
