@@ -17,21 +17,21 @@
 
       <!-- <div class="row"> -->
         <!-- <div class="col-12"> -->
-            <h5 class="ofr-head">My Goals ({{CreateGoalResponse?.length}})</h5> 
+            <h5 class="ofr-head">My Goals <span>({{MyGoals?.length}})</span></h5> 
         <!-- </div> -->
         <div class="col-12">
             <div class=" mt-2 finance owl-1">
                    
                 <div class="financial-slider trendprod"  >
                 <owl-carousel-o [options]="customOptions" >
-                    <ng-template carouselSlide *ngFor="let goals of CreateGoalResponse">
+                    <ng-template carouselSlide *ngFor="let goals of MyGoals">
                         <div class="trending-product" [routerLink]="['/mutual-fund-cart']" >
                             <div class="row align-items-center">
                                 <div class="col-lg-2 col-3">
                                     <img src="assets/img/car.png">
                                 </div>
                                 <div class="col-lg-10 col-9 ps-0">
-                                    <p class="trend-name">{{goals.Savings}}</p>
+                                    <p class="trend-name">{{goals.name}}</p>
                                     <p class="sub-desc">in 4 Years at age of 30</p>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                 <div class="prog-bar pos-rel">
                                     <div class="pr-value">
                                         <div class="pr-min"><span>₹ 5 L</span></div>
-                                        <div class="pr-max"><span>₹ {{goals.Goal_Amount}} </span></div>
+                                        <div class="pr-max"><span>₹ {{goals.targetAmount}} </span></div>
                                     </div>
                                     <div class="bg-pr">
                                         <div class="fill-pr" style="width: 20%"></div>

@@ -81,33 +81,31 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-8 hidden-xs">
-        <div class="graph-header d-flex">
-          <div class="d-flex">
-            <img src="assets/img/Bond/brand_logo@2x5.png" alt="icici" class="header-img"/>
-          </div>
-          <div class="mt-4">
-            <h2>The South Indian Bank Limited</h2>
-            <div class="d-flex">
-              <div class="star-component">
-                <ul class="rating-star">
-                  <li><i class="fa fa-star rated"></i></li>
-                  <li><i class="fa fa-star rated"></i></li>
-                  <li><i class="fa fa-star rated"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                  <li><i class="fa fa-star"></i></li>
-                </ul>
-              </div>
-              <span class="badge">Corporate Bond</span>
-              <span class="badge">FAAA</span>
-              <span class="badge">Moderate Risk</span>
-            </div>
-          </div>
-        </div>
-  
-        </div>
+
       
-          <div class="col-lg-8 mt-5 hidden-xs">
+          <div class="col-lg-8 hidden-xs">
+            <div class="graph-header d-flex">
+              <div class="d-flex">
+                <img src="assets/img/Bond/brand_logo@2x5.png" alt="icici" class="header-img"/>
+              </div>
+              <div class="mt-4">
+                <h2>The South Indian Bank Limited</h2>
+                <div class="d-flex">
+                  <div class="star-component">
+                    <ul class="rating-star">
+                      <li><i class="fa fa-star rated"></i></li>
+                      <li><i class="fa fa-star rated"></i></li>
+                      <li><i class="fa fa-star rated"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                      <li><i class="fa fa-star"></i></li>
+                    </ul>
+                  </div>
+                  <span class="badge">Corporate Bond</span>
+                  <span class="badge">FAAA</span>
+                  <span class="badge">Moderate Risk</span>
+                </div>
+              </div>
+            </div>
            <div class="table-header">
                <div class="row hidden-xs">
                    <div class="col-md-6">
@@ -150,29 +148,29 @@
               <div class="right-box">
                 <h5>Calculator</h5>
                 <ul class="nav nav-tabs" id="year-tabs" role="tablist">
-                  <li class="nav-item" role="presentation" >
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab"
-                      aria-controls="monthly" aria-selected="true" >Pre-Tax</button>
+                  <li class="nav-item" role="presentation" (click)="tax = '1'" >
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#PreTax" type="button" role="tab"
+                      aria-controls="monthly" aria-selected="true" [ngClass]="tax == '1'?'active':''" >Pre-Tax</button>
                   </li>
-                  <li class="nav-item" role="presentation" >
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl" type="button" role="tab"
-                      aria-controls="otl" aria-selected="false" disabled>Post-Tax</button>
+                  <li class="nav-item" role="presentation"(click)="tax = '2'">
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#PostTax" type="button" role="tab"
+                      aria-controls="otl" aria-selected="false" [ngClass]="tax == '2'?'active':''">Post-Tax</button>
                   </li>
                 </ul>
       
                 <div class="tab-content">
-                  <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab" >
+                  <div class="tab-pane fade show active" id="PreTax" role="tabpanel" aria-labelledby="monthly-tab" >
                     <div class="row mt-3">
                       <div class="col-lg-7 col-7">
                         <p class="pt-2"><b>Investment Amount</b></p>
                       </div>
                       <div class="col-lg-5 col-5 position-relative">
-                        <input type="text" class="form-control ps-4" placeholder="0" />
+                        <input type="text" class="form-control ps-4" placeholder="0" [(ngModel)]="monthly_amt"/>
                         <span class="rupee-symbol">₹</span>
                       </div>
                       <div class="col-lg-12 mb-2">
                         <div class="custom-slider mb-4">
-                          <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                          <ngx-slider [(value)]="monthly_amt" [options]="monthly_amt1"></ngx-slider>
                         </div>
                       </div>
 
@@ -210,18 +208,18 @@
                     </div>
                   </div>
       
-                  <div class="tab-pane fade" id="otl" role="tabpanel" aria-labelledby="otl-tab" >
+                  <div class="tab-pane show fade" id="PostTax" role="tabpanel" aria-labelledby="otl-tab" >
                     <div class="row mt-3">
                       <div class="col-lg-7 col-7">
                         <p class="pt-2"><b>SIP Amount</b></p>
                       </div>
                       <div class="col-lg-5 col-5 position-relative">
-                        <input type="text" class="form-control ps-4" />
+                        <input type="text" class="form-control ps-4" [(ngModel)]="yearly_amt"/>
                         <span class="rupee-symbol">₹</span>
                       </div>
                       <div class="col-lg-12">
                         <div class="custom-slider mb-5">
-                          <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
+                          <ngx-slider [(value)]="yearly_amt" [options]="yearly_amt1"></ngx-slider>
                         </div>
                         <p>Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}} th of every month.</span></p>
                       </div>

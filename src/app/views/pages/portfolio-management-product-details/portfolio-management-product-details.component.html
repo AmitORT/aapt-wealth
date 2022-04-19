@@ -1,0 +1,711 @@
+<div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <h4 class="breadcrumb-title hidden-xs"><span class="me-3 cursor-pointer"
+            [routerLink]="['/portfolio-management-product-listing']"><i class="fa fa-arrow-left i-icon"></i></span> Product Details</h4>
+        <h4 class="breadcrumb-title hidden-lg"><span class="me-3 cursor-pointer"
+            [routerLink]="['/portfolio-management-product-listing']"><i class="fa fa-arrow-left i-icon"></i></span><img
+            src="assets/img/Negen-Capital.svg" alt="icici" class="header-img" /></h4>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-lg-8">
+        <div class="graph-header d-flex align-items-center">
+          <div class="d-flex">
+            <img src="assets/img/Negen-Capital.svg" alt="icici" class="header-img" />
+          </div>
+          <div>
+            <h2>Negen Capital</h2>
+            <div class="d-flex m-block">
+              <span class="badge me-3">Multi - Cap</span>
+              <span class="badge">Multi - Cap</span>
+            </div>
+          </div>
+        </div>
+        <div class="mt-5 pd-tabs">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-bs-toggle="tab" href="#menu1">Strategy Overview</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-bs-toggle="tab" href="#menu2">Strategy Portfolio Summary</a>
+            </li>
+          </ul>
+          <!-- Tab panes -->
+          <div class="tab-content py-5">
+            <div id="menu1" class="container tab-pane active p0">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="trending-product">
+                    <div class="row align-items-center">
+                      <div class="d-flex align-items-center">
+                        <img src="assets/img/orange-grow.svg" class="img-fluid me-2" alt="image">
+                        <div>
+                          <h5 class="trend-name trend-head">Strategy Summary</h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row values">
+                      <div class="col-lg-3 col-6">
+                        <h6>AUM</h6>
+                        <p>₹ 154.72 Cr</p>
+                      </div>
+                      <div class="col-lg-3 col-6">
+                        <h6>Inception Date</h6>
+                        <p>10 Aug 2017</p>
+                      </div>
+                      <div class="col-lg-3 col-6">
+                        <h6>Benchmark</h6>
+                        <p>NIFTY 500</p>
+                      </div>
+                      <div class="col-lg-3 col-6">
+                        <h6>Portfolio Age</h6>
+                        <p>4 Yrs, 6 Mons</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="strategy-return mt-5">
+                    <div class="row align-items-center">
+                      <div class="d-flex align-items-center">
+                        <img src="assets/img/orange-grow.svg" class="img-fluid me-2" alt="image">
+                        <div>
+                          <h5 class="trend-name trend-head">Strategy Return</h5>
+                        </div>
+                      </div>
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="returns" data-bs-toggle="tab" data-bs-target="#returns1"
+                            type="button" role="tab" aria-controls="returns1" aria-selected="true">Returns</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pandb" data-bs-toggle="tab" data-bs-target="#pandb1" type="button"
+                            role="tab" aria-controls="pandb1" aria-selected="false">Performance & Benchmark</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active pt-4 pb-2" id="returns1" role="tabpanel"
+                          aria-labelledby="returns">
+                          <div class="blue-tabs">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                              <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="par" data-bs-toggle="tab" data-bs-target="#par1"
+                                  type="button" role="tab" aria-controls="par1" aria-selected="true">Profit (Absolute
+                                  Returns)</button>
+                              </li>
+                              <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="cagr" data-bs-toggle="tab" data-bs-target="#cagr1"
+                                  type="button" role="tab" aria-controls="cagr1" aria-selected="false">CAGR</button>
+                              </li>
+                            </ul>
+                            <div class="tab-content pt-4 pb-2" id="myTabContent">
+                              <div class="tab-pane fade show active" id="par1" role="tabpanel" aria-labelledby="par">
+                                <!-- Green Progress Bar 1 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 3 Months</h6>
+                                  <div class="row">
+                                    <div class="col-lg-9">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 50%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="offset-lg-1 col-lg-2 text-end">
+                                      <h6 class="color-green">+156.20%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 1 -->
+                                <!-- Green Progress Bar 2 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 6 Months</h6>
+                                  <div class="row">
+                                    <div class="col-lg-6">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 25%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-6 text-end">
+                                      <h6 class="color-green">+47.01%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 2 -->
+                                <!-- Green Progress Bar 3 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 1 Year</h6>
+                                  <div class="row">
+                                    <div class="col-lg-4">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 30%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-8 text-end">
+                                      <h6 class="color-green">+33.01%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 3 -->
+                                <!-- Green Progress Bar 4 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 3 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-7">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 45%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-5 text-end">
+                                      <h6 class="color-green">+120.85%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 4 -->
+                                <!-- Green Progress Bar 5 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 5 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 5 -->
+                                <!-- Green Progress Bar 6 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 10 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 6 -->
+                              </div>
+                              <div class="tab-pane fade" id="cagr1" role="tabpanel" aria-labelledby="cagr">
+                                <!-- Green Progress Bar 1 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 3 Months</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 1 -->
+                                <!-- Green Progress Bar 2 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 6 Months</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 2 -->
+                                <!-- Green Progress Bar 3 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 1 Year</h6>
+                                  <div class="row">
+                                    <div class="col-lg-7">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 45%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-5 text-end">
+                                      <h6 class="color-green">+120.85%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 3 -->
+                                <!-- Green Progress Bar 4 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 3 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-4">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 30%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-8 text-end">
+                                      <h6 class="color-green">+33.01%</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 4 -->
+                                <!-- Green Progress Bar 5 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 5 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 5 -->
+                                <!-- Green Progress Bar 6 -->
+                                <div class="green-progress-bar">
+                                  <h6>In the last 10 Years</h6>
+                                  <div class="row">
+                                    <div class="col-lg-3">
+                                      <div class="bg-pr">
+                                        <div class="fill-pr" style="width: 0%"></div>
+                                      </div>
+                                    </div>
+                                    <div class="col-lg-9 text-end">
+                                      <h6 class="color-grey">NA</h6>
+                                    </div>
+                                  </div>
+                                </div>
+                                <!-- Green Progress Bar 6 -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="tab-pane fade pt-4 pb-2" id="pandb1" role="tabpanel" aria-labelledby="pandb">
+                          <div class="pandb-header">
+                            <h2>₹ 50,00,000</h2>
+                            <h3>Would have given a return of</h3>
+                            <img src="assets/img/green-graph.png" class="green-graph" alt="image">
+                          </div>
+                          <div class="pms-strategy">
+                            <div class="d-flex justify-content-between">
+                              <h6>This PMS Strategy</h6>
+                              <h6 class="color-green">₹ 41,33,500</h6>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                              <h6 class="color-grey">Absolute return:</h6>
+                              <h6 class="color-grey">+82.67% profit</h6>
+                            </div>
+                          </div>
+                          <div class="pandb-header my-4 py-3">
+                            <h3>in the last</h3>
+                          </div>
+                          <div class="blue-line-graph mt-4 mb-5">
+                            <div class="d-flex justify-content-center">
+                              <div class="horizontalline active"></div>
+                              <div class="dot">
+                                <p>1m</p>
+                              </div>
+                              <div class="horizontalline"></div>
+                              <div class="dot">
+                                <p>3m</p>
+                              </div>
+                              <div class="horizontalline"></div>
+                              <div class="dot active">
+                                <p>1y</p>
+                              </div>
+                              <div class="horizontalline"></div>
+                              <div class="dot">
+                                <p>3y</p>
+                              </div>
+                              <div class="horizontalline"></div>
+                              <div class="dot">
+                                <p>5y</p>
+                              </div>
+                              <div class="horizontalline active"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="menu2" class="container tab-pane fade p0">
+              <div class="strategy-return">
+                <div class="row align-items-center">
+                  <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                      <img src="assets/img/orange-grow.svg" class="img-fluid me-2" alt="image">
+                      <div>
+                        <h5 class="trend-name trend-head">Strategy Portfolio Summary</h5>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary fund-button hidden-xs"><img src="assets/img/download-white.svg">&nbsp;Fund Factsheet</button>
+                    <!-- <button type="button" class="btn btn-primary fund-button hidden-xs">Request Folio Statement</button> -->
+                  </div>
+                  <div class="blue-tabs second-tab mt-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="company" data-bs-toggle="tab" data-bs-target="#company1"
+                          type="button" role="tab" aria-controls="company1" aria-selected="true">Top Companies</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="sector" data-bs-toggle="tab" data-bs-target="#sector1" type="button"
+                          role="tab" aria-controls="sector1" aria-selected="false">Top Sectors</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="capwise" data-bs-toggle="tab" data-bs-target="#capwise1"
+                          type="button" role="tab" aria-controls="capwise1" aria-selected="false">Cap Wise</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content py-4" id="myTabContent">
+                      <div class="tab-pane fade show active" id="company1" role="tabpanel" aria-labelledby="company">
+                        <div class="pms-strategy1">
+                          <div class="d-flex justify-content-between">
+                            <h6 class="color-grey">Avg. Market Cap</h6>
+                            <h6 class="color-grey">As on date</h6>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <h6>Undisclosed</h6>
+                            <h6>30 Sep 2021</h6>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <div class="green-progress-bar">
+                          <h6>Cash & Equivalents</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 11%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">9.60%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <!-- Orange Progress Bar 2 -->
+                        <div class="green-progress-bar">
+                          <h6>Tips Industries Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 30%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">48.80%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 2 -->
+                        <!-- Orange Progress Bar 3 -->
+                        <div class="green-progress-bar">
+                          <h6>Intellect Design Arena Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 17%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">16.10%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 3 -->
+                        <!-- Orange Progress Bar 4 -->
+                        <div class="green-progress-bar">
+                          <h6>Meghmani Finechem Limited</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 5%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">6.27%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 4 -->
+                        <!-- Orange Progress Bar 5 -->
+                        <div class="green-progress-bar">
+                          <h6>Forbes and Company</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 6%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">10.02%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 5 -->
+                      </div>
+                      <div class="tab-pane fade" id="sector1" role="tabpanel" aria-labelledby="sector">
+                        <div class="pms-strategy1">
+                          <div class="d-flex justify-content-between">
+                            <h6 class="color-grey">Avg. Market Cap</h6>
+                            <h6 class="color-grey">As on date</h6>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <h6>Undisclosed</h6>
+                            <h6>30 Sep 2021</h6>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <div class="green-progress-bar">
+                          <h6>Cash & Equivalents</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 11%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">9.60%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <!-- Orange Progress Bar 2 -->
+                        <div class="green-progress-bar">
+                          <h6>Tips Industries Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 30%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">48.80%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 2 -->
+                        <!-- Orange Progress Bar 3 -->
+                        <div class="green-progress-bar">
+                          <h6>Intellect Design Arena Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 17%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">16.10%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 3 -->
+                        <!-- Orange Progress Bar 4 -->
+                        <div class="green-progress-bar">
+                          <h6>Meghmani Finechem Limited</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 5%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">6.27%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 4 -->
+                        <!-- Orange Progress Bar 5 -->
+                        <div class="green-progress-bar">
+                          <h6>Forbes and Company</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 6%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">10.02%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 5 -->
+                      </div>
+                      <div class="tab-pane fade" id="capwise1" role="tabpanel" aria-labelledby="capwise">
+                        <div class="pms-strategy1">
+                          <div class="d-flex justify-content-between">
+                            <h6 class="color-grey">Avg. Market Cap</h6>
+                            <h6 class="color-grey">As on date</h6>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <h6>Undisclosed</h6>
+                            <h6>30 Sep 2021</h6>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <div class="green-progress-bar">
+                          <h6>Cash & Equivalents</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 11%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">9.60%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 1 -->
+                        <!-- Orange Progress Bar 2 -->
+                        <div class="green-progress-bar">
+                          <h6>Tips Industries Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 30%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">48.80%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 2 -->
+                        <!-- Orange Progress Bar 3 -->
+                        <div class="green-progress-bar">
+                          <h6>Intellect Design Arena Ltd</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 17%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">16.10%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 3 -->
+                        <!-- Orange Progress Bar 4 -->
+                        <div class="green-progress-bar">
+                          <h6>Meghmani Finechem Limited</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 5%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">6.27%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 4 -->
+                        <!-- Orange Progress Bar 5 -->
+                        <div class="green-progress-bar">
+                          <h6>Forbes and Company</h6>
+                          <div class="row">
+                            <div class="col-lg-10">
+                              <div class="bg-pr">
+                                <div class="fill-pr1" style="width: 6%"></div>
+                              </div>
+                            </div>
+                            <div class="col-lg-2 text-end">
+                              <h6 class="color-grey">10.02%</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Orange Progress Bar 5 -->
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-primary fund-button hidden-lg"><img
+                        src="assets/img/download-white.svg">&nbsp;Fund Factsheet</button>
+                    <!-- <button type="button" class="btn btn-primary fund-button hidden-lg">Request Folio Statement</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="user-profile">
+            <div class="user-profile-header">
+              <div class="row">
+                <div class="col-lg-9 col-7">
+                  <div class="d-flex align-items-center">
+                    <img src="assets/img/prod-user.png">
+                    <div>
+                      <h5>George Elliot</h5>
+                      <p>Strategy Manager</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-5">
+                  <button type="button" class="btn btn-primary trans-button" [routerLink]="['/profile-details']">View Profile</button>
+                </div>
+              </div>
+            </div>
+            <div class="user-profile-footer">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+                ea commodo consequat. Duis aute irure dolor in <a href="javascript:void(0)" class="orange-text">Read More</a></p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-12 cf-div mt-5">
+          <h5 class="text-grey">Compare Funds</h5>
+          <div class="row outer">
+            <div class="col-lg-6">
+              <div class="d-flex align-items-center ls">
+                <img src="assets/img/icici-bank.png">
+                <div>
+                  <h5>ICICI Prudential Technology</h5>
+                  <p>3 High Risk</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="hidden-xs">
+                <input type="text" placeholder="Compare Fund with" class="form-control custom-formfield">
+              </div>
+              <div class="hidden-lg">
+                <h5 class="pt-3">Compare Fund With</h5>
+                <input type="text" placeholder="Search Mutual Funds" class="form-control custom-formfield">
+              </div>
+            </div>
+          </div>
+        </div> -->
+  
+      </div>
+      <div class="col-lg-4 d-none d-lg-block d-md-block d-sm-block" id="sidebar-main">
+        <div class="left-sidebar" id="sidebar">
+          <div class="right-box">
+            <div class="col-lg-12">
+              <img src="assets/img/pms-successful.svg" class="pms-successful" alt="image">
+              <button type="button" class="btn btn-primary sip-btn w-100 mt-3" [routerLink]="['/portfolio-management-successfully-submitted']"> Schedule call with advisor </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row d-block d-lg-none d-md-none d-sm-none">
+      <div class="applybtn-mob">
+        <div class="col-12">
+          <button type="button" class="btn btn-primary invest-btn" [routerLink]="['/portfolio-management-successfully-submitted']">
+            Schedule call with advisor
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

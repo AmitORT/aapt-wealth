@@ -1,0 +1,712 @@
+<div class="container mb10per">
+    <div class="row mt-4 pos-rel">
+  
+      <div class="dropdown sort-position hidden-xs">
+        <button class="btn dropdown-toggle" type="button" id="sort-drop" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="assets/img/sort_icon.svg">
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="sort-drop">
+          <li><a class="dropdown-item" href="javascript:void(0)"><b>Sort By</b></a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Popularity</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Ratings - High to Low</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Returns - High to Low</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0)">Recommended for your Risk Profile</a></li>
+        </ul>
+      </div>
+      <div class="col-10">
+        <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/portfolio-management-kyc-update']"><i class="fa fa-arrow-left i-icon"></i></span>Portfolio Management Services</h4>
+        <p class="breadcrumb-sub hidden-xs">See our best in class selection</p>
+      </div>
+      <div class="col-2">
+        <div class="dropdown sort-position hidden-lg">
+          <button class="btn dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#sortby-screen">
+            <img src="assets/img/sort_icon.svg">
+          </button>
+        </div>
+        <button class="btn hidden-lg filter-btn" type="button" data-bs-toggle="modal" data-bs-target="#filtermodal">
+          <img src="assets/img/settings_icon.svg">
+        </button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-md-3 br-right hidden-xs" id="sidebar-main">
+        <div class="left-sidebar" id="sidebar">
+          <div class="d-flex justify-content-between mb-1 mt-4">
+            <h5 class="fw-600">Filters</h5>
+            <a href="javascript:void(0)" class="clear-all">Clear All</a>
+          </div>
+          <div class="left-scroll">
+            <div class="custom-slider mt-4 mb-5">
+              <div class="row align-items-center">
+                <div class="col-lg-7 col-7">
+                  <h5 class="mb-0">Max Investment</h5>
+                </div>
+                <div class="col-lg-5 col-5 position-relative">
+                  <input type="text" class="form-control rupee-pad" [(ngModel)]="value11" />
+                  <span class="rupees">Lakhs</span>
+                </div>
+              </div>
+              <ngx-slider [(value)]="value11" [options]="options11"></ngx-slider>
+            </div>
+            <hr />
+            <div class="custom-slider mt-4 mb-5">
+              <div class="row align-items-center">
+                <div class="col-lg-7 col-7">
+                  <h5 class="mb-0">Calendar</h5>
+                </div>
+                <div class="col-lg-5 col-5 position-relative">
+                  <input type="text" class="form-control rupee-pad" [(ngModel)]="value12" />
+                  <span class="rupees">M</span>
+                </div>
+              </div>
+              <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+            </div>
+            <hr />
+            <div class="custom-slider mb-3">
+              <div class="row align-items-center">
+                <div class="col-lg-12 col-12">
+                  <h5>Product Features</h5>
+                </div>
+              </div>
+              <div class="acc-check">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="insurer1">
+                  <label class="form-check-label" for="insurer1">
+                    Multi Cap
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="insurer2">
+                  <label class="form-check-label" for="insurer2">
+                    Mid Cap
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="insurer3">
+                  <label class="form-check-label" for="insurer3">
+                    Small Cap
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="insurer4">
+                  <label class="form-check-label" for="insurer4">
+                    Large Cap
+                  </label>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+          <!-- <div class="row justify-content-center">
+          <button type="button" class="btn btn-primary theme-button mt-2">
+            Filter
+          </button>
+        </div> -->
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row page-result ms-0 me-0 hidden-xs">
+          <p>Showing 6 of 12 results</p>
+        </div>
+        <div class="product-scroll">
+          <!-- Recommended -->
+          <div class="position-relative">
+            <span class="orange-offer">Recommended</span>
+            <div class="row product-card ms-0 me-0">
+              <div class="col-lg-12">
+                <div class="row align-items-center">
+                  <div class="col-lg-2 hidden-xs text-center ">
+                    <img src="assets/img/Negen-Capital.svg" class="w-80" />
+                  </div>
+                  <div class="col-lg-10">
+                    <div class="row align-items-center">
+                      <div class="col-lg-6 col-10 bank-name">
+                        <div>
+                          <img src="assets/img/Negen-Capital.svg" class="hidden-lg" />
+                        </div>
+                        <div>
+                          <h5>NEGEN CAPITAL</h5>
+                          <!-- <div class="d-flex">
+                            <p>3 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                                class="green-dot"></span>High Risk <span class="green-dot"></span>Equity </p>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-2">
+                        <div class="comp-share">
+                          <span class="hidden-xs">
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" type="checkbox" id="compare21" [(ngModel)]="Comapare1">
+                              <label class="form-check-label" for="compare21">
+                                Compare Funds
+                              </label>
+                            </div>
+                          </span>
+                          <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                            <img src="assets/img/share_icon.svg">
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <hr class="custom-hr" />
+                      </div>
+                    </div>
+                    <div class="row apply-div">
+                      <div class="col-lg-3 l-div col-4">
+                        <p>Min Investment</p>
+                        <h5>₹ 50 Lakhs</h5>
+                      </div>
+                      <div class="col-lg-3 c-div col-4">
+                        <p>Category Returns</p>
+                        <div class="d-flex">
+                          <h5>-29.06%</h5><img class="mx-2" src="assets/img/blue-slider.svg">
+                          <h5>133.91%</h5>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 r-div col-4">
+                        <p>1Y Returns</p>
+                        <h5 class="color-green">+133.91%</h5>
+                      </div>
+                      <div class="col-6 mb-comapre hidden-lg">
+                        <div class="form-check mb-0">
+                          <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare2">
+                          <label class="form-check-label" for="compare27">
+                            Compare Funds
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center"
+                        [routerLink]="['/portfolio-management-product-details']">
+                        <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                            alt="Right arrow"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Recommended -->
+          <!-- Trending Fund -->
+          <div class="position-relative">
+            <span class="green-offer">Trending Fund</span>
+            <div class="row product-card ms-0 me-0">
+              <div class="col-lg-12">
+                <div class="row align-items-center">
+                  <div class="col-lg-2 hidden-xs text-center ">
+                    <img src="assets/img/bonanza-value.svg" class="w-80" />
+                  </div>
+                  <div class="col-lg-10">
+                    <div class="row align-items-center">
+                      <div class="col-lg-6 col-10 bank-name">
+                        <div>
+                          <img src="assets/img/bonanza-value.svg" class="hidden-lg" />
+                        </div>
+                        <div>
+                          <h5>BONANZA VALUE</h5>
+                          <!-- <div class="d-flex">
+                            <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                                class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-2">
+                        <div class="comp-share">
+                          <span class="hidden-xs">
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" type="checkbox" id="compare212" [(ngModel)]="Comapare3">
+                              <label class="form-check-label" for="compare212">
+                                Compare Funds
+                              </label>
+                            </div>
+                          </span>
+                          <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                            <img src="assets/img/share_icon.svg">
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <hr class="custom-hr" />
+                      </div>
+                    </div>
+                    <div class="row apply-div">
+                      <div class="col-lg-3 l-div col-4">
+                        <p>Min Investment</p>
+                        <h5>₹ 50 Lakhs</h5>
+                      </div>
+                      <div class="col-lg-3 c-div col-4">
+                        <p>Category Returns</p>
+                        <div class="d-flex">
+                          <h5>-29.06%</h5><img class="mx-2" src="assets/img/blue-slider.svg">
+                          <h5>133.91%</h5>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 r-div col-4">
+                        <p>1Y Returns</p>
+                        <h5 class="color-green">+133.91%</h5>
+                      </div>
+                      <div class="col-6 mb-comapre hidden-lg">
+                        <div class="form-check mb-0">
+                          <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare4">
+                          <label class="form-check-label" for="compare27">
+                            Compare Funds
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center"
+                        [routerLink]="['/portfolio-management-product-details']">
+                        <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                            alt="Right arrow"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Trending Fund -->
+          <div class="position-relative">
+            <div class="row product-card ms-0 me-0">
+              <div class="col-lg-12">
+                <div class="row align-items-center">
+                  <div class="col-lg-2 hidden-xs text-center ">
+                    <img src="assets/img/buoyant-capital.svg" class="w-80" />
+                  </div>
+                  <div class="col-lg-10">
+                    <div class="row align-items-center">
+                      <div class="col-lg-6 col-10 bank-name">
+                        <div>
+                          <img src="assets/img/buoyant-capital.svg" class="hidden-lg" />
+                        </div>
+                        <div>
+                          <h5>BUOYANT CAPITAL</h5>
+                          <!-- <div class="d-flex">
+                            <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
+                                class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
+                          </div> -->
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-2">
+                        <div class="comp-share">
+                          <span class="hidden-xs">
+                            <div class="form-check mb-0">
+                              <input class="form-check-input" type="checkbox" id="compare213" [(ngModel)]="Comapare5">
+                              <label class="form-check-label" for="compare213">
+                                Compare Funds
+                              </label>
+                            </div>
+                          </span>
+                          <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                            <img src="assets/img/share_icon.svg">
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <hr class="custom-hr" />
+                      </div>
+                    </div>
+  
+                    <div class="row apply-div">
+                      <div class="col-lg-3 l-div col-4">
+                        <p>Min Investment</p>
+                        <h5>₹ 50 Lakhs</h5>
+                      </div>
+                      <div class="col-lg-3 c-div col-4">
+                        <p>Category Returns</p>
+                        <div class="d-flex">
+                          <h5>-29.06%</h5><img class="mx-2" src="assets/img/blue-slider.svg">
+                          <h5>133.91%</h5>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 r-div col-4">
+                        <p>1Y Returns</p>
+                        <h5 class="color-green">+133.91%</h5>
+                      </div>
+                      <div class="col-6 mb-comapre hidden-lg">
+                        <div class="form-check mb-0">
+                          <input class="form-check-input" type="checkbox" id="compare27" [(ngModel)]="Comapare6">
+                          <label class="form-check-label" for="compare27">
+                            Compare Funds
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center"
+                        [routerLink]="['/portfolio-management-product-details']">
+                        <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
+                            alt="Right arrow"></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row align-items-center mt-2 ms-0 me-0">
+            <div class="col-12">
+              <div class="loadmore-btn">
+                <span><i class="fas fa-redo"></i> Load More Offers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="compare-section" *ngIf="Comapare1!=0 || Comapare2!=0 || Comapare3!=0 || Comapare4!=0 || Comapare5!=0 ">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mb-10">
+          <h4>Compare Products <span>(2 Selected)</span></h4>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="cmp-prd">
+            <div class="cmp-logo">
+              <span class="fa fa-times "></span>
+              <img src="assets/img/Negen-Capital.svg" />
+            </div>
+            <div class="cmp-name">
+              <p>NEGEN CAPITAL</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="cmp-prd">
+            <div class="cmp-logo">
+              <span class="fa fa-times "></span>
+              <img src="assets/img/bonanza-value.svg" />
+            </div>
+            <div class="cmp-name">
+              <p>BONANZA VALUE</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 hidden-xs">
+          <div class="cmp-prd">
+            <div class="cmp-logo">
+              <span class="fa fa-times "></span>
+              <img src="assets/img/buoyant-capital.svg" />
+            </div>
+            <div class="cmp-name">
+              <p>BUOYANT CAPITAL</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-4">
+          <div class="cmp-prd add">
+            <div class="cmp-logo">
+              <i class="fa fa-plus"></i>
+            </div>
+            <div class="cmp-name">
+              <p>Select plan to Compare</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6 cmpr1">
+          <button type="button" [routerLink]="['/portfolio-management-compare-products']" class="btn btn-primary apply-btn"> Compare </button>
+        </div>
+        <div class="col-lg-2 col-6 cmpr2">
+          <button type="button" class="btn btn-primary cmpare-cncel"> Cancel </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Share Modal -->
+  <div class="modal fade" id="share-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Share this Offer</h5>
+        </div>
+        <div class="modal-body">
+          <ul class="share-link">
+            <li>
+              <a href="javascript:void(0)"><img src="assets/img/facebook-1.svg"></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"><img src="assets/img/instagram-1.svg"></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"><img src="assets/img/linkedin-1.svg"></a>
+            </li>
+            <li>
+              <a href="javascript:void(0)"><img src="assets/img/twitter-1.svg"></a>
+            </li>
+          </ul>
+          <div class="cancel-btn">
+            <a href="javascript:void(0)" data-bs-dismiss="modal">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Feature Modal -->
+  <div class="modal fade" id="view-feature" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="feature-head">
+              <div class="bankname-img">
+                <div> <img src="assets/img/kotak_bank.png"></div>
+                <div>
+                  <h5>KOTAK MAHINDRA BANK</h5>
+                </div>
+              </div>
+              <div data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#share-modal">
+                <img src="assets/img/share_icon.svg" class="feature-share">
+              </div>
+            </div>
+          </div>
+          <div class="row feature-detail">
+            <div class="col-lg-4 col-4">
+              <p>Processing Fee</p>
+              <h5>₹ 2,000</h5>
+            </div>
+            <div class="col-lg-4 col-4">
+              <p>Hospitals</p>
+              <h5>256</h5>
+            </div>
+            <div class="col-lg-4 col-4">
+              <p>EMI/Month</p>
+              <h5>₹ 4,188</h5>
+            </div>
+          </div>
+          <div class="row ms-0 me-0">
+            <ul class="features-list">
+              <li>Part payment charges are Not Allowed.</li>
+              <li>Foreclosure charges are allowed after 6 months at 3%.</li>
+              <li>Borrowers within the age group of 21 and 60 years.</li>
+              <li>Loan Tenure 12 to 60 months.</li>
+              <li>Part payment charges are allowed at 2-4%.</li>
+            </ul>
+            <div class="btn-div">
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2"> Cancel </button>
+              <button type="button" class="btn btn-primary feature-apply"> Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Filter Modal -->
+  <div class="modal fade" id="filtermodal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                  aria-expanded="true" aria-controls="collapseOne">
+                  Edit Details
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="custom-slider mt-4 mb-5">
+                    <div class="row align-items-center">
+                      <div class="col-lg-7 col-7">
+                        <h5 class="mb-0">Max Investment</h5>
+                      </div>
+                      <div class="col-lg-5 col-5 position-relative">
+                        <input type="text" class="form-control rupee-pad" [(ngModel)]="value11" />
+                        <span class="rupees">Lakhs</span>
+                      </div>
+                    </div>
+                    <ngx-slider [(value)]="value11" [options]="options11"></ngx-slider>
+                  </div>
+                  <hr />
+                  <div class="custom-slider mt-4 mb-5">
+                    <div class="row align-items-center">
+                      <div class="col-lg-7 col-7">
+                        <h5 class="mb-0">Calendar</h5>
+                      </div>
+                      <div class="col-lg-5 col-5 position-relative">
+                        <input type="text" class="form-control rupee-pad" [(ngModel)]="value12" />
+                        <span class="rupees">M</span>
+                      </div>
+                    </div>
+                    <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Filter By
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <div class="custom-slider mb-3">
+                    <div class="row align-items-center">
+                      <div class="col-lg-12 col-12">
+                        <h5>Product Features</h5>
+                      </div>
+                    </div>
+                    <div class="acc-check">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="insurer11">
+                        <label class="form-check-label" for="insurer11">
+                          Multi Cap
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="insurer21">
+                        <label class="form-check-label" for="insurer21">
+                          Mid Cap
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="insurer31">
+                        <label class="form-check-label" for="insurer31">
+                          Small Cap
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="insurer41">
+                        <label class="form-check-label" for="insurer41">
+                          Large Cap
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button mt-5">
+            Update
+          </button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+  <!-- otp Modal -->
+  <div class="modal fade" id="otp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <div class="modal-body">
+          <div class="row">
+            <h3 class="otp-title">Enter OTP</h3>
+            <p class="otp-text mt-4">OTP sent on <b>+91 1234567890. </b> <span class="link-text">Edit Number</span></p>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-2 px-2">
+              <input type="number" class="form-control otp-field" maxlength="1" />
+            </div>
+            <div class="col-12">
+              <p class="otp-bottomtext">Didn't recieve OTP? <br class="hidden-lg" /> <span class="link-text">Resend
+                  OTP</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <div class="">
+            <a class="cancel-btn2" data-bs-dismiss="modal" aria-label="Close">Cancel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- sort by Modal -->
+  <div class="modal fade" id="sortby-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <span class="mob-tab-dash"></span>
+          <ul class="sort-mob">
+            <li><a class="dropdown-item" href="javascript:void(0)"><b>Sort By</b></a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)">Popularity</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)">Ratings - High to Low</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)">Returns - High to Low</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0)">Recommended for your Risk Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- <div class="modal fade" id="compare-products-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="mob-tab-dash"></span>
+          <h3 class="otp-title">Add funds to compare</h3>
+         
+          <div class="my-2 hidden-lg search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" id="exampleSearch" aria-describedby="Search" placeholder="Search">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row hidden-xs">
+            <div class="position-relative search-box">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input type="text" class="form-control search" id="exampleSearch" aria-describedby="Search" placeholder="Search">
+            </div>
+          </div>
+          <div class="row pop-scroll mt-4">
+            <div *ngFor="let list of ProductOfferForBinding; let i=index;">
+              <div class="d-flex justify-content-between mx-2">
+                <div class="d-flex compare-left-view">
+                  <div class="d-flex">
+                  <div class="me-3">
+                    <img src="assets/img/icici-bank2.png" class="compare-img-wd" alt="profile-icon">
+                  </div>
+                  <div>
+                    <h4>{{list.name}}</h4>
+                    <div class="d-flex">
+                      <span class="">{{list.returnFor1Year.toFixed(2)}} %</span>
+                      <div class="monthly cursor-pointer" *ngIf="PreminumTime" (click)="PreminumTime = false">1 Year
+                        <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                      </div>
+                      <div class="monthly cursor-pointer" *ngIf="!PreminumTime" (click)="PreminumTime = true">1 Month
+                        <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                </div>
+                <div class="d-flex compare-right-view">
+                  <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="list.checkforcompare != true" (click)="compareCheckboxclick(i)">+ Add</button>
+                  <button type="button" class="btn btn-primary theme-button remove-btn w-10" *ngIf="list.checkforcompare == true" (click)="compareCheckboxclick(i)">Remove</button>
+                </div>
+              </div>
+              <hr>
+            </div>       
+            
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary cancel-btn2">Cancel</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button w-mob-50" [routerLink]="['/portfolio-management-compare-products']">Compare</button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  

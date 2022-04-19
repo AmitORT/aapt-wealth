@@ -46,6 +46,12 @@ import { BondProductListComponent } from './views/pages/bond-product-list/bond-p
 import { BondProductDetailsComponent } from './views/pages/bond-product-details/bond-product-details.component';
 import { BondEligibilityComponent } from './views/pages/bond-eligibility/bond-eligibility.component';
 import { BondSuccessfulComponent } from './views/pages/bond-successful/bond-successful.component';
+import { PortfolioManagementProductListingComponent } from './views/pages/portfolio-management-product-listing/portfolio-management-product-listing.component';
+import { PortfolioManagementProductDetailsComponent } from './views/pages/portfolio-management-product-details/portfolio-management-product-details.component';
+import { PortfolioManagementCompareProductsComponent } from './views/pages/portfolio-management-compare-products/portfolio-management-compare-products.component';
+import { PortfolioManagementKycComponent } from './views/pages/portfolio-management-kyc/portfolio-management-kyc.component';
+import { PortfolioManagementKycUpdateComponent } from './views/pages/portfolio-management-kyc-update/portfolio-management-kyc-update.component';
+import { PortfolioManagementSuccessfullySubmittedComponent } from './views/pages/portfolio-management-successfully-submitted/portfolio-management-successfully-submitted.component';
 
 
 
@@ -95,7 +101,20 @@ const routes: Routes = [
   { path: 'bond-product-List',component:BondProductListComponent},
   { path: 'bond-details',component:BondProductDetailsComponent},
   { path: 'bond-eligibility',component:BondEligibilityComponent},
-  { path: 'bond-successful',component:BondSuccessfulComponent}
+  { path: 'bond-successful',component:BondSuccessfulComponent},
+  { path: 'portfolio-management-product-listing',component:PortfolioManagementProductListingComponent},
+  { path: 'portfolio-management-product-details',component:PortfolioManagementProductDetailsComponent},
+  { path: 'portfolio-management-compare-products',component:PortfolioManagementCompareProductsComponent},
+  { path: 'portfolio-management-kyc',component:PortfolioManagementKycComponent},
+  { path: 'portfolio-management-kyc-update',component:PortfolioManagementKycUpdateComponent},
+  { path: 'portfolio-management-successfully-submitted',component:PortfolioManagementSuccessfullySubmittedComponent},
+
+
+
+
+
+
+
 
 
 

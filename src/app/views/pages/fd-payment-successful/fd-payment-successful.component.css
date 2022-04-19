@@ -161,13 +161,13 @@
     bottom: 120px;
   }
   .transparent-button{
-      padding: 10px;
+      padding: 11px;
       color: #E27E28 !important;
       font-weight: 600;
       background-color: transparent !important;
-      width: auto;
+      width: 170px;
       border: 1px solid #E27E28;
-      border-radius: 8px;
+      border-radius: 12px;
       font-size: 16px!important;
       text-align: center;
   }
@@ -209,6 +209,7 @@
   }
   .trans-footer{
     width: 90% !important;
+    bottom: 40px;
   }
   .container1{
     width: 100%;

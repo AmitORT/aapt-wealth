@@ -339,6 +339,9 @@ p {
   bottom: -40px !important;
   color: #222 !important;
 }
+.modal {
+  backdrop-filter: blur(3px);
+}
 
 @media only screen and (min-width: 768px) {
   .mobile-sticky {

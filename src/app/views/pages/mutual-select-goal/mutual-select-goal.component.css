@@ -6,6 +6,9 @@
 	padding-bottom: 15px;
     margin-bottom: 0px;
 }
+.ofr-head span{
+  color: #B4B4B4;
+}
 
 .breadcrumb-title::after {
   content: '';
@@ -722,6 +725,7 @@ scrollbar-width: none;  /* Firefox */
 .ofr-head{
   font-size: 18px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 .trending-product {
 border: 1px solid #bbc0c3;

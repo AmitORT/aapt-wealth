@@ -1,0 +1,422 @@
+<div class="container mgb-10per">
+    <div class="row mt-4">
+      <div class="col-lg-12">
+        <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/portfolio-management-product-listing']"><i
+              class="fa fa-arrow-left i-icon"></i></span> Compare Funds</h4>
+        <p class="breadcrumb-sub">Compare 2 or more funds.</p>
+      </div>
+    </div>
+    <div class="row">
+      <table class="cm-table">
+        <tbody>
+          <tr>
+            <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index">
+              <div class="bank-dtl">
+                <img (click)="compareCheckboxclick(i,OffersForCompareList.id)" src="assets/img/remove_icon.svg"
+                  class="minus" />
+                <img src="assets/img/Negen-Capital.svg" />
+                <h5>NEGEN CAPITAL</h5>
+                <button type="button" class="btn btn-primary apply-btn" [routerLink]="['/portfolio-management-product-details']">
+                  Invest</button>
+              </div>
+            </td>
+  
+            <!-- <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+              <div class="bank-dtl">
+                <img (click)="compareCheckboxclick(3)" src="assets/img/remove_icon.svg" class="minus" />
+                <img src="assets/img/HDFC.png" />
+                <h5>{{OffersForCompare[3].name}}</h5>
+                <button type="button" class="btn btn-primary apply-btn" [routerLink]="['/portfolio-management-product-details']"> Invest</button>
+              </div>
+            </td> -->
+  
+            <td *ngIf="OffersForCompare.length < 4">
+              <div class="bank-dtl-empty">
+                <div class="plus-icon">
+                  +
+                </div>
+                <p>Select Funds to Compare</p>
+                <button type="button" class="btn btn-primary transper-btn" data-bs-toggle="modal"
+                  data-bs-target="#compare-products-modal"> + Add Funds </button>
+              </div>
+            </td>
+          </tr>
+  
+          <tr>
+            <td colspan="4" class="p-0">
+              <img src="assets/img/compare-graph.png" alt="graph" class="compare-graph" />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4" class="p-0">
+              <div class="table-scroll">
+                <table class="w-100">
+                  <!-- section 1 start -->
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title-dark">
+                      <h5>Fund Details</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title-dark">
+                      <h5>Fund Details</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Expense Ratio (%)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Expense Ratio (%)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>1.66</b></td>
+                    <td><b>1.70</b></td>
+                    <td><b>1.72</b></td>
+                    <!-- <td class="hidden-xs"><b>1.72</b></td> -->
+                    <!-- <td><b>-- --</b></td> -->
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Exit Load (%)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Exit Load (%)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>1</b></td>
+                    <td><b>1</b></td>
+                    <td class="hidden-xs"><b>2</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Lock-in Period (Years)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Lock-in Period (Years)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>0</b></td>
+                    <td><b>0</b></td>
+                    <td class="hidden-xs"><b>2</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Inception Date</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Inception Date</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>11-Sep-00</b></td>
+                    <td><b>30-Dec-06</b></td>
+                    <td class="hidden-xs"><b>30-Dec-06</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Min. Investment (in Rs)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Min. Investment (in Rs)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>5,000</b></td>
+                    <td><b>500</b></td>
+                    <td class="hidden-xs"><b>2</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <!-- section 1 end -->
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title-dark">
+                      <h5>Return (%)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title-dark">
+                      <h5>Return (%)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>6 Month</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>6 Month</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>1 Year</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>1 Year</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor1Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor1Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                      <b>{{OffersForCompare[2].returnFor1Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                      <b>{{OffersForCompare[3].returnFor1Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>2 Year</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>2 Year</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>10.2</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>3 Year</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>3 Year</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor3Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor3Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                      <b>{{OffersForCompare[2].returnFor3Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                      <b>{{OffersForCompare[3].returnFor3Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 4"><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>5 Year</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>5 Year</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                      <b>{{OffersForCompare[2]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                      <b>{{OffersForCompare[3]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <td *ngIf="OffersForCompare.length > 4"><b>-- --</b></td>
+                  </tr>
+                  <!-- section 2 end -->
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title-dark">
+                      <h5>Portfolio Attributes</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title-dark">
+                      <h5>Portfolio Attributes</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Portfolio P/B Ratio</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Portfolio P/B Ratio</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Portfolio P/E Ratio</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Portfolio P/E Ratio</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Avg. Maturity (in yrs)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Avg. Maturity (in yrs)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Mod. Duration (in yrs)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Mod. Duration (in yrs)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <tr class="hidden-xs">
+                    <td colspan="4" class="table-title">
+                      <h5>Yield to Maturity (%)</h5>
+                    </td>
+                  </tr>
+                  <tr class="hidden-lg">
+                    <td colspan="3" class="table-title">
+                      <h5>Yield to Maturity (%)</h5>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><b>25.83</b></td>
+                    <td><b>11.6</b></td>
+                    <td class="hidden-xs"><b>10.6</b></td>
+                    <td><b>-- --</b></td>
+                  </tr>
+                  <!-- section 3 end -->
+                </table>
+              </div>
+            </td>
+          </tr>
+  
+  
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Compare Products Modal -->
+  <div class="modal fade" id="compare-products-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span class="mob-tab-dash"></span>
+          <h3 class="otp-title">Add funds to compare</h3>
+  
+          <div class="my-2 hidden-lg search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+            <input type="text" class="form-control" id="exampleSearch" aria-describedby="Search" placeholder="Search">
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row hidden-xs">
+            <div class="position-relative search-box">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <input type="text" class="form-control search" id="exampleSearch" aria-describedby="Search"
+                placeholder="Search">
+            </div>
+          </div>
+          <div class="row pop-scroll mt-4">
+            <div *ngFor="let list of MutualProductCompareFund; let i=index;">
+              <div class="d-flex justify-content-between mx-2">
+                <div class="d-flex compare-left-view">
+                  <div class="d-flex">
+                    <div class="me-3">
+                      <img src="assets/img/Negen-Capital.svg" class="compare-img-wd" alt="profile-icon">
+                    </div>
+                    <div>
+                      <h4>NEGEN CAPITAL</h4>
+                      <div class="d-flex">
+                        <div class="monthly cursor-pointer ms-0" (click)="showTenureForPopup(i)"><span
+                            class="return ">{{list.Rate}} %</span>
+                          {{list.selectedYear}} Year
+                          <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                        </div>
+                        <!-- <div class="monthly cursor-pointer ms-0" *ngIf="!PreminumTime1 ; PreminumTime"
+                          (click)="PreminumTime1 = true"><span class="return ">{{list.returnFor1Year.toFixed(2)}} %</span>
+                          1 Year
+                          <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                        </div>
+                        <div class="monthly cursor-pointer ms-0" *ngIf="PreminumTime1"
+                          (click)="!PreminumTime1 = false;PreminumTime2=true ; PreminumTime=false ">
+                          <span class="return ">{{list.returnFor3Year.toFixed(2)}} %</span>
+                          3 Year
+                          <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                        </div> -->
+  
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+                <div class="d-flex compare-right-view">
+                  <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="list.checkforcompare != true"
+                    (click)="compareCheckboxclick(i,list.id)">+ Add</button>
+                  <button type="button" class="btn btn-primary theme-button remove-btn w-10"
+                    *ngIf="list.checkforcompare == true" (click)="compareCheckboxclick(i,list.id)">Remove</button>
+                </div>
+              </div>
+              <hr>
+            </div>
+  
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</button>
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button w-mob-50">Compare</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -114,14 +114,13 @@ export class WealthProductDetailsComponent implements OnInit {
   constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
-    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-    console.log("ModeOfInvestment",this.ModeOfInvestment)
 
-    // this.SetModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("SetModeOfInvestment"));
-    // console.log("SetModeOfInvestment",this.SetModeOfInvestment)
+    this.GetProductDetail();
 
-    // console.log("Data of Date",this.ModeOfInvestment)
-
+    // this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
+    // console.log("ModeOfInvestment",this.ModeOfInvestment)
+    
+  
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
       $('#sidebar').css('position','fixed');
@@ -139,7 +138,8 @@ export class WealthProductDetailsComponent implements OnInit {
       }
       });
 
-    this.GetProductDetail();
+    
+    
   }
 
   // scrolltotop(){
@@ -174,6 +174,7 @@ export class WealthProductDetailsComponent implements OnInit {
   }
 
   GetProductDetail(){
+    
 
     var orderby=[{"name": "weight", "sort": "DESC"}];
 
@@ -187,6 +188,7 @@ export class WealthProductDetailsComponent implements OnInit {
     postData.append("whereClause","{}");
 
     this.api.post("wealthfy/get-product-overview",postData).subscribe((resp: any)=>{
+    
       console.log("resp",resp)
       if(resp.response.n==1){
         this.ProductManager=resp.data.productManager;

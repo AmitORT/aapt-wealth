@@ -54,7 +54,7 @@
   .modal-footer{
     border-top: none;
     align-self: center;
-padding: 0;
+/* padding: 0; */
    }
    .modal-footer button{
 color: #F54B4B;
@@ -63,7 +63,8 @@ font-size: 20px;
    }
 
    .modal-content{
-    padding: 24px;
+    padding: 0px;
+    width: 100%;
 
    }
   .form-floating>.form-select {
@@ -484,7 +485,7 @@ box-shadow: none;
     border-color: #b4b4b4;
   }
   
-  .feature-apply {
+ .feature-apply {
     padding: 10px;
     color: #fff !important;
     font-weight: 500;
@@ -522,19 +523,107 @@ box-shadow: none;
     margin-top: 35%;
     border-radius: 12px;
   }
+  
   .modal-content {
     /* width: 75% !important; */
-    border-radius: 12px !important;
+    border-radius: 12px;
   }
-  /* input>internal-autofill-selected {
-    background-color: #fff !important;
-    color: #fff !important;
+  
+  /* #otp-screen {
+    top: 15%;
   } */
+  @media only screen and (min-width:991px) {
+    #otp-screen .modal-dialog {
+      max-width: 400px;
+    }
+  }
+ 
+  #otp-screen .modal-content {
+    border-radius: 12px;
+  }
+  
+  #otp-screen .btn-close {
+    position: absolute;
+    right: 3%;
+    top: 3%;
+  }
+  
+  #otp-screen .modal-body {
+    padding: 1.5rem 1.5rem 0;
+  }
+  
+  .otp-title {
+    color: #465A65;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+  }
+  
+  .otp-text {
+    color: #222222;
+    margin-bottom: 20px;
+  }
+  
+  .link-text {
+    color: #348BF5;
+    text-decoration: underline;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .cancel-btn2 {
+    color: #F54B4B;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .otp-field {
+    border: 1px solid #D4DEE3;
+    border-radius: 8px;
+    height: 50px;
+    color: #00A0AD;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  
+  .otp-bottomtext {
+    color: #222222;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  /* Chrome, Safari, Edge, Opera */
+  #otp-screen input::-webkit-outer-spin-button,
+  #otp-screen input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  /* Firefox */
+  #otp-screen input[type=number] {
+    -moz-appearance: textfield;
+  }
   @media only screen and (max-width: 767px) {
     .breadcrumb-title {
       font-size: 25px;
     }
+ 
+    hr:not([size]) {
+      height: 1px;
+  }
 
+  #otp-screen .modal-content {
+    border-radius: 12px 12px 0px 0px !important;
+  }
+  .modal.show .modal-dialog{
+    transform: none;
+    position: relative;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: end;
+  }
     .applybtn-mob {
       display: flex;
       position: fixed;
@@ -572,13 +661,7 @@ box-shadow: none;
   max-width: 100%;
   }
   
-  .modal.show .modal-dialog {
-    transform: none;
-    position: relative;
-    top: 27.3rem;
-    margin: 0;
 
-  }
   .modal{
     padding: 0;
   }

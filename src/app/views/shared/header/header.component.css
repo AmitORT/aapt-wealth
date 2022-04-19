@@ -5,9 +5,9 @@
 .header-nav .nav-link {
   padding: 10px 5px 10px !important;
   font-size: 18px !important;
-  font-weight: 400;
+  font-weight: 600;
   color: #465A65 !important;
-}
+  }
 
 .navbar-expand-sm {
   width: 100%;
@@ -126,6 +126,12 @@
 .nav-link.pe-0.nav-toggle {
   padding-right: 0px !important;
 }
+
+@media only screen and (min-width: 1350px) and (max-width: 1370px){
+  .logo {
+  width: 65%;
+  }
+  }
 
 @media only screen and (max-width: 767px) {
   .navbar-dark .navbar-toggler {

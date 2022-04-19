@@ -40,12 +40,26 @@ export class MutualSelectGoalComponent implements OnInit {
   CreateGoalResponse:any;
   CreateGoalList:any;
 
+  MyGoals:any;
+
   constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
 
+    this.GetMyGoals();
+
   // this.CreateGoalResponse=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
   // console.log("CreateGoalList",this.CreateGoalResponse)
+  }
+
+
+  GetMyGoals(){
+    this.api.get("sipCalculator/create-goal",true).subscribe(response=>{
+      if(response.response.n==1){        
+        this.MyGoals=response.data;
+        console.log("my goals",this.MyGoals);
+      }
+    })    
   }
 
 

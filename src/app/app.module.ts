@@ -56,6 +56,12 @@ import { BondEligibilityComponent } from './views/pages/bond-eligibility/bond-el
 import { BondProductDetailsComponent } from './views/pages/bond-product-details/bond-product-details.component';
 import { BondProductListComponent } from './views/pages/bond-product-list/bond-product-list.component';
 import { BondSuccessfulComponent } from './views/pages/bond-successful/bond-successful.component';
+import { PortfolioManagementProductListingComponent } from './views/pages/portfolio-management-product-listing/portfolio-management-product-listing.component';
+import { PortfolioManagementProductDetailsComponent } from './views/pages/portfolio-management-product-details/portfolio-management-product-details.component';
+import { PortfolioManagementCompareProductsComponent } from './views/pages/portfolio-management-compare-products/portfolio-management-compare-products.component';
+import { PortfolioManagementKycComponent } from './views/pages/portfolio-management-kyc/portfolio-management-kyc.component';
+import { PortfolioManagementKycUpdateComponent } from './views/pages/portfolio-management-kyc-update/portfolio-management-kyc-update.component';
+import { PortfolioManagementSuccessfullySubmittedComponent } from './views/pages/portfolio-management-successfully-submitted/portfolio-management-successfully-submitted.component';
 
 
 
@@ -110,6 +116,12 @@ import { BondSuccessfulComponent } from './views/pages/bond-successful/bond-succ
     BondProductDetailsComponent,
     BondProductListComponent,
     BondSuccessfulComponent,
+    PortfolioManagementProductListingComponent,
+    PortfolioManagementProductDetailsComponent,
+    PortfolioManagementCompareProductsComponent,
+    PortfolioManagementKycComponent,
+    PortfolioManagementKycUpdateComponent,
+    PortfolioManagementSuccessfullySubmittedComponent,
   
 
 

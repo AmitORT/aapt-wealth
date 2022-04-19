@@ -130,9 +130,10 @@ export class MutualCreateGoalComponent implements OnInit {
       postData.append("rateReturn",this.CreateGoal.Return_Rate);
       postData.append("name",this.CreateGoal.Savings);
       postData.append("sms",'0');
-      this.api.post("sipCalculator/create-goal",postData).subscribe(response=>{
+      this.api.post("sipCalculator/create-goal",postData,true).subscribe(response=>{
         if(response.response.n==1){
           this.toastr.success(response.response.Msg);
+          this.route.navigate(['/mutual-fund-cart']);
         }
         else{
           this.toastr.error(response.response.Msg);
@@ -149,9 +150,9 @@ export class MutualCreateGoalComponent implements OnInit {
     }
   }
 
-  GetOnlyDay(){    
-    this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);
-  }
+  // GetOnlyDay(){    
+  //   this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);
+  // }
 
 
 

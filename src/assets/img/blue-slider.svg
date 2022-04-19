@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="8" viewBox="0 0 30 8">
+  <g id="slider" transform="translate(24324 16492)">
+    <rect id="slider_full" width="30" height="2" rx="1" transform="translate(-24324 -16489)" fill="#d4d4d4"/>
+    <rect id="slider_filled" width="16" height="2" rx="1" transform="translate(-24324 -16489)" fill="#00a0ad"/>
+    <rect id="slider_holder" width="2" height="8" rx="1" transform="translate(-24309 -16492)" fill="#00a0ad"/>
+  </g>
+</svg>
