@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
 declare var $: any;
 
 @Component({
@@ -16,7 +20,16 @@ export class FdEligibilityComponent implements OnInit {
   otp5:string="";
   otp6:string="";
 
-  constructor(private router:Router) { }
+  ApplicantData:any={
+    "First_Name":"",
+    "Last_Name":"",
+    "Mob_Number":"",
+    "Email_Id":"",
+    "Checked_Terms":""
+
+  }
+
+  constructor(private router:Router, private toastr: ToastrService, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
     
@@ -55,6 +68,30 @@ Navigate(){
   $(".modal-backdrop").remove();
   this.router.navigateByUrl("/FD-successful"); 
   
+}
+
+ShowOTP(){
+  if(this.validate.isNullEmptyUndefined(this.ApplicantData.First_Name)){
+    this.toastr.error('First name is mandatory');
+  }
+  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Last_Name)){
+    this.toastr.error('Last name is mandatory');
+  }
+  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Mob_Number)){
+    this.toastr.error('Mobile number is mandatory');
+  }
+  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Email_Id)){
+    this.toastr.error('Email ID is mandatory');
+  }
+  else if(!this.validate.validateEmail(this.ApplicantData.Email_Id)){
+    this.toastr.error('Please enter valid Email ID');
+  }
+  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Checked_Terms)){
+    this.toastr.error('Please agree terms and conditions');
+  }
+  else{
+    $("#otp-screen").modal("show");
+  }
 }
 
 }

@@ -15,15 +15,13 @@
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-floating mb-3 input-box">
-                <input type="text" id="fname" placeholder="First Name" class="form-control name"
-                  >
+                <input type="text" id="fname" placeholder="First Name" class="form-control name"(keypress)="validate.alphabetOnly($event)" [(ngModel)]="ApplicantData.First_Name">
                 <label for="fname">First Name</label>
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-floating mb-3 input-box">
-                <input type="text" id="lname" placeholder="Last Name" class="form-control name"
-                  >
+                <input type="text" id="lname" placeholder="Last Name" class="form-control name"(keypress)="validate.alphabetOnly($event)" [(ngModel)]="ApplicantData.Last_Name">
                 <label for="lname">Last Name</label>
               </div>
             </div>
@@ -39,7 +37,7 @@
               </div>
               <div class=" col-lg-10 col-9 pe-0 ps-0">
                 <div class="form-floating mb-3 input-box mobile-input">
-                  <input type="text" id="mobile" placeholder="Mobile Number" class="form-control">
+                  <input type="text" id="mobile" placeholder="Mobile Number" class="form-control"(keypress)="validate.numberOnly($event)" [(ngModel)]="ApplicantData.Mob_Number">
                   <label for="mobile">Mobile Number</label>
                 </div>
               </div>
@@ -49,14 +47,13 @@
 
            <div class="col-lg-12">
             <div class="form-floating mb-3 input-box">
-                <input type="text" id="email" placeholder="Email Id" class="form-control name"
-                  >
+                <input type="text" id="email" placeholder="Email Id" class="form-control name"  [(ngModel)]="ApplicantData.Email_Id">
                 <label for="name">Email Id</label>
               </div>
            </div>
            <div class="col-lg-12 my-3">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="ApplicantData.Checked_Terms" >
                 <label class="form-check-label" for="flexCheckChecked">
                     By proceeding, you agree and consent to the <a href="#">terms & conditions.</a>
                 </label>
@@ -64,7 +61,7 @@
            </div>
           </div>
 
-          <button type="button" class="btn btn-primary theme-button mgt-15per hidden-xs" data-bs-toggle="modal" data-bs-target="#otp-screen">
+          <button type="button" class="btn btn-primary theme-button mgt-15per hidden-xs" data-bs-toggle="modal" (click)="ShowOTP()">
             Next
           </button>
           <!-- <button class="btn btn-primary theme-button
@@ -120,7 +117,7 @@
         <div class="applybtn-mob">
     
           <div class="col-12">
-            <button type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal" data-bs-target="#otp-screen">
+            <button type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal" (click)="ShowOTP()">
               Submit
             </button>
     

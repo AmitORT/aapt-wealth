@@ -107,6 +107,11 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   otp4:string="";
   otp5:string="";
   otp6:string="";
+
+  EnterAmount:boolean=true;
+  EnterWeight:boolean=true;
+  EnterWeight1:boolean=false;
+  EnterAmount1:boolean=false;
  
   ModeOfInvestment:any={
     "Payment_mode":"",
@@ -154,4 +159,17 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     this.route.navigateByUrl("/digital-gold-purchased-successful"); 
     $('.modal-backdrop').remove();
   }
+
+  // SwitchInputs(){
+  //   debugger;
+  //   if(this.EnterAmount == true){
+  //     !this.EnterAmount &&  this.EnterAmount1==true
+  //   }
+  //    else{
+
+  //    }
+
+  // }
 }
+
+

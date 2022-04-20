@@ -15,8 +15,8 @@ export class BondProductDetailsComponent implements OnInit {
   customOptions: OwlOptions = {
     items: 3,
 		margin: 3,
-		loop: false,
-		stagePadding: 0,
+		loop: true,
+		stagePadding: 64,
 		responsive:{
 			0:{items:1,stagePadding: 30},
 			480:{items:1,stagePadding: 30},

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 declare var $:any;
 
 @Component({
@@ -8,7 +9,12 @@ declare var $:any;
 })
 export class FdProductListComponent implements OnInit {
 
-  constructor() { }
+  ProductOfferForBinding:any;
+  ProductOffer:any;
+  OffersForCompare:any=[];
+  MutualProductCompareFund:any;
+
+  constructor(private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -29,6 +35,41 @@ export class FdProductListComponent implements OnInit {
       }
 
       });
+  }
+
+  compareCheckboxclick(index:number){
+    this.ProductOfferForBinding[index].checkforcompare=!this.ProductOfferForBinding[index].checkforcompare;
+    
+   if(this.ProductOfferForBinding.filter((a:any)=>a.checkforcompare==1).length>4){
+     this.ProductOfferForBinding[index].checkforcompare=0;
+    alert("You can add max 4 offer for compare");
+   }else{
+     this.OffersForCompare=this.ProductOfferForBinding.filter((a:any)=>a.checkforcompare==1);
+    //  localStorage.setItem("MutualProductCompareFund",this.crypto.Encrypt(this.ProductOfferForBinding));
+    //  console.log("compareoffer",this.OffersForCompare);
+   }
+  }
+
+  RemoveFromCompare(model:any,i:any){
+    console.log("model",model)
+    this.OffersForCompare.splice(i,1);    
+    
+    this.ProductOfferForBinding.forEach((element: any) => {
+      if(element.id==model.id){
+        element.checkforcompare=0;  
+      }
+    });
+  }
+
+  cancelcompare(){
+    this.ProductOfferForBinding.forEach(function(item:any){
+        item.checkforcompare=0;
+    });
+    this.OffersForCompare=[];
+  }
+
+  SelectFund(){
+    this.toastr.warning('Select a product from above list');
   }
 
 }

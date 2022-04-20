@@ -117,8 +117,8 @@ export class WealthProductDetailsComponent implements OnInit {
 
     this.GetProductDetail();
 
-    // this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-    // console.log("ModeOfInvestment",this.ModeOfInvestment)
+    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
+    console.log("ModeOfInvestment",this.ModeOfInvestment)
     
   
     $(".body-color").scroll(function () {

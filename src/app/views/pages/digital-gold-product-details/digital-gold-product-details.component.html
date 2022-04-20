@@ -33,12 +33,21 @@
         <div class="graph-body mt-4">
           <div class="left-body">
             <h5>Gold Price Trends</h5>
-            <select class="form-select prod-drop" aria-label="Default select example">
+            <!-- <select class="form-select prod-drop" aria-label="Default select example">
               <option selected>1M <span class="text-danger"> (-2.11%)</span></option>
               <option value="1">1M <span class="text-danger"> (-2.11%)</span></option>
               <option value="2">1M <span class="text-danger"> (-2.11%)</span></option>
               <option value="3">1M <span class="text-danger"> (-2.11%)</span></option>
-            </select>
+            </select> -->
+            <div class="dropdown"><button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              1M <span class="text-danger"> (-2.11%)</span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item">1M <span class="text-danger"> (-2.11%)</span></a></li>
+              <li><a class="dropdown-item">1M <span class="text-danger"> (-2.11%)</span></a></li>
+              <li><a class="dropdown-item">1M <span class="text-danger"> (-2.11%)</span></a></li>
+            </ul>
+          </div>
           </div>
           <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" />
           <div class="graph-footer">
@@ -146,13 +155,21 @@
                     </div>
                     <div class="amount-weight mb-4">
                       <div class="row position-relative">
-                        <div class="col-6 pe-2">
+                        <div class="col-6 pe-2" *ngIf="EnterAmount">
                           <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" placeholder="Enter Amount">
                         </div>
-                        <div class="col-6 ps-2">
+                        <!-- <div class="col-6 ps-2" *ngIf="EnterWeight1">
+                          <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" placeholder="Enter Weight">
+                        </div> -->
+                       
+                        <div class="col-6 ps-2" *ngIf="EnterWeight">
                           <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" placeholder="Enter Weight">
                         </div>
-                        <img src="assets/img/amount-weight-change.svg" alt="icici" class="amount-weight-change"/>
+                        <!-- <div class="col-6 pe-2" *ngIf="EnterAmount1">
+                          <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" placeholder="Enter Amount">
+                        </div> -->
+                     
+                        <img src="assets/img/amount-weight-change.svg" alt="icici" class="amount-weight-change" />
                       </div>
                     </div>
                   </div>

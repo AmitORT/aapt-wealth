@@ -858,6 +858,13 @@ color: black;
     left: 1.25rem;
     top: 0.4rem;
   }
+
+  @media only screen and (min-width: 1400px){
+  .theme-button {
+    padding: 13px!important;
+    width: 136px!important;
+}
+  }
   
   @media only screen and (max-width: 767px) {
   
@@ -990,7 +997,13 @@ text-align: end;
       width: 100%;
       padding: 4%;
       background: #D4DEE3;
-
+      z-index:9;
+  }
+  .applybtn-mob .mt-3{
+    margin-top: 0px !important;
+  }
+  .applybtn-mob .invest-btn{
+    padding: 10px !important;
   }
   #year-tabs{
      border: none; 
@@ -1004,6 +1017,21 @@ text-align: end;
   color: #E27E28;
   border: 1px solid #E27E28;
   padding: 0.75rem 0em;
+}
+.theme-button{
+  padding: 8px !important;
+}
+.trending-product p{
+  font-size: 10px;
+}
+.trending-product h5{
+  font-size: 16px;
+}
+.l-values .cf{
+  font-size: 15px;
+}
+.values p{
+  font-size: 14px !important;
 }
 .owl-carousel {
      z-index: 0;

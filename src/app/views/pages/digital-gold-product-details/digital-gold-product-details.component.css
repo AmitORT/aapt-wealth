@@ -5,7 +5,22 @@
     position: relative;
     padding-bottom: 15px;
   }
-  
+  .btn-secondary {
+    background-color: #fff;
+    border-color: #fff;
+    color:#000000;
+}
+.dropdown-toggle::after {
+  content: "";
+  color: #ee2d2d;
+}
+.btn-check:focus+.btn-secondary, .btn-secondary:focus{
+  outline:0;
+  box-shadow:none;
+}
+.dropdown-menu{
+  min-width: 7.5rem;
+}
   .text-grey {
     color: #465A65;
     font-size: 18px;
