@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit, DoCheck {
   CommonUrl = environment.CommonUrl;
   CreditUrl = environment.CreditUrl;
 
+  Token:any;
+  WealthdashboardURL='/wealth-dashboard';
+
   constructor(public validation: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) {}
 
   ngDoCheck(): void {
@@ -75,6 +78,27 @@ export class HeaderComponent implements OnInit, DoCheck {
     });
     console.log("Common Uerl",this.CommonUrl);
 
+  }
+
+  GoToCommon(para:any){
+    debugger;
+    this.Token=localStorage.getItem("CustToken");    
+    // console.log("Token",this.Token)
+    this.CommonUrl=environment.CommonUrl.replace("{TOKEN}",encodeURIComponent(this.Token));
+    if(para=='Dashboard'){
+      this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.WealthdashboardURL));
+    }
+    // console.log("CommonUrl",this.CommonUrl)
+    window.location.href=this.CommonUrl;
+  }
+
+  GotoCredit() {
+    debugger;
+    this.Token = localStorage.getItem("CustToken");
+    // console.log("Token",this.Token)
+    this.CreditUrl = environment.CreditUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    // console.log("CreditUrl",this.CreditUrl)
+    window.location.href = this.CreditUrl;
   }
 
   handleOpenCloseNav(){
@@ -157,6 +181,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   Logout(){
     this.isLoggedIn = false;
     localStorage.clear();
+    this.handleOpenCloseNav();
   }
 
   async verifyOtpBtn(){
