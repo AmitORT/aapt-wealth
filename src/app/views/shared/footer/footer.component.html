@@ -1,6 +1,6 @@
-<div class="mobile-sticky">
+<div [hidden]="!MobileSiginBarFlag" class="mobile-sticky applybtn-mob">
 	<div class="row">
-		<div class="col-6">
+		<div class="col-6 ">
 			<a class="btn btn-primary theme-button w-100" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#mob_signup">Register</a>
 		</div>
 		<div class="col-6">
@@ -17,19 +17,23 @@
 				<div class="modal-topborder"></div>
 				<h3 class="mb-3">Sign In</h3>
 				<div class="mb-3">      
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Id/Mobile No.">
+					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id/Mobile No//.">
 				</div>
-				<div class="mb-3">        
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Password">
-				</div>
-				<div class="mb-3 text-end">
-					<a class="btn btn-primary theme-button font14" href="javascript:void(0)"><i class="fa fa-arrow-right"></i></a>
+				<!-- <div [hidden]="!isOTPSent" class="mb-3">        
+					<input type="text" class="form-control" [(ngModel)]="otp1" id="exampleFormControlInput1" placeholder="OTP">
+				</div> -->
+				<!-- <div [hidden]="!isOTPSent" class="mb-3 text-end">
+					<button (click)="verifyOtpBtn()" class="btn btn-primary theme-button font14" ><i class="fa fa-arrow-right"></i></button>
+				</div> -->
+				<div [hidden]="isOTPSent" class="mb-3 text-end">
+					<button (click)="otpToggle($event, 'login')" class="btn btn-primary theme-button font14"><i class="fa fa-arrow-right"></i></button>
 				</div>
 			</div>
 
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="mob_signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">			
@@ -43,21 +47,30 @@
 					<label for="switch_right1">Partner</label>
 				</div>
 				<div class="mb-3">      
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Full Name">
+					<input type="text" class="form-control" [(ngModel)]="FormFirstName" id="firstName" placeholder="First Name">
 				</div>
 				<div class="mb-3">      
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email Id/Mobile No.">
+					<input type="text" class="form-control" [(ngModel)]="FormLastName" id="lastName" placeholder="Last Name">
+				</div>
+				<div class="mb-3">      
+					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id/Mobile No.">
 				</div>
 				<div class="mb-3">        
-					<input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Password">
+					<input type="text" class="form-control" [(ngModel)]="FormMobileNo" id="exampleFormControlInput1" placeholder="Mobile Number">
 				</div>
+				<!-- <div class="mb-3">        
+					<input [hidden]="!isOTPSent" type="text" class="form-control" [(ngModel)]="otp1" id="exampleFormControlInput1" placeholder="OTP">
+				</div> -->
 				<div class="form-check">
-					<input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
-					<label class="form-check-label checklabel">I agree to the <a href="javascript:void(0)">Terms & Conditions</a> of Finizon</label>
+					<input class="form-check-input" type="checkbox" [(ngModel)]="FormCheckbox"  id="check1" name="option1" value="something" checked>
+					<label class="form-check-label checklabel">I agree to the <a href="#">Terms & Conditions</a> of Finizon</label>
 				</div>
-				<div class="mb-3">
-					<a class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)">Register Now</a>
+				<div [hidden]="isOTPSent" class="mb-3">
+					<a class="btn btn-primary theme-button w-100 font14" (click)="otpToggle($event)" href="javascript:void(0)">Send OTP</a>
 				</div>
+				<!-- <div [hidden]="!isOTPSent" class="mb-3">
+					<a class="btn btn-primary theme-button w-100 font14" (click)="verifytheOtp()" href="javascript:void(0)">Register</a>
+				</div> -->
 			</div>
 
 		</div>
@@ -143,5 +156,63 @@
 		</div>
 	</div>	
 </section>
+
+<!-- otp Modal -->
+<div class="modal fade" id="Footerotp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog  modal-dialog-centered">
+	  <div class="modal-content">
+  
+		<div class="modal-body">
+		  <div class="row">
+			<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+			<h3 class="otp-title">Enter OTP</h3>
+			<!-- <p class="otp-text">OTP sent on <b>{{FormEmail}} </b>
+			  <span class="link-text" (click)="EditNumber()">Edit Email?</span>
+			</p> -->
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp1" [(ngModel)]="footerotp1"
+				(keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
+			</div>
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp2" [(ngModel)]="footerotp2"
+				(keyup)="keytab(3,$event)" (keypress)="validation.numberOnly($event)" />
+			</div>
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp3" [(ngModel)]="footerotp3"
+				(keyup)="keytab(4,$event)" (keypress)="validation.numberOnly($event)" />
+			</div>
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp4" [(ngModel)]="footerotp4"
+				(keyup)="keytab(5,$event)" (keypress)="validation.numberOnly($event)" />
+			</div>
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp5" [(ngModel)]="footerotp5"
+				(keyup)="keytab(6,$event)" (keypress)="validation.numberOnly($event)" />
+			</div>
+			<div class="col-2">
+			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp6" [(ngModel)]="footerotp6"
+				(keypress)="validation.numberOnly($event)" (keyup)="verifytheOtp()" />
+			</div>
+			<div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">
+			  <p class="otp-bottomtext">OTP expires in {{resendbuttonText}} s</p>
+			</div>
+			<div class="col-12" *ngIf="resendbuttonText == 'Resend OTP'">
+			  <p class="otp-bottomtext">Didn't recieve OTP? <span class="link-text" (click)="ResendtheOTP()">Resend
+				  OTP</span></p>
+			</div>
+		  </div>
+		  <div class="row pr-btn">
+			<!-- <div class="col-12">
+				<button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
+			  </div>    -->
+			<div class="col-12">
+			  <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
+			</div>
+		  </div>
+		</div>
+  
+	  </div>
+	</div>
+  </div>
 
 

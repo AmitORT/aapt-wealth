@@ -22,18 +22,27 @@ export class HeaderComponent implements OnInit, DoCheck {
   FormFirstName: any;
   FormLastName: any;
   FormMobileNo: any;
-  otp1: any;
   oldToken: any;
   newToken: any;
-
+  otp1: any;
+  interval : any;
+  resendbuttonText = 'Resend OTP';
   WealthUrl = environment.WealthUrl;
   InsuranceUrl = environment.InsuranceUrl;
   CommonUrl = environment.CommonUrl;
   CreditUrl = environment.CreditUrl;
 
+  headotp1:string="";
+  headotp2:string="";
+  headotp3:string="";
+  headotp4:string="";
+  headotp5:string="";
+  headotp6:string="";
+
   constructor(public validation: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) {}
 
   ngDoCheck(): void {
+
     var objToken = this.eligibility.getSessionParams('CustToken');
     if(!this.validation.isNullEmptyUndefined(objToken)){
       this.newToken = objToken.token;
@@ -62,6 +71,11 @@ export class HeaderComponent implements OnInit, DoCheck {
 			$(".sign-in").show();
 			$(".sign-up").hide();
 		});
+
+    this.resendbuttonText = "2:30"
+
+    this.countdown();
+
     var authToken = localStorage.getItem('userAuthToken') || '';
     if (this.validation.isNullEmptyUndefined(authToken)) {
       this.isLoggedIn = false;
@@ -96,6 +110,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     }
     else {
       this.isOTPSent = true;
+      // $("#headerotp-screen").modal("show");
+      // this.resendbuttonText = "2:30"
+      // this.countdown();
       if (calltype == 'login') {
         this.Login(event);
       }
@@ -112,6 +129,9 @@ export class HeaderComponent implements OnInit, DoCheck {
       loginData.append('email', this.FormEmail);
       this.api.post('auth/customer/login', loginData, false).subscribe(async (response: any) => {
         if (response.response.n == 1) {
+          $("#headerotp-screen").modal("show");
+           this.resendbuttonText = "2:30"
+           this.countdown();
           console.log('response',response)
           this.toastr.success(response.response.Msg);
         }
@@ -140,6 +160,9 @@ export class HeaderComponent implements OnInit, DoCheck {
       this.api.post('auth/customer/register', registerData, false).subscribe(async (response: any) => {
         console.log(response);
         if (response.response.n == 1) {
+          $("#headerotp-screen").modal("show");
+           this.resendbuttonText = "2:30"
+           this.countdown();
           this.toastr.success(response.response.Msg);
           console.log(response);
         }
@@ -154,9 +177,14 @@ export class HeaderComponent implements OnInit, DoCheck {
     }
   }
 
+
   Logout(){
     this.isLoggedIn = false;
     localStorage.clear();
+    this.isOTPSent=false;
+    this.ResetModal();
+    this.route.navigate(['/']);
+    this.handleOpenCloseNav();
   }
 
   async verifyOtpBtn(){
@@ -166,19 +194,23 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   async verifyOtp() {
     return new Promise(async (resolve, reject) => {    
-    if (!this.validation.isNullEmptyUndefined(this.otp1) && !this.validation.isNullEmptyUndefined(this.FormEmail) && this.otp1.length == 6) {
+      var otp=this.headotp1.toString()+this.headotp2.toString()+this.headotp3.toString()+this.headotp4.toString()+this.headotp5.toString()+this.headotp6.toString();
+      // console.log("otp",otp)
+    if (!this.validation.isNullEmptyUndefined(this.FormEmail) && otp.length == 6) {
       const data = new FormData();
       data.append("email", this.FormEmail);
-      data.append("otp", this.otp1); //this.otp1 + this.otp2 + this.otp3 + this.otp4 + this.otp5 + this.otp6);
-      let sOTP = this.otp1;
+      data.append("otp", otp); //this.otp1 + this.otp2 + this.otp3 + this.otp4 + this.otp5 + this.otp6);
+      let sOTP = otp;
 
-      this.api.post('auth/customer/ValidateOTP',data).subscribe(async (response: any)=>{
+      this.api.post('auth/customer/ValidateOTP',data).subscribe(async response=>{
         if (response.response.n == 1) {
-          console.log('signin',response);
+          console.log('verifyOtp',response);
           this.toastr.success("OTP Validation Success");
+          $("#headerotp-screen").modal("hide");
           this.isLoggedIn = true;
           var encryptedToken={"token":response.data.token};
           localStorage.setItem("CustToken",this.cryptoManager.Encrypt(encryptedToken));
+          this.GetApplicantData();
           this.ResetModal();
           resolve(response);
         }
@@ -200,6 +232,94 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.FormEmail="";
     this.FormMobileNo="";
     this.otp1="";    
+  }
+
+  countdown() { 
+    clearInterval(this.interval);
+    this.interval = setInterval(() => {
+        var timer:any = this.resendbuttonText;
+        timer =  timer.split(':');
+        var minutes =  timer[0];
+        var seconds =  timer[1];
+        seconds -= 1;
+        if (minutes < 0) return;
+        else if (seconds < 0 && minutes != 0) {
+            minutes -= 1;
+            seconds = 59;
+        }
+        else if (seconds < 10 && seconds.length != 2){
+          seconds = '0' + seconds
+        };
+  
+        this.resendbuttonText = minutes + ':' + seconds;
+  
+        if (minutes == 0 && seconds == 0){ 
+          clearInterval(this.interval)
+          this.resendbuttonText = 'Resend OTP';
+        };
+    }, 1000);
+    
+  }
+
+  EditEmail(){
+    $('#otp-screen').modal('hide');
+    $('#email-id').focus();
+  }
+
+  EditNumber(){
+    $('#headerotp-screen').modal('hide');
+    $('#loginReg').trigger('click');
+    $('#FormEmail').focus();
+  }
+
+  keytab(nextTabId:number,event:any) {
+    let actionFlag=false;
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode<96 || charCode>105)) {
+    }
+    else if(charCode == 8){
+      nextTabId--;
+      if(nextTabId < 1){
+      nextTabId = 1;
+      }
+    actionFlag=true;
+    }
+    else{ 
+      if(nextTabId > 6){
+         nextTabId = 6; 
+        } 
+        actionFlag=true; 
+      }
+    if(actionFlag){
+       const field = document.getElementById("headotp" + nextTabId);
+    if (field) {
+      field.focus();
+      field.click();
+    } 
+  } 
+}
+
+  ResetOTP(){
+    this.headotp1="";
+    this.headotp2="";
+    this.headotp3="";
+    this.headotp4="";
+    this.headotp5="";
+    this.headotp6="";
+  }
+
+  ResendOTP(){
+    this.ResetOTP();
+    const data = new FormData();
+    data.append("email", this.FormEmail);
+    this.api.post('auth/customer/send-otp', data, false).subscribe(response =>{
+      if (response.response.n == 1){
+        console.log(response.data.otp);
+        this.toastr.success(response.data.otp);
+        this.resendbuttonText = "2:30"
+        this.countdown();
+      }
+    })
   }
 
   

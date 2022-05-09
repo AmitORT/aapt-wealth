@@ -102,10 +102,11 @@ export class WealthProductDetailsComponent implements OnInit {
   select_amt:any;
   SetModeOfInvestment:any;
   ShowCarousel:any;
+
  
   ModeOfInvestment:any={
     "Payment_mode":"",
-    "DateForMonth":"",
+    "DateForMonth":"15",
     "monthly_amt":"",
     "yearly_amt":""
   }

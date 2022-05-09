@@ -25,7 +25,7 @@ export class MutualCreateGoalComponent implements OnInit {
     "Payment_Mode":"",
     "Goal_Amount":"",
     "Goal_Duartion":"",
-    "Date_For_Installments":"",
+    "Date_For_Installments":"15",
     "Return_Rate":"0",
     "Inflation_Rate":"0",
     "Saving_Amount":""
@@ -35,12 +35,15 @@ export class MutualCreateGoalComponent implements OnInit {
   CreateGoalList: any = []
 
   DateOfInstallment:any;
+  ProceedCart:any;
   
   constructor(public route:Router,private toastr: ToastrService, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
 
-    
+    // this.ProceedToCart();
+
+
     // if(localStorage.getItem("MyGoals") != null){
     //   this.CreateGoalList=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
     //   console.log("Goals", this.CreateGoalList);      
@@ -119,26 +122,27 @@ export class MutualCreateGoalComponent implements OnInit {
       this.toastr.error('Rate of Inflation is mandatory');
     }
     else {
+    var postData=new FormData();
+    postData.append("type",'1');
+    postData.append("investmentMode",this.CreateGoal.Payment_Mode);
+    postData.append("targetAmount",this.CreateGoal.Goal_Amount);
+    postData.append("startDate",'2021-06-28');
+    postData.append("targetDate",'2022-06-28');
+    postData.append("rateInflation",this.CreateGoal.Inflation_Rate);
+    postData.append("rateReturn",this.CreateGoal.Return_Rate);
+    postData.append("name",this.CreateGoal.Savings);
 
-      var postData=new FormData();
-      postData.append("type",'1');
-      postData.append("investmentMode",this.CreateGoal.Payment_Mode);
-      postData.append("targetAmount",this.CreateGoal.Goal_Amount);
-      postData.append("targetDate",this.CreateGoal.Date_For_Installments);
-      postData.append("expectedCorpus",'0');
-      postData.append("rateInflation",this.CreateGoal.Inflation_Rate);
-      postData.append("rateReturn",this.CreateGoal.Return_Rate);
-      postData.append("name",this.CreateGoal.Savings);
-      postData.append("sms",'0');
-      this.api.post("sipCalculator/create-goal",postData,true).subscribe(response=>{
-        if(response.response.n==1){
-          this.toastr.success(response.response.Msg);
-          this.route.navigate(['/mutual-fund-cart']);
-        }
-        else{
-          this.toastr.error(response.response.Msg);
-        }
-      })
+    this.api.post("goalDetails/create-goal", postData).subscribe(response=>{
+        
+    if(response.response.n==1){
+      this.toastr.success(response.response.Msg);
+      this.ProceedToCart();
+      // this.route.navigate(['/mutual-fund-cart']);
+    }
+    else{
+      this.toastr.error(response.response.Msg);
+    }
+  })
 
       // this.CreateGoalList.push(this.CreateGoal);
   
@@ -154,9 +158,29 @@ export class MutualCreateGoalComponent implements OnInit {
   //   this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);
   // }
 
+  ProceedToCart(){
+    var postData = new FormData();
+    postData.append("goalId",'387');
+    postData.append("transactionTypeId",'1');
+    postData.append("endDateForSip",'2023-02-01T11:01:56.652Z');
+    postData.append("instrumentId",'255527');
+    postData.append("totalAmount",'1234');
+    postData.append("modeOfTransaction",'1');
+    postData.append("frequency",'4');
+    postData.append("transactionSubType",'2');
+    postData.append("frequencyDay",'1');
+    postData.append("startDateForSip",'2021-09-01T11:01:56.652Z');
+    postData.append("serviceProviderAccountId",'20753');
 
+    this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
+      this.ProceedCart=resp
+      let encrypted=this.crypto.Encrypt(this.ProceedCart);
+      localStorage.setItem("ProceedCart",encrypted);
+      console.log("ProceedToCart",resp)
 
-
-
+      this.route.navigate(["/mutual-fund-cart"])
+      
+    })
+  } 
 
 }

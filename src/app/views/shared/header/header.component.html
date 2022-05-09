@@ -8,7 +8,7 @@
   </a>
   <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
 
-    <form class="d-flex 	">
+    <form class="d-flex">
      <ul class="navbar-nav align-items-center">
       <li class="nav-item">
         <a class="nav-link" href="{{InsuranceUrl}}" target="_blank">Insure</a>
@@ -21,15 +21,16 @@
       </li>
       <li class="btn-group hidden-xs">
         <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" [hidden]="isLoggedIn" data-bs-toggle="dropdown" data-bs-display="dynamic" aria-expanded="false" href="javascript:void(0)">Login / Register</a>
-        <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-display="dynamic" (click)="Logout()" [hidden]="!isLoggedIn" aria-expanded="false" href="javascript:void(0)">Logout</a>
+        <!-- <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-display="dynamic" (click)="Logout()" [hidden]="!isLoggedIn" aria-expanded="false" href="javascript:void(0)">Logout</a> -->
         <div [hidden]="isLoggedIn" class="login-popup dropdown-menu dropdown-menu-lg-end">
+
         <div class="sign-in">
           <div class="mb-3">
             <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control" id="emailmobile" placeholder="Email Id/Mobile No.">
           </div>
-          <div class="mb-3">
+          <!-- <div class="mb-3">
             <input [hidden]="!isOTPSent" type="email" name="otpLogin1" [(ngModel)]="otp1" class="form-control" id="otpLogin1" placeholder="OTP">
-          </div>
+          </div> -->
           <div class="mb-3">
             <a [hidden]="isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="otpToggle($event, 'login')">Send OTP</a>
             <a [hidden]="!isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)" (click)="verifyOtpBtn()">Sign In</a>
@@ -101,6 +102,7 @@
   <li><a href="#">About Us</a></li>
   <li><a href="#">Knowledge Center</a></li>
   <li><a href="#">Support</a></li>
+  <li><a href="#"(click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
 </ul>
 <ul class="hidden-lg">
   <li><a href="#">Insurance</a></li>
@@ -110,6 +112,7 @@
   <li><a href="#">About Us</a></li>
   <li><a href="#">Knowledge Center</a></li>
   <li><a href="#">Support</a></li>
+  <li><a href="#"(click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
 </ul>
 <div class="nav-footer">
   <div class="d-flex term-link">
@@ -130,4 +133,62 @@
 
 <!-- <a href="#" class="nav-toggle"><span class="fa fa-bars"></span></a> -->
 
+</div>
+
+<!-- otp Modal -->
+<div class="modal fade" id="headerotp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <h3 class="otp-title">Enter OTP</h3>
+          <p class="otp-text">OTP sent on <b>{{FormEmail}} </b>
+            <!-- <span class="link-text" (click)="EditNumber()">Edit Email?</span> -->
+          </p>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp1" [(ngModel)]="headotp1"
+              (keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp2" [(ngModel)]="headotp2"
+              (keyup)="keytab(3,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp3" [(ngModel)]="headotp3"
+              (keyup)="keytab(4,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp4" [(ngModel)]="headotp4"
+              (keyup)="keytab(5,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp5" [(ngModel)]="headotp5"
+              (keyup)="keytab(6,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp6" [(ngModel)]="headotp6"
+              (keypress)="validation.numberOnly($event)" (keyup)="verifyOtpBtn()" />
+          </div>
+          <div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">
+            <p class="otp-bottomtext">OTP expires in {{resendbuttonText}} s</p>
+          </div>
+          <div class="col-12" *ngIf="resendbuttonText == 'Resend OTP'">
+            <p class="otp-bottomtext">Didn't recieve OTP? <span class="link-text" (click)="ResendOTP()">Resend
+                OTP</span></p>
+          </div>
+        </div>
+        <div class="row pr-btn">
+          <!-- <div class="col-12">
+              <button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
+            </div>    -->
+          <div class="col-12">
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

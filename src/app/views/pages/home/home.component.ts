@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api/api.service';
+import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   showGrid:boolean=false;
 
-  constructor(private api:ApiService,private route:Router) { }
+  constructor(private api:ApiService,private route:Router,private crypto:AescryptoService) { }
 
   ngOnInit(): void {
     this.getwealthBanner();
@@ -67,6 +68,12 @@ export class HomeComponent implements OnInit {
     console.log('products',Product.path)
     this.route.navigate([Product.path.trim()]);
     // [routerLink]="['{{products?.path}}']"
+  }
+
+  GetApplicantData() {
+    this.api.get("auth/customer/user", true).subscribe(response => {
+      localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+    })
   }
 
 }

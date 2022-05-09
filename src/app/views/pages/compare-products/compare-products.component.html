@@ -13,7 +13,7 @@
           <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index">
             <div class="bank-dtl">
               <img (click)="compareCheckboxclick(i,OffersForCompareList.id)" src="assets/img/remove_icon.svg"
-                class="minus" />
+                class="minus"/>
               <img src="assets/img/icici-bank2.png" />
               <h5>{{OffersForCompareList?.name}}</h5>
               <button type="button" class="btn btn-primary apply-btn" [routerLink]="['/wealth-product-details']">
@@ -58,7 +58,7 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title-dark">
+                  <td colspan="4" class="table-title-dark">
                     <h5>Fund Details</h5>
                   </td>
                 </tr>
@@ -68,16 +68,16 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Expense Ratio (%)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>1.66</b></td>
-                  <td><b>1.70</b></td>
-                  <td><b>1.72</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>1.66</b></td>
+                  <!-- <td><b>1.70</b></td> -->
+                  <!-- <td><b>1.72</b></td> -->
                   <!-- <td class="hidden-xs"><b>1.72</b></td> -->
-                  <!-- <td><b>-- --</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -85,15 +85,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Exit Load (%)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>1</b></td>
-                  <td><b>1</b></td>
-                  <td class="hidden-xs"><b>2</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>1</b></td>
+                  <!-- <td><b>1</b></td> -->
+                  <!-- <td class="hidden-xs"><b>2</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -101,15 +101,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Lock-in Period (Years)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>0</b></td>
-                  <td><b>0</b></td>
-                  <td class="hidden-xs"><b>2</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>0</b></td>
+                  <!-- <td><b>0</b></td> -->
+                  <!-- <td class="hidden-xs"><b>2</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -117,15 +117,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Inception Date</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>11-Sep-00</b></td>
-                  <td><b>30-Dec-06</b></td>
-                  <td class="hidden-xs"><b>30-Dec-06</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>11-Sep-00</b></td>
+                  <!-- <td><b>30-Dec-06</b></td> -->
+                  <!-- <td class="hidden-xs"><b>30-Dec-06</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -133,15 +133,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Min. Investment (in Rs)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>5,000</b></td>
-                  <td><b>500</b></td>
-                  <td class="hidden-xs"><b>2</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>5,000</b></td>
+                  <!-- <td><b>500</b></td> -->
+                  <!-- <td class="hidden-xs"><b>2</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <!-- section 1 end -->
                 <tr class="hidden-xs">
@@ -150,7 +150,7 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title-dark">
+                  <td colspan="4" class="table-title-dark">
                     <h5>Return (%)</h5>
                   </td>
                 </tr>
@@ -160,15 +160,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>6 Month</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -176,16 +176,16 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>1 Year</h5>
                   </td>
                 </tr>
                 <tr>
                   <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor1Year.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor1Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 2">
                     <b>{{OffersForCompare[2].returnFor1Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 3">
                     <b>{{OffersForCompare[3].returnFor1Year.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
@@ -195,15 +195,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>2 Year</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>10.2</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>10.2</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -211,18 +211,18 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>3 Year</h5>
                   </td>
                 </tr>
                 <tr>
                   <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor3Year.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor3Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 2">
                     <b>{{OffersForCompare[2].returnFor3Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 3">
                     <b>{{OffersForCompare[3].returnFor3Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 4"><b>-- --</b></td>
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -230,18 +230,18 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>5 Year</h5>
                   </td>
                 </tr>
                 <tr>
                   <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0]?.returnFor5Year.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1]?.returnFor5Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 2" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 2">
                     <b>{{OffersForCompare[2]?.returnFor5Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 3" class="hidden-xs">
+                  <td *ngIf="OffersForCompare.length > 3">
                     <b>{{OffersForCompare[3]?.returnFor5Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 4"><b>-- --</b></td>
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <!-- section 2 end -->
                 <tr class="hidden-xs">
@@ -250,7 +250,7 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title-dark">
+                  <td colspan="4" class="table-title-dark">
                     <h5>Portfolio Attributes</h5>
                   </td>
                 </tr>
@@ -260,15 +260,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Portfolio P/B Ratio</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -276,15 +276,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Portfolio P/E Ratio</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -292,15 +292,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Avg. Maturity (in yrs)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -308,15 +308,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Mod. Duration (in yrs)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10.6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
                   <td colspan="4" class="table-title">
@@ -324,15 +324,15 @@
                   </td>
                 </tr>
                 <tr class="hidden-lg">
-                  <td colspan="3" class="table-title">
+                  <td colspan="4" class="table-title">
                     <h5>Yield to Maturity (%)</h5>
                   </td>
                 </tr>
                 <tr>
-                  <td><b>25.83</b></td>
-                  <td><b>11.6</b></td>
-                  <td class="hidden-xs"><b>10.6</b></td>
-                  <td><b>-- --</b></td>
+                  <td *ngFor="let OffersForCompareList of OffersForCompare; let i=index"><b>25.83</b></td>
+                  <!-- <td><b>11.6</b></td> -->
+                  <!-- <td class="hidden-xs"><b>10./6</b></td> -->
+                  <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <!-- section 3 end -->
               </table>

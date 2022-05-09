@@ -39,6 +39,7 @@ export class MutualSelectGoalComponent implements OnInit {
 
   CreateGoalResponse:any;
   CreateGoalList:any;
+  SelectedGoal:any;
 
   MyGoals:any;
 
@@ -54,14 +55,22 @@ export class MutualSelectGoalComponent implements OnInit {
 
 
   GetMyGoals(){
-    this.api.get("sipCalculator/create-goal",true).subscribe(response=>{
+    this.api.get("goalDetails/create-goal",true).subscribe(response=>{
       if(response.response.n==1){        
         this.MyGoals=response.data;
-        console.log("my goals",this.MyGoals);
+        console.log("my goals",response);
       }
     })    
   }
 
+  GetSelectedGoals(index:number){
+    this.MyGoals[index].selectGoal=!this.MyGoals[index].selectGoal;
 
+    this.SelectedGoal=this.MyGoals.filter((a:any)=>a.selectGoal==1);
+    localStorage.setItem("GetSelectedGoals",this.crypto.Encrypt(this.SelectedGoal));
+    console.log("SelectedGoal",this.SelectedGoal);
+    this.route.navigate(["/mutual-fund-cart"])
+    
+  }
 
 }
