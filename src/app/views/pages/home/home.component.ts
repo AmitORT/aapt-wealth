@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -39,9 +42,37 @@ export class HomeComponent implements OnInit {
 
   showGrid:boolean=false;
 
-  constructor(private api:ApiService,private route:Router,private crypto:AescryptoService) { }
+  private routeSub:any;
+  QueryToken:any;
+  Path:any;
+  _paramSub: any;
+
+  constructor(private api:ApiService,private route:Router,public activeRoute: ActivatedRoute, public validation: ValidateService,private crypto:AescryptoService,) { }
 
   ngOnInit(): void {
+
+    this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
+      console.log(params);
+      this.QueryToken = params.TOKEN;
+      this.Path = params.PATH;
+      console.log("QueryToken", this.QueryToken);
+      console.log("Path", this.Path);
+    });
+    
+    this._paramSub.unsubscribe();
+
+    if (!this.validation.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
+      debugger;
+      this.QueryToken = decodeURIComponent(this.QueryToken);
+      localStorage.setItem("CustToken",this.QueryToken);      
+    }
+    if(!this.validation.isNullEmptyUndefined(this.Path) && this.Path != 'null' && this.Path != "{PATH}"){
+      this.route.navigate([this.Path]);
+    }
+    else{
+      this.route.navigate(['']);
+    }
+    
     this.getwealthBanner();
     this.TestimonialWealth();
     this.ProductsWealth();
