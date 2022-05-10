@@ -495,6 +495,53 @@
   color: #444;
 }
 
+#Toolscollapse .card-body , #Toolscollapse1 .card-body{
+  padding: 0;
+  background: transparent;
+  /* -webkit-backdrop-filter: blur(1px); */
+  /* backdrop-filter: blur(1px); */
+  margin: 15px;
+  margin-top: 0px;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.125);
+  /* border: 0; */
+  border-radius: 0;
+  margin-bottom: 0px;
+ }
+ .menu #Toolscollapse ul li:first-child , .menu #Toolscollapse1 ul li:first-child{
+   margin-top: 0px!important;
+ }
+ .menu #Toolscollapse ul li , .menu #Toolscollapse1 ul li {
+   padding: 5px 10px;
+   font-size: 18px;
+   border: 0;
+   width: 100%;
+ }
+ .menu #Toolscollapse1 ul li a{
+   font-weight: 500;
+ }
+.menu ul li a.drop-menu::after{
+  display: inline-block;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  position: relative;
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  height: auto;
+  width: auto;
+  visibility: visible;
+  transform: rotate(180deg);
+  /* float: right; */
+  background-color: transparent;
+  /* top: 10px; */
+}
+.menu ul li a.drop-menu.collapsed::after{
+  transform: rotate(0deg);
+}
+
 @media only screen and (max-width: 767px) {
   .menu.show-nav {
     transform: translate3d(-100%, 0, 0);

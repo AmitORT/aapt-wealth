@@ -19,12 +19,6 @@
 				<div class="mb-3">      
 					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id/Mobile No//.">
 				</div>
-				<!-- <div [hidden]="!isOTPSent" class="mb-3">        
-					<input type="text" class="form-control" [(ngModel)]="otp1" id="exampleFormControlInput1" placeholder="OTP">
-				</div> -->
-				<!-- <div [hidden]="!isOTPSent" class="mb-3 text-end">
-					<button (click)="verifyOtpBtn()" class="btn btn-primary theme-button font14" ><i class="fa fa-arrow-right"></i></button>
-				</div> -->
 				<div [hidden]="isOTPSent" class="mb-3 text-end">
 					<button (click)="otpToggle($event, 'login')" class="btn btn-primary theme-button font14"><i class="fa fa-arrow-right"></i></button>
 				</div>
@@ -58,9 +52,6 @@
 				<div class="mb-3">        
 					<input type="text" class="form-control" [(ngModel)]="FormMobileNo" id="exampleFormControlInput1" placeholder="Mobile Number">
 				</div>
-				<!-- <div class="mb-3">        
-					<input [hidden]="!isOTPSent" type="text" class="form-control" [(ngModel)]="otp1" id="exampleFormControlInput1" placeholder="OTP">
-				</div> -->
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" [(ngModel)]="FormCheckbox"  id="check1" name="option1" value="something" checked>
 					<label class="form-check-label checklabel">I agree to the <a href="#">Terms & Conditions</a> of Finizon</label>
@@ -68,9 +59,6 @@
 				<div [hidden]="isOTPSent" class="mb-3">
 					<a class="btn btn-primary theme-button w-100 font14" (click)="otpToggle($event)" href="javascript:void(0)">Send OTP</a>
 				</div>
-				<!-- <div [hidden]="!isOTPSent" class="mb-3">
-					<a class="btn btn-primary theme-button w-100 font14" (click)="verifytheOtp()" href="javascript:void(0)">Register</a>
-				</div> -->
 			</div>
 
 		</div>
@@ -101,41 +89,41 @@
 			<div class="col col-half">
 				<h5 class="footer-head">Insurance</h5>
 				<ul class="footer-link">
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>		
+					<li><a (click)="InsurancetRouterUrl('/term-applicant-details')">Term Life Insurance</a></li>			
+					<li><a (click)="InsurancetRouterUrl('/health-select-members')">Health Insurance</a></li>			
+					<li><a (click)="InsurancetRouterUrl('/car-insurance')">Car Insurance</a></li>			
+					<li><a (click)="InsurancetRouterUrl('/two-wheeler-insurance')">2 - Wheeler Insurance</a></li>			
+					<li><a (click)="InsurancetRouterUrl('/unit-insurance-your-details')">4 - Wheeler Insurance</a></li>				
 				</ul>
 			</div>
 			<div class="col col-half">
 				<h5 class="footer-head">Credit Line</h5>
 				<ul class="footer-link">
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>
+					<li><a (click)="CreditRouterUrl('/recommended-offers')">Personal Loan</a></li>			
+					<li><a (click)="CreditRouterUrl('/homeloan-recommended-offer')">Home Loan</a></li>			
+					<li><a (click)="CreditRouterUrl('/educationloan-recommended-offer')">Education Loan</a></li>			
+					<li><a (click)="CreditRouterUrl('/businessloan-recommendedoffer')">Business Loan</a></li>			
+					<li><a (click)="CreditRouterUrl('/propertyloan-recommendedoffer')">Loan Against Property</a></li>
 				</ul>
 			</div>
 			<div class="col col-half">
 				<h5 class="footer-head">Wealth Management</h5>
 				<ul class="footer-link">
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>	
+					<li><a routerlink="/risk-profiling">Mutual Funds</a></li>			
+					<li><a routerlink="/fd-product-list">Fixed Deposits</a></li>			
+					<li><a routerlink="/digital-gold-product-details">Digital Gold</a></li>			
+					<li><a routerlink="/bond-product-List">Bonds</a></li>			
+					<li><a routerlink="/portfolio-management-kyc">PMS</a></li>	
 				</ul>
 			</div>
 			<div class="col col-half">
-				<h5 class="footer-head">About Us</h5>
+				<h5 class="footer-head">General</h5>
 				<ul class="footer-link">
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
-					<li><a href="javascript:void(0)">Lorem Ipsum dolor</a></li>			
+					<li><a (click)="CommontRouterUrl('/tools-sip')">SIP Calculator</a></li>			
+					<li><a (click)="CommontRouterUrl('/tools-emi')">Emi Calculator</a></li>			
+					<li><a (click)="CommontRouterUrl('/create-goal')">Goal Planning</a></li>			
+					<li><a href="javascript:void(0)">About Us</a></li>			
+					<li><a href="javascript:void(0)">Support</a></li>			
 				</ul>
 			</div>
 		</div>
@@ -164,11 +152,7 @@
   
 		<div class="modal-body">
 		  <div class="row">
-			<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
 			<h3 class="otp-title">Enter OTP</h3>
-			<!-- <p class="otp-text">OTP sent on <b>{{FormEmail}} </b>
-			  <span class="link-text" (click)="EditNumber()">Edit Email?</span>
-			</p> -->
 			<div class="col-2">
 			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp1" [(ngModel)]="footerotp1"
 				(keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
@@ -202,9 +186,6 @@
 			</div>
 		  </div>
 		  <div class="row pr-btn">
-			<!-- <div class="col-12">
-				<button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
-			  </div>    -->
 			<div class="col-12">
 			  <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
 			</div>
