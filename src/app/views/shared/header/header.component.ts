@@ -33,6 +33,10 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   Token:any;
   WealthdashboardURL='/wealth-dashboard';
+  ToolsSipUrl='/tools-sip';
+  ToolsEmiUrl='/tools-emi';
+  ToolsGoalUrl='/create-goal';
+  ProfileUrl='/profile-details';
 
   constructor(public validation: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) {}
 
@@ -88,8 +92,26 @@ export class HeaderComponent implements OnInit, DoCheck {
     if(para=='Dashboard'){
       this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.WealthdashboardURL));
     }
+    if(para=='tools-sip'){
+      this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.ToolsSipUrl));
+    }
+    if(para=='tools-emi'){
+      this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.ToolsEmiUrl));
+    }
+    if(para=='tools-goal'){
+      this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.ToolsGoalUrl));
+    }
+    if(para=='profile'){
+      this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.ProfileUrl));
+    }
     // console.log("CommonUrl",this.CommonUrl)
     window.location.href=this.CommonUrl;
+  }
+
+  GotoInsurance(){
+    this.Token = localStorage.getItem("CustToken");
+    this.InsuranceUrl = environment.InsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+     window.location.href = this.InsuranceUrl;
   }
 
   GotoCredit() {

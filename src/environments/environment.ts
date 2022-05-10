@@ -4,38 +4,39 @@
 
 export const environment = {
   production: false,
-  ServerUrl:"https://findev.aaptfin.com/api/",
+  ServerUrl: "https://findev.aaptfin.com/api/",
 
   // --LOCAL--
 
   // ng serve --port 4200
-  CommonUrl:"http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}",  
+  CommonUrl: "http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}",
 
-   // ng serve --port 54775
-  CreditUrl:"http://localhost:54775?TOKEN={TOKEN}&PATH={PATH}",  
+  // ng serve --port 54775
+  CreditUrl: "http://localhost:54775?TOKEN={TOKEN}&PATH={PATH}",
 
-  InsuranceUrl:"http://uat.finizoninsurance.com",
+  // ng serve --port 50196
+  InsuranceUrl: "http://localhost:50196?TOKEN={TOKEN}&PATH={PATH}",
 
-   // ng serve --port 57617
-  WealthUrl:"http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
+  // ng serve --port 57617
+  WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
 
- // --LOCAL--
+  // --LOCAL--
 
   // --UAT FINIZON--
 
-  //CommonUrl:"https://uat.finizon.com",
-  //CreditUrl:"https://uat.finizon.com/credit",  
-  //InsuranceUrl:"http://uat.finizoninsurance.com",
-  //WealthUrl:"https://uat.finizon.com/wealth",
+  //CommonUrl:"https://uat.finizon.com?TOKEN={TOKEN}&PATH={PATH}",
+  //CreditUrl:"https://uat.finizon.com/credit?TOKEN={TOKEN}&PATH={PATH}",  
+  //InsuranceUrl:"http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
+  //WealthUrl:"https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}",
 
   // --UAT FINIZON--
 
   // --UAT ONEROOFTECH--
 
-  // CommonUrl:"http://finizon.onerooftechnologies.com/",
+  // CommonUrl:"http://finizon.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
   // CreditUrl:"http://finizon-credit.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // InsuranceUrl:"http://finizon-insurance.onerooftechnologies.com/",
-  // WealthUrl:"http://finizon-wealth.onerooftechnologies.com/",
+  // InsuranceUrl:"http://finizon-insurance.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  // WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
 
   // --UAT ONEROOFTECH--
 };

@@ -14,7 +14,7 @@
             <a class="nav-link" (click)="GoToCommon('Dashboard')" [hidden]="!isLoggedIn">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{InsuranceUrl}}" target="_blank">Insure</a>
+            <a class="nav-link" (click)="GotoInsurance()">Insure</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="GotoCredit()">Credit</a>
@@ -112,17 +112,39 @@
       </a>
     </span>
     <ul class="hidden-xs hidden-sm">
-      <li><a href="#">Tools</a></li>
+      <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
+      <!-- <li><a href="#">Tools</a></li> -->
+      <li><a data-bs-toggle="collapse" href="#Toolscollapse" role="button" aria-expanded="false" aria-controls="collapseExample" class="drop-menu collapsed">Tools</a></li>
+      <div class="collapse" id="Toolscollapse">
+        <div class="card card-body">
+          <ul>
+            <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
+            <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
+            <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
+          </ul>          
+        </div>
+      </div>
       <li><a href="#">About Us</a></li>
       <li><a href="#">Knowledge Center</a></li>
       <li><a href="#">Support</a></li>
       <li (click)="Logout()" [hidden]="!isLoggedIn"><a>Logout</a></li>
     </ul>
     <ul class="hidden-lg">
-      <li><a href="#">Insurance</a></li>
-      <li><a [routerLink]="['/']">Credit</a></li>
-      <li><a href="#">Wealth</a></li>
-      <li><a href="#">Tools</a></li>
+      <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
+      <li><a (click)="GotoInsurance()">Insure</a></li>
+      <li><a (click)="GotoCredit()">Credit</a></li>
+      <li><a [routerLink]="['/']">Wealth</a></li>
+      <!-- <li><a href="#">Tools</a></li> -->
+      <li><a data-bs-toggle="collapse" href="#Toolscollapse1" role="button" aria-expanded="false" aria-controls="collapseExample" class="drop-menu">Tools</a></li>
+      <div class="collapse" id="Toolscollapse1">
+        <div class="card card-body">
+          <ul>
+            <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
+            <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
+            <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
+          </ul>          
+        </div>
+      </div>
       <li><a href="#">About Us</a></li>
       <li><a href="#">Knowledge Center</a></li>
       <li><a href="#">Support</a></li>
