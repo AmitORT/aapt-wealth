@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { EligibilityService } from 'src/app/services/eligibility/eligibility.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
+import { environment } from 'src/environments/environment';
 declare var $:any;
 
 @Component({
@@ -36,6 +37,11 @@ export class FooterComponent implements OnInit {
   interval : any;
   resendbuttonText = 'Resend OTP';
   footerYear:number= new Date().getFullYear();
+  Token: any;
+  CreditUrl = environment.CreditUrl;
+  InsuranceUrl = environment.InsuranceUrl;
+  WealthUrl = environment.WealthUrl;
+  CommonUrl = environment.CommonUrl;
 
   constructor(public api:ApiService, public validation: ValidateService, public toastr: ToastrService, public route: Router,  private cryptoManager: AescryptoService, public eligibility: EligibilityService) { }
 
@@ -81,6 +87,33 @@ export class FooterComponent implements OnInit {
         this.MobileSiginBarFlag = false;
       }
     }
+  }
+
+
+  CreditRouterUrl(Path: any) {
+    this.Token = localStorage.getItem("CustToken");
+    this.CreditUrl = environment.CreditUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.CreditUrl = this.CreditUrl.replace("{PATH}", encodeURIComponent(Path));
+    window.location.href = this.CreditUrl;
+  }
+
+  InsurancetRouterUrl(Path: any) {
+    this.Token = localStorage.getItem("CustToken");
+    this.InsuranceUrl = environment.InsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.InsuranceUrl = this.InsuranceUrl.replace("{PATH}", encodeURIComponent(Path));
+    window.location.href = this.InsuranceUrl;
+  }
+  wealthtRouterUrl(Path: any) {
+    this.Token = localStorage.getItem("CustToken");
+    this.WealthUrl = environment.WealthUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.WealthUrl = this.WealthUrl.replace("{PATH}", encodeURIComponent(Path));
+    window.location.href = this.WealthUrl;
+  }
+  CommontRouterUrl(Path: any) {
+    this.Token = localStorage.getItem("CustToken");
+    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
+    window.location.href = this.CommonUrl;
   }
 
   otpToggle(event: Event, calltype?: any) {
