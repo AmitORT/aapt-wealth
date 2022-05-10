@@ -387,6 +387,20 @@ p {
     font-size: 15px !important;
   }
 
+  #Footerotp-screen .modal-dialog {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    max-width: 100%;
+    align-items: end;
+}
+#Footerotp-screen .modal-content {
+  border-radius: 18px 18px 0px 0px !important;
+}
+#Footerotp-screen .modal-body {
+  padding: 1.5rem 1.5rem 0;
+}
+
   .hidden-xs {
     display: none;
   }
@@ -451,7 +465,7 @@ p {
   }
 
   .mobile-sticky {
-    display: none;
+    /* display: none; */
     padding: 10px;
     background: #33333366;
     float: left;

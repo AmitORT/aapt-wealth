@@ -34,15 +34,15 @@
                   <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
                     id="emailmobile" placeholder="Email Id/Mobile No.">
                 </div>
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                   <input [hidden]="!isOTPSent" type="email" name="otpLogin1" [(ngModel)]="otp1" class="form-control"
                     id="otpLogin1" placeholder="OTP">
-                </div>
+                </div> -->
                 <div class="mb-3">
                   <a [hidden]="isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)"
                     (click)="otpToggle($event, 'login')">Send OTP</a>
-                  <a [hidden]="!isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)"
-                    (click)="verifyOtpBtn()">Sign In</a>
+                  <!-- <a [hidden]="!isOTPSent" class="btn btn-primary theme-button w-100 font14" href="javascript:void(0)"
+                    (click)="verifyOtpBtn()">Sign In</a> -->
                 </div>
                 <hr />
                 <p class="ask-title">Not yet on Finizon? <span class="open-signup">Register Now</span></p>
@@ -69,9 +69,9 @@
                   <input type="text" [(ngModel)]="FormMobileNo" class="form-control" name="mnumber1"
                     placeholder="Mobile Number">
                 </div>
-                <div [hidden]="!isOTPSent" class="mb-3">
+                <!-- <div [hidden]="!isOTPSent" class="mb-3">
                   <input type="text" class="form-control" [(ngModel)]="otp1" name="reg-OTP" id="rOTP" placeholder="OTP">
-                </div>
+                </div> -->
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" checked>
                   <label class="form-check-label checklabel">I agree to the <a href="#">Terms & Conditions</a> of
@@ -127,7 +127,7 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Knowledge Center</a></li>
       <li><a href="#">Support</a></li>
-      <li (click)="Logout()" [hidden]="!isLoggedIn"><a>Logout</a></li>
+      <li><a href="#" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
     <ul class="hidden-lg">
       <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
@@ -148,8 +148,8 @@
       <li><a href="#">About Us</a></li>
       <li><a href="#">Knowledge Center</a></li>
       <li><a href="#">Support</a></li>
-      <li (click)="GoToCommon('Dashboard')" [hidden]="!isLoggedIn" ><a>Dashboard</a></li>
-    <li (click)="Logout()" [hidden]="!isLoggedIn"><a>Logout</a></li>
+      <li><a (click)="GoToCommon('Dashboard')" [hidden]="!isLoggedIn">Dashboard</a></li>
+      <li><a href="#" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
     <div class="nav-footer">
       <div class="d-flex term-link">
@@ -170,4 +170,62 @@
 
   <!-- <a href="#" class="nav-toggle"><span class="fa fa-bars"></span></a> -->
 
+</div>
+
+<!-- otp Modal -->
+<div class="modal fade" id="headerotp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="row">
+          <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <h3 class="otp-title">Enter OTP</h3>
+          <p class="otp-text">OTP sent on <b>{{FormEmail}} </b>
+            <!-- <span class="link-text" (click)="EditNumber()">Edit Email?</span> -->
+          </p>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp1" [(ngModel)]="headotp1"
+              (keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp2" [(ngModel)]="headotp2"
+              (keyup)="keytab(3,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp3" [(ngModel)]="headotp3"
+              (keyup)="keytab(4,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp4" [(ngModel)]="headotp4"
+              (keyup)="keytab(5,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp5" [(ngModel)]="headotp5"
+              (keyup)="keytab(6,$event)" (keypress)="validation.numberOnly($event)" />
+          </div>
+          <div class="col-2">
+            <input type="number" class="form-control otp-field" maxlength="1" id="headotp6" [(ngModel)]="headotp6"
+              (keypress)="validation.numberOnly($event)" (keyup)="verifyOtpBtn()" />
+          </div>
+          <div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">
+            <p class="otp-bottomtext">OTP expires in {{resendbuttonText}} s</p>
+          </div>
+          <div class="col-12" *ngIf="resendbuttonText == 'Resend OTP'">
+            <p class="otp-bottomtext">Didn't recieve OTP? <span class="link-text" (click)="ResendOTP()">Resend
+                OTP</span></p>
+          </div>
+        </div>
+        <div class="row pr-btn">
+          <!-- <div class="col-12">
+              <button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
+            </div>    -->
+          <div class="col-12">
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -1,0 +1,121 @@
+     
+#headerotp-screen .modal-content, #Footerotp-screen .modal-content{
+    border-radius: 12px;
+  }
+  #headerotp-screen .btn-close, #Footerotp-screen .btn-close{
+    position: absolute;
+    right: 3%;
+    top: 3%;
+  }
+  #headerotp-screen .modal-body, #Footerotp-screen .modal-body{
+  padding: 1.5rem;
+  }
+  #headerotp-screen .otp-title, #Footerotp-screen .otp-title{
+    color: #465A65;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 30px;
+    margin-bottom: 20px;
+  }
+  #headerotp-screen .otp-text, #Footerotp-screen .otp-text{
+    color: #222222;
+    margin-bottom: 20px;
+  }
+  #headerotp-screen .link-text, #Footerotp-screen .link-text{
+    color: #00A0AD;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  #headerotp-screen .otp-field, #Footerotp-screen .otp-field{
+    border: 1px solid #858585;
+    border-radius: 8px;
+    height: 60px;
+    color: #00A0AD;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+  }
+  #headerotp-screen .pr-btn, #Footerotp-screen .pr-btn{
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #b4b4b4;
+    margin-top: 10px;
+  }
+  #headerotp-screen .otp-cancel, #Footerotp-screen .otp-cancel{
+    color: #F54B4B;
+    font-weight: 600;
+    font-size: 18px;
+    background: transparent;
+    border: 0;
+  }
+  #headerotp-screen .otp-bottomtext, #Footerotp-screen .otp-bottomtext{
+    color: #222222;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  @media (min-width: 576px){
+  #headerotp-screen .modal-dialog , #Footerotp-screen .modal-dialog{
+    max-width: 400px;
+  }
+  #headerotp-screen .modal-body .col-2, #Footerotp-screen .modal-body .col-2{
+    padding-right: 0px;
+  } 
+  }
+  /* Chrome, Safari, Edge, Opera */
+  #headerotp-screen input::-webkit-outer-spin-button,
+  #headerotp-screen input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  }
+  
+  #Footerotp-screen input::-webkit-outer-spin-button,
+  #Footerotp-screen input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  }
+  
+  /* Firefox */
+  #headerotp-screen input[type=number] {
+  -moz-appearance: textfield;
+  }
+  #Footerotp-screen input[type=number] {
+    -moz-appearance: textfield;
+    }
+  
+  @media only screen and (max-width:767px){
+    #headerotp-screen .otp-text, #Footerotp-screen .otp-text {
+      font-size: 14px;
+  }
+  #mob_signup .modal-dialog {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    max-width: 100%;
+    align-items: end;
+} 
+#mob_signup .modal-content {
+  border-radius: 18px 18px 0px 0px;
+}
+#mob_signup .modal-body {
+  padding: 1.5rem 1.5rem 0;
+}
+
+#mob_signin .modal-dialog {
+  margin: 0;
+  display: flex;
+  height: 100vh;
+  max-width: 100%;
+  align-items: end;
+} 
+#mob_signin .modal-content {
+border-radius: 18px 18px 0px 0px;
+}
+#mob_signin .modal-body {
+padding: 1.5rem 1.5rem 0;
+}
+  #headerotp-screen .col-2, #Footerotp-screen .col-2{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  }

@@ -101,4 +101,10 @@ export class HomeComponent implements OnInit {
     // [routerLink]="['{{products?.path}}']"
   }
 
+  GetApplicantData() {
+    this.api.get("auth/customer/user", true).subscribe(response => {
+      localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+    })
+  }
+
 }

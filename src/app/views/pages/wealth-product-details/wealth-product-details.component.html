@@ -74,11 +74,11 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
 
-          <li class="nav-item" (click)="ShowCarousel = '1'">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu1" [ngClass]="ShowCarousel == '1'?'active':''">Overview</a>
+          <li class="nav-item" [ngClass]="ShowCarousel == '1'?'active':''" (click)="ShowCarousel = '1'" >
+            <a class="nav-link" data-bs-toggle="tab" href="#menu1" >Overview</a>
           </li>
-          <li class="nav-item" (click)="ShowCarousel = '2'">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu2" [ngClass]="ShowCarousel == '2'?'active':''">Asset Allocation</a>
+          <li class="nav-item" [ngClass]="ShowCarousel == '2'?'active':''" (click)="ShowCarousel = '2'">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu2" >Asset Allocation</a>
           </li>
         </ul>
 
@@ -386,19 +386,21 @@
         <div class="right-box">
           <h5>Select Mode of Investment</h5>
           <ul class="nav nav-tabs" id="year-tabs" role="tablist">
-            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'" >
               <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab"
-                aria-controls="monthly" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">Monthly</button>
+                aria-controls="monthly" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
+                Monthly</button>
             </li>
             <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
               <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl" type="button" role="tab"
-                aria-controls="otl" aria-selected="false" [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">One-time Lumpsum</button>
+                aria-controls="otl" aria-selected="false" [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
+                One-time Lumpsum</button>
             </li>
           </ul>
 
           <div class="tab-content">
             <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab"
-            *ngIf="ModeOfInvestment.Payment_mode == '1'">
+            *ngIf="ModeOfInvestment.Payment_mode != '2'">
               <div class="row mt-3">
                 <div class="col-lg-7 col-7">
                   <p class="pt-2"><b>SIP Amount</b></p>
@@ -511,7 +513,7 @@
                   <p class="cf">Compare Fund</p>
                 </div>
                 <div class="col-lg-6 col-6">
-                  <button class="nav-link btn btn-primary invest-button">Invest</button>
+                  <button class="nav-link btn btn-primary invest-button" [routerLink]="['/mutual-select-goal']">Invest</button>
                 </div>
               </div>
 
@@ -707,7 +709,7 @@
             <ul class="nav nav-tabs" id="invest-tabs" role="tablist">
               <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'"> 
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly-mob" type="button"
-                  role="tab" aria-controls="monthly-mob" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">Monthly</button>
+                  role="tab" aria-controls="monthly-mob" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">Monthly</button>
               </li>
               <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl-mob" type="button" role="tab"
@@ -717,7 +719,7 @@
 
             <div class="tab-content">
               <div class="tab-pane fade show active" id="monthly-mob" role="tabpanel" aria-labelledby="monthly-tab"
-              *ngIf="ModeOfInvestment.Payment_mode == '1'">
+              *ngIf="ModeOfInvestment.Payment_mode != '2'">
                 <div class="row mt-3">
                   <div class="col-lg-7 col-7">
                     <p class="pt-2"><b>SIP Amount</b></p>

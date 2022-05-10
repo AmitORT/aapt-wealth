@@ -24,8 +24,8 @@
                    
                 <div class="financial-slider trendprod"  >
                 <owl-carousel-o [options]="customOptions" >
-                    <ng-template carouselSlide *ngFor="let goals of MyGoals">
-                        <div class="trending-product" [routerLink]="['/mutual-fund-cart']" >
+                    <ng-template carouselSlide *ngFor="let goals of MyGoals, let i=index">
+                        <div class="trending-product" id="selectGoal" (click)="GetSelectedGoals(i)">
                             <div class="row align-items-center">
                                 <div class="col-lg-2 col-3">
                                     <img src="assets/img/car.png">
