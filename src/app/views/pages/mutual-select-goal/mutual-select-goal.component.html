@@ -169,15 +169,14 @@
             
     <!-- </div> -->
 
-    <div class="d-flex border1" [routerLink]="['/mutual-create-goal']" >
+    <div class="d-flex border1" [routerLink]="['/mutual-create-goal']">
       <img src="assets/img/mission.svg" alt="">
       <p class="pt-3 colr">+ Create New Goal</p>
     </div>
 
-    <a href="" class="btn btn-primary w-100 theme-button nav-link mt-5" [routerLink]="['/mutual-fund-cart']"> 
-        Invest without a Goal</a>
+    <a  class="btn btn-primary w-100 theme-button nav-link mt-5" (click)="InvestWithoutGoal()"> 
+      Invest without a Goal</a>
        
-    
     </div>
 </div>
 

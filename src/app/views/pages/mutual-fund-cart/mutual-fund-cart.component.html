@@ -1,10 +1,9 @@
 <div class="container mgb-10per">
   <div class="row mt-4">
     <div class="col-lg-12">
-      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/mutual-select-goal']"><i
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" (click)="GetBackToFunds()"><i
             class="fa fa-arrow-left i-icon"></i></span>Fund Cart
       </h4>
-
     </div>
   </div>
   <div class="row align-items-center risk1 mt-5">
@@ -29,12 +28,12 @@
           <div class="col-lg-12">
             <ul class="nav nav-tabs" id="myTab" role="tablist">
 
-              <li class="nav-item" role="presentation">
-                <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode=='1' ? 'active' :''"
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+                <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode != '2' ? 'active' :''"
                   data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
                   aria-selected="true">Monthly SIP</button>
               </li>
-              <li class="nav-item" role="presentation">
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
                 <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode=='2' ? 'active' :''"
                   data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
                   aria-selected="false">Lumpsum</button>
@@ -48,13 +47,16 @@
         <div class="tab-content">
 
           <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
-            [ngClass]="ModeOfInvestment.Payment_mode == '1'?'active':''">
+            [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
             <div class="row amount">
-              <div class="col-lg-10 col-10">
-                <p>₹ {{ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p>
+              <div class="col-lg-7 col-10 position-relative">
+                <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.monthly_amt" />
+                <span class="rupees">₹</span>
+                <!-- <p>₹ {{ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p> -->
+                <span class="units">15 Units</span>
               </div>
 
-              <div class="col-lg-2 col-2 position-relative text-end">
+              <div class="col-lg-2 col-2 offset-lg-3 position-relative text-end">
                 <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
                   [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
                 <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
@@ -72,15 +74,97 @@
           <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
             [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
             <div class="row amount">
-              <div class="col-lg-10 col-10">
-                <p>₹ {{ModeOfInvestment?.yearly_amt}}<span>15 Units</span></p>
+              <div class="col-lg-7 col-10 position-relative">
+                <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.yearly_amt" />
+                <span class="rupees">₹</span>
+                <!-- <p>₹ {{ModeOfInvestment?.yearly_amt}}<span>15 Units</span></p> -->
+                <span class="units">15 Units</span>
               </div>
             </div>
           </div>
 
         </div>
 
+        
+
       </div>
+
+      <!-- <div class="container1" id="selectBank" >
+        <div class="row">
+          <div class="col-lg-10 col-10">
+            <div class="d-flex">
+              <img src="assets/img/ICICI.png" alt="">
+              <h5>{{ProductOverview?.name}}</h5>
+            </div>
+          </div>
+          <div class="col-lg-2 col-2">
+            <img src="assets/img/delete_icon1.svg" alt="" class="del-icon">
+          </div>
+
+        </div>
+        <div class="row mfc-tabs">
+          <div class="col-lg-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+                <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode != '2' ? 'active' :''"
+                  data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
+                  aria-selected="true">Monthly SIP</button>
+              </li>
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
+                <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode=='2' ? 'active' :''"
+                  data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
+                  aria-selected="false">Lumpsum</button>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+
+        <div class="tab-content">
+
+          <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
+            [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
+            <div class="row amount">
+              <div class="col-lg-7 col-10 position-relative">
+                <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.monthly_amt" />
+                <span class="rupees">₹</span>
+            
+                <span class="units">15 Units</span>
+              </div>
+
+              <div class="col-lg-2 col-2 offset-lg-3 position-relative text-end">
+                <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
+                  [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
+                <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-12">
+                <p class="n-line">SIP Date Installment will be deducted on <b>{{ModeOfInvestment?.DateForMonth}}th of
+                    every month.</b></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
+            [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
+            <div class="row amount">
+              <div class="col-lg-7 col-10 position-relative">
+                <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.yearly_amt" />
+                <span class="rupees">₹</span>
+             
+                <span class="units">15 Units</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div> -->
+
+
 
       <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal" (click)="GetBankDetails()">
         <img src="assets/img/shopping-cart-add.svg" alt="">
@@ -96,7 +180,7 @@
 
 <!-- Compare Products Modal -->
 <div class="modal fade" id="compare-products-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-centered">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-between pb-0 ">
         <!-- <span class="mob-tab-dash"></span> -->

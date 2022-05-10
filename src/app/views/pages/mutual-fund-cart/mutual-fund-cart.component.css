@@ -34,9 +34,10 @@
 .n-line {
   margin: 0;
   font-size: 14px;
+  padding-top: 5px;
 }
 .risk1 .container1{
-    min-height: 201px;
+    min-height: 185px;
     background-color: #fff;
     border: 1px solid #B4B4B4;
     margin-left: 0px;
@@ -452,7 +453,7 @@ input[type=date]::-webkit-inner-spin-button {
 }
 .nav-tabs .nav-link.active {
   color: #E27E2B!important;
-  border-bottom: 2px solid #e27e28!important;
+  border-bottom: 3px solid #e27e28!important;
 }
 .nav-tabs {
   border-bottom: unset;
@@ -471,15 +472,28 @@ input[type=date]::-webkit-inner-spin-button {
   font-size: 26px;
   font-weight: 600;
 }
-.amount span {
+.amount span.units {
   float: right;
     background: #00A0AD3D;
     color: #00A0AD;
     border-radius: 4px;
-    padding: 5px 10px;
+    padding: 3px 10px;
     /* margin-top: -3px; */
     border: 1px solid #00A0AD;
     font-size: 14px;
+    position: absolute;
+    top: 0.8rem;
+    right: 3rem;
+}
+.amount span.rupees {
+  color: #222;
+  position: absolute;
+  z-index: 999;
+  top: 0.5rem;
+  font-weight: 600;
+  font-size: 22px;
+  margin: auto;
+  left: 1rem;
 }
 .calender{
   position: absolute;
@@ -503,12 +517,24 @@ input[type=date]::-webkit-inner-spin-button {
   border-radius: 12px;
   font-size: 16px !important;
 }
-
+.custom-formfield.form-control{
+  border: none !important;
+  border-bottom: 1px solid #b4b4b4 !important;
+  border-radius: 0px;
+  width: 18rem !important;
+  float: left;
+  font-size: 22px;
+  font-weight: 600;
+  padding-left: 1.3rem;
+}
 
 
 @media only screen and (max-width: 767px){
   .just-center{
     justify-content: center;
+  }
+  .custom-formfield.form-control{
+    width: 15rem !important;
   }
   .remove-btn{
     font-size: 14px;

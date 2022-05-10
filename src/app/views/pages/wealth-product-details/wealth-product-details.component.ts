@@ -105,7 +105,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
  
   ModeOfInvestment:any={
-    "Payment_mode":"",
+    "Payment_mode":"1",
     "DateForMonth":"15",
     "monthly_amt":"",
     "yearly_amt":""
@@ -201,7 +201,7 @@ export class WealthProductDetailsComponent implements OnInit {
         
         let encrypted=this.crypto.Encrypt(this.ProductOverview);
         localStorage.setItem("ProductOverview",encrypted);
-        console.log(this.ProductSectorDetails)
+        // console.log(this.ProductSectorDetails)
       }else{
         alert(resp.response.Msg)
       }

@@ -4,6 +4,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-mutual-select-goal',
@@ -40,10 +41,11 @@ export class MutualSelectGoalComponent implements OnInit {
   CreateGoalResponse:any;
   CreateGoalList:any;
   SelectedGoal:any;
+  InvestWithoutGoalResp:any;
 
   MyGoals:any;
 
-  constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
+  constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -71,6 +73,29 @@ export class MutualSelectGoalComponent implements OnInit {
     console.log("SelectedGoal",this.SelectedGoal);
     this.route.navigate(["/mutual-fund-cart"])
     
+  }
+
+  InvestWithoutGoal(){
+
+    var postData=new FormData();
+    postData.append("transactionTypeId","1");
+    postData.append("instrumentId","255527");
+    postData.append("totalAmount","1234");
+    postData.append("modeOfTransaction","1");
+    postData.append("frequency","4");
+    postData.append("transactionSubType","2");
+    postData.append("frequencyDay","1");
+    postData.append("serviceProviderAccountId","20753");
+
+    this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
+      this.InvestWithoutGoalResp=resp;
+      let encrypted=this.crypto.Encrypt(this.InvestWithoutGoalResp)
+      localStorage.setItem("InvestWithoutGoal",encrypted)
+      // console.log("InvestWithoutGoalResp",this.InvestWithoutGoalResp)
+      this.route.navigate(["/mutual-fund-cart"])
+     
+    })
+
   }
 
 }
