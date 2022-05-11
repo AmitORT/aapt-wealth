@@ -30,6 +30,7 @@ export class MutualFundCartComponent implements OnInit {
   ConfirmedCart: any;
   BankNames: any;
   selectedBank:any;
+  SelectedBank:any;
 
   // uniqueID:
 
@@ -99,22 +100,31 @@ export class MutualFundCartComponent implements OnInit {
   }
 
   AddCart(index: number, ID: any) {
+    debugger;
     for (let i = 0; i < this.BankNames.length; i++) {
       if (this.BankNames[i].id == ID) {
-        this.BankNames[i].SelectedButton = !this.BankNames[i].SelectedButton;
+        this.BankNames[i].selectBank = !this.BankNames[i].selectBank;
       }
+    }
+    if(this.BankNames.filter((a:any)=>a.selectBank==true).length>4){
+      this.BankNames[index].selectBank=false;
+      this.toastr.info("You can add max 4 offer for compare");
+    }else{
+       this.SelectedBank=this.BankNames.filter((a:any)=>a.selectBank==true);
+       localStorage.setItem("SelectedFunds",this.crypto.Encrypt(this.SelectedBank));
+       console.log("compareoffer",this.SelectedBank);
     }
   }
 
-  GetSelectedBank(index:number){
-    this.BankNames[index].selectBank=!this.BankNames[index].selectBank;
+  // GetSelectedBank(index:number){
+  //   this.BankNames[index].selectBank=!this.BankNames[index].selectBank;
 
-    this.selectedBank=this.BankNames.filter((a:any)=>a.selectBank==1);
-    localStorage.setItem("BankNames",this.crypto.Encrypt(this.selectedBank));
-    console.log("SelectedGoal",this.selectedBank);
-    this.route.navigate(["/mutual-fund-cart"])
+  //   this.selectedBank=this.BankNames.filter((a:any)=>a.selectBank==1);
+  //   localStorage.setItem("BankNames",this.crypto.Encrypt(this.selectedBank));
+  //   console.log("SelectedGoal",this.selectedBank);
+  //   this.route.navigate(["/mutual-fund-cart"])
     
-  }
+  // }
 
   ConfirmCart() {
 
@@ -127,11 +137,9 @@ export class MutualFundCartComponent implements OnInit {
     // }
     // console.log("uniquid",uniqueId)
 
- 
-    
-   var postData = new FormData();
+    var postData = new FormData();
 
-    postData.append("uniqueId",this.InvestWithoutGoal.uniqueId)
+    postData.append("uniqueId", this.InvestWithoutGoal.uniqueId)
 
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
       this.ConfirmedCart = resp;

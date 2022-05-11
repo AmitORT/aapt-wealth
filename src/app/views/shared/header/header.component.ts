@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   GoToCommon(para:any){
-    debugger;
+    
     this.Token=localStorage.getItem("CustToken");    
     // console.log("Token",this.Token)
     this.CommonUrl=environment.CommonUrl.replace("{TOKEN}",encodeURIComponent(this.Token));

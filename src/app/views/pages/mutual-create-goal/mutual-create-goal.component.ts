@@ -135,6 +135,7 @@ export class MutualCreateGoalComponent implements OnInit {
     this.api.post("goalDetails/create-goal", postData).subscribe(response=>{
         
     if(response.response.n==1){
+      debugger;
       this.toastr.success(response.response.Msg);
       this.ProceedToCart();
       // this.route.navigate(['/mutual-fund-cart']);
@@ -159,6 +160,7 @@ export class MutualCreateGoalComponent implements OnInit {
   // }
 
   ProceedToCart(){
+    debugger;
     var postData = new FormData();
     postData.append("goalId",'387');
     postData.append("transactionTypeId",'1');
