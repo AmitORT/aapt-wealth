@@ -17,7 +17,6 @@ export class WealthProductDetailsComponent implements OnInit {
   flag:boolean=false;
   PreminumTime:boolean=true;
 
-  name:any;
 
   customOptions: OwlOptions = {
     items: 3,
