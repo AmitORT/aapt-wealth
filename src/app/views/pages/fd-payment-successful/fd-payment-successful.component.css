@@ -196,7 +196,8 @@
     margin: auto;
   }
   .right-sec{
-    height: 45vh;
+    height: 40vh;
+    margin-top: 10%;
   }
   .theme-button{
     width: 50%;
@@ -208,8 +209,10 @@
     padding: 13px;
   }
   .trans-footer{
-    width: 90% !important;
+    width: 100% !important;
     bottom: 40px;
+    left: 0;
+    padding: 5px 15px;
   }
   .container1{
     width: 100%;

@@ -47,23 +47,43 @@ export class MutualFundCartComponent implements OnInit {
     this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
     console.log("ProductOverview", this.ProductOverview)
 
-    // if(localStorage.getItem("InvestWithoutGoal") != null){
+    if(localStorage.getItem("InvestWithoutGoal") != null){
     this.InvestWithoutGoal = this.crypto.Decrypt(localStorage.getItem("InvestWithoutGoal"));
     console.log("InvestWithoutGoal", this.InvestWithoutGoal)
-    // }
-
-    
-
-    // this.SelectedGoal = this.crypto.Decrypt(localStorage.getItem('GetSelectedGoals'));
-    // console.log('SelectedGoal', this.SelectedGoal)
-
-    // let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
-    // localStorage.setItem("ModeOfInvestment",encrypted);
+    }
 
     if (localStorage.getItem("ProceedCart") != null) {
       this.ProceedCart = this.crypto.Decrypt(localStorage.getItem("ProceedCart"));
       console.log("GotProceedCart", this.ProceedCart)
     }
+    if(localStorage.getItem("SelectedFunds") != null){
+      this.SelectedBank = this.crypto.Decrypt(localStorage.getItem("SelectedFunds"));
+      console.log("SelectedFunds" , this.SelectedBank)
+    }
+   
+    $(".body-color").scroll(function () {
+      if($(".body-color").scrollTop() > 150) {
+      $('#sidebar').css('position','fixed');
+      $('#sidebar').css('top','10%');
+      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
+      }
+      else if ($(".body-color").scrollTop() <= 150) {
+      $('#sidebar').css('position','');
+      $('#sidebar').css('top','');
+      $('#sidebar').css('width','');
+      }    
+
+      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-100) {
+      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+100));
+      }
+
+      });
+
+     // this.SelectedGoal = this.crypto.Decrypt(localStorage.getItem('GetSelectedGoals'));
+    // console.log('SelectedGoal', this.SelectedGoal)
+
+    // let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
+    // localStorage.setItem("ModeOfInvestment",encrypted);
 
 
 
@@ -100,7 +120,7 @@ export class MutualFundCartComponent implements OnInit {
   }
 
   AddCart(index: number, ID: any) {
-    debugger;
+   
     for (let i = 0; i < this.BankNames.length; i++) {
       if (this.BankNames[i].id == ID) {
         this.BankNames[i].selectBank = !this.BankNames[i].selectBank;
@@ -112,34 +132,25 @@ export class MutualFundCartComponent implements OnInit {
     }else{
        this.SelectedBank=this.BankNames.filter((a:any)=>a.selectBank==true);
        localStorage.setItem("SelectedFunds",this.crypto.Encrypt(this.SelectedBank));
-       console.log("compareoffer",this.SelectedBank);
+      //  console.log("SelectedFunds",this.SelectedBank);
     }
   }
 
-  // GetSelectedBank(index:number){
-  //   this.BankNames[index].selectBank=!this.BankNames[index].selectBank;
-
-  //   this.selectedBank=this.BankNames.filter((a:any)=>a.selectBank==1);
-  //   localStorage.setItem("BankNames",this.crypto.Encrypt(this.selectedBank));
-  //   console.log("SelectedGoal",this.selectedBank);
-  //   this.route.navigate(["/mutual-fund-cart"])
-    
-  // }
 
   ConfirmCart() {
-
-    // var uniqueId;
-    // if(this.validate.isNullEmptyUndefined(this.ProceedCart.uniqueId)){
-    //   uniqueId = this.InvestWithoutGoal.uniqueId;
-    // }
-    // else{
-    //   uniqueId = this.ProceedCart.uniqueId;
-    // }
-    // console.log("uniquid",uniqueId)
+    var uniqueId;
+    if(this.ProceedCart != null){
+      uniqueId = this.ProceedCart.uniqueId;
+    }
+    else{
+      uniqueId = this.InvestWithoutGoal.uniqueId;
+    }
+    
+    console.log("uniquid",uniqueId)
 
     var postData = new FormData();
 
-    postData.append("uniqueId", this.InvestWithoutGoal.uniqueId)
+    postData.append("uniqueId", uniqueId)
 
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
       this.ConfirmedCart = resp;

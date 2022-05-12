@@ -129,7 +129,7 @@
       <li><a href="#">Support</a></li>
       <li><a href="#" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
-    <ul class="hidden-lg">
+    <ul class="hidden-lg mob-nav-scroll" >
       <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
       <li><a (click)="GotoInsurance()">Insure</a></li>
       <li><a (click)="GotoCredit()">Credit</a></li>

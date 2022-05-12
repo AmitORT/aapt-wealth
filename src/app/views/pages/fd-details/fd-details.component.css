@@ -1047,7 +1047,10 @@ padding: 0;
       width: 100%;
       padding: 4%;
       z-index: 9;
+      background: #b4b4b480;
+      backdrop-filter: blur(3px);
   }
+
   .applybtn-mob .invest-btn {
     padding: 10px;
       background: #E27E28;
@@ -1075,7 +1078,17 @@ padding: 0;
     padding: 4px;
     border-radius: 8px;
   }
+  .subsection-feature1 , .subsection-feature2 , .subsection-feature3 {
+    padding-bottom: 10px;
   }
+
+  .subsection-feature1 p , .subsection-feature2 p , .subsection-feature3 p{
+    font-size: 14px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+  }
+  }
+
   @media only screen and (min-width: 412px) and (max-width: 425px) {
     .graph-header .badge {
       font-size: 16px;

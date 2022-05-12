@@ -14,6 +14,24 @@
   left: 0;
   bottom: 0.5rem;
 }
+.fund-scroll{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 420px;
+  margin-bottom: 30px;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.fund-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.fund-scroll {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
 .del-icon{
   float: right;
   width: 30px;
@@ -488,7 +506,7 @@ input[type=date]::-webkit-inner-spin-button {
 .amount span.rupees {
   color: #222;
   position: absolute;
-  z-index: 999;
+  z-index: 5;
   top: 0.5rem;
   font-weight: 600;
   font-size: 22px;

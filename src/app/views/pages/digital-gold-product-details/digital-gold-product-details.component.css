@@ -756,6 +756,7 @@
     color: #465A65;
     font-size: 18px;
     font-weight: 600;
+    margin-bottom: 3px;
   }
   
   .how-it-works p{
@@ -792,14 +793,15 @@
   
   .orange-box h5{
     color: #222222;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
+    
   }
   
   .orange-box p{
     color: #B4B4B4;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 400;
     margin-bottom: 0.5rem;
   }
@@ -813,7 +815,7 @@
   .amount-weight .form-control{
     height: 55px;
     border-radius: 8px;
-    color: #b4b4b4;
+    color: #222;
     border: 1px solid #b4b4b4;
   }
   
@@ -1139,10 +1141,11 @@
     }
   
     .applybtn-mob .invest-btn {
-      padding: 15px;
+      padding: 10px 15px;
       background: #E27E28;
       border-color: #E27E28;
       width: 100%;
+      font-size: 18px;
     }
   
     #invest-screen .modal-content {
@@ -1161,7 +1164,7 @@
     }
   
     #invest-tabs .nav-link {
-      font-size: 14px;
+      font-size: 18px;
       border-radius: 8px;
       color: #B4B4B4;
       border: unset;
@@ -1173,6 +1176,11 @@
       padding: 4px;
       border-radius: 8px;
     }
+    .right-box .sip-btn {
+      padding:10px 50px;
+      font-size: 20px;
+ 
+     }
   }
   
   @media only screen and (min-width: 412px) and (max-width: 425px) {

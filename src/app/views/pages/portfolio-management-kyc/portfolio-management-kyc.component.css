@@ -157,10 +157,10 @@
     font-weight: 700;
   }
   
-  .trans-footer {
+  /* .trans-footer {
     position: absolute;
     bottom: 7rem;
-  }
+  } */
   
   .transparent-button {
     padding: 10px;
@@ -174,9 +174,9 @@
     text-align: center;
   }
   
-  .theme-button {
+  /* .theme-button {
     width: auto;
-  }
+  } */
   
   .right-sec{
     margin-top: 5rem;

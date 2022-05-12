@@ -186,7 +186,7 @@ compareCheckboxclick(index:number){
   
  if(this.ProductOfferForBinding.filter((a:any)=>a.checkforcompare==1).length>4){
    this.ProductOfferForBinding[index].checkforcompare=0;
-  alert("You can add max 4 offer for compare");
+  this.toastr.error("You can add max 4 offer for compare");
  }else{
    this.OffersForCompare=this.ProductOfferForBinding.filter((a:any)=>a.checkforcompare==1);
    localStorage.setItem("MutualProductCompareFund",this.crypto.Encrypt(this.ProductOfferForBinding));

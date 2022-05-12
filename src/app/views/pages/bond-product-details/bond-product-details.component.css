@@ -495,7 +495,7 @@
   }
   
   .trending-product p {
-    font-size: 16px;
+    font-size: 12px;
     color: #B4B4B4;
     display: flex;
     align-items: center;
@@ -996,8 +996,9 @@ text-align: end;
       bottom: 0;
       width: 100%;
       padding: 4%;
-      background: #D4DEE3;
+      background: rgb (212 222 227 / 55%);
       z-index:9;
+      backdrop-filter: blur(4px);
   }
   .applybtn-mob .mt-3{
     margin-top: 0px !important;
@@ -1098,7 +1099,13 @@ text-align: end;
     border-radius: 8px;
   }
 
+  .subsection-feature1 , .subsection-feature2 , .subsection-feature3{
+    padding: 10px 0px;
+  }
 
+  .l-values .theme-button{
+    width: 100%;
+  }
   }
   @media only screen and (min-width: 412px) and (max-width: 425px) {
     .graph-header .badge {
@@ -1157,5 +1164,6 @@ color: #B4B4B4;
 position: fixed;
     bottom: 6rem;
     right: 0rem;
+    z-index: 1;
 
 }

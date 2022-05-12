@@ -629,13 +629,16 @@ box-shadow: none;
       position: fixed;
       bottom: 0;
       width: 100%;
-      padding: 4%;
+      padding: 2% 4%;
+      background-color: #c1c1c1b3;
+      backdrop-filter:blur(3px);
   }
   .applybtn-mob .invest-btn {
-    padding: 15px;
+      padding: 10px 15px;
       background: #E27E28;
       border-color: #E27E28;
       width: 100%;
+      font-size: 18px;
   }
   
     #riskModal1 .modal-dialog {
