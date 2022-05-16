@@ -31,7 +31,7 @@
             <div [hidden]="isLoggedIn" class="login-popup dropdown-menu dropdown-menu-lg-end">
               <div class="sign-in">
                 <div class="mb-3">
-                  <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
+                  <input [disabled]="isOTPSent"  type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
                     id="emailmobile" placeholder="Email Id/Mobile No.">
                 </div>
                 <!-- <div class="mb-3">
@@ -55,19 +55,18 @@
                   <label for="switch_right">Partner</label>
                 </div>
                 <div class="mb-3">
-                  <input type="text" [(ngModel)]="FormFirstName" class="form-control" name="FirstName"
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName" class="form-control" name="FirstName"
                     placeholder="First Name">
                 </div>
                 <div class="mb-3">
-                  <input type="text" [(ngModel)]="FormLastName" class="form-control" name="LastName"
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName" class="form-control" name="LastName"
                     placeholder="Last Name">
                 </div>
                 <div class="mb-3">
                   <input type="email" [(ngModel)]="FormEmail" class="form-control" name="email1" placeholder="Email Id">
                 </div>
                 <div class="mb-3">
-                  <input type="text" [(ngModel)]="FormMobileNo" class="form-control" name="mnumber1"
-                    placeholder="Mobile Number">
+                  <input type="text" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo" class="form-control" name="mnumber1" maxlength="10" placeholder="Mobile Number">
                 </div>
                 <!-- <div [hidden]="!isOTPSent" class="mb-3">
                   <input type="text" class="form-control" [(ngModel)]="otp1" name="reg-OTP" id="rOTP" placeholder="OTP">

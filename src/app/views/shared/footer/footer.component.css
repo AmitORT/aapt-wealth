@@ -54,6 +54,44 @@
     margin-bottom: 10px;
     font-weight: 600;
   }
+  .up-in-toggle {
+    padding: 5px 5px;
+    border: 1px solid #00A3B1;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .up-in-toggle input {
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+  }
+  
+  .up-in-toggle input:checked+label {
+    background: #bfe6ec;
+    color: #00A3B1;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: none;
+  
+  }
+  
+  .up-in-toggle label {
+    display: inline-block;
+    width: 49%;
+    background-color: transparent;
+    color: #b3b3b3;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 5px;
+    transition: all 0.1s ease-in-out;
+  }
+  
+  .up-in-toggle label:hover {
+    cursor: pointer;
+  }
   @media (min-width: 576px){
   #headerotp-screen .modal-dialog , #Footerotp-screen .modal-dialog{
     max-width: 400px;

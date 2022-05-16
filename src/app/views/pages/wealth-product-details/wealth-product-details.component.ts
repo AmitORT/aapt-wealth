@@ -134,8 +134,8 @@ export class WealthProductDetailsComponent implements OnInit {
       $('#sidebar').css('top','');
       $('#sidebar').css('width','');
       }
-      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-225) {
-      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+225));
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-225) {
+      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top+225));
       }
       });
 
@@ -176,7 +176,6 @@ export class WealthProductDetailsComponent implements OnInit {
 
   GetProductDetail(){
     
-
     var orderby=[{"name": "weight", "sort": "DESC"}];
 
     var postData=new FormData();

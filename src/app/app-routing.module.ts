@@ -52,6 +52,9 @@ import { PortfolioManagementCompareProductsComponent } from './views/pages/portf
 import { PortfolioManagementKycComponent } from './views/pages/portfolio-management-kyc/portfolio-management-kyc.component';
 import { PortfolioManagementKycUpdateComponent } from './views/pages/portfolio-management-kyc-update/portfolio-management-kyc-update.component';
 import { PortfolioManagementSuccessfullySubmittedComponent } from './views/pages/portfolio-management-successfully-submitted/portfolio-management-successfully-submitted.component';
+import { FdCompareProductsComponent } from './views/pages/fd-compare-products/fd-compare-products.component';
+import { BondsCompareProductsComponent } from './views/pages/bonds-compare-products/bonds-compare-products.component';
+
 
 
 
@@ -108,6 +111,10 @@ const routes: Routes = [
   { path: 'portfolio-management-kyc',component:PortfolioManagementKycComponent},
   { path: 'portfolio-management-kyc-update',component:PortfolioManagementKycUpdateComponent},
   { path: 'portfolio-management-successfully-submitted',component:PortfolioManagementSuccessfullySubmittedComponent},
+  { path: 'fd-compare-products',component:FdCompareProductsComponent},
+  { path: 'bonds-compare-products',component:BondsCompareProductsComponent},
+
+
 
 
 

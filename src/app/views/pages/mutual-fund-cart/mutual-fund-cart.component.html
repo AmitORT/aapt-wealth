@@ -41,13 +41,12 @@
                     aria-selected="false">Lumpsum</button>
                 </li>
               </ul>
-  
             </div>
           </div>
   
           <div class="tab-content">
             <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
-              [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
+              [ngClass]="ModeOfInvestment?.Payment_mode != '2'?'active':''">
               <div class="row amount">
                 <div class="col-lg-7 col-10 position-relative">
                   <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.monthly_amt" />
@@ -165,7 +164,7 @@
 
 
 
-      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal" (click)="GetBankDetails()">
+      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal">
         <img src="assets/img/shopping-cart-add.svg" alt="">
         <p class="ps-2 pt-3 colr">Add New Instrument</p>
       </div>

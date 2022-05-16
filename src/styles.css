@@ -63,6 +63,14 @@ input[type=date]::-webkit-inner-spin-button {
   background-size: 20px;
 
 }
+.btn-check:focus+.btn, .btn:focus {
+  box-shadow: none;
+  outline: 0 !important;
+}
+.form-check-input:focus {
+  box-shadow: none;
+  outline: 0 !important;
+}
 
 html,
 body {

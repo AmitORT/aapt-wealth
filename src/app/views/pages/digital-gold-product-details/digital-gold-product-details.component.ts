@@ -123,6 +123,24 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
 
   ngOnInit(): void {
+     
+    $(".body-color").scroll(function () {
+      if($(".body-color").scrollTop() > 150) {
+      $('#sidebar').css('position','fixed');
+      $('#sidebar').css('top','10%');
+      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
+      }
+      else if ($(".body-color").scrollTop() <= 150) {
+      $('#sidebar').css('position','');
+      $('#sidebar').css('top','');
+      $('#sidebar').css('width','');
+      }    
+
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-100) {
+      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset().top+100));
+      }
+
+      });
   }
 
   keytab(nextTabId:number,event:any) {

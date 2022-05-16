@@ -154,8 +154,8 @@ export class WealthProductListingComponent implements OnInit {
       $('#sidebar').css('width','');
       }    
 
-      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-100) {
-      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+100));
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-100) {
+      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top+100));
       }
 
       });

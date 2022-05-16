@@ -312,7 +312,7 @@
               <div class="col-lg-12 col-12">
                 <h5>Sector Allocation</h5>
               </div>
-              <div class="col-lg-6 col-12" *ngFor="let sector of (flag ? ProductSectorDetails : ProductSectorDetails.slice(0,8))">
+              <div class="col-lg-6 col-12" *ngFor="let sector of (flag ? ProductSectorDetails : ProductSectorDetails?.slice(0,8))">
                 <div class="row">
 
                   <div class="col-lg-9 col-9">
@@ -330,7 +330,7 @@
 
 
               <div class="col-lg-3 offset-lg-9">
-                <p class="va" (click)="flag = !flag" *ngIf="ProductSectorDetails.length > 8 && !flag">View All</p>
+                <p class="va" (click)="flag = !flag" *ngIf="ProductSectorDetails?.length > 8 && !flag">View All</p>
               </div>
             </div>
             <hr>

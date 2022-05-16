@@ -15,7 +15,7 @@
           <div class="row">
             <div class="col-lg-6 col-12">
               <div class="form-floating mb-3 input-box">
-                <input type="text" id="fname" placeholder="First Name" class="form-control name"(keypress)="validate.alphabetOnly($event)" [(ngModel)]="ApplicantData.First_Name">
+                <input type="text" id="fname" placeholder="First Name" class="form-control name"(keypress)="validate.alphabetOnly($event)" [(ngModel)]="ApplicantData.First_Name" >
                 <label for="fname">First Name</label>
               </div>
             </div>
@@ -37,7 +37,7 @@
               </div>
               <div class=" col-lg-10 col-9 pe-0 ps-0">
                 <div class="form-floating mb-3 input-box mobile-input">
-                  <input type="text" id="mobile" placeholder="Mobile Number" class="form-control"(keypress)="validate.numberOnly($event)" [(ngModel)]="ApplicantData.Mob_Number">
+                  <input type="text" id="mobile" placeholder="Mobile Number" class="form-control"(keypress)="validate.numberOnly($event)" [(ngModel)]="ApplicantData.Mob_Number" maxlength="10">
                   <label for="mobile">Mobile Number</label>
                 </div>
               </div>
