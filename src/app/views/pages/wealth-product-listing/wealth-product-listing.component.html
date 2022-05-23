@@ -307,12 +307,14 @@
                     <div class="col-lg-6 col-2">
                       <div class="comp-share">
                         <span class="hidden-xs">
+
                           <div class="form-check mb-0">
                             <input class="form-check-input" type="checkbox" id="compare11" (click)="compareCheckboxclick(i)" value="" [(ngModel)]="offer.checkforcompare">
                             <label class="form-check-label" for="compare12">
                               Compare Funds
                             </label>
                           </div>
+
                         </span>
                         <span data-bs-toggle="modal" data-bs-target="#share-modal">
                           <img src="assets/img/share_icon.svg">
@@ -337,6 +339,7 @@
                       <p>5 year</p>
                       <h5>{{offer.returnFor5Year.toFixed(2)}}%</h5>
                     </div>
+
                     <div class="col-6 mb-comapre hidden-lg">
                       <div class="form-check mb-0">
                         <input class="form-check-input" type="checkbox" id="compare27" (click)="compareCheckboxclick(i)" [(ngModel)]="offer.checkforcompare">
@@ -345,7 +348,9 @@
                         </label>
                       </div>
                     </div>
-                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" (click)="GetOffersDetails(offer)">
+
+                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" [routerLink]="['/wealth-product-details']" (click)="compareCheckboxclick(i)">
+                      <!-- (click)="GetOffersDetails(offer)" -->
                       <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
                           alt="Right arrow"></a>
                     </div>

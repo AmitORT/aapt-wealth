@@ -120,15 +120,17 @@ export class WealthProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.routeSub = this.router.params.subscribe(params => {
-      this.id = params['id'];
-      console.log("ID" , this.id)
-    });
+    // this.routeSub = this.router.params.subscribe(params => {
+    //   this.id = params['id'];
+    //   console.log("ID" , this.id)
+    // });
 
     this.GetProductDetail();
 
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     console.log("ModeOfInvestment",this.ModeOfInvestment)
+
+    // this.ProductID=this.crypto.Decrypt()
     
   
     $(".body-color").scroll(function () {
@@ -188,8 +190,8 @@ export class WealthProductDetailsComponent implements OnInit {
     var orderby=[{"name": "weight", "sort": "DESC"}];
 
     var postData=new FormData();
-
-    postData.append("instrumentId",this.id);
+    // this.id
+    postData.append("instrumentId","191394");
     postData.append("limit","10");
     postData.append("offset","0");
     postData.append("holdinglimit","10");
