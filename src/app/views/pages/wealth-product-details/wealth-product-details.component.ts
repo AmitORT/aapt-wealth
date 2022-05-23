@@ -120,10 +120,10 @@ export class WealthProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.routeSub = this.router.params.subscribe(params => {
-      this.id = params['id'];
-      console.log("ID" , this.id)
-    });
+    // this.routeSub = this.router.params.subscribe(params => {
+    //   this.id = params['id'];
+    //   console.log("ID" , this.id)
+    // });
 
     this.GetProductDetail();
 
@@ -189,7 +189,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
     var postData=new FormData();
 
-    postData.append("instrumentId",this.id);
+    postData.append("instrumentId","191393");
     postData.append("limit","10");
     postData.append("offset","0");
     postData.append("holdinglimit","10");

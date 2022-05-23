@@ -81,7 +81,7 @@ const routes: Routes = [
   { path: 'account-transactions',component:AccountTransactionsComponent}, 
   { path: 'account-goal-planning',component:AccountGoalPlanningComponent}, 
   { path: 'kyc-pan-verification',component:KycPanVerificationComponent},
-  { path: 'wealth-product-details/:id',component:WealthProductDetailsComponent},
+  { path: 'wealth-product-details',component:WealthProductDetailsComponent},
   { path: 'account-bank-details',component:AccountBankDetailsComponent}, 
   { path: 'switch-redeem-funds',component:SwitchRedeemFundsComponent},
   { path: 'redeem-funds',component:RedeemFundsComponent},

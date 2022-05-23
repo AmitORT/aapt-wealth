@@ -238,10 +238,10 @@ SelectFund(){
   this.toastr.warning('Select a product from above list');
 }
 
-GetOffersDetails(modal:any){
-  console.log('modal',modal.id);
-  this.route.navigate(['/wealth-product-details/'+modal.id]);
-}
+// GetOffersDetails(modal:any){
+//   console.log('modal',modal.id);
+//   this.route.navigate(['/wealth-product-details/'+modal.id]);
+// }
 
 
 }
