@@ -98,7 +98,7 @@ export class MutualSelectGoalComponent implements OnInit {
     postData.append("serviceProviderAccountId","20753");
 
     this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
-      this.InvestWithoutGoalResp=resp;
+      this.InvestWithoutGoalResp=resp.data;
       let encrypted=this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal",encrypted)
       console.log("InvestWithoutGoal",this.InvestWithoutGoalResp)

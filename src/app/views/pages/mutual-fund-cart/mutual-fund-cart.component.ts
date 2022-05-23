@@ -4,6 +4,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -21,6 +22,8 @@ export class MutualFundCartComponent implements OnInit {
   ConfirmedCart: any;
   BankNames: any;
   SelectedBank:any=[];
+  Token: any;
+  CommonUrl = environment.CommonUrl;
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
 
@@ -130,6 +133,7 @@ export class MutualFundCartComponent implements OnInit {
   }
 
   ConfirmCart() {
+    debugger
     var uniqueId;
     if(this.ProceedCart != null){
       uniqueId = this.ProceedCart.uniqueId;
@@ -137,17 +141,27 @@ export class MutualFundCartComponent implements OnInit {
     else{
       uniqueId = this.InvestWithoutGoal.uniqueId;
     }
-    // console.log("uniquiID",uniqueId)
+    console.log("uniquiID",uniqueId)
     
-    var postData = new FormData();
-    
+    var postData = new FormData();    
     postData.append("uniqueId", uniqueId)
-    
+
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
       this.ConfirmedCart = resp;
-      this.route.navigate(["/mutual-payment-successful"])
+      console.log('confirm cart',resp)
+      if(resp.response.n==1){
+        this.CommontRouterUrl('/kyc-verification')
+      }
+      // this.route.navigate(["/mutual-payment-successful"])
     })
     
+  }
+
+  CommontRouterUrl(Path: any) {
+    this.Token = localStorage.getItem("CustToken");
+    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
+    window.location.href = this.CommonUrl;
   }
 
 }
