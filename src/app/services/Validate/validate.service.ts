@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ValidateService {
+  public previousUrl="";
+  public currentUrl="";
 
   constructor() { }
 
@@ -34,5 +36,10 @@ export class ValidateService {
     const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regularExpression.test(String(email).toLowerCase());
    }
+
+   updateNavigationUrl(CurrentUrl:string,PreviousUrl:string){    
+    this.currentUrl=CurrentUrl;
+    this.previousUrl=PreviousUrl;
+  }
 
 }
