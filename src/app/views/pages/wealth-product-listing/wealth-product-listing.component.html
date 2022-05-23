@@ -281,6 +281,12 @@
       </div>
       <div class="product-scroll">
 
+        <div *ngIf="OfferListingLoader" class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <h5><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Please Wait...</h5>
+          </div>
+        </div>
+
         <!-- Recommended -->
         <div class="position-relative" *ngFor="let offer of ProductList; let i=index" >
           <!-- <span class="orange-offer">Recommended</span> -->
@@ -349,7 +355,7 @@
                       </div>
                     </div>
 
-                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" [routerLink]="['/wealth-product-details']" (click)="compareCheckboxclick(i)">
+                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" (click)="AppliedFund(offer)">
                       <!-- (click)="GetOffersDetails(offer)" -->
                       <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
                           alt="Right arrow"></a>
@@ -362,164 +368,6 @@
           </div>
         </div>
         <!-- Recommended -->
-
-        <!-- Trending Fund -->
-        <!-- <div class="position-relative">
-          <span class="green-offer">Trending Fund</span>
-          <div class="row product-card ms-0 me-0">
-            <div class="col-lg-12">
-              <div class="row align-items-center">
-                <div class="col-lg-2 hidden-xs text-center ">
-                  <img src="assets/img/Axis-Bank-Logo.png" class="w-80" />
-                </div>
-                <div class="col-lg-10">
-                  <div class="row align-items-center">
-                    <div class="col-lg-6 col-10 bank-name">
-                      <div>
-                        <img src="assets/img/Axis-Bank-Logo.png" class="hidden-lg" />
-                      </div>
-                      <div>
-                        <h5>Axis Bluechip Fund</h5>
-                        <div class="d-flex">
-                          <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
-                              class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-2">
-                      <div class="comp-share">
-                        <span class="hidden-xs">
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" id="compare22" [(ngModel)]="Comapare3">
-                            <label class="form-check-label" for="compare21">
-                              Compare Funds
-                            </label>
-                          </div>
-                        </span>
-                        <span data-bs-toggle="modal" data-bs-target="#share-modal">
-                          <img src="assets/img/share_icon.svg">
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <hr class="custom-hr" />
-                    </div>
-                  </div>
-
-                  <div class="row apply-div">
-                    <div class="col-lg-3 l-div col-4">
-                      <p>1 year</p>
-                      <h5>0.35%</h5>
-                    </div>
-                    <div class="col-lg-3 c-div col-4">
-                      <p>3 year</p>
-                      <h5>25.2%</h5>
-                    </div>
-                    <div class="col-lg-3 r-div col-4">
-                      <p>5 year</p>
-                      <h5>20.1%</h5>
-                    </div>
-                    <div class="col-6 mb-comapre hidden-lg">
-                      <div class="form-check mb-0">
-                        <input class="form-check-input" type="checkbox" id="compare28" [(ngModel)]="Comapare4">
-                        <label class="form-check-label" for="compare27">
-                          Compare Funds
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center" [routerLink]="['/product-details']">
-                      <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
-                          alt="Right arrow"></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- Trending Fund -->
-
-        <!-- <div class="position-relative">
-          <div class="row product-card ms-0 me-0">
-            <div class="col-lg-12">
-              <div class="row align-items-center">
-                <div class="col-lg-2 hidden-xs text-center ">
-                  <img src="assets/img/quant.png" class="w-80" />
-                </div>
-                <div class="col-lg-10">
-                  <div class="row align-items-center">
-                    <div class="col-lg-6 col-10 bank-name">
-                      <div>
-                        <img src="assets/img/quant.png" class="hidden-lg" />
-                      </div>
-                      <div>
-                        <h5>Quant Tax Plan</h5>
-                        <div class="d-flex">
-                          <p>4 <img src="assets/img/star_rate.svg" class="star-icon" /> <span
-                              class="green-dot"></span>Moderate Risk <span class="green-dot"></span>Debt </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-6 col-2">
-                      <div class="comp-share">
-                        <span class="hidden-xs">
-                          <div class="form-check mb-0">
-                            <input class="form-check-input" type="checkbox" id="compare33" [(ngModel)]="Comapare5">
-                            <label class="form-check-label" for="compare21">
-                              Compare Funds
-                            </label>
-                          </div>
-                        </span>
-                        <span data-bs-toggle="modal" data-bs-target="#share-modal">
-                          <img src="assets/img/share_icon.svg">
-                        </span>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <hr class="custom-hr" />
-                    </div>
-                  </div>
-
-                  <div class="row apply-div">
-                    <div class="col-lg-3 l-div col-4">
-                      <p>1 year</p>
-                      <h5>0.35%</h5>
-                    </div>
-                    <div class="col-lg-3 c-div col-4">
-                      <p>3 year</p>
-                      <h5>25.2%</h5>
-                    </div>
-                    <div class="col-lg-3 r-div col-4">
-                      <p>5 year</p>
-                      <h5>20.1%</h5>
-                    </div>
-                    <div class="col-6 mb-comapre hidden-lg">
-                      <div class="form-check mb-0">
-                        <input class="form-check-input" type="checkbox" id="compare29" [(ngModel)]="Comapare5">
-                        <label class="form-check-label" for="compare27">
-                          Compare Funds
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 mb-comapre col-6 ps-0 d-flex align-items-center" [routerLink]="['/product-details']">
-                      <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
-                          alt="Right arrow"></a>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
-        <!-- <div class="row align-items-center mt-2 ms-0 me-0">
-          <div class="col-12">
-            <div class="loadmore-btn">
-              <span><i class="fas fa-redo"></i> Load More Offers</span>
-            </div>
-          </div>
-        </div> -->
       </div>
 
 
@@ -544,29 +392,6 @@
           </div>
         </div>
       </div>
-      <!-- <div class="col-lg-2 col-4">
-        <div class="cmp-prd">
-          <div class="cmp-logo">
-            <span class="fa fa-times "></span>
-            <img src="assets/img/HDFC.png" />
-          </div>
-          <div class="cmp-name">
-            <p>HDFC Bank</p>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="col-lg-2 hidden-xs">
-        <div class="cmp-prd">
-          <div class="cmp-logo">
-            <span class="fa fa-times "></span>
-            <img src="assets/img/ICICI.png" />
-          </div>
-          <div class="cmp-name">
-            <p>ICICI Bank</p>
-          </div>
-        </div>
-      </div> -->
-
       <div class="col-lg-2 col-3" *ngIf="OffersForCompare?.length < 4">
         <div class="cmp-prd add" (click)="SelectFund()">
           <div class="cmp-logo">

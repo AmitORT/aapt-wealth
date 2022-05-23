@@ -130,7 +130,7 @@ export class WealthProductListingComponent implements OnInit {
   Comapare4: any = 0;
   Comapare5: any = 0;
   Comapare6: any = 0;
-
+  OfferListingLoader:boolean=false;
 
   ProductOfferForBinding: any;
   ProductOffer: any;
@@ -194,8 +194,9 @@ export class WealthProductListingComponent implements OnInit {
     postData.append("searchFilter", '{"productId":5}');
     postData.append("limit", '10');
     postData.append("offset", '0');
-
+    this.OfferListingLoader=true;
     this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
+      this.OfferListingLoader=false;
       if (resp.response.n == 1) {
         this.ProductList = resp.data;
         console.log("ProductList", this.ProductList)
@@ -242,6 +243,13 @@ export class WealthProductListingComponent implements OnInit {
 
   SelectFund() {
     this.toastr.warning('Select a product from above list');
+  }
+
+  AppliedFund(offer: any) {
+    console.log("offer",offer)    
+    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    this.route.navigate(['/wealth-product-details']);
+
   }
 
   // GetOffersDetails(modal:any){

@@ -106,6 +106,7 @@ export class WealthProductDetailsComponent implements OnInit {
   ProductList:any;
   private routeSub: any;
   id: any;
+  SelectedMutualFund:any
 
  
   ModeOfInvestment:any={
@@ -120,18 +121,13 @@ export class WealthProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.routeSub = this.router.params.subscribe(params => {
-    //   this.id = params['id'];
-    //   console.log("ID" , this.id)
-    // });
-
-    this.GetProductDetail();
-
+  
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     console.log("ModeOfInvestment",this.ModeOfInvestment)
 
-    // this.ProductID=this.crypto.Decrypt()
-    
+    this.SelectedMutualFund=this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
+    console.log("SelectedMutualFund",this.SelectedMutualFund)
+    this.GetProductDetail();
   
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
@@ -186,12 +182,13 @@ export class WealthProductDetailsComponent implements OnInit {
   }
 
   GetProductDetail(){
+    // debugger
     
     var orderby=[{"name": "weight", "sort": "DESC"}];
 
     var postData=new FormData();
     // this.id
-    postData.append("instrumentId","191394");
+    postData.append("instrumentId",this.SelectedMutualFund.id);
     postData.append("limit","10");
     postData.append("offset","0");
     postData.append("holdinglimit","10");
