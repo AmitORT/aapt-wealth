@@ -41,13 +41,6 @@ export class MutualCreateGoalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.ProceedToCart();
-
-
-    // if(localStorage.getItem("MyGoals") != null){
-    //   this.CreateGoalList=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
-    //   console.log("Goals", this.CreateGoalList);      
-    // }
   } 
 
   uploadFile($event:any) {
@@ -123,7 +116,7 @@ export class MutualCreateGoalComponent implements OnInit {
     }
     else {
     var postData=new FormData();
-    postData.append("type",'1');
+    postData.append("type",this.CreateGoal.Payment_Mode);
     postData.append("investmentMode",this.CreateGoal.Payment_Mode);
     postData.append("targetAmount",this.CreateGoal.Goal_Amount);
     postData.append("startDate",'2021-06-28');
@@ -145,12 +138,6 @@ export class MutualCreateGoalComponent implements OnInit {
     }
   })
 
-      // this.CreateGoalList.push(this.CreateGoal);
-  
-      // let encrypted=this.crypto.Encrypt(this.CreateGoalList);
-      // localStorage.setItem("MyGoals",encrypted);
-
-      // this.route.navigate(['/mutual-fund-cart']);
       
     }
   }
@@ -178,7 +165,7 @@ export class MutualCreateGoalComponent implements OnInit {
       this.ProceedCart=resp.data;
       let encrypted=this.crypto.Encrypt(this.ProceedCart);
       localStorage.setItem("ProceedCart",encrypted);
-      console.log("ProceedToCart",resp)
+      console.log("ProceedToCart",resp.data)
 
       this.route.navigate(["/mutual-fund-cart"])
       

@@ -121,13 +121,14 @@ export class WealthProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
-    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-    console.log("ModeOfInvestment",this.ModeOfInvestment)
-
     this.SelectedMutualFund=this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
     console.log("SelectedMutualFund",this.SelectedMutualFund)
+    
     this.GetProductDetail();
+
+    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
+    // console.log("ModeOfInvestment",this.ModeOfInvestment)
+
   
     $(".body-color").scroll(function () {
       if($(".body-color").scrollTop() > 150) {
@@ -146,15 +147,15 @@ export class WealthProductDetailsComponent implements OnInit {
       }
       });
 
-    
+     this.scrolltotop();
     
   }
 
-  // scrolltotop(){
-  //   $('.body-color').animate({
-  //     scrollTop: 0
-  // }, 0);
-  // }
+  scrolltotop(){
+    $('.body-color').animate({
+      scrollTop: 0
+  }, 0);
+  }
 
   GetOnlyDay(){    
     this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
@@ -182,7 +183,6 @@ export class WealthProductDetailsComponent implements OnInit {
   }
 
   GetProductDetail(){
-    // debugger
     
     var orderby=[{"name": "weight", "sort": "DESC"}];
 
