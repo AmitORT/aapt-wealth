@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   ToolsEmiUrl='/tools-emi';
   ToolsGoalUrl='/create-goal';
   ProfileUrl='/profile-details';
+  commonDashboardUrl='/overview';
 
   constructor(public validation: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) {}
 
@@ -117,6 +118,10 @@ export class HeaderComponent implements OnInit, DoCheck {
     if(para=='profile'){
       this.CommonUrl=this.CommonUrl.replace("{PATH}",encodeURIComponent(this.ProfileUrl));
     }
+    if (para == 'overview') {
+      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.commonDashboardUrl));
+    }
+
     // console.log("CommonUrl",this.CommonUrl)
     window.location.href=this.CommonUrl;
   }
@@ -231,7 +236,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   async verifyOtpBtn(){
     await this.verifyOtp();
-    this.GetApplicantData();
+    // this.GetApplicantData();
   }
 
   async verifyOtp() {
@@ -245,14 +250,28 @@ export class HeaderComponent implements OnInit, DoCheck {
       let sOTP = otp;
 
       this.api.post('auth/customer/ValidateOTP',data).subscribe(async response=>{
+        debugger;
+        console.log('login',response);
         if (response.response.n == 1) {
-          console.log('verifyOtp',response);
+          console.log('VerifyOTP',response);
           this.toastr.success("OTP Validation Success");
           $("#headerotp-screen").modal("hide");
           this.isLoggedIn = true;
-          var encryptedToken={"token":response.data.token};
-          localStorage.setItem("CustToken",this.cryptoManager.Encrypt(encryptedToken));
-          this.GetApplicantData();
+
+          if (!this.validation.isNullEmptyUndefined(response.data.token.customer)) {
+            var encryptedTokenCustomer = { "token": response.data.token.customer };
+            console.log("encryptedTokenCustomer", encryptedTokenCustomer)
+            localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedTokenCustomer));
+          }
+          if (!this.validation.isNullEmptyUndefined(response.data.token.agent)) {
+            var encryptedTokenAgent = { "token": response.data.token.agent };
+            localStorage.setItem("AgentToken", this.cryptoManager.Encrypt(encryptedTokenAgent));
+          }
+
+          // this.GetApplicantData();
+          
+          //  this.GoToCommon('overview'); 
+          
           this.ResetModal();
           resolve(response);
         }

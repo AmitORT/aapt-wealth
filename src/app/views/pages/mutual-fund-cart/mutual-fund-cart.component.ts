@@ -12,28 +12,15 @@ declare var $: any;
   styleUrls: ['./mutual-fund-cart.component.css']
 })
 export class MutualFundCartComponent implements OnInit {
-  // [x: string]: any;
-
-  SelectedButton: boolean = false;
-  SelectedButton1: boolean = false;
-  SelectedButton2: boolean = false;
-  SelectedButton3: boolean = false;
-  SelectedButton4: boolean = false;
-  ShowSelectedDetails: boolean = false;
+ 
   ModeOfInvestment: any;
   ProductOverview: any;
-  date: any;
   SelectedGoal: any;
-
   ProceedCart: any;
   InvestWithoutGoal: any;
   ConfirmedCart: any;
   BankNames: any;
-  selectBank:any;
-  // selectedBank:any;
   SelectedBank:any=[];
-
-  // uniqueID:
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
 
@@ -93,10 +80,10 @@ export class MutualFundCartComponent implements OnInit {
 
   }
 
-  CompareProduct() {
-    $('#compare-products-modal').modal('hide');
-    this.ShowSelectedDetails = true;
-  }
+  // CompareProduct() {
+  //   $('#compare-products-modal').modal('hide');
+  //   this.ShowSelectedDetails = true;
+  // }
 
   RedirectPopup() {
     $('#compare-products-modal').modal('hide');
@@ -111,7 +98,7 @@ export class MutualFundCartComponent implements OnInit {
     let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
     localStorage.setItem("ModeOfInvestment", encrypted);
     this.route.navigate(["/mutual-select-goal"])
-    console.log("ChangesDataofMutualInvest", this.ModeOfInvestment)
+    // console.log("ChangesDataofMutualInvest", this.ModeOfInvestment)
   }
 
   GetBankDetails() {
@@ -150,8 +137,7 @@ export class MutualFundCartComponent implements OnInit {
     else{
       uniqueId = this.InvestWithoutGoal.uniqueId;
     }
-    
-    console.log("uniquid",uniqueId)
+    // console.log("uniquiID",uniqueId)
     
     var postData = new FormData();
     

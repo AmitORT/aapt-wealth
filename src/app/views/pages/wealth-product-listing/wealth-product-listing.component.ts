@@ -136,6 +136,7 @@ export class WealthProductListingComponent implements OnInit {
   ProductOffer:any;
   OffersForCompare:any=[];
   MutualProductCompareFund:any;
+  ProductList: any;
 
 
 
@@ -160,25 +161,46 @@ export class WealthProductListingComponent implements OnInit {
 
       });
 
-    this.GetOffers();
+    this.getOffersProductList();
+
+    // this.GetOffers();
+
   }
 
-  GetOffers(){
-  var postData=new FormData();
-  postData.append("instrumentId","191393");
-  postData.append("limit","10");
-  postData.append("offset","0");
+//   GetOffers(){
+//   var postData=new FormData();
+//   postData.append("instrumentId","191393");
+//   postData.append("limit","10");
+//   postData.append("offset","0");
   
-  this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp: any)=>{
-    console.log("resp",resp)
-    if(resp.response.n==1){      
-      this.ProductOfferForBinding = resp.data;
+//   this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp: any)=>{
+//     // console.log("resp",resp)
+//     if(resp.response.n==1){      
+//       this.ProductOfferForBinding = resp.data;
+//     //  console.log("product-listing",this.ProductOfferForBinding)
 
+//     }else{
+//       alert(resp.response.Msg)
+//     }
+//   });
+//  }
 
-    }else{
-      alert(resp.response.Msg)
-    }
-  });
+ getOffersProductList(){
+   var postData = new FormData();
+   postData.append("searchFilter",'{"productId":5}');
+   postData.append("limit",'10');
+   postData.append("offset",'0');
+
+   this.api.post("wealthfy/product-offerings",postData).subscribe((resp: any)=>{
+     if(resp.response.n==1){
+       this.ProductList = resp.data;
+       console.log("ProductList" , this.ProductList)
+     }
+     else{
+       this.toastr.error(resp.response.msg)
+     }
+   });
+
  }
 
 compareCheckboxclick(index:number){
@@ -215,4 +237,11 @@ cancelcompare(){
 SelectFund(){
   this.toastr.warning('Select a product from above list');
 }
+
+GetOffersDetails(modal:any){
+  console.log('modal',modal.id);
+  this.route.navigate(['/wealth-product-details/'+modal.id]);
+}
+
+
 }

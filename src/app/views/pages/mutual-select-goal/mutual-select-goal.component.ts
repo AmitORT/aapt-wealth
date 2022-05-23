@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
@@ -44,26 +44,36 @@ export class MutualSelectGoalComponent implements OnInit {
   InvestWithoutGoalResp:any;
 
   MyGoals:any;
+  Token:any;
+  CreateGoalListToken:any;
+  goals:any;
 
-  constructor(public route:Router, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService,private toastr: ToastrService) { }
+  id: any;
+  
+
+  constructor(public route:Router,public validate:ValidateService, private crypto:AescryptoService, private api:ApiService,private toastr: ToastrService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.GetMyGoals();
-
-  // this.CreateGoalResponse=this.crypto.Decrypt(localStorage.getItem("MyGoals"));
-  // console.log("CreateGoalList",this.CreateGoalResponse)
+    
+    this.GetMyGoals();  
+    
   }
 
 
   GetMyGoals(){
-    this.api.get("goalDetails/create-goal",true).subscribe(response=>{
-      if(response.response.n==1){        
-        this.MyGoals=response.data;
-        console.log("my goals",response);
+  
+    this.api.get("goalDetails/create-goal",true).subscribe(resp=>{
+      if(resp.response.n==1){        
+        this.MyGoals=resp.data;
+        // console.log("my goals",this.MyGoals);
+      }
+      else{
+        this.toastr.error(resp.msg)
       }
     })    
   }
+
+
 
   GetSelectedGoals(index:number){
     this.MyGoals[index].selectGoal=!this.MyGoals[index].selectGoal;
@@ -91,6 +101,7 @@ export class MutualSelectGoalComponent implements OnInit {
       this.InvestWithoutGoalResp=resp;
       let encrypted=this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal",encrypted)
+      console.log("InvestWithoutGoal",this.InvestWithoutGoalResp)
       // console.log("InvestWithoutGoalResp",this.InvestWithoutGoalResp)
       this.route.navigate(["/mutual-fund-cart"])
      

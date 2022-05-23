@@ -277,12 +277,12 @@
 
     <div class="col-md-9">
       <div class="row page-result ms-0 me-0 hidden-xs">
-        <p>Showing {{ProductOfferForBinding?.length}} of {{ProductOfferForBinding?.length}} results</p>
+        <p>Showing {{ProductList?.length}} of {{ProductList?.length}} results</p>
       </div>
       <div class="product-scroll">
 
         <!-- Recommended -->
-        <div class="position-relative" *ngFor="let offer of ProductOfferForBinding; let i=index" >
+        <div class="position-relative" *ngFor="let offer of ProductList; let i=index" >
           <!-- <span class="orange-offer">Recommended</span> -->
           <div class="row product-card ms-0 me-0">
             <div class="col-lg-12">
@@ -345,7 +345,7 @@
                         </label>
                       </div>
                     </div>
-                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" [routerLink]="['/wealth-product-details']">
+                    <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" (click)="GetOffersDetails(offer)">
                       <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
                           alt="Right arrow"></a>
                     </div>

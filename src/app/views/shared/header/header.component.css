@@ -357,6 +357,7 @@
   font-weight: 600;
   padding: 8px 10px;
   color: #444;
+  cursor: pointer;
   text-decoration: none;
   text-transform: uppercase;
   -webkit-transition: all 0.25s ease-in-out;

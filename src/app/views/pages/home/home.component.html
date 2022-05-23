@@ -510,7 +510,13 @@
   </div>
   <div class="financial-slider fin">
     <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide>
+      <ng-template carouselSlide *ngFor="let blog of BlogList">
+        <div class="finance-news">
+          <img src="{{blog.blogimage}}">
+          <p>{{blog.title}}</p>
+        </div>
+      </ng-template>
+      <!-- <ng-template carouselSlide>
         <div class="finance-news">
           <img src="assets/img/blog_thumnail_1.png">
           <p>Choose right life insurance plan in 7 easy steps</p>
@@ -551,7 +557,7 @@
           <img src="assets/img/blog_thumnail_2.png">
           <p>Choose right life insurance plan in 7 easy steps</p>
         </div>
-      </ng-template>
+      </ng-template> -->
     </owl-carousel-o>
 
   </div>

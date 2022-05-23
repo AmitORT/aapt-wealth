@@ -192,7 +192,7 @@ export class RiskProfilingComponent implements OnInit {
       // $("#step"+this.Steps).animate({ scrollTop: $('.process-div').offset()-100 }, 1000);
       // $parentDiv.animate({ scrollTop: ($innerListItem.position().top - 50) }, 1000);
 
-      $parentDiv.animate({ scrollTop: ($parentDiv.scrollTop() + $innerListItem.position().top - $parentDiv.height()/2 + $innerListItem.height()/2) }, 1000);
+      $parentDiv.animate({ scrollTop: ($parentDiv.scrollTop() + $innerListItem.position()?.top - $parentDiv.height()/2 + $innerListItem.height()/2) }, 1000);
 
       //.scrollTop($parentDiv.scrollTop() + $innerListItem.position().top - $parentDiv.height()/2 + $innerListItem.height()/2);
       // $('.process-div').animate({ scrollTop: $('.process-div')[0].scrollHeight }, 1000);//.scrollTop();

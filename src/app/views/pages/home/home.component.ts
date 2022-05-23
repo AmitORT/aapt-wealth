@@ -46,10 +46,14 @@ export class HomeComponent implements OnInit {
   QueryToken:any;
   Path:any;
   _paramSub: any;
+  BlogList:any;
+  blogimage: any;
 
   constructor(private api:ApiService,private route:Router,public activeRoute: ActivatedRoute, public validation: ValidateService,private crypto:AescryptoService,) { }
 
   ngOnInit(): void {
+
+    this.GetBlogList();
 
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
       console.log(params);
@@ -62,7 +66,7 @@ export class HomeComponent implements OnInit {
     this._paramSub.unsubscribe();
 
     if (!this.validation.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
-      debugger;
+      // debugger;
       this.QueryToken = decodeURIComponent(this.QueryToken);
       localStorage.setItem("CustToken",this.QueryToken);      
     }
@@ -105,6 +109,28 @@ export class HomeComponent implements OnInit {
     this.api.get("auth/customer/user", true).subscribe(response => {
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
     })
+  }
+
+  GetBlogList(){
+
+    this.api.get("banner/get-blog").subscribe(response => {
+      console.log('get-blog',response);
+      this.BlogList=response.items;
+      console.log('list',this.BlogList);
+      for (let i = 0; i < this.BlogList.length; i++) {
+        if (this.BlogList[i].content.indexOf('src=\"') > 0) {
+          this.blogimage = this.BlogList[i].content.split('src=\"');
+          this.blogimage = this.blogimage[1].split('" width');
+          this.blogimage = this.blogimage[0].replace('"', '');
+          this.BlogList[i].blogimage = this.blogimage;
+        }
+        else{
+          this.BlogList[i].blogimage = 'assets/img/blog_thumnail_1.png';
+        }
+      }
+      console.log('updated list', this.BlogList);
+    })
+
   }
 
 }

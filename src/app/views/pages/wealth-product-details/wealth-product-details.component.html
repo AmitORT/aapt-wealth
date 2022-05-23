@@ -116,7 +116,7 @@
                 </div>
                 <div>
                   <h2>Exit Load</h2>
-                  <h3 class="text-end">5.9%</h3>
+                  <h3 class="text-end">{{ProductOverview?.exitLoad}}%</h3>
                 </div>
               </div>
               <hr class="m-0">
@@ -125,10 +125,10 @@
                   <h2>Fund Started</h2>
                   <h3>{{ProductOverview?.fundStarted}}</h3>
                 </div>
-                <div>
+                <!-- <div>
                   <h2>Fund Size</h2>
                   <h3 class="text-end">Rs 1,818 Cr</h3>
-                </div>
+                </div> -->
               </div>
             </div>
 
@@ -138,7 +138,7 @@
                 <h5>Result</h5>
                 <p>Fund Returns</p>
                 <p>Category Average</p>
-                <p>Rank Within Category</p>
+                <!-- <p>Rank Within Category</p> -->
                 <p class="blue-text">*All returns are annualized.</p>
               </div>
               <div class="col-lg-3 col-4">
@@ -152,13 +152,13 @@
                 </div>
                 <p class="val"><b>128.4%</b></p>
                 <p class="val"><b>113.0%</b></p>
-                <p class="val"><b>-</b></p>
+                <!-- <p class="val"><b>-</b></p> -->
               </div>
               <div class="col-lg-3 col-4">
                 <h5 class="text-center">Since Inception</h5>
-                <p class="val"><b>23.9%</b></p>
+                <p class="val"><b>{{ProductOverview?.returnSinceInception.toFixed(2)}}%</b></p>
                 <p class="val"><b>1</b></p>
-                <p class="val"><b>-</b></p>
+                <!-- <p class="val"><b>-</b></p> -->
               </div>
             </div>
             <hr>
@@ -241,8 +241,9 @@
                         <img src="assets/img/icici-bank.png">
                       </div>
                       <div class="col-lg-10 col-10">
-                        <h5>ICICI Prudential Technology</h5>
+                        <h5>{{ProductOverview?.name}}</h5>
                         <p>3 High Risk</p>
+                        
                       </div>
                     </div>
 

@@ -291,10 +291,19 @@ verifytheOtp() {
         this.toastr.success("OTP Validation Success");
         $("#Footerotp-screen").modal("hide");
         this.isLoggedIn = true;
+        if (!this.validation.isNullEmptyUndefined(response.data.token.customer)) {
+          var encryptedTokenCustomer = { "token": response.data.token.customer };
+          localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedTokenCustomer));
+        }
+        if (!this.validation.isNullEmptyUndefined(response.data.token.agent)) {
+          var encryptedTokenAgent = { "token": response.data.token.agent };
+          localStorage.setItem("AgentToken", this.cryptoManager.Encrypt(encryptedTokenAgent));
+        }
         var encryptedToken = { "token": response.data.token };
         localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedToken));
         this.ResetModal();
         this.GetApplicantData();
+        this.CommontRouterUrl('/overview');
         $("#mob_signin").modal("hide");
         $("#mob_signup").modal("hide");
         this.MobileSiginBarFlag = false;

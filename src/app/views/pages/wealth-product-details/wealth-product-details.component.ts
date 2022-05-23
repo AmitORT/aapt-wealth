@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ToastrService } from 'ngx-toastr';
+import { ConditionalExpr } from '@angular/compiler';
 declare var $ : any;
 
 @Component({
@@ -102,6 +103,9 @@ export class WealthProductDetailsComponent implements OnInit {
   select_amt:any;
   SetModeOfInvestment:any;
   ShowCarousel:any;
+  ProductList:any;
+  private routeSub: any;
+  id: any;
 
  
   ModeOfInvestment:any={
@@ -112,9 +116,14 @@ export class WealthProductDetailsComponent implements OnInit {
   }
  
 
-  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
+  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.routeSub = this.router.params.subscribe(params => {
+      this.id = params['id'];
+      console.log("ID" , this.id)
+    });
 
     this.GetProductDetail();
 
@@ -180,7 +189,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
     var postData=new FormData();
 
-    postData.append("instrumentId","191394");
+    postData.append("instrumentId",this.id);
     postData.append("limit","10");
     postData.append("offset","0");
     postData.append("holdinglimit","10");
