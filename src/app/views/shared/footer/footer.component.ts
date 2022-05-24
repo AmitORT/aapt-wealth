@@ -284,7 +284,7 @@ verifytheOtp() {
     data.append("email", this.FormEmail);
     data.append("otp", otp); //this.otp1 + this.otp2 + this.otp3 + this.otp4 + this.otp5 + this.otp6);
     let sOTP =otp;
-    console.log(otp)
+    // console.log(otp)
     this.api.post('auth/customer/ValidateOTP', data).subscribe(response => {
       if (response.response.n == 1) {
         //console.log('signin', response);
@@ -299,11 +299,11 @@ verifytheOtp() {
           var encryptedTokenAgent = { "token": response.data.token.agent };
           localStorage.setItem("AgentToken", this.cryptoManager.Encrypt(encryptedTokenAgent));
         }
-        var encryptedToken = { "token": response.data.token };
-        localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedToken));
+        // var encryptedToken = { "token": response.data.token };
+        // localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedToken));
         this.ResetModal();
         this.GetApplicantData();
-        this.CommontRouterUrl('/overview');
+        // this.CommontRouterUrl('/overview');
         $("#mob_signin").modal("hide");
         $("#mob_signup").modal("hide");
         this.MobileSiginBarFlag = false;
@@ -327,7 +327,7 @@ ResetModal() {
 
 GetApplicantData() {
   this.api.get("auth/customer/user", true).subscribe(response => {
-    console.log(response.user);
+    // console.log(response.user);
     localStorage.setItem("ApplicantData", this.cryptoManager.Encrypt(response.data));
   })
 }

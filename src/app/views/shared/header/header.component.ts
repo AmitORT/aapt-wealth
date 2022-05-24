@@ -260,7 +260,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
           if (!this.validation.isNullEmptyUndefined(response.data.token.customer)) {
             var encryptedTokenCustomer = { "token": response.data.token.customer };
-            console.log("encryptedTokenCustomer", encryptedTokenCustomer)
+            // console.log("encryptedTokenCustomer", encryptedTokenCustomer)
             localStorage.setItem("CustToken", this.cryptoManager.Encrypt(encryptedTokenCustomer));
           }
           if (!this.validation.isNullEmptyUndefined(response.data.token.agent)) {

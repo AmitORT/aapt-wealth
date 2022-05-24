@@ -147,9 +147,10 @@ export class MutualFundCartComponent implements OnInit {
     postData.append("uniqueId", uniqueId)
 
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
-      this.ConfirmedCart = resp;
-      console.log('confirm cart',resp)
+      this.ConfirmedCart = resp.data;
+      // console.log('confirm cart',resp.data)
       if(resp.response.n==1){
+        // this.toastr.success(resp.Msg)
         this.CommontRouterUrl('/kyc-verification')
       }
       // this.route.navigate(["/mutual-payment-successful"])
