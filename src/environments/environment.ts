@@ -20,6 +20,9 @@ export const environment = {
   // ng serve --port 57617
   WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
 
+  // ng serve --port 50533
+  AgentUrl: "http://localhost:50533?ATOKEN={ATOKEN}&PATH={PATH}",
+
   // --LOCAL--
 
   // --UAT FINIZON--
