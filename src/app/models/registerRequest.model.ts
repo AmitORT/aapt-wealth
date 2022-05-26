@@ -11,4 +11,8 @@ export class registerRequest {
   email: any;
   mobileNumber: any;
   referredCode: any;
+  consent_id: any;
+  ip_address: any;
+  agentType: any;
+  gender: any;
 }
