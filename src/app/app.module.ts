@@ -64,6 +64,7 @@ import { PortfolioManagementKycUpdateComponent } from './views/pages/portfolio-m
 import { PortfolioManagementSuccessfullySubmittedComponent } from './views/pages/portfolio-management-successfully-submitted/portfolio-management-successfully-submitted.component';
 import { FdCompareProductsComponent } from './views/pages/fd-compare-products/fd-compare-products.component';
 import { BondsCompareProductsComponent } from './views/pages/bonds-compare-products/bonds-compare-products.component';
+import { SignInComponent } from './views/pages/sign-in/sign-in.component';
 
 
 
@@ -126,6 +127,7 @@ import { BondsCompareProductsComponent } from './views/pages/bonds-compare-produ
     PortfolioManagementSuccessfullySubmittedComponent,
     FdCompareProductsComponent,
     BondsCompareProductsComponent,
+    SignInComponent,
   
 
 

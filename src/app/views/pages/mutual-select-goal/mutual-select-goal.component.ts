@@ -54,6 +54,8 @@ export class MutualSelectGoalComponent implements OnInit {
   constructor(public route:Router,public validate:ValidateService, private crypto:AescryptoService, private api:ApiService,private toastr: ToastrService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.Token=localStorage.getItem("CustToken");
     
     this.GetMyGoals();  
     
@@ -86,26 +88,34 @@ export class MutualSelectGoalComponent implements OnInit {
   }
 
   InvestWithoutGoal(){
+  
+    if(this.Token == null){
+      console.log("CustToken",this.Token )
+      this.route.navigate(["/sign-in"])
+    }
+    else{
+      var postData=new FormData();
+      postData.append("transactionTypeId","1");
+      postData.append("instrumentId","255527");
+      postData.append("totalAmount","1234");
+      postData.append("modeOfTransaction","1");
+      postData.append("frequency","4");
+      postData.append("transactionSubType","2");
+      postData.append("frequencyDay","1");
+      postData.append("serviceProviderAccountId","20753");
+  
+      this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
+        this.InvestWithoutGoalResp=resp.data;
+        let encrypted=this.crypto.Encrypt(this.InvestWithoutGoalResp)
+        localStorage.setItem("InvestWithoutGoal",encrypted)
+        console.log("InvestWithoutGoal",this.InvestWithoutGoalResp)
+        // console.log("InvestWithoutGoalResp",this.InvestWithoutGoalResp)
+        this.route.navigate(["/mutual-fund-cart"])
+       
+      })
+    }
 
-    var postData=new FormData();
-    postData.append("transactionTypeId","1");
-    postData.append("instrumentId","255527");
-    postData.append("totalAmount","1234");
-    postData.append("modeOfTransaction","1");
-    postData.append("frequency","4");
-    postData.append("transactionSubType","2");
-    postData.append("frequencyDay","1");
-    postData.append("serviceProviderAccountId","20753");
-
-    this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
-      this.InvestWithoutGoalResp=resp.data;
-      let encrypted=this.crypto.Encrypt(this.InvestWithoutGoalResp)
-      localStorage.setItem("InvestWithoutGoal",encrypted)
-      console.log("InvestWithoutGoal",this.InvestWithoutGoalResp)
-      // console.log("InvestWithoutGoalResp",this.InvestWithoutGoalResp)
-      this.route.navigate(["/mutual-fund-cart"])
-     
-    })
+ 
 
   }
 
