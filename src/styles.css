@@ -439,7 +439,7 @@ p {
     font-size: 14px !important;
     margin-bottom: 0px;
     margin-top: 10px;
-    text-align: left !important;
+    text-align: justify !important;
   }
 
   .footer-headlink a {
@@ -565,10 +565,13 @@ p {
     margin-bottom: 0px;
     margin-top: 10px;
   }
-
+  .footer p.notetext {
+    text-align: justify;
+  }
   .hidden-sm {
     display: none;
   }
+ 
 }
 
 @media only screen and (min-width: 1430px) and (max-width: 1450px) {
