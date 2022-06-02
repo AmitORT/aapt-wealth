@@ -143,6 +143,7 @@
 	text-decoration: none;
 	font-size: 18px;
 	font-weight: 600;
+	display: none;
 }
 .trending-product {
 	border: 1px solid #bbc0c3;
@@ -248,6 +249,8 @@
 	.finance-news img{
 		width: 100%;
 		margin-bottom: 15px;
+		height: 200px;
+    	object-fit: cover;
 	}
 	.finance-news p{
 		font-size: 18px;
@@ -546,6 +549,20 @@
 		.cta .mob-center img{
 			width: 95%;
 		}
+		.about br{
+			display: none;
+		}
+		.about .title-head2 {
+			font-size: 28px;
+		}
+		.client-img .col {
+			flex: 0 0 auto!important;
+			width: 20%;
+		}
+		.client-img .col img {
+			width: 100%;
+		}
+		
 	}
 
 
@@ -577,13 +594,14 @@
 			flex: 1 0 33%!important;
 		}
 		.slider-head {
-			font-size: 34px;
+			font-size: 28px;
+			font-weight: 500;
 		}
 		.mt-5.common-mt-3{
 			margin-top: 1rem!important;
 		}
 		.cta {
-			background: #fff0;
+			background: #fff;
 			box-shadow: none;
 		}
 		.footer{

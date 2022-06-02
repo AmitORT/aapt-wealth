@@ -524,3 +524,11 @@ max-width: 100%;
 }
 
 }
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .riskprofile-img{
+    display: none;
+  }
+  .mgt-15per {
+    margin-top: 10%;
+  }
+}
