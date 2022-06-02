@@ -161,22 +161,21 @@ export class WealthProductDetailsComponent implements OnInit {
     this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
   }
 
-  // showTenureForPopup(index:number):any{
-    
-  //   if(this.validate.isNullEmptyUndefined(this.SelectedMutualFund[index].selectedYear)){
-  //     this.SelectedMutualFund[index].selectedYear=1;
-  //     this.SelectedMutualFund[index].Rate=this.SelectedMutualFund[index].returnFor1Year.toFixed(2);
-  //   }else if(this.SelectedMutualFund[index].selectedYear==1){
-  //     this.SelectedMutualFund[index].selectedYear=3;
-  //     this.SelectedMutualFund[index].Rate=this.SelectedMutualFund[index].returnFor3Year.toFixed(2);
-  //   }else if(this.SelectedMutualFund[index].selectedYear==3){
-  //     this.SelectedMutualFund[index].selectedYear=5;
-  //     this.SelectedMutualFund[index].Rate=this.SelectedMutualFund[index].returnFor5Year.toFixed(2);
-  //   }else if(this.SelectedMutualFund[index].selectedYear==5){
-  //     this.SelectedMutualFund[index].selectedYear=1;
-  //     this.SelectedMutualFund[index].Rate=this.SelectedMutualFund[index].returnFor1Year.toFixed(2);
-  //   }
-  // }
+  showTenureForPopup(){
+    if(this.validate.isNullEmptyUndefined(this.SelectedMutualFund.selectedYear)){
+      this.SelectedMutualFund.selectedYear=1;
+      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor1Year.toFixed(2);
+    }else if(this.SelectedMutualFund.selectedYear==1){
+      this.SelectedMutualFund.selectedYear=3;
+      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor3Year.toFixed(2);
+    }else if(this.SelectedMutualFund.selectedYear==3){
+      this.SelectedMutualFund.selectedYear=5;
+      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor5Year.toFixed(2);
+    }else if(this.SelectedMutualFund.selectedYear==5){
+      this.SelectedMutualFund.selectedYear=1;
+      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor1Year.toFixed(2);
+    }
+  }
 
 
   CreateSip(){

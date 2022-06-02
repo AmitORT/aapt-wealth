@@ -23,19 +23,18 @@
                         </span>
                     </div>
                     
-                    <p>Your profile is under assessment. Please fill out the form below to avail the loan offers curated for you.</p>
-
+                   
                 </div> -->
                 <div class="row">
                     <div class="col-lg-6">
                         <div  class="form-floating mb-3 input-box ">
-                            <input type="text" id="first_name" placeholder="Your Name" (keypress)="validate.alphabetOnly($event)" class="form-control ">
+                            <input type="text" id="first_name" placeholder="Your Name" (keypress)="validate.alphabetOnly($event)" class="form-control" [(ngModel)]="firstname">
                             <label for="full_name" >First Name</label>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div  class="form-floating mb-3 input-box ">
-                            <input type="text" id="last_name" placeholder="Your Name" (keypress)="validate.alphabetOnly($event)" class="form-control ">
+                            <input type="text" id="last_name" placeholder="Your Name" (keypress)="validate.alphabetOnly($event)" class="form-control" [(ngModel)]="lastname">
                             <label for="full_name" >Last Name</label>
                         </div>
                     </div>
@@ -44,7 +43,7 @@
                 
                 <div class="row">
                     <div class="col-2 pe-0">
-                        <select class="form-select country-drop form-select-lg mb-3" aria-label="form-select-lg example" >
+                        <select class="form-select country-drop form-select-lg mb-3" aria-label="form-select-lg example" [(ngModel)]="phonecode">
                             <option value="91">+91</option>
                             <option value="209">+209</option>
                             <option value="21">+21</option>
@@ -53,13 +52,13 @@
                     <div class="col-10 ps-0">
                         <div  class="form-floating mb-3 input-box mobile-input">
                             <input type="text" id="mobile" placeholder="Mobile Number" class="form-control "
-                            (keypress)="validate.numberOnly($event)" maxlength="10">
+                            (keypress)="validate.numberOnly($event)" maxlength="10" [(ngModel)]="mobilenumber">
                             <label for="mobile" >Mobile Number</label>
                         </div>
                     </div>
                 </div>
                 <div  class="form-floating mb-3 input-box ">
-                    <input type="email" id="email_id" placeholder="Email id" class="form-control " >
+                    <input type="email" id="email_id" placeholder="Email id" class="form-control" [(ngModel)]="emailid">
                     <label for="email_id" >Email Id</label>
                 </div>
                 <div class="row g-div m-0 mb-3">
@@ -74,24 +73,13 @@
                     </div>
                 </div>
                 <div  class="form-floating mb-5 input-box ">
-                    <input type="date" id="custdob" placeholder="Date Of Birth" class="form-control " >
+                    <input type="date" id="custdob" placeholder="Date Of Birth" class="form-control" [(ngModel)]="custdob" (click)="DOB()">
                     <label for="dob" >Date of Birth</label>
                 </div>
-                <!-- <div  class="form-floating mb-3 input-box ">
-                    <input type="text" id="pancard" placeholder="Pancard Number" maxlength="10" class="form-control "  >
-                    <label for="pancard" >Pancard Number</label>
-                </div>
-                <div  class="form-floating mb-3 input-box ">
-                    <input type="text" id="aadhar" maxlength="16" placeholder="Aadhar Card Number" class="form-control" (keypress)="validate.numberOnly($event)" >
-                    <label for="aadhar" >Aadhar Card Number</label>
-                </div>
-                <div class="form-check mb-4">
-                    <input type="checkbox" id="check1" name="checkconsent" value="something" class="form-check-input">
-                    <label for="check1" class="form-check-label">I hereby give my consent to retrieve my credit information form <span>Cibil / Equifax / Experian / Highmark (bureau)</span></label>
-                </div> -->
+                
                
                   <!-- <button type="button" class="btn btn-primary theme-button mt-5" >Send OTP</button> -->
-                  <button type="button" class="btn btn-primary theme-button mt-5" [routerLink]="['/mutual-select-goal']">Login</button>
+                  <button type="button" class="btn btn-primary theme-button mt-5"  (click)="sendotp()">Continue</button>
 
             </div>
         </div>
@@ -108,7 +96,7 @@
             <div class="row">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 <h3 class="otp-title">Enter OTP</h3>
-                <p class="otp-text">OTP sent on <b>prachi@onerooftech.com </b> 
+                <p class="otp-text">OTP sent on <b>{{emailid}}. </b> 
                     <span class="link-text" (click)="EditNumber()">Edit Email?</span></p>
             <div class="col-2">
                 <input type="number" class="form-control otp-field" maxlength="1" id="otp1" [(ngModel)]="otp1" (keyup)="keytab(2,$event)" (keypress)="validate.numberOnly($event)"/>
@@ -126,13 +114,13 @@
                 <input type="number" class="form-control otp-field" maxlength="1" id="otp5" [(ngModel)]="otp5" (keyup)="keytab(6,$event)" (keypress)="validate.numberOnly($event)"/>
             </div>
             <div class="col-2">
-                <input type="number" class="form-control otp-field" maxlength="1" id="otp6" [(ngModel)]="otp6" (keypress)="validate.numberOnly($event)" />
+                <input type="number" class="form-control otp-field" maxlength="1" id="otp6" [(ngModel)]="otp6" (keypress)="validate.numberOnly($event)" (keyup)="verifyOtp()"/>
             </div>
-            <div class="col-12" >
-                <p class="otp-bottomtext">OTP expires in <br class="hidden-lg"/>15 s</p>
+            <div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">
+                <p class="otp-bottomtext">OTP expires in <br class="hidden-lg"/>{{resendbuttonText}} s</p>
             </div>
-            <div class="col-12" >
-                <p class="otp-bottomtext">Didn't recieve OTP? <br class="hidden-lg"/> <span class="link-text" >Resend OTP</span></p>
+            <div class="col-12" *ngIf="resendbuttonText == 'Resend OTP'">
+                <p class="otp-bottomtext">Didn't recieve OTP? <br class="hidden-lg"/> <span class="link-text" (click)="ResendOTP()">Resend OTP</span></p>
             </div>
             </div>
           <div class="row pr-btn">     
@@ -140,7 +128,7 @@
                 <button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
               </div>   -->
               <div class="col-12">
-            <button type="button"  data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
+            <button type="button" (click)="ResetOTP()" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
           </div>                      
           </div>
         </div>

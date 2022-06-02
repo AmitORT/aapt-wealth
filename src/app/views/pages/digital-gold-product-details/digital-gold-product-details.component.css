@@ -835,6 +835,7 @@
   .refresh-text{
     color: #0074DB;
     font-weight: 600;
+    cursor: pointer;
   }
   
   .color-black{
@@ -915,6 +916,42 @@
   #otp-screen input[type=number] {
     -moz-appearance: textfield;
   }
+  .grey-box p{
+    color: #465A65;
+    font-size: 13px;
+    margin-bottom: 0;
+    }
+    p{
+    color: #222222;
+    }
+    .grey-box{
+    background-color: #D4DEE3;
+    padding: 0.75rem;
+    text-align: center;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    }
+    .note{
+    color: #000 !important;
+    }
+    .mob-img{
+    width: 35%;
+    }
+    .proceed-btn{
+      padding: 10px;
+      color: #fff!important;
+      font-weight: 500;
+      background-color: #E27E28;
+      width: 150px;
+      border-color: #E27E28;
+      border-radius: 12px;
+      font-size: 16px!important;
+    }
+    #login .modal-content{
+      border-radius: 12px !important;
+    }
   
   
   

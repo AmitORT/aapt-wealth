@@ -101,7 +101,7 @@
               <div class="overview-details">
                 <div>
                   <h2>AUM</h2>
-                  <h3>Rs. 10L</h3>
+                  <h3>Rs. {{ProductOverview?.AUM}}</h3>
                 </div>
                 <div>
                   <h2>Min SIP Amount</h2>
@@ -123,8 +123,10 @@
               <div class="overview-details">
                 <div>
                   <h2>Fund Started</h2>
-                  <h3>{{ProductOverview?.fundStarted}}</h3>
+                  <h3>{{ProductOverview?.fundStarted.slice(0, -14)}}</h3>
                 </div>
+                <!-- .slice(8) -->
+                <!--  -->
                 <!-- <div>
                   <h2>Fund Size</h2>
                   <h3 class="text-end">Rs 1,818 Cr</h3>
@@ -139,27 +141,34 @@
                 <p>Fund Returns</p>
                 <p>Category Average</p>
                 <!-- <p>Rank Within Category</p> -->
-                <p class="blue-text">*All returns are annualized.</p>
+                <p class="blue-text"  >*All returns are annualized.</p>
               </div>
-              <div class="col-lg-3 col-4">
-                <div class="monthly justify-content-center" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y
-                  Return
-                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                </div>
-                <div class="monthly justify-content-center" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y
-                  Return
-                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                </div>
-                <p class="val"><b>128.4%</b></p>
-                <p class="val"><b>113.0%</b></p>
-                <!-- <p class="val"><b>-</b></p> -->
+              <div class="col-lg-3 col-4" >
+                  <div class="monthly justify-content-center" (click)="showTenureForPopup()">{{SelectedMutualFund.selectedYear}}Y
+                    Return
+                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                  </div>
+                  <!-- <div class="monthly justify-content-center" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y
+                    Return
+                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                  </div> -->
+                  <!-- <div class="monthly justify-content-center" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y
+                    Return
+                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                  </div> -->
+                  <p class="val"><b>{{SelectedMutualFund.Rate}}%</b></p>
+                  <p class="val"><b>113.0%</b></p>
+                  <!-- <p class="val"><b>-</b></p> -->
+                <!-- </div> -->
+         
               </div>
               <div class="col-lg-3 col-4">
                 <h5 class="text-center">Since Inception</h5>
-                <p class="val"><b>{{ProductOverview?.returnSinceInception.toFixed(2)}}%</b></p>
+                <p class="val"><b>{{ProductOverview?.returnSinceInception?.toFixed(2)}}%</b></p>
                 <p class="val"><b>1</b></p>
                 <!-- <p class="val"><b>-</b></p> -->
               </div>
+              
             </div>
             <hr>
             <div class="row">
@@ -322,7 +331,7 @@
           <p>Materials</p> -->
                   </div>
                   <div class="col-lg-3 col-3 text-end">
-                    <p>{{sector.percentage.toFixed(2)}}%</p>
+                    <p>{{sector.percentage?.toFixed(2)}}%</p>
                     <!-- <p>28%</p>
          <p>28%</p> -->
                   </div>
@@ -497,15 +506,15 @@
                 <div class="row values">
                   <div class="col-lg-4 col-4">
                     <h6>1 Year</h6>
-                    <p>{{funds.returnFor1Year.toFixed(2)}}%</p>
+                    <p>{{funds.returnFor1Year?.toFixed(2)}}%</p>
                   </div>
                   <div class="col-lg-4 col-4">
                     <h6>3 Year</h6>
-                    <p>{{funds.returnFor3Year.toFixed(2)}}%</p>
+                    <p>{{funds.returnFor3Year?.toFixed(2)}}%</p>
                   </div>
                   <div class="col-lg-4 col-4">
                     <h6>5 Year</h6>
-                    <p>{{funds.returnFor5Year.toFixed(2)}}%</p>
+                    <p>{{funds.returnFor5Year?.toFixed(2)}}%</p>
                   </div>
                 </div>
               </div>

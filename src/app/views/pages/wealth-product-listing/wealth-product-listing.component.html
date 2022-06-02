@@ -149,7 +149,7 @@
               </div>
             </div>
           </div>
-          <div class="accordion-item">
+          <!-- <div class="accordion-item">
             <h2 class="accordion-header" id="headingThree">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Risk
@@ -197,7 +197,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingFour">
@@ -239,7 +239,7 @@
             </div>
           </div>
 
-          <div class="accordion-item">
+          <!-- <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
@@ -262,6 +262,45 @@
                       ONE-TIME
                     </label>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                Risk Profile
+              </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="acc-check">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault25">
+                    <label class="form-check-label" for="flexCheckDefault25">
+                      Very Conservative
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked26">
+                    <label class="form-check-label" for="flexCheckChecked26">
+                      Moderate
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault27">
+                    <label class="form-check-label" for="flexCheckDefault27">
+                     Balanced
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked28">
+                    <label class="form-check-label" for="flexCheckChecked28">
+                      Aggressive
+                    </label>
+                  </div>
+               
                 </div>
               </div>
             </div>
@@ -336,15 +375,15 @@
                   <div class="row apply-div">
                     <div class="col-lg-3 l-div col-4">
                       <p>1 year</p>
-                      <h5>{{offer.returnFor1Year.toFixed(2)}}%</h5>
+                      <h5>{{offer.returnFor1Year?.toFixed(2)}}%</h5>
                     </div>
                     <div class="col-lg-3 c-div col-4">
                       <p>3 year</p>
-                      <h5>{{offer.returnFor3Year.toFixed(2)}}%</h5>
+                      <h5>{{offer.returnFor3Year?.toFixed(2)}}%</h5>
                     </div>
                     <div class="col-lg-3 r-div col-4">
                       <p>5 year</p>
-                      <h5>{{offer.returnFor5Year.toFixed(2)}}%</h5>
+                      <h5>{{offer.returnFor5Year?.toFixed(2)}}%</h5>
                     </div>
 
                     <div class="col-6 mb-comapre hidden-lg">

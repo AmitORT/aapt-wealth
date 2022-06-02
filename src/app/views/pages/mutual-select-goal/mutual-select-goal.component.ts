@@ -54,8 +54,6 @@ export class MutualSelectGoalComponent implements OnInit {
   constructor(public route:Router,public validate:ValidateService, private crypto:AescryptoService, private api:ApiService,private toastr: ToastrService, private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-
-    this.Token=localStorage.getItem("CustToken");
     
     this.GetMyGoals();  
     
@@ -74,12 +72,9 @@ export class MutualSelectGoalComponent implements OnInit {
       }
     })    
   }
-
-
-
+  
   GetSelectedGoals(index:number){
     this.MyGoals[index].selectGoal=!this.MyGoals[index].selectGoal;
-
     this.SelectedGoal=this.MyGoals.filter((a:any)=>a.selectGoal==1);
     localStorage.setItem("GetSelectedGoals",this.crypto.Encrypt(this.SelectedGoal));
     console.log("SelectedGoal",this.SelectedGoal);
@@ -89,8 +84,8 @@ export class MutualSelectGoalComponent implements OnInit {
 
   InvestWithoutGoal(){
   
-    if(this.Token == null){
-      console.log("CustToken",this.Token )
+    if(localStorage.getItem("CustToken") == null){
+      console.log("CustToken", localStorage.getItem("CustToken"))
       this.route.navigate(["/sign-in"])
     }
     else{
@@ -115,8 +110,21 @@ export class MutualSelectGoalComponent implements OnInit {
       })
     }
 
- 
 
   }
 
+  CreateGoal(){
+    if(localStorage.getItem("CustToken") == null){
+      console.log("CustToken", localStorage.getItem("CustToken"))
+      this.route.navigate(["/sign-in"])
+    }
+    else{
+      this.route.navigate(["/mutual-create-goal"])
+    }
+  }
+
+  
+
 }
+
+

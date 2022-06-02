@@ -138,11 +138,17 @@ export class WealthProductListingComponent implements OnInit {
   MutualProductCompareFund: any;
   ProductList: any;
 
+  RiskProfilesubmitResponse:any;
+
 
 
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
+
+    this.RiskProfilesubmitResponse=this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
+    console.log("RiskProfilesubmitResponse",this.RiskProfilesubmitResponse)
+
 
     this.getOffersProductList();
 
@@ -192,14 +198,17 @@ export class WealthProductListingComponent implements OnInit {
   getOffersProductList() {
     var postData = new FormData();
     postData.append("searchFilter", '{"productId":5}');
-    postData.append("limit", '10');
+    postData.append("limit", '1000');
     postData.append("offset", '0');
+    postData.append("risk_profile_mapping", this.RiskProfilesubmitResponse.id);
+
     this.OfferListingLoader=true;
     this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
       this.OfferListingLoader=false;
       if (resp.response.n == 1) {
         this.ProductList = resp.data;
         console.log("ProductList", this.ProductList)
+        // console.log("id",this.RiskProfilesubmitResponse.id)
       }
       else {
         this.toastr.error(resp.response.msg)

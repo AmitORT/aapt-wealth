@@ -309,9 +309,9 @@ export class HeaderComponent implements OnInit, DoCheck {
             else if (this.validation.isNullEmptyUndefined(response.data.token.agent)) {
               setTimeout(() => {
                 console.log('route url', this.route.url);
-                if (this.route.url == '/') {
-                  this.GoToCommon('overview');
-                }
+                // if (this.route.url == '/') {
+                //   this.GoToCommon('overview');
+                // } have to uncomment.
               }, 1000);
             }
 

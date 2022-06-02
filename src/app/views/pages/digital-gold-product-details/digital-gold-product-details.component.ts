@@ -143,6 +143,26 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       });
   }
 
+  DoLogin(){
+    if(localStorage.getItem("CustToken") == null){
+      $("#login").modal("show");
+      // console.log("CustToken", localStorage.getItem("CustToken"))
+      // $("#login").modal("hide");
+      // this.route.navigate(["/sign-in"])
+    }
+    else{
+      $("#update-kyc").modal("show");
+    }
+  }
+
+  GoToSignUp(){
+    $("#login").modal("hide");
+    this.route.navigate(["/sign-in"])
+  }
+  
+  
+  
+
   keytab(nextTabId:number,event:any) {
     let actionFlag=false;
     const charCode = (event.which) ? event.which : event.keyCode;

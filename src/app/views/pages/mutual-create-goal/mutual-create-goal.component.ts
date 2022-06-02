@@ -92,7 +92,7 @@ export class MutualCreateGoalComponent implements OnInit {
  
 
   CreateGoalAndInvest(){
-
+    
     if(this.validate.isNullEmptyUndefined(this.CreateGoal.Savings)){
       this.toastr.error('Reason for saving is mandatory');
     }
@@ -120,7 +120,7 @@ export class MutualCreateGoalComponent implements OnInit {
     postData.append("investmentMode",this.CreateGoal.Payment_Mode);
     postData.append("targetAmount",this.CreateGoal.Goal_Amount);
     postData.append("startDate",'2021-06-28');
-    postData.append("targetDate",'2022-06-28');
+    postData.append("targetDate",this.CreateGoal.Date_For_Installments);
     postData.append("rateInflation",this.CreateGoal.Inflation_Rate);
     postData.append("rateReturn",this.CreateGoal.Return_Rate);
     postData.append("name",this.CreateGoal.Savings);
@@ -148,28 +148,29 @@ export class MutualCreateGoalComponent implements OnInit {
 
   ProceedToCart(){
     debugger;
-    var postData = new FormData();
-    postData.append("goalId",'387');
-    postData.append("transactionTypeId",'1');
-    postData.append("endDateForSip",'2023-02-01T11:01:56.652Z');
-    postData.append("instrumentId",'255527');
-    postData.append("totalAmount",'1234');
-    postData.append("modeOfTransaction",'1');
-    postData.append("frequency",'4');
-    postData.append("transactionSubType",'2');
-    postData.append("frequencyDay",'1');
-    postData.append("startDateForSip",'2021-09-01T11:01:56.652Z');
-    postData.append("serviceProviderAccountId",'20753');
-
-    this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
-      this.ProceedCart=resp.data;
-      let encrypted=this.crypto.Encrypt(this.ProceedCart);
-      localStorage.setItem("ProceedCart",encrypted);
-      console.log("ProceedToCart",resp.data)
-
-      this.route.navigate(["/mutual-fund-cart"])
-      
-    })
+      var postData = new FormData();
+      postData.append("goalId",'387');
+      postData.append("transactionTypeId",'1');
+      postData.append("endDateForSip",'2023-02-01T11:01:56.652Z');
+      postData.append("instrumentId",'255527');
+      postData.append("totalAmount",'1234');
+      postData.append("modeOfTransaction",'1');
+      postData.append("frequency",'4');
+      postData.append("transactionSubType",'2');
+      postData.append("frequencyDay",'1');
+      postData.append("startDateForSip",'2021-09-01T11:01:56.652Z');
+      postData.append("serviceProviderAccountId",'20753');
+  
+      this.api.post("wealthfy/proceed-to-cart",postData).subscribe(resp=>{
+        this.ProceedCart=resp.data;
+        let encrypted=this.crypto.Encrypt(this.ProceedCart);
+        localStorage.setItem("ProceedCart",encrypted);
+        console.log("ProceedToCart",resp.data)
+  
+        this.route.navigate(["/mutual-fund-cart"])
+        
+      })
+    
   } 
 
 }
