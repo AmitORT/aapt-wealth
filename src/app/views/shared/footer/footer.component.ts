@@ -135,19 +135,21 @@ export class FooterComponent implements OnInit {
       this.toastr.error("Please enter a valid email");
     }
     else {
-      if (calltype == 'login') {
-       
-        this.calltype = 'login';
-        this.Login(event);
-      }
-      else {
-        if (this.validation.isNullEmptyUndefined(this.FormEmail) || this.validation.isNullEmptyUndefined(this.FormFirstName) || this.validation.isNullEmptyUndefined(this.FormLastName) || this.validation.isNullEmptyUndefined(this.FormMobileNo) || this.FormCheckbox == 0) {
-          this.toastr.error("All fields are mandatory");
-        } else {
-          this.calltype = 'register';
-          this.RegisterCust(event);
+      this.ResetOTP();
+      setTimeout(() => {
+        if (calltype == 'login') {
+          this.calltype = 'login';
+          this.Login(event);
         }
-      }
+        else {
+          if (this.validation.isNullEmptyUndefined(this.FormEmail) || this.validation.isNullEmptyUndefined(this.FormFirstName) || this.validation.isNullEmptyUndefined(this.FormLastName) || this.validation.isNullEmptyUndefined(this.FormMobileNo) || this.FormCheckbox == 0) {
+            this.toastr.error("All fields are mandatory");
+          } else {
+            this.calltype = 'register';
+            this.RegisterCust(event);
+          }
+        }
+      }, 0);
     }
   }
 
@@ -295,7 +297,8 @@ export class FooterComponent implements OnInit {
       }
       actionFlag = true;
     }
-    if (actionFlag) {
+    // console.log("OTPfssf0",$('#footerotp'+(nextTabId -1)).val().length)
+    if (actionFlag && $('#footerotp' + (nextTabId - 1)).val().length == 1) {
       const field = document.getElementById("footerotp" + nextTabId);
       if (field) {
         field.focus();

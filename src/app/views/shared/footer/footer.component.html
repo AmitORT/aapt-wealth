@@ -161,27 +161,27 @@
 		  <div class="row">
 			<h3 class="otp-title">Enter OTP</h3>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp1" [(ngModel)]="footerotp1"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp1" [(ngModel)]="footerotp1"
 				(keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
 			</div>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp2" [(ngModel)]="footerotp2"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp2" [(ngModel)]="footerotp2"
 				(keyup)="keytab(3,$event)" (keypress)="validation.numberOnly($event)" />
 			</div>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp3" [(ngModel)]="footerotp3"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp3" [(ngModel)]="footerotp3"
 				(keyup)="keytab(4,$event)" (keypress)="validation.numberOnly($event)" />
 			</div>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp4" [(ngModel)]="footerotp4"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp4" [(ngModel)]="footerotp4"
 				(keyup)="keytab(5,$event)" (keypress)="validation.numberOnly($event)" />
 			</div>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp5" [(ngModel)]="footerotp5"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp5" [(ngModel)]="footerotp5"
 				(keyup)="keytab(6,$event)" (keypress)="validation.numberOnly($event)" />
 			</div>
 			<div class="col-2">
-			  <input type="number" class="form-control otp-field" maxlength="1" id="footerotp6" [(ngModel)]="footerotp6"
+			  <input type="text" class="form-control otp-field" maxlength="1" id="footerotp6" [(ngModel)]="footerotp6"
 				(keypress)="validation.numberOnly($event)" (keyup)="verifytheOtp()" />
 			</div>
 			<div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">

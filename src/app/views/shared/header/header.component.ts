@@ -170,15 +170,18 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
       this.toastr.error("Please enter a valid email");
     }
-    else {      
-      if (calltype == 'login') {
-        this.calltype = 'login';
-        this.Login(event);
-      }
-      else {
-        this.calltype = 'register';
-        this.RegisterCust(event);
-      }
+    else {
+      this.ResetOTP();
+      setTimeout(() => {
+        if (calltype == 'login') {
+          this.calltype = 'login';
+          this.Login(event);
+        }
+        else {
+          this.calltype = 'register';
+          this.RegisterCust(event);
+        }
+      }, 0);
     }
   }
 
@@ -401,7 +404,8 @@ export class HeaderComponent implements OnInit, DoCheck {
       }
       actionFlag = true;
     }
-    if (actionFlag) {
+    // console.log("OTPfssf0",$('#headotp'+(nextTabId -1)).val().length)
+    if (actionFlag && $('#headotp' + (nextTabId - 1)).val().length == 1) {
       const field = document.getElementById("headotp" + nextTabId);
       if (field) {
         field.focus();

@@ -184,27 +184,27 @@
             <!-- <span class="link-text" (click)="EditNumber()">Edit Email?</span> -->
           </p>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp1" [(ngModel)]="headotp1"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp1" [(ngModel)]="headotp1"
               (keyup)="keytab(2,$event)" (keypress)="validation.numberOnly($event)" />
           </div>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp2" [(ngModel)]="headotp2"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp2" [(ngModel)]="headotp2"
               (keyup)="keytab(3,$event)" (keypress)="validation.numberOnly($event)" />
           </div>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp3" [(ngModel)]="headotp3"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp3" [(ngModel)]="headotp3"
               (keyup)="keytab(4,$event)" (keypress)="validation.numberOnly($event)" />
           </div>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp4" [(ngModel)]="headotp4"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp4" [(ngModel)]="headotp4"
               (keyup)="keytab(5,$event)" (keypress)="validation.numberOnly($event)" />
           </div>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp5" [(ngModel)]="headotp5"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp5" [(ngModel)]="headotp5"
               (keyup)="keytab(6,$event)" (keypress)="validation.numberOnly($event)" />
           </div>
           <div class="col-2">
-            <input type="number" class="form-control otp-field" maxlength="1" id="headotp6" [(ngModel)]="headotp6"
+            <input type="text" class="form-control otp-field" maxlength="1" id="headotp6" [(ngModel)]="headotp6"
               (keypress)="validation.numberOnly($event)" (keyup)="verifyOtpBtn()" />
           </div>
           <div class="col-12" *ngIf="resendbuttonText != 'Resend OTP'">
