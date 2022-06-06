@@ -170,8 +170,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
       this.toastr.error("Please enter a valid email");
     }
-    else {
-      this.isOTPSent = true;
+    else {      
       if (calltype == 'login') {
         this.calltype = 'login';
         this.Login(event);
@@ -190,6 +189,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       loginData.append('email', this.FormEmail);
       this.api.post('auth/customer/login', loginData, false).subscribe(async (response: any) => {
         if (response.response.n == 1) {
+          this.isOTPSent = true;
           $("#headerotp-screen").modal("show");
           this.resendbuttonText = "2:30"
           this.countdown();
@@ -198,8 +198,9 @@ export class HeaderComponent implements OnInit, DoCheck {
         }
         else {
           this.toastr.error(response.response.Msg);
-          localStorage.clear();
-          this.route.navigate(['/']);
+          this.isOTPSent = false;
+          // localStorage.clear();
+          // this.route.navigate(['/']);
         }
       });
     }
@@ -231,6 +232,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       this.api.post(this.UrlRegister, registerData, false).subscribe(async (response: any) => {
         console.log(response);
         if (response.response.n == 1) {
+          this.isOTPSent = true;
           $("#headerotp-screen").modal("show");
           this.resendbuttonText = "2:30"
           this.countdown();
@@ -239,8 +241,9 @@ export class HeaderComponent implements OnInit, DoCheck {
         }
         else {
           this.toastr.error(response.response.Msg);
-          localStorage.clear();
-          this.route.navigate(['/']);
+          this.isOTPSent = false;
+          // localStorage.clear();
+          // this.route.navigate(['/']);
         }
       });
     } catch (ex) {

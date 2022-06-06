@@ -136,7 +136,7 @@ export class FooterComponent implements OnInit {
     }
     else {
       if (calltype == 'login') {
-        this.isOTPSent = true;
+       
         this.calltype = 'login';
         this.Login(event);
       }
@@ -144,7 +144,6 @@ export class FooterComponent implements OnInit {
         if (this.validation.isNullEmptyUndefined(this.FormEmail) || this.validation.isNullEmptyUndefined(this.FormFirstName) || this.validation.isNullEmptyUndefined(this.FormLastName) || this.validation.isNullEmptyUndefined(this.FormMobileNo) || this.FormCheckbox == 0) {
           this.toastr.error("All fields are mandatory");
         } else {
-          this.isOTPSent = true;
           this.calltype = 'register';
           this.RegisterCust(event);
         }
@@ -160,6 +159,7 @@ export class FooterComponent implements OnInit {
       this.api.post('auth/customer/login', loginData, false).subscribe(async response => {
         if (response.response.n == 1) {
           console.log('response', response);
+          this.isOTPSent = true;
           $("#mob_signin").modal("hide");
           this.resendbuttonText = "2:30";
           $("#Footerotp-screen").modal("show");
@@ -169,8 +169,9 @@ export class FooterComponent implements OnInit {
         }
         else {
           this.toastr.error(response.response.Msg);
-          localStorage.clear();
-          this.route.navigate(['/']);
+          this.isOTPSent = false;
+          // localStorage.clear();
+          // this.route.navigate(['/']);
         }
       });
     }
@@ -203,6 +204,7 @@ export class FooterComponent implements OnInit {
         if (response.response.n == 1) {
           this.toastr.success(response.response.Msg);
           console.log(response);
+          this.isOTPSent = true;
           $("#mob_signup").modal("hide");
           this.resendbuttonText = "2:30";
           $("#Footerotp-screen").modal("show");
@@ -211,8 +213,9 @@ export class FooterComponent implements OnInit {
         }
         else {
           this.toastr.error(response.response.Msg);
-          localStorage.clear();
-          this.route.navigate(['/']);
+          this.isOTPSent = false;
+          // localStorage.clear();
+          // this.route.navigate(['/']);
         }
       });
     } catch (ex) {
