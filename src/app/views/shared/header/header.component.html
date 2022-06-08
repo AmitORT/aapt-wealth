@@ -31,7 +31,7 @@
             <div [hidden]="isLoggedIn" class="login-popup dropdown-menu dropdown-menu-lg-end">
               <div class="sign-in">
                 <div class="mb-3">
-                  <input [disabled]="isOTPSent"  type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
+                  <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
                     id="emailmobile" placeholder="Email Id/Mobile No.">
                 </div>
                 <!-- <div class="mb-3">
@@ -55,18 +55,19 @@
                   <label for="switch_right">Partner</label>
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName" class="form-control" name="FirstName"
-                    placeholder="First Name">
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName"
+                    class="form-control" name="FirstName" placeholder="First Name">
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName" class="form-control" name="LastName"
-                    placeholder="Last Name">
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName"
+                    class="form-control" name="LastName" placeholder="Last Name">
                 </div>
                 <div class="mb-3">
                   <input type="email" [(ngModel)]="FormEmail" class="form-control" name="email1" placeholder="Email Id">
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo" class="form-control" name="mnumber1" maxlength="10" placeholder="Mobile Number">
+                  <input type="text" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo"
+                    class="form-control" name="mnumber1" maxlength="10" placeholder="Mobile Number">
                 </div>
                 <!-- <div [hidden]="!isOTPSent" class="mb-3">
                   <input type="text" class="form-control" [(ngModel)]="otp1" name="reg-OTP" id="rOTP" placeholder="OTP">
@@ -113,14 +114,15 @@
     <ul class="hidden-xs hidden-sm">
       <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
       <!-- <li><a href="#">Tools</a></li> -->
-      <li><a data-bs-toggle="collapse" href="#Toolscollapse" role="button" aria-expanded="false" aria-controls="collapseExample" class="drop-menu collapsed">Tools</a></li>
+      <li><a data-bs-toggle="collapse" href="#Toolscollapse" role="button" aria-expanded="false"
+          aria-controls="collapseExample" class="drop-menu collapsed">Tools</a></li>
       <div class="collapse" id="Toolscollapse">
         <div class="card card-body">
           <ul>
             <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
             <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
             <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
-          </ul>          
+          </ul>
         </div>
       </div>
       <li><a href="#">About Us</a></li>
@@ -128,20 +130,21 @@
       <li><a href="#">Support</a></li>
       <li><a href="#" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
-    <ul class="hidden-lg mob-nav-scroll" >
+    <ul class="hidden-lg mob-nav-scroll">
       <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
       <li><a (click)="GotoInsurance()">Insure</a></li>
       <li><a (click)="GotoCredit()">Credit</a></li>
       <li><a [routerLink]="['/']">Wealth</a></li>
       <!-- <li><a href="#">Tools</a></li> -->
-      <li><a data-bs-toggle="collapse" href="#Toolscollapse1" role="button" aria-expanded="false" aria-controls="collapseExample" class="drop-menu">Tools</a></li>
+      <li><a data-bs-toggle="collapse" href="#Toolscollapse1" role="button" aria-expanded="false"
+          aria-controls="collapseExample" class="drop-menu">Tools</a></li>
       <div class="collapse" id="Toolscollapse1">
         <div class="card card-body">
           <ul>
             <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
             <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
             <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
-          </ul>          
+          </ul>
         </div>
       </div>
       <li><a href="#">About Us</a></li>
@@ -172,7 +175,8 @@
 </div>
 
 <!-- otp Modal -->
-<div class="modal fade" id="headerotp-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="headerotp-screen" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-dialog-centered">
     <div class="modal-content">
 
@@ -220,7 +224,8 @@
               <button type="button" (click)="verifyOtp()" class="btn btn-primary theme-button">Submit</button>
             </div>    -->
           <div class="col-12">
-            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel"> Cancel</button>
+            <button type="button" data-bs-dismiss="modal" aria-label="Close" class="otp-cancel" (click)="cancleModal()">
+              Cancel</button>
           </div>
         </div>
       </div>

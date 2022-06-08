@@ -452,6 +452,11 @@ export class HeaderComponent implements OnInit, DoCheck {
     })
   }
 
+  cancleModal(){
+    // $(".login-popup").addClass('show');
+    this.isOTPSent=false;
+  }
+
 
 
 }
