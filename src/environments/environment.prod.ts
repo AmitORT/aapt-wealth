@@ -4,7 +4,7 @@ export const environment = {
 
   // --UAT FINIZON--
 
-  CommonUrl: "https://uat.finizon.com?TOKEN={TOKEN}&PATH={PATH}",
+  CommonUrl: "https://uat.finizon.com?TOKEN={TOKEN}&PATH={PATH}", 
   CreditUrl: "https://uat.finizon.com/credit?TOKEN={TOKEN}&PATH={PATH}",
   InsuranceUrl: "http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
   WealthUrl: "https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}",
