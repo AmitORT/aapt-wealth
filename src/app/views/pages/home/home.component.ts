@@ -48,6 +48,7 @@ export class HomeComponent implements OnInit {
   _paramSub: any;
   BlogList: any;
   blogimage: any;
+  ShowLoader: any = false;
 
   constructor(private api: ApiService, private route: Router, public activeRoute: ActivatedRoute, public validation: ValidateService, private crypto: AescryptoService,) { }
 
@@ -56,14 +57,18 @@ export class HomeComponent implements OnInit {
     this.GetBlogList();
 
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
-      console.log(params);
+      // console.log(params);
       this.QueryToken = params.TOKEN;
       this.Path = params.PATH;
-      console.log("QueryToken", this.QueryToken);
-      console.log("Path", this.Path);
+      // console.log("QueryToken", this.QueryToken);
+      // console.log("Path", this.Path);
     });
 
     this._paramSub.unsubscribe();
+
+    if (!this.validation.isNullEmptyUndefined(this.Path) && this.Path != "null" && this.Path != "{PATH}") {
+      this.ShowLoader = true;
+    }
 
     if (!this.validation.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
       // debugger;
@@ -76,9 +81,11 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       if (!this.validation.isNullEmptyUndefined(this.Path) && this.Path != 'null' && this.Path != "{PATH}") {
         this.route.navigate([this.Path]);
+        this.ShowLoader = false;
       }
       else {
         this.route.navigate(['']);
+        this.ShowLoader = false;
       }
     }, 1000);
 
