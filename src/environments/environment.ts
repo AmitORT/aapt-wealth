@@ -33,6 +33,7 @@ export const environment = {
   //WealthUrl:"https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}",
 
   // --UAT FINIZON--
+  
 
   // --UAT ONEROOFTECH--
 
