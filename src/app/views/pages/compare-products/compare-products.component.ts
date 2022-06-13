@@ -30,7 +30,7 @@ export class CompareProductsComponent implements OnInit {
     console.log("MutualProductCompareFund",this.MutualProductCompareFund)
     this.MutualProductCompareFund.forEach((element: any) => {
       element.selectedYear=1;
-      element.Rate=element.returnFor1Year.toFixed(2);
+      element.Rate=element.returnFor1Year?.toFixed(2);
     });
     this.OffersForCompare=this.MutualProductCompareFund.filter((a:any)=>a.checkforcompare==1);
     console.log("OffersForCompare",this.OffersForCompare)
