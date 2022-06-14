@@ -43,11 +43,11 @@
           </td>
         </tr>
 
-        <tr>
+        <!-- <tr>
           <td colspan="4" class="p-0">
             <img src="assets/img/compare-graph.png" alt="graph" class="compare-graph" />
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="4" class="p-0">
             <div class="table-scroll">
@@ -182,12 +182,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor1Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor1Year.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor1Year?.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor1Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 2">
-                    <b>{{OffersForCompare[2].returnFor1Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[2].returnFor1Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 3">
-                    <b>{{OffersForCompare[3].returnFor1Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[3].returnFor1Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
@@ -217,12 +217,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor3Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor3Year.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0].returnFor3Year?.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1].returnFor3Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 2">
-                    <b>{{OffersForCompare[2].returnFor3Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[2].returnFor3Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 3">
-                    <b>{{OffersForCompare[3].returnFor3Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[3].returnFor3Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <tr class="hidden-xs">
@@ -236,12 +236,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0]?.returnFor5Year.toFixed(2)}}</b></td>
-                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1]?.returnFor5Year.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 0"><b>{{OffersForCompare[0]?.returnFor5Year?.toFixed(2)}}</b></td>
+                  <td *ngIf="OffersForCompare.length > 1"><b>{{OffersForCompare[1]?.returnFor5Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 2">
-                    <b>{{OffersForCompare[2]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[2]?.returnFor5Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length > 3">
-                    <b>{{OffersForCompare[3]?.returnFor5Year.toFixed(2)}}</b></td>
+                    <b>{{OffersForCompare[3]?.returnFor5Year?.toFixed(2)}}</b></td>
                   <td *ngIf="OffersForCompare.length < 4"><b>-- --</b></td>
                 </tr>
                 <!-- section 2 end -->

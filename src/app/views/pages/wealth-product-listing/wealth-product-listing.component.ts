@@ -121,38 +121,35 @@ export class WealthProductListingComponent implements OnInit {
     }
   };
 
-
   PreminumTime: boolean = true;
   OtherOffers: boolean = false;
-  Comapare1: any = 0;
-  Comapare2: any = 0;
-  Comapare3: any = 0;
-  Comapare4: any = 0;
-  Comapare5: any = 0;
-  Comapare6: any = 0;
-  OfferListingLoader:boolean=false;
-
+  OfferListingLoader: boolean = true;
   ProductOfferForBinding: any;
   ProductOffer: any;
   OffersForCompare: any = [];
   MutualProductCompareFund: any;
-  ProductList: any;
-
-  RiskProfilesubmitResponse:any;
-
-
-
+  ProductList: any = [];
+  RiskProfilesubmitResponse: any;
+  riskprofileId: any = 0;
+  RiskProfileFilterList: any;
+  IsChecked: boolean = false;
+  RiskFiltercheckedList: any = [];
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("RiskProfilesubmitResponse") != null) {
+      this.RiskProfilesubmitResponse = this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
+      console.log("RiskProfilesubmitResponse", this.RiskProfilesubmitResponse);
+      this.riskprofileId = 1;
+    }
+    else {
+      this.riskprofileId = 0;
+    }
 
-    this.RiskProfilesubmitResponse=this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
-    console.log("RiskProfilesubmitResponse",this.RiskProfilesubmitResponse)
-
-
-    this.getOffersProductList();
-
-    // this.GetOffers();
+    this.GetRiskProfileFilterList();
+    setTimeout(() => {
+      this.getOffersProductList();
+    }, 0);
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -165,16 +162,11 @@ export class WealthProductListingComponent implements OnInit {
         $('#sidebar').css('top', '');
         $('#sidebar').css('width', '');
       }
-
       if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top - 100) {
         $('#sidebar').css('top', -($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top + 100));
       }
 
     });
-
-
-
-
   }
 
   //   GetOffers(){
@@ -195,47 +187,78 @@ export class WealthProductListingComponent implements OnInit {
   //   });
   //  }
 
+
+
+  GetRiskProfileFilterList() {
+    this.api.get("wealthfy/get-riskprofile-filter").subscribe(response => {
+      this.RiskProfileFilterList = response.data;
+      console.log('GetRiskProfileFilterList', this.RiskProfileFilterList)
+    })
+  }
+
+  getList() {
+    this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
+    console.log('check list', this.RiskFiltercheckedList)
+  }
+
   getOffersProductList() {
+
+    this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
+    console.log('check list', this.RiskFiltercheckedList);
     var postData = new FormData();
     postData.append("searchFilter", '{"productId":5}');
     postData.append("limit", '1000');
     postData.append("offset", '0');
-    postData.append("risk_profile_mapping", this.RiskProfilesubmitResponse.id);
-
-    this.OfferListingLoader=true;
-    this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
-      this.OfferListingLoader=false;
-      if (resp.response.n == 1) {
-        this.ProductList = resp.data;
-        console.log("ProductList", this.ProductList)
-        // console.log("id",this.RiskProfilesubmitResponse.id)
+    if (this.riskprofileId == 1) {
+      postData.append("risk_profile_mapping", this.RiskProfilesubmitResponse.id);
+    }
+    if (this.IsChecked) {
+      if (this.validate.isNullEmptyUndefined(this.RiskFiltercheckedList)) {
+        postData.append("risk_filter", JSON.stringify(this.RiskFiltercheckedList = []));
       }
       else {
-        this.toastr.error(resp.response.msg)
+        var RiskFiltercheckedList = this.RiskFiltercheckedList.split(',');
+        postData.append("risk_filter", JSON.stringify(RiskFiltercheckedList));
+        console.log('check list', RiskFiltercheckedList)
+      }
+    }
+    this.OfferListingLoader = true;
+    this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
+      this.OfferListingLoader = false;
+      console.log("ProductList", resp)
+      if (resp.response.n != 0) {
+        this.ProductList = resp.data;
+        // console.log("ProductList", this.ProductList)
+        if (!this.validate.isNullEmptyUndefined(resp.riskprofileId)) {
+          for (var i = 0; i < this.RiskProfileFilterList.length; i++) {
+            if(this.RiskProfileFilterList[i].id == resp.riskprofileId){
+              this.RiskProfileFilterList[i].checked=true;
+            }
+          }
+        }
+      }
+      else {
+        // this.toastr.error(resp.response.Msg)
       }
     });
-
   }
 
   compareCheckboxclick(index: number) {
-    
     this.ProductList[index].checkforcompare = !this.ProductList[index].checkforcompare;
-
     if (this.ProductList.filter((a: any) => a.checkforcompare == 1).length > 4) {
       this.ProductList[index].checkforcompare = 0;
       this.toastr.error("You can add max 4 offer for compare");
     } else {
       this.OffersForCompare = this.ProductList.filter((a: any) => a.checkforcompare == 1);
       localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.ProductList));
+      console.log("ProductList", this.ProductList);
       console.log("compareoffer", this.OffersForCompare);
     }
   }
 
-
   RemoveFromCompare(model: any, i: any) {
     console.log("model", model)
     this.OffersForCompare.splice(i, 1);
-
     this.ProductList.forEach((element: any) => {
       if (element.id == model.id) {
         element.checkforcompare = 0;
@@ -255,10 +278,8 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   AppliedFund(offer: any) {
-    // console.log("offer",offer)    
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
-
   }
 
   // GetOffersDetails(modal:any){

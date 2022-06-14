@@ -102,6 +102,25 @@
   font-size: 27px;
 }
 
+.no-data .breadcrumb-title{
+  color: #465A65;
+  font-size: 30px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.no-data .breadcrumb-title::after {
+  content: '';
+  border-bottom: 3px solid #e27e28;
+  width: 50px;
+  position: absolute;
+  left: auto;
+  bottom: 5px;
+}
+
 .breadcrumb-title::after {
   content: '';
   border-bottom: 3px solid #e27e28;
