@@ -57,7 +57,17 @@
             <p>1st June 2021</p>
           </div>
         </div>
-        <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" />
+        <div id="chart">
+          <apx-chart
+            [series]="public_series"
+            [chart]="chartData"
+            [xaxis]="xaxis"
+            [stroke]="stroke"
+            [tooltip]="tooltip"
+            [dataLabels]="dataLabels"
+          ></apx-chart>
+        </div>
+        <!-- <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" /> -->
         <div class="graph-footer">
           <ul>
             <li>6M</li>

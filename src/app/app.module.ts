@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { NgApexchartsModule } from 'ng-apexcharts'
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -138,6 +139,7 @@ import { SignInComponent } from './views/pages/sign-in/sign-in.component';
     AppRoutingModule,
     CarouselModule,
     NgxSliderModule,
+    NgApexchartsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({timeOut:3000,preventDuplicates:true})

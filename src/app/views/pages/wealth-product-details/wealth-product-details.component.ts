@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Options } from '@angular-slider/ngx-slider';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -6,15 +6,38 @@ import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConditionalExpr } from '@angular/compiler';
+import {
+  ChartComponent,
+  ApexAxisChartSeries,
+  ApexChart,
+  ApexXAxis,
+  ApexDataLabels,
+  ApexTooltip,
+  ApexStroke
+} from "ng-apexcharts";
+import { analyzeAndValidateNgModules, ConditionalExpr } from '@angular/compiler';
 declare var $ : any;
+
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  xaxis: ApexXAxis;
+  stroke: ApexStroke;
+  tooltip: ApexTooltip;
+  dataLabels: ApexDataLabels;
+};
+
 
 @Component({
   selector: 'app-wealth-product-details',
   templateUrl: './wealth-product-details.component.html',
   styleUrls: ['./wealth-product-details.component.css']
 })
+
 export class WealthProductDetailsComponent implements OnInit {
+  @ViewChild("chart")
+  chart!: ChartComponent;
+  public chartOptions!: Partial<ChartOptions>;
   flag:boolean=false;
   PreminumTime:boolean=true;
 
@@ -106,9 +129,13 @@ export class WealthProductDetailsComponent implements OnInit {
   ProductList:any;
   private routeSub: any;
   id: any;
-  SelectedMutualFund:any
-
- 
+  SelectedMutualFund:any;
+  public_series:any;
+  chartData:any;
+  dataLabels:any;
+  stroke:any;
+  xaxis:any;
+  tooltip:any;
   ModeOfInvestment:any={
     "Payment_mode":"1",
     "DateForMonth":"15",
@@ -117,14 +144,96 @@ export class WealthProductDetailsComponent implements OnInit {
   }
  
 
-  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService, private router: ActivatedRoute) { }
+  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService, private router: ActivatedRoute) {
+    this.chartOptions = {
+      // series: [
+      //   {
+      //     name: "series1",
+      //     data: [31, 40, 28, 51, 42, 109, 100]
+      //   },
+      //   {
+      //     name: "series2",
+      //     data: [11, 32, 45, 32, 34, 52, 41]
+      //   }
+      // ],
+      // chart: {
+      //   height: 350,
+      //   type: "area"
+      // },
+      // dataLabels: {
+      //   enabled: false
+      // },
+      // stroke: {
+      //   curve: "smooth"
+      // },
+      // xaxis: {
+      //   type: "datetime",
+      //   categories: [
+      //     "2018-09-19T00:00:00.000Z",
+      //     "2018-09-19T01:30:00.000Z",
+      //     "2018-09-19T02:30:00.000Z",
+      //     "2018-09-19T03:30:00.000Z",
+      //     "2018-09-19T04:30:00.000Z",
+      //     "2018-09-19T05:30:00.000Z",
+      //     "2018-09-19T06:30:00.000Z"
+      //   ]
+      // },
+      // tooltip: {
+      //   x: {
+      //     format: "dd/MM/yy HH:mm"
+      //   }
+      // }
+    };
+  
+    this.public_series = [
+      {
+        name: "series1",
+        data: [31, 40, 28, 51, 42, 109, 100],
+        color: "#e27e28"
+      },
+      {
+        name: "series2",
+        data: [11, 32, 45, 32, 34, 52, 41]
+      }
+    ],
+
+    this.chartData = {
+      height: 350,
+      type: "area"
+    }
+    
+    this.dataLabels = {
+      enabled: false
+    }
+    this.stroke = {
+      curve: "smooth"
+    },
+    this.xaxis = {
+      type: "datetime",
+      categories: [
+        "2018-09-19T00:00:00.000Z",
+        "2018-09-19T01:30:00.000Z",
+        "2018-09-19T02:30:00.000Z",
+        "2018-09-19T03:30:00.000Z",
+        "2018-09-19T04:30:00.000Z",
+        "2018-09-19T05:30:00.000Z",
+        "2018-09-19T06:30:00.000Z"
+      ]
+    }
+    this.tooltip= {
+      x: {
+        format: "dd/MM/yy HH:mm"
+      }
+    }
+   }
 
   ngOnInit(): void {
-
+  
     this.SelectedMutualFund=this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
     console.log("SelectedMutualFund",this.SelectedMutualFund)
     
     this.GetProductDetail();
+    this.GetGraphData();
 
     this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
     // console.log("ModeOfInvestment",this.ModeOfInvestment)
@@ -148,7 +257,17 @@ export class WealthProductDetailsComponent implements OnInit {
       });
 
      this.scrolltotop();
+     
     
+  }
+
+  GetGraphData(){
+    var postData=new FormData();  
+    postData.append("instrumentId",this.SelectedMutualFund.id);
+    postData.append("filterDate","all");
+    this.api.post("wealthfy/get-fetch-nav",postData).subscribe(response=>{
+      console.log("graph data",response)
+    })
   }
 
   scrolltotop(){
@@ -232,6 +351,20 @@ export class WealthProductDetailsComponent implements OnInit {
     });
   }
 
-  
+  public generateData(baseval: number, count: number, yrange: { max: number; min: number; }) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+      var x = Math.floor(Math.random() * (750 - 1 + 1)) + 1;
+      var y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
+      var z = Math.floor(Math.random() * (75 - 15 + 1)) + 15;
+
+      series.push([x, y, z]);
+      baseval += 86400000;
+      i++;
+    }
+    return series;
+  }
 
 }
