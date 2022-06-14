@@ -108,11 +108,11 @@ export class HomeComponent implements OnInit {
   ProductsWealth() {
     this.api.get("vertical/product?vertical=3").subscribe((resp) => {
       this.productwealthdata = resp.data;
-      console.log("product data", this.productwealthdata);
+      // console.log("product data", this.productwealthdata);
     });
   }
   GotoRecommendedOffers(Product: any) {
-    console.log('products', Product.path)
+    // console.log('products', Product.path)
     this.route.navigate([Product.path.trim()]);
     // [routerLink]="['{{products?.path}}']"
   }
@@ -126,9 +126,9 @@ export class HomeComponent implements OnInit {
   GetBlogList() {
 
     this.api.get("banner/get-blog").subscribe(response => {
-      console.log('get-blog', response);
+      // console.log('get-blog', response);
       this.BlogList = response.items;
-      console.log('list', this.BlogList);
+      // console.log('list', this.BlogList);
       for (let i = 0; i < this.BlogList.length; i++) {
         if (this.BlogList[i].content.indexOf('src=\"') > 0) {
           this.blogimage = this.BlogList[i].content.split('src=\"');
@@ -140,7 +140,7 @@ export class HomeComponent implements OnInit {
           this.BlogList[i].blogimage = 'assets/img/blog_thumnail_1.png';
         }
       }
-      console.log('updated list', this.BlogList);
+      // console.log('updated list', this.BlogList);
     })
 
   }
