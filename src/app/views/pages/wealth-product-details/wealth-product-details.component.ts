@@ -191,10 +191,10 @@ export class WealthProductDetailsComponent implements OnInit {
         data: [31, 40, 28, 51, 42, 109, 100],
         color: "#e27e28"
       },
-      {
-        name: "series2",
-        data: [11, 32, 45, 32, 34, 52, 41]
-      }
+      // {
+      //   name: "series2",
+      //   data: [11, 32, 45, 32, 34, 52, 41]
+      // }
     ],
 
     this.chartData = {

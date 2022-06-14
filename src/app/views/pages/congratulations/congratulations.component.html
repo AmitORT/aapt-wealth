@@ -8,7 +8,12 @@
   </div>
   <div class="row align-items-center applicant1 mt-3">
     <div class="col-lg-6 col-12 mob-center">
-      <img src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Very Conservative'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Conservative'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Moderate'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Aggressive'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Very Aggressive'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
+      <img *ngIf="RiskProfilesubmitResponse.name == 'Hyper Aggressive'" src="assets/img/congratulations.svg" alt="eligiblity" class="w-75" />
     </div>
     <div class="col-lg-6 mt-5">
       <div class="position-relative mb-3">
