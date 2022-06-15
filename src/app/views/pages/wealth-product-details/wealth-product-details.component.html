@@ -57,7 +57,7 @@
             <p>1st June 2021</p>
           </div>
         </div>
-        <div id="chart">
+        <div id="chart" *ngIf="GraphDataList.length > 0">
           <apx-chart
             [series]="public_series"
             [chart]="chartData"
@@ -68,7 +68,7 @@
           ></apx-chart>
         </div>
         <!-- <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" /> -->
-        <div class="graph-footer">
+        <!-- <div class="graph-footer">
           <ul>
             <li>6M</li>
             <li class="active">1Y</li>
@@ -76,7 +76,7 @@
             <li>5Y</li>
             <li>All</li>
           </ul>
-        </div>
+        </div> -->
       </div>
 
       <div class="mt-3 pd-tabs">

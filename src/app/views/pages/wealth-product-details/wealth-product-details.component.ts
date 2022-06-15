@@ -183,18 +183,20 @@ export class WealthProductDetailsComponent implements OnInit {
       //     format: "dd/MM/yy HH:mm"
       //   }
       // }
+      
     };
-  
+
+
     this.public_series = [
       {
         name: "series1",
-        data: [31, 40, 28, 51, 42, 109, 100],
+        data: [],
         color: "#e27e28"
       },
-      {
-        name: "series2",
-        data: [11, 32, 45, 32, 34, 52, 41]
-      }
+      // {
+      //   name: "series2",
+      //   data: [11, 32, 45, 32, 34, 52, 41]
+      // }
     ],
 
     this.chartData = {
@@ -211,13 +213,13 @@ export class WealthProductDetailsComponent implements OnInit {
     this.xaxis = {
       type: "datetime",
       categories: [
-        "2018-09-19T00:00:00.000Z",
-        "2018-09-19T01:30:00.000Z",
-        "2018-09-19T02:30:00.000Z",
-        "2018-09-19T03:30:00.000Z",
-        "2018-09-19T04:30:00.000Z",
-        "2018-09-19T05:30:00.000Z",
-        "2018-09-19T06:30:00.000Z"
+        // "2018-09-19T00:00:00.000Z",
+        // "2018-09-19T01:30:00.000Z",
+        // "2018-09-19T02:30:00.000Z",
+        // "2018-09-19T03:30:00.000Z",
+        // "2018-09-19T04:30:00.000Z",
+        // "2018-09-19T05:30:00.000Z",
+        // "2018-09-19T06:30:00.000Z"
       ]
     }
     this.tooltip= {
@@ -225,6 +227,10 @@ export class WealthProductDetailsComponent implements OnInit {
         format: "dd/MM/yy HH:mm"
       }
     }
+
+   
+  
+   
    }
 
   ngOnInit(): void {
@@ -261,12 +267,33 @@ export class WealthProductDetailsComponent implements OnInit {
     
   }
 
+
+  GraphDataList: any = [];
+  GraphDataArrayForYaxis: any = [];
+  GraphDataArrayForXaxis: any = [];
+
   GetGraphData(){
     var postData=new FormData();  
     postData.append("instrumentId",this.SelectedMutualFund.id);
     postData.append("filterDate","all");
     this.api.post("wealthfy/get-fetch-nav",postData).subscribe(response=>{
       console.log("graph data",response)
+      debugger
+      this.GraphDataList = response.data;
+      console.log("graph data", this.GraphDataList[0].priceDate);
+      
+      for (var i = 0; i <= this.GraphDataList.length; i++) {
+        this.GraphDataArrayForYaxis.push(this.GraphDataList[i]?.price)
+        this.GraphDataArrayForXaxis.push(this.GraphDataList[i]?.priceDate);
+      }
+      // console.log('GraphDataArrayForYaxis',this.GraphDataArrayForYaxis)
+      this.public_series[0].data = this.GraphDataArrayForYaxis;
+      // console.log('public series data',this.public_series[0].data);
+
+      // console.log('GraphDataArrayForYaxis',this.GraphDataArrayForYaxis)
+      this.xaxis.categories = this.GraphDataArrayForXaxis;
+      console.log('categories', this.xaxis.categories);
+      
     })
   }
 
@@ -351,7 +378,7 @@ export class WealthProductDetailsComponent implements OnInit {
     });
   }
 
-  public generateData(baseval: number, count: number, yrange: { max: number; min: number; }) {
+  public generateData(baseval: any, count: any, yrange: { max: any; min: any; }) {
     var i = 0;
     var series = [];
     while (i < count) {
