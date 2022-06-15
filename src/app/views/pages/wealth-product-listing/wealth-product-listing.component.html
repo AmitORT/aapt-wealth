@@ -57,19 +57,21 @@
               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                  <div class="position-relative search-box">
+                  <!-- <div class="position-relative search-box">
                     <i class="fa fa-search" aria-hidden="true"></i>
                     <input type="text" class="form-control search" id="exampleSearch" aria-describedby="Search"
                       placeholder="Search Mutual Fund Companies">
-                  </div>
+                  </div> -->
                   <div class="acc-check mt-4">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                    <div class="form-check" *ngFor="let list of AMCFilterList; let i=index">                      
                       <label class="form-check-label" for="flexCheckDefault1">
-                        Aditya Birla Sun Life Mutual Fund
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1"
+                        value="{{list.id}}" [(ngModel)]="list.checked" checked="true"
+                          (change)=" IsAMCChecked =true; ProductList=[]; getOffersProductList()">
+                        {{list.name}}
                       </label>
                     </div>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2">
                       <label class="form-check-label" for="flexCheckChecked2">
                         Axis Mutual Fund
@@ -98,7 +100,7 @@
                       <label class="form-check-label" for="flexCheckChecked6">
                         Canara Robeco Mutual Fund
                       </label>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -288,7 +290,7 @@
                       <label class="form-check-label" for="flexCheckDefault25">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault25"
                           value="{{list.id}}" [(ngModel)]="list.checked" checked="true"
-                          (change)=" IsChecked =true; ProductList=[]; getOffersProductList()">
+                          (change)=" IsRiskChecked =true; ProductList=[]; getOffersProductList()">
                         {{list.name}}
                       </label>
                     </div>
