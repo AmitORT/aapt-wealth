@@ -133,10 +133,13 @@ export class WealthProductListingComponent implements OnInit {
   riskprofileId: any = 0;
   RiskProfileFilterList: any;
   AMCFilterList: any;
+  CategoryFilterList: any;
   IsRiskChecked: boolean = false;
   IsAMCChecked: boolean = false;
+  IsCategoryChecked: boolean = false;
   RiskFiltercheckedList: any = [];
   AMCFiltercheckedList: any = [];
+  CategoryFiltercheckedList: any = [];
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
@@ -151,6 +154,7 @@ export class WealthProductListingComponent implements OnInit {
 
     this.GetRiskProfileFilterList();
     this.GetAMCFilterList();
+    this.GetCategoryFilterList();
     setTimeout(() => {
       this.getOffersProductList();
     }, 0);
@@ -207,6 +211,13 @@ export class WealthProductListingComponent implements OnInit {
     })
   }
 
+  GetCategoryFilterList() {
+    this.api.get("wealthfy/get-category-filter").subscribe(response => {
+      this.CategoryFilterList = response.data;
+      console.log('CategoryFilterList', this.CategoryFilterList)
+    })
+  }
+
   getList() {
     this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
     console.log('check list', this.RiskFiltercheckedList)
@@ -214,11 +225,14 @@ export class WealthProductListingComponent implements OnInit {
 
   getOffersProductList() {
 
-    this.AMCFiltercheckedList=this.AMCFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
+    this.AMCFiltercheckedList = this.AMCFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
     console.log('amc check list', this.AMCFiltercheckedList);
 
-      this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
+    this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
     console.log('risk check list', this.RiskFiltercheckedList);
+
+    this.CategoryFiltercheckedList = this.CategoryFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
+    console.log('category check list', this.CategoryFiltercheckedList);
 
 
     var postData = new FormData();
@@ -238,7 +252,7 @@ export class WealthProductListingComponent implements OnInit {
         console.log('check list', RiskFiltercheckedList)
       }
     }
-    if(this.IsAMCChecked){
+    if (this.IsAMCChecked) {
       if (this.validate.isNullEmptyUndefined(this.AMCFiltercheckedList)) {
         postData.append("amc_filter", JSON.stringify(this.AMCFiltercheckedList = []));
       }
@@ -248,6 +262,18 @@ export class WealthProductListingComponent implements OnInit {
         console.log('check list', AMCFiltercheckedList)
       }
     }
+    if (this.IsCategoryChecked) {
+      if (this.validate.isNullEmptyUndefined(this.CategoryFiltercheckedList)) {
+        postData.append("category_filter", JSON.stringify(this.CategoryFiltercheckedList = []));
+      }
+      else {
+        var CategoryFiltercheckedList = this.CategoryFiltercheckedList.split(',');
+        postData.append("category_filter", JSON.stringify(CategoryFiltercheckedList));
+        console.log('check list', CategoryFiltercheckedList)
+      }
+    }
+
+
     this.OfferListingLoader = true;
     this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
       this.OfferListingLoader = false;

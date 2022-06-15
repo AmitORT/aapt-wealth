@@ -63,10 +63,10 @@
                       placeholder="Search Mutual Fund Companies">
                   </div> -->
                   <div class="acc-check mt-4">
-                    <div class="form-check" *ngFor="let list of AMCFilterList; let i=index">                      
+                    <div class="form-check" *ngFor="let list of AMCFilterList; let i=index">
                       <label class="form-check-label" for="flexCheckDefault1">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1"
-                        value="{{list.id}}" [(ngModel)]="list.checked" checked="true"
+                          value="{{list.id}}" [(ngModel)]="list.checked" checked="true"
                           (change)=" IsAMCChecked =true; ProductList=[]; getOffersProductList()">
                         {{list.name}}
                       </label>
@@ -116,13 +116,15 @@
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                   <div class="acc-check">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7">
+                    <div class="form-check" *ngFor="let list of CategoryFilterList; let i=index">
                       <label class="form-check-label" for="flexCheckDefault7">
-                        Debt
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault7"
+                          value="{{list.id}}" [(ngModel)]="list.checked" checked="true"
+                          (change)=" IsCategoryChecked =true; ProductList=[]; getOffersProductList()">
+                        {{list.name}}
                       </label>
                     </div>
-                    <div class="form-check">
+                    <!-- <div class="form-check">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked8">
                       <label class="form-check-label" for="flexCheckChecked8">
                         Equity
@@ -151,7 +153,7 @@
                       <label class="form-check-label" for="flexCheckChecked12">
                         Canara Robeco Mutual Fund
                       </label>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>
@@ -310,7 +312,7 @@
     </div>
 
     <div class="col-md-9">
-      <div  [hidden]="ProductList.length == 0" class="row page-result ms-0 me-0 hidden-xs">
+      <div [hidden]="ProductList.length == 0" class="row page-result ms-0 me-0 hidden-xs">
         <p>Showing {{ProductList?.length}} of {{ProductList?.length}} results</p>
       </div>
       <div class="product-scroll">
@@ -353,7 +355,7 @@
                       <div class="col-lg-6 col-2">
                         <div class="comp-share">
                           <span class="hidden-xs">
-  
+
                             <div class="form-check mb-0">
                               <input class="form-check-input" type="checkbox" id="compare11"
                                 (click)="compareCheckboxclick(i)" value="" [(ngModel)]="offer.checkforcompare">
@@ -361,7 +363,7 @@
                                 Compare Funds
                               </label>
                             </div>
-  
+
                           </span>
                           <span data-bs-toggle="modal" data-bs-target="#share-modal">
                             <img src="assets/img/share_icon.svg">
@@ -372,7 +374,7 @@
                         <hr class="custom-hr" />
                       </div>
                     </div>
-  
+
                     <div class="row apply-div">
                       <div class="col-lg-3 l-div col-4">
                         <p>1 year</p>
@@ -386,31 +388,31 @@
                         <p>5 year</p>
                         <h5>{{offer.returnFor5Year?.toFixed(2)}}%</h5>
                       </div>
-  
+
                       <div class="col-6 mb-comapre hidden-lg">
                         <div class="form-check mb-0">
-                          <input class="form-check-input" type="checkbox" id="compare27" (click)="compareCheckboxclick(i)"
-                            [(ngModel)]="offer.checkforcompare">
+                          <input class="form-check-input" type="checkbox" id="compare27"
+                            (click)="compareCheckboxclick(i)" [(ngModel)]="offer.checkforcompare">
                           <label class="form-check-label" for="">
                             Compare Funds
                           </label>
                         </div>
                       </div>
-  
+
                       <div class="col-lg-3 mb-comapre col-6 d-flex align-items-center" (click)="AppliedFund(offer)">
                         <!-- (click)="GetOffersDetails(offer)" -->
                         <a class="theme-link">View More <img src="assets/img/orange-right-arrow.svg"
                             alt="Right arrow"></a>
                       </div>
                     </div>
-  
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Recommended -->
 
         <div *ngIf="OfferListingLoader" class="row">
