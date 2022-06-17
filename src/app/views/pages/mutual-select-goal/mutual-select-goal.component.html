@@ -1,126 +1,104 @@
 <div class="container mgb-10per">
-    <div class="row mt-4">
-      <div class="col-lg-12">
-        <h4 class="breadcrumb-title" ><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-details']">
-            <!-- routerLink="{{validate.previousUrl}}" -->
-            <i class="fa fa-arrow-left i-icon"></i></span>Select Goal
-        </h4>
-        <!--  -->
-      </div>
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <h4 class="breadcrumb-title"><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-details']">
+          <!-- routerLink="{{validate.previousUrl}}" -->
+          <i class="fa fa-arrow-left i-icon"></i></span>Select Goal
+      </h4>
+      <!--  -->
     </div>
-    <div class="row align-items-center risk1 mt-5" >
+  </div>
+  <div class="row align-items-center risk1 mt-5">
     <div class="col-lg-6 hidden-xs">
-        <img src="assets/img/goal.svg" alt="risk-profiling" class="w-75" />
+      <img src="assets/img/goal.svg" alt="risk-profiling" class="w-75" />
     </div>
-      
+
     <div class="col-lg-6">
+      <h5 class="ofr-head">My Goals <span>({{MyGoals?.length}})</span></h5>
+      <div class="col-12">
+        <div class=" mt-2 finance owl-1">
+          <div class="financial-slider trendprod">
 
-      <!-- <div class="row"> -->
-        <!-- <div class="col-12"> -->
-            <h5 class="ofr-head">My Goals <span>({{MyGoals?.length}})</span></h5> 
-        <!-- </div> -->
-        <div class="col-12">
-            <div class=" mt-2 finance owl-1">
-                   
-                <div class="financial-slider trendprod"  >
-                <owl-carousel-o [options]="customOptions" >
-                    <ng-template carouselSlide *ngFor="let goals of MyGoals, let i=index">
-                        <div class="trending-product" id="selectGoal" (click)="GetSelectedGoals(i)">
-                            <div class="row align-items-center">
-                                <div class="col-lg-2 col-3">
-                                    <img src="assets/img/car.png">
-                                </div>
-                                <div class="col-lg-10 col-9 ps-0">
-                                    <p class="trend-name">{{goals.name}}</p>
-                                    <p class="sub-desc">in 4 Years at age of 30</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="prog-bar pos-rel">
-                                    <div class="pr-value">
-                                        <div class="pr-min"><span>₹ 5 L</span></div>
-                                        <div class="pr-max"><span>₹ {{goals.targetAmount}} </span></div>
-                                    </div>
-                                    <div class="bg-pr">
-                                        <div class="fill-pr" style="width: 20%"></div>
-                                    </div>
-                                    <div class="pr-range">
-                                        <div class="sub-desc "><span> 5 Months</span></div>
-                                        <div class="sub-desc"><span>{{goals.Goal_Duartion}} Yrs</span></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="row">
-                                <div class="action-btn">
-                                    <div>
-                                        <h5>View Goal</h5>
-                                    </div>
-                                    <div>
-                                        <i class="fa fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </ng-template>
-                </owl-carousel-o>
-            </div>
-            
-        
-        </div>
-    </div>
+            <owl-carousel-o [options]="customOptions">
+              <ng-template carouselSlide *ngFor="let goals of MyGoals, let i=index">
+                <div class="trending-product" id="selectGoal" (click)="GetSelectedGoals(i)">
+                  <div class="row align-items-center">
+                    <div class="col-lg-2 col-3">
+                      <img src="assets/img/car.png">
+                    </div>
+                    <div class="col-lg-10 col-9 ps-0">
+                      <p class="trend-name">{{goals.name}}</p>
+                      <p class="sub-desc">in 4 Years at age of 30</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="prog-bar pos-rel">
+                      <div class="pr-value">
+                        <div class="pr-min"><span>₹ 5 L</span></div>
+                        <div class="pr-max"><span>₹ {{goals.targetAmount}} </span></div>
+                      </div>
+                      <div class="bg-pr">
+                        <div class="fill-pr" style="width: 20%"></div>
+                      </div>
+                      <div class="pr-range">
+                        <div class="sub-desc "><span> 5 Months</span></div>
+                        <div class="sub-desc"><span>{{goals.Goal_Duartion}} Yrs</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
 
-
-
-            
-    <!-- </div> -->
-
-    <div class="d-flex border1" (click)="CreateGoal()">
-      <img src="assets/img/mission.svg" alt="">
-      <p class="pt-3 colr">+ Create New Goal</p>
-    </div>
-
-    <a  class="btn btn-primary w-100 theme-button nav-link mt-5" (click)="InvestWithoutGoal()"> 
-      Invest without a Goal</a>
-       
-    </div>
-</div>
-
-
-    
-</div>
-  
-  <!-- Risk Modal -->
-  
-  
-  <div class="modal fade" id="riskModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
-            <h5>It is recommended to profile yourself to help you select more suitable products.</h5>
           </div>
-            <div class="btn-div d-flex justify-content-between">
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2">Skip Profile</button>
-              <button type="button" class="btn btn-primary feature-apply">Continue Profile</button>
-            </div>
+        </div>
+      </div>
+
+      <div class="d-flex border1" (click)="CreateGoal()">
+        <img src="assets/img/mission.svg" alt="">
+        <p class="pt-3 colr">+ Create New Goal</p>
+      </div>
+
+      <a class="btn btn-primary w-100 theme-button nav-link mt-5" (click)="CreateInvestor()">
+        Invest without a Goal
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- Risk Modal -->
+
+
+<div class="modal fade" id="riskModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <h5>It is recommended to profile yourself to help you select more suitable products.</h5>
+        </div>
+        <div class="btn-div d-flex justify-content-between">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2">Skip Profile</button>
+          <button type="button" class="btn btn-primary feature-apply">Continue Profile</button>
         </div>
       </div>
     </div>
   </div>
-  
-  <!-- Risk Modal -->
-  <div class="modal fade" id="riskModal2" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="row">
-            <h5>To know your Investor Type answer a few questions</h5>
-          </div>
-            <div class="btn-div d-flex justify-content-between">
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2">Skip</button>
-              <button type="button" class="btn btn-primary feature-apply">Continue</button>
-            </div>
+</div>
+
+<!-- Risk Modal -->
+<div class="modal fade" id="riskModal2" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <h5>To know your Investor Type answer a few questions</h5>
+        </div>
+        <div class="btn-div d-flex justify-content-between">
+          <button type="button" data-bs-dismiss="modal" class="btn btn-primary feature-cancel me-2">Skip</button>
+          <button type="button" class="btn btn-primary feature-apply">Continue</button>
         </div>
       </div>
     </div>
   </div>
+</div>
