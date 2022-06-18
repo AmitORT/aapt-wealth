@@ -5,7 +5,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { EligibilityService } from 'src/app/services/eligibility/eligibility.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
-declare var $:any;
+declare var $: any;
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +14,7 @@ declare var $:any;
 })
 export class SignInComponent implements OnInit {
 
-  
+
   firstname = "";
   lastname = "";
   phonecode = "91";
@@ -24,7 +24,6 @@ export class SignInComponent implements OnInit {
   custdob = "";
 
   resendbuttonText = 'Resend OTP';
-  public userLoginFlag: any;
   interval: any;
 
 
@@ -51,9 +50,9 @@ export class SignInComponent implements OnInit {
   UrlRegister: any = 'auth/customer/register';
   UrlSendOTP: any = 'auth/customer/send-otp';
   urlValidateOTP: any = 'auth/customer/ValidateOTP';
- 
 
-  constructor(public validate: ValidateService , private toastr: ToastrService, private route: Router, private api: ApiService, private crypto:AescryptoService, private eligibility: EligibilityService) { }
+
+  constructor(public validate: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private crypto: AescryptoService, private eligibility: EligibilityService) { }
 
   ngOnInit(): void {
 
@@ -103,23 +102,23 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  DOB(){
-    var year  = new Date().getFullYear();
-     var month = new Date().getMonth();
-     var day   = new Date().getDate();
-     var date  = new Date(year - 18, month, day);
-     var monthbefore = (date.getMonth() + 1).toString();
-     var daybefore = (date.getDate()).toString();
-     var yearbefore = date.getFullYear();
-     if(parseInt(monthbefore) < 10){
+  DOB() {
+    var year = new Date().getFullYear();
+    var month = new Date().getMonth();
+    var day = new Date().getDate();
+    var date = new Date(year - 18, month, day);
+    var monthbefore = (date.getMonth() + 1).toString();
+    var daybefore = (date.getDate()).toString();
+    var yearbefore = date.getFullYear();
+    if (parseInt(monthbefore) < 10) {
       monthbefore = '0' + monthbefore.toString();
-     }
-     if(parseInt(daybefore) < 10){
+    }
+    if (parseInt(daybefore) < 10) {
       daybefore = '0' + daybefore.toString();
-     }
-     var maxDate = yearbefore + '-' + monthbefore + '-' + daybefore;
-     $('#custdob').attr('max', maxDate);
-   }
+    }
+    var maxDate = yearbefore + '-' + monthbefore + '-' + daybefore;
+    $('#custdob').attr('max', maxDate);
+  }
 
   EditNumber() {
     $('#otp-screen').modal('hide');
@@ -161,60 +160,51 @@ export class SignInComponent implements OnInit {
   sendotp() {
     if (this.validate.isNullEmptyUndefined(this.firstname.trim())) {
       this.toastr.error("First name is mandatory");
-    } else if (this.validate.isNullEmptyUndefined(this.lastname.trim())) {
+    } 
+    else if (this.validate.isNullEmptyUndefined(this.lastname.trim())) {
       this.toastr.error("Last name is mandatory");
-    } else if (this.validate.isNullEmptyUndefined((this.mobilenumber.toString()).trim())) {
+    } 
+    else if (this.validate.isNullEmptyUndefined((this.mobilenumber.toString()).trim())) {
       this.toastr.error("Mobile number is mandatory");
-    } else if (this.validate.isNullEmptyUndefined(this.emailid.trim())) {
+    } 
+    else if (this.validate.isNullEmptyUndefined(this.emailid.trim())) {
       this.toastr.error("Email id is mandatory");
-    } else if (!this.validate.validateEmail(this.emailid.trim())) {
+    } 
+    else if (!this.validate.validateEmail(this.emailid.trim())) {
       this.toastr.error("Please enter valid Email id");
-    } else if (this.validate.isNullEmptyUndefined(this.gendervalue.trim())) {
+    } 
+    else if (this.validate.isNullEmptyUndefined(this.gendervalue.trim())) {
       this.toastr.error("Gender is mandatory");
-    } else if (this.validate.isNullEmptyUndefined(this.custdob.trim())) {
+    } 
+    else if (this.validate.isNullEmptyUndefined(this.custdob.trim())) {
       this.toastr.error("Date of birth is mandatory");
-     } 
- 
+    }
     else {
-      if (this.userLoginFlag == true) {
-        // this.getOffer();
-      }
-      else {
-        let data = new FormData();
-        data.append("firstName", this.firstname);
-        data.append("lastName", this.lastname);
-        data.append("email", this.emailid);
-        data.append("mobileNumber", this.mobilenumber);
-        data.append("dob", this.custdob);
-        data.append("gender", this.gendervalue);
-      
-        this.api.post("auth/customer/check-and-add", data).subscribe((resp) => {
-          // console.log("check-and-add",resp);   
-          if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.otp)) {
-            // alert(resp.data.otp);
-            console.log("sentOTP", resp.data.otp);
-            this.ResetOTP();
-            $("#otp-screen").modal("show");
-            this.resendbuttonText = "2:30"
-            this.countdown();
+      let data = new FormData();
+      data.append("firstName", this.firstname);
+      data.append("lastName", this.lastname);
+      data.append("email", this.emailid);
+      data.append("mobileNumber", this.mobilenumber);
+      data.append("dob", this.custdob);
+      data.append("gender", this.gendervalue);
 
-          } else if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.token)) {
-            var custToken = { "token": resp.data.token };
-            localStorage.setItem("CustToken", this.crypto.Encrypt(custToken));
-            // this.getOffer();
-          } else {
-            this.toastr.error(resp.response.Msg);
-          }
-        });
-      }
-      
-      // if(){
+      this.api.post("auth/customer/check-and-add", data).subscribe((resp) => {
+        console.log("check-and-add",resp);   
+        if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.otp)) {        
+          console.log("check-and-add OTP", resp.data.otp);
+          this.ResetOTP();
+          $("#otp-screen").modal("show");
+          this.resendbuttonText = "2:30"
+          this.countdown();
 
-      // }
-      // else{
-
-      // }
-
+        } else if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.token)) {
+          var custToken = { "token": resp.data.token };
+          localStorage.setItem("CustToken", this.crypto.Encrypt(custToken));
+          // this.getOffer();
+        } else {
+          this.toastr.error(resp.response.Msg);
+        }
+      });
     }
   }
 
@@ -267,18 +257,4 @@ export class SignInComponent implements OnInit {
     }, 1000);
 
   }
-
-  // ProceedToCart(){
-  // if(){
-
-  // }
-  // else{
-
-  // }
-
-  // }
-
-
-
-
 }
