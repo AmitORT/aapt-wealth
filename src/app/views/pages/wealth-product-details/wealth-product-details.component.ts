@@ -257,8 +257,8 @@ export class WealthProductDetailsComponent implements OnInit {
       $('#sidebar').css('top','');
       $('#sidebar').css('width','');
       }
-      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-225) {
-      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top+225));
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-350) {
+      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top+350));
       }
       });
 
@@ -271,16 +271,18 @@ export class WealthProductDetailsComponent implements OnInit {
   GraphDataList: any = [];
   GraphDataArrayForYaxis: any = [];
   GraphDataArrayForXaxis: any = [];
-
+  GraphCurrentValue: any;
+  GraphCurrentDate: any;
   GetGraphData(){
     var postData=new FormData();  
     postData.append("instrumentId",this.SelectedMutualFund.id);
     postData.append("filterDate","all");
     this.api.post("wealthfy/get-fetch-nav",postData).subscribe(response=>{
-      console.log("graph data",response)
-      debugger
+      console.log("graph data",response)     
       this.GraphDataList = response.data;
-      console.log("graph data", this.GraphDataList[0].priceDate);
+      this.GraphCurrentValue = this.GraphDataList[this.GraphDataList.length - 1].price;
+      this.GraphCurrentDate = this.GraphDataList[this.GraphDataList.length - 1].priceDate
+     // console.log("graph data1", this.GraphDataList[this.GraphDataList.length - 1].priceDate);
       
       for (var i = 0; i <= this.GraphDataList.length; i++) {
         this.GraphDataArrayForYaxis.push(this.GraphDataList[i]?.price)

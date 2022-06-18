@@ -501,7 +501,7 @@ input[type=date]::-webkit-inner-spin-button {
     font-size: 14px;
     position: absolute;
     top: 0.8rem;
-    right: 3rem;
+    right: -0.5rem;
 }
 .amount span.rupees {
   color: #222;
@@ -686,15 +686,53 @@ input[type=date]::-webkit-inner-spin-button {
   color: #b4b4b4;
 }
 
+}
 
-
-
-
-
-
-
-
-
-
-
+.assigned-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #b4b4b4;
+}
+.goal-div{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.goal-name{
+  margin-left: 10px;
+}
+.goal-name h5{
+  font-size: 18px;
+  color: #222222;
+  margin-bottom: 0px;
+  font-weight: 600;
+  padding: 0px;
+}
+.goal-name p{
+  color: #B4B4B4;
+  margin-bottom: 0px;
+}
+.assigned-row .theme-button{
+  font-weight: 500;
+}
+#assign-goal .pop-scroll {
+  max-height: 380px;
+  height: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.assigned-row:last-child{
+  border-bottom: 0px;
+}
+.assigned-row .theme-button.a-not{
+border: 1px solid #b4b4b4!important;
+color: #b4b4b4!important;
+background-color: transparent;
+}
+.remove-cartgoal{
+  color:#f54b4b;
+  cursor:pointer;
 }

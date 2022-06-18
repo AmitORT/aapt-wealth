@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="shopping_cart_icon" transform="translate(-22973 6219)">
+    <rect id="Rectangle_9625" data-name="Rectangle 9625" width="32" height="32" transform="translate(22973 -6219)" fill="none"/>
+    <g id="shopping-cart" transform="translate(22977 -6215)">
+      <path id="Path_34662" data-name="Path 34662" d="M23.284,3.958a3.14,3.14,0,0,0-2.361-1.046H4.349l-.043-.341A3.021,3.021,0,0,0,1.253,0H1.025A1,1,0,0,0,0,.971a1,1,0,0,0,1.025.971h.228A1.007,1.007,0,0,1,2.271,2.8L3.681,14.157a5.035,5.035,0,0,0,5.091,4.288H19.478a.972.972,0,1,0,0-1.942H8.772a3.07,3.07,0,0,1-2.891-1.942H18.1a5.058,5.058,0,0,0,5.045-3.993l.8-4.226a2.8,2.8,0,0,0-.666-2.384ZM21.938,6l-.806,4.227a3.035,3.035,0,0,1-3.031,2.4H5.555L4.591,4.854H20.923a1.05,1.05,0,0,1,.791.346A.934.934,0,0,1,21.938,6Z" transform="translate(0)" fill="#fff"/>
+      <circle id="Ellipse_1007" data-name="Ellipse 1007" cx="2" cy="2" r="2" transform="translate(5.999 20)" fill="#fff"/>
+      <circle id="Ellipse_1008" data-name="Ellipse 1008" cx="2" cy="2" r="2" transform="translate(15 20)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

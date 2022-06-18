@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26.02" viewBox="0 0 26 26.02">
+  <g id="button_icons" transform="translate(-43 -19.996)">
+    <g id="tick_mark_icon" transform="translate(43.221 20.22)">
+      <rect id="Rectangle_3510" data-name="Rectangle 3510" width="26" height="26" transform="translate(-0.221 -0.224)" fill="none"/>
+      <g id="east_black_24dp_1_" data-name="east_black_24dp (1)" transform="translate(0 -7)">
+        <rect id="Rectangle_3510-2" data-name="Rectangle 3510" width="26" height="26" transform="translate(-0.221 6.795)" fill="none"/>
+        <g id="tick_mark_icon-2" data-name="tick_mark_icon" transform="translate(-20420.221 7933.788)">
+          <path id="Rectangle_9670" data-name="Rectangle 9670" d="M10,1.8A8.2,8.2,0,1,0,18.2,10,8.209,8.209,0,0,0,10,1.8M10,0A10,10,0,1,1,0,10,10,10,0,0,1,10,0Z" transform="translate(20423 -7924)" fill="#fff"/>
+          <path id="Union_29" data-name="Union 29" d="M2.938,8.445.266,5.773A.9.9,0,1,1,1.54,4.5L4.211,7.172a.1.1,0,0,0,.142,0L11.263.265a.9.9,0,1,1,1.274,1.273L5.628,8.445a1.9,1.9,0,0,1-2.69,0Z" transform="translate(20426.6 -7918.4)" fill="#fff"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
