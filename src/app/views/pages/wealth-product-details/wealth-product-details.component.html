@@ -151,21 +151,14 @@
                 <p>Fund Returns</p>
                 <p>Category Average</p>
                 <!-- <p>Rank Within Category</p> -->
-                <p class="blue-text"  >*All returns are annualized.</p>
+                <p class="blue-text" >*All returns are annualized.</p>
               </div>
               <div class="col-lg-3 col-4" >
-                  <div class="monthly justify-content-center" (click)="showTenureForPopup()">{{SelectedMutualFund.selectedYear}}Y
+                  <div class="monthly justify-content-center" [(ngModel)]="OneYearReturn" (click)="showTenureForPopup()">{{SelectedMutualFund.selectedYear}}Y
                     Return
                     <img src="assets/img/unfold_more.svg" class="orange-pencil">
                   </div>
-                  <!-- <div class="monthly justify-content-center" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y
-                    Return
-                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                  </div> -->
-                  <!-- <div class="monthly justify-content-center" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y
-                    Return
-                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                  </div> -->
+                
                   <p class="val"><b>{{SelectedMutualFund.Rate}}%</b></p>
                   <p class="val"><b>113.0%</b></p>
                   <!-- <p class="val"><b>-</b></p> -->

@@ -62,6 +62,9 @@ export class MutualSelectGoalComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.MyGoals = resp.data;
+        let encrypted=this.crypto.Encrypt(resp.data);
+        localStorage.setItem("GoalsList",encrypted);
+      
         // console.log("my goals",this.MyGoals);
       }
       else {
@@ -88,7 +91,7 @@ export class MutualSelectGoalComponent implements OnInit {
       var postData = new FormData();
       postData.append("birth_date", "2000-01-01T06:30:00.000Z");
       postData.append("investor_type", "1");
-      postData.append("pan", "AAXPB4698L");
+      postData.append("pan", "AAXPB4698R");
       postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
       postData.append("guardian_details",JSON.stringify(data));
       this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {

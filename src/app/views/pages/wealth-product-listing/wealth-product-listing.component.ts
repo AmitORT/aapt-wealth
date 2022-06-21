@@ -127,6 +127,7 @@ export class WealthProductListingComponent implements OnInit {
   ProductOfferForBinding: any;
   ProductOffer: any;
   OffersForCompare: any = [];
+  CartItems: any = [];
   MutualProductCompareFund: any;
   ProductList: any = [];
   RiskProfilesubmitResponse: any;
@@ -140,6 +141,8 @@ export class WealthProductListingComponent implements OnInit {
   RiskFiltercheckedList: any = [];
   AMCFiltercheckedList: any = [];
   CategoryFiltercheckedList: any = [];
+  GoalList:any;
+  InvestWithoutGoalResp: any;
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
@@ -159,6 +162,19 @@ export class WealthProductListingComponent implements OnInit {
       this.getOffersProductList();
     }, 0);
 
+    // this.GoalList = this.crypto.Decrypt(localStorage.getItem("GoalsList"));
+    // console.log("GoalsList" , this.GoalList)
+
+    this.GetMyGoals()
+
+    // if(localStorage.getItem("CartItems") != null){
+    //   this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems"));
+    // }
+
+    
+
+
+
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
         $('#sidebar').css('position', 'fixed');
@@ -177,25 +193,20 @@ export class WealthProductListingComponent implements OnInit {
     });
   }
 
-  //   GetOffers(){
-  //   var postData=new FormData();
-  //   postData.append("instrumentId","191393");
-  //   postData.append("limit","10");
-  //   postData.append("offset","0");
-
-  //   this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp: any)=>{
-  //     // console.log("resp",resp)
-  //     if(resp.response.n==1){      
-  //       this.ProductOfferForBinding = resp.data;
-  //     //  console.log("product-listing",this.ProductOfferForBinding)
-
-  //     }else{
-  //       alert(resp.response.Msg)
-  //     }
-  //   });
-  //  }
-
-
+  GetMyGoals() {
+    this.api.get("goalDetails/create-goal", true).subscribe(resp => {
+      if (resp.response.n == 1) {
+        this.GoalList = resp.data;
+        let encrypted=this.crypto.Encrypt(resp.data);
+        localStorage.setItem("GoalsList",encrypted);
+      
+        // console.log("my goals",this.MyGoals);
+      }
+      else {
+        this.toastr.error(resp.msg);
+      }
+    })
+  }
 
   GetRiskProfileFilterList() {
     this.api.get("wealthfy/get-riskprofile-filter").subscribe(response => {
@@ -308,6 +319,20 @@ export class WealthProductListingComponent implements OnInit {
     }
   }
 
+
+  getCartItems(index: number){
+    // debugger;
+    this.ProductList[index].checkCart = !this.ProductList[index].checkCart;
+    // $("#riskModal1").modal("hide");
+    $("#assign-goal").modal("show");
+    this.CartItems = this.ProductList.filter((a: any) => a.checkCart == 1);
+    localStorage.setItem("CartItems", this.crypto.Encrypt(this.CartItems));
+    this.InvestWithoutGoal();
+    console.log("CartItems", this.CartItems);
+
+  }
+  
+
   RemoveFromCompare(model: any, i: any) {
     console.log("model", model)
     this.OffersForCompare.splice(i, 1);
@@ -332,6 +357,25 @@ export class WealthProductListingComponent implements OnInit {
   AppliedFund(offer: any) {
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
+  }
+
+  InvestWithoutGoal() {
+    var postData = new FormData();
+    postData.append("transactionTypeId", "1");
+    postData.append("instrumentId", "255527");
+    postData.append("totalAmount", "1234");
+    postData.append("modeOfTransaction", "1");
+    postData.append("frequency", "4");
+    postData.append("transactionSubType", "2");
+    postData.append("frequencyDay", "1");
+    postData.append("serviceProviderAccountId", "20753");
+    this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
+      this.InvestWithoutGoalResp = resp.data;
+      let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
+      localStorage.setItem("InvestWithoutGoal", encrypted)
+      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
+      // this.route.navigate(["/mutual-fund-cart"])
+    })
   }
 
   // GetOffersDetails(modal:any){

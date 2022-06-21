@@ -117,6 +117,7 @@ export class WealthProductDetailsComponent implements OnInit {
     }     
   };
 
+  OneYearReturn:any=1;
   SimilarProducts:any;
   ProductManager:any;
   ProductOverview:any;
@@ -338,6 +339,9 @@ export class WealthProductDetailsComponent implements OnInit {
       $("#invest-screen").modal("hide");
       let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
       localStorage.setItem("ModeOfInvestment",encrypted);
+
+      let encryptedProduct=this.crypto.Encrypt(this.ProductOverview);
+      localStorage.setItem("ProductOverview",encryptedProduct);
   
       this.route.navigate(['/mutual-select-goal']);
 
@@ -371,8 +375,7 @@ export class WealthProductDetailsComponent implements OnInit {
         this.SimilarProducts=resp.data.similarProducts;  
         this.holdings=resp.data.fetchHoldings.instrumentHoldings;   
         
-        let encrypted=this.crypto.Encrypt(this.ProductOverview);
-        localStorage.setItem("ProductOverview",encrypted);
+       
         // console.log(this.ProductSectorDetails)
       }else{
         alert(resp.response.Msg)

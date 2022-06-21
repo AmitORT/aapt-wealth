@@ -14,12 +14,12 @@
     </div>
     <div class="col-lg-6">
       <div>
-        <div class="container1">
+        <div class="container1" *ngFor="let cartItems of ProductOverview">
           <div class="row">
             <div class="col-lg-10 col-10">
               <div class="d-flex">
                 <img src="assets/img/ICICI.png" alt="">
-                <h5>{{ProductOverview?.name}}</h5>
+                <h5>{{cartItems?.name}}</h5>
               </div>
             </div>
             <div class="col-lg-2 col-2">
@@ -49,7 +49,7 @@
               [ngClass]="ModeOfInvestment?.Payment_mode != '2'?'active':''">
               <div class="row amount">
                 <div class="col-lg-7 col-10 position-relative">
-                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.monthly_amt" />
+                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"  [(ngModel)]="ModeOfInvestment.monthly_amt =='' ? 0 : ModeOfInvestment.monthly_amt" />
                   <span class="rupees">₹</span>
                   <!-- <p>₹ {{ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p> -->
                   <span class="units">15 Units</span>

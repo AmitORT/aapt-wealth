@@ -403,9 +403,10 @@
                       </div>
 
                       <div class="col-lg-6 mb-comapre col-6 d-flex align-items-center justify-content-end">
-                        <!-- (click)="GetOffersDetails(offer)" -->
-                        <a class="theme-button cartnew-btn me-3" data-bs-toggle="modal" data-bs-target="#assign-goal"><img src="assets/img/button_icons.svg"
-                          alt="Right arrow">Add to
+                        <!-- (click)="GetOffersDetails(offer)" --> 
+                        <!-- data-bs-toggle="modal" data-bs-target="#assign-goal" -->
+                        <a class="theme-button cartnew-btn me-3" (click)="getCartItems(i)" [(ngModel)]="offer.checkCart"><img src="assets/img/button_icons.svg"
+                          alt="Right arrow" >Add to
                           cart</a>
                         <a class="theme-link" (click)="AppliedFund(offer)"> <img src="assets/img/orange-right-arrow.svg"
                             alt="Right arrow"></a>
@@ -433,8 +434,8 @@
           <img src="assets/img/shopping_cart_icon.svg"/>
          </div>
          <div>
-          <p>Cart Value (2 Instruments)</p>
-          <h5>₹ 51,526.26</h5>
+          <p>Cart Value</p>
+          <h5>({{CartItems?.length}} Instruments)</h5>
          </div>
          <div>
           <img src="assets/img/arrow_icon_cart.svg"/>
@@ -827,7 +828,7 @@
           <div>
             <h3 class="otp-title">Assign to Goal</h3>
           </div>
-          <div class="crnew">
+          <div class="crnew" [routerLink]="['/mutual-create-goal']">
             <i class="fa fa-plus"></i> Create New Goal
           </div>
         </div>
@@ -848,22 +849,25 @@
         </div>
         <div class="row pop-scroll mt-4">
           <div class="col-12">
-            <div class="assigned-row">
+            <div class="assigned-row" *ngFor="let goals of GoalList">
               <div class="goal-div">
                 <div>
                   <img src="assets/img/goal_image.svg" />
                 </div>
                 <div class="goal-name">
-                  <h5>Buy a New Car</h5>
+                  <h5>{{goals.name}}</h5>
                   <p>in 4 years at age of 30</p>
                 </div>
               </div>
               <div>
+                <a class="theme-button a-not">Assign</a>
+              </div>
+              <!-- <div>
                 <a class="theme-button">Assigned</a>
-              </div>
+              </div> -->
             </div>
           </div>
-          <div class="col-12">
+          <!-- <div class="col-12">
             <div class="assigned-row">
               <div class="goal-div">
                 <div>
@@ -878,29 +882,14 @@
                 <a class="theme-button a-not">Assign</a>
               </div>
             </div>
-          </div>
-          <div class="col-12">
-            <div class="assigned-row">
-              <div class="goal-div">
-                <div>
-                  <img src="assets/img/goal_image.svg" />
-                </div>
-                <div class="goal-name">
-                  <h5>Buy a New Car</h5>
-                  <p>in 4 years at age of 30</p>
-                </div>
-              </div>
-              <div>
-                <a class="theme-button a-not">Assign</a>
-              </div>
-            </div>
-          </div>
+          </div> -->
+         
 
         </div>
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" data-bs-dismiss="modal" class="btn btn-primary cancel-btn2">Cancel</button>
-        <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button w-mob-50"
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary theme-button w-mob-50" 
         >Proceed</button>
       </div>
     </div>

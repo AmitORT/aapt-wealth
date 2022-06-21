@@ -14,8 +14,14 @@ declare var $: any;
 })
 export class MutualFundCartComponent implements OnInit {
  
-  ModeOfInvestment: any;
-  ProductOverview: any;
+  // ModeOfInvestment: any;
+  ModeOfInvestment:any={
+    "Payment_mode":"1",
+    "DateForMonth":"15",
+    "monthly_amt":"",
+    "yearly_amt":""
+  }
+  ProductOverview: any =[];
   SelectedGoal: any;
   ProceedCart: any;
   InvestWithoutGoal: any;
@@ -23,6 +29,7 @@ export class MutualFundCartComponent implements OnInit {
   BankNames: any;
   SelectedBank:any=[];
   Token: any;
+  CartItems:any = [];
   CommonUrl = environment.CommonUrl;
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
@@ -32,11 +39,23 @@ export class MutualFundCartComponent implements OnInit {
 
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-      // console.log("ModeOfInvestment", this.ModeOfInvestment)
+   
     }
+    console.log("ModeOfInvestment", this.ModeOfInvestment);
+   //this.ProductOverview=[];
+    this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems")); 
+    console.log("Newcart" , this.CartItems)
+    if(localStorage.getItem("ProductOverview") != null){
+      this.ProductOverview.push(this.crypto.Decrypt(localStorage.getItem("ProductOverview")));
+    }
+ 
 
-    this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-    // console.log("ProductOverview", this.ProductOverview)
+    for(let i=0;i<this.CartItems.length;i++){
+      this.ProductOverview.push(this.CartItems[i]); 
+    }
+  
+
+    console.log("ProductOverview", this.ProductOverview)
 
     if(localStorage.getItem("InvestWithoutGoal") != null){
     this.InvestWithoutGoal = this.crypto.Decrypt(localStorage.getItem("InvestWithoutGoal"));
