@@ -43,7 +43,8 @@ export class SignInComponent implements OnInit {
   otp4: string = "";
   otp5: string = "";
   otp6: string = "";
-
+  pancard = "";
+  aadhar_card_no = "";
   calltype: any;
 
   usertype: any = 'Customer';
@@ -160,24 +161,36 @@ export class SignInComponent implements OnInit {
   sendotp() {
     if (this.validate.isNullEmptyUndefined(this.firstname.trim())) {
       this.toastr.error("First name is mandatory");
-    } 
+    }
     else if (this.validate.isNullEmptyUndefined(this.lastname.trim())) {
       this.toastr.error("Last name is mandatory");
-    } 
+    }
     else if (this.validate.isNullEmptyUndefined((this.mobilenumber.toString()).trim())) {
       this.toastr.error("Mobile number is mandatory");
-    } 
+    }
     else if (this.validate.isNullEmptyUndefined(this.emailid.trim())) {
       this.toastr.error("Email id is mandatory");
-    } 
+    }
     else if (!this.validate.validateEmail(this.emailid.trim())) {
       this.toastr.error("Please enter valid Email id");
-    } 
+    }
     else if (this.validate.isNullEmptyUndefined(this.gendervalue.trim())) {
       this.toastr.error("Gender is mandatory");
-    } 
+    }
     else if (this.validate.isNullEmptyUndefined(this.custdob.trim())) {
       this.toastr.error("Date of birth is mandatory");
+    }
+    else if (this.validate.isNullEmptyUndefined(this.pancard)) {
+      this.toastr.error("Pancard is mandatory");
+    }
+    else if (!this.validate.validatePancard(this.pancard)) {
+      this.toastr.error("Please enter valid Pancard Number");
+    }
+    else if (this.validate.isNullEmptyUndefined(this.aadhar_card_no)) {
+      this.toastr.error("Aadhar card number is mandatory");
+    }
+    else if (!this.validate.validateAadharNumber(this.aadhar_card_no)) {
+      this.toastr.error("Please enter valid Aadhar card number");
     }
     else {
       let data = new FormData();
@@ -187,20 +200,20 @@ export class SignInComponent implements OnInit {
       data.append("mobileNumber", this.mobilenumber);
       data.append("dob", this.custdob);
       data.append("gender", this.gendervalue);
+      data.append("panCard", this.pancard);
+      data.append("aadharCard", this.aadhar_card_no);
 
       this.api.post("auth/customer/check-and-add", data).subscribe((resp) => {
-        console.log("check-and-add",resp);   
-        if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.otp)) {        
+        console.log("check-and-add", resp);
+        if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.otp)) {
           console.log("check-and-add OTP", resp.data.otp);
           this.ResetOTP();
           $("#otp-screen").modal("show");
           this.resendbuttonText = "2:30"
           this.countdown();
-
         } else if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.token)) {
           var custToken = { "token": resp.data.token };
           localStorage.setItem("CustToken", this.crypto.Encrypt(custToken));
-          // this.getOffer();
         } else {
           this.toastr.error(resp.response.Msg);
         }

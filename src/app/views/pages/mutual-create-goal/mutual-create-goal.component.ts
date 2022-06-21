@@ -124,7 +124,7 @@ export class MutualCreateGoalComponent implements OnInit {
       postData.append("rateReturn", this.CreateGoal.Return_Rate);
       postData.append("name", this.CreateGoal.Savings);
 
-      this.api.post("goalDetails/create-goal", postData).subscribe(response => {
+      this.api.post("goalDetails/create-goal", postData,true).subscribe(response => {
         console.log('create goal', response)
         if (response.response.n == 1) {
           debugger;
@@ -146,7 +146,7 @@ export class MutualCreateGoalComponent implements OnInit {
     var postData = new FormData();
     postData.append("birth_date", "2000-01-01T06:30:00.000Z");
     postData.append("investor_type", "1");
-    postData.append("pan", "AAXPB4698L");
+    postData.append("pan", "AAXPB469M");
     postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
     postData.append("guardian_details", JSON.stringify(data));
     this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {

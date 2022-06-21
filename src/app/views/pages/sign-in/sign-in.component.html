@@ -59,11 +59,20 @@
             <span>Other</span>
           </div>
         </div>
-        <div class="form-floating mb-5 input-box ">
+        <div class="form-floating mb-3 input-box ">
           <input type="date" id="custdob" placeholder="Date Of Birth" class="form-control" [(ngModel)]="custdob"
             (click)="DOB()">
           <label for="dob">Date of Birth</label>
         </div>
+
+        <div  class="form-floating mb-3 input-box ">
+          <input type="text" id="pancard" placeholder="Pancard Number" maxlength="10" class="form-control " [(ngModel)]="pancard" (ngModelChange)="pancard = $event.toUpperCase()">
+          <label for="pancard" >Pancard Number</label>
+      </div>
+      <div  class="form-floating mb-3 input-box ">
+          <input type="text" id="aadhar" maxlength="16" placeholder="Aadhar Card Number" class="form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="aadhar_card_no">
+          <label for="aadhar" >Aadhar Card Number</label>
+      </div>
 
 
       

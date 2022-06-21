@@ -141,7 +141,7 @@ export class WealthProductListingComponent implements OnInit {
   RiskFiltercheckedList: any = [];
   AMCFiltercheckedList: any = [];
   CategoryFiltercheckedList: any = [];
-  GoalList:any;
+  GoalList: any;
   InvestWithoutGoalResp: any;
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
@@ -171,7 +171,7 @@ export class WealthProductListingComponent implements OnInit {
     //   this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems"));
     // }
 
-    
+
 
 
 
@@ -197,9 +197,9 @@ export class WealthProductListingComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.GoalList = resp.data;
-        let encrypted=this.crypto.Encrypt(resp.data);
-        localStorage.setItem("GoalsList",encrypted);
-      
+        let encrypted = this.crypto.Encrypt(resp.data);
+        localStorage.setItem("GoalsList", encrypted);
+
         // console.log("my goals",this.MyGoals);
       }
       else {
@@ -320,7 +320,7 @@ export class WealthProductListingComponent implements OnInit {
   }
 
 
-  getCartItems(index: number){
+  getCartItems(index: number) {
     // debugger;
     this.ProductList[index].checkCart = !this.ProductList[index].checkCart;
     // $("#riskModal1").modal("hide");
@@ -331,7 +331,7 @@ export class WealthProductListingComponent implements OnInit {
     console.log("CartItems", this.CartItems);
 
   }
-  
+
 
   RemoveFromCompare(model: any, i: any) {
     console.log("model", model)
@@ -369,7 +369,7 @@ export class WealthProductListingComponent implements OnInit {
     postData.append("transactionSubType", "2");
     postData.append("frequencyDay", "1");
     postData.append("serviceProviderAccountId", "20753");
-    this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
+    this.api.post("wealthfy/proceed-to-cart", postData,true).subscribe(resp => {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
