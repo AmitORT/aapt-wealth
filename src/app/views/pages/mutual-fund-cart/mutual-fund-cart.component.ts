@@ -13,23 +13,23 @@ declare var $: any;
   styleUrls: ['./mutual-fund-cart.component.css']
 })
 export class MutualFundCartComponent implements OnInit {
- 
+
   // ModeOfInvestment: any;
-  ModeOfInvestment:any={
-    "Payment_mode":"1",
-    "DateForMonth":"15",
-    "monthly_amt":"",
-    "yearly_amt":""
+  ModeOfInvestment: any = {
+    "Payment_mode": "1",
+    "DateForMonth": "15",
+    "monthly_amt": "",
+    "yearly_amt": ""
   }
-  ProductOverview: any =[];
+  ProductOverview: any = [];
   SelectedGoal: any;
   ProceedCart: any;
   InvestWithoutGoal: any;
   ConfirmedCart: any;
   BankNames: any;
-  SelectedBank:any=[];
+  SelectedBank: any = [];
   Token: any;
-  CartItems:any = [];
+  CartItems: any = [];
   CommonUrl = environment.CommonUrl;
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
@@ -39,73 +39,56 @@ export class MutualFundCartComponent implements OnInit {
 
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-   
+      console.log("ModeOfInvestment", this.ModeOfInvestment);
     }
-    console.log("ModeOfInvestment", this.ModeOfInvestment);
-   //this.ProductOverview=[];
-    this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems")); 
-    console.log("Newcart" , this.CartItems)
-    if(localStorage.getItem("ProductOverview") != null){
+    if (localStorage.getItem("CartItems") != null) {
+      this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems"));
+      console.log("Newcart", this.CartItems)
+    }
+    if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview.push(this.crypto.Decrypt(localStorage.getItem("ProductOverview")));
     }
- 
-
-    for(let i=0;i<this.CartItems.length;i++){
-      this.ProductOverview.push(this.CartItems[i]); 
+    for (let i = 0; i < this.CartItems.length; i++) {
+      this.ProductOverview.push(this.CartItems[i]);
     }
-  
-
     console.log("ProductOverview", this.ProductOverview)
-
-    if(localStorage.getItem("InvestWithoutGoal") != null){
-    this.InvestWithoutGoal = this.crypto.Decrypt(localStorage.getItem("InvestWithoutGoal"));
-    // console.log("InvestWithoutGoal", this.InvestWithoutGoal)
+    if (localStorage.getItem("InvestWithoutGoal") != null) {
+      this.InvestWithoutGoal = this.crypto.Decrypt(localStorage.getItem("InvestWithoutGoal"));
+      // console.log("InvestWithoutGoal", this.InvestWithoutGoal)
     }
-
     if (localStorage.getItem("ProceedCart") != null) {
       this.ProceedCart = this.crypto.Decrypt(localStorage.getItem("ProceedCart"));
       // console.log("GotProceedCart", this.ProceedCart)
     }
-    
-
-    if(localStorage.getItem("BankNames")!= null){
+    if (localStorage.getItem("BankNames") != null) {
       this.BankNames = this.crypto.Decrypt(localStorage.getItem("BankNames"));
       // console.log('BankNames',this.BankNames)
     }
-    else{
+    else {
       this.GetBankDetails();
     }
-
     if (localStorage.getItem("SelectedFunds") != null) {
       this.SelectedBank = this.crypto.Decrypt(localStorage.getItem("SelectedFunds"));
       // console.log('SelectedBank',this.SelectedBank)
     }
 
-   
     $(".body-color").scroll(function () {
-      if($(".body-color").scrollTop() > 150) {
-      $('#sidebar').css('position','fixed');
-      $('#sidebar').css('top','10%');
-      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
+      if ($(".body-color").scrollTop() > 150) {
+        $('#sidebar').css('position', 'fixed');
+        $('#sidebar').css('top', '10%');
+        $('#sidebar').css('width', $("#sidebar-main").width() + 'px');
       }
       else if ($(".body-color").scrollTop() <= 150) {
-      $('#sidebar').css('position','');
-      $('#sidebar').css('top','');
-      $('#sidebar').css('width','');
-      }    
-
-      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-100) {
-      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset().top+100));
+        $('#sidebar').css('position', '');
+        $('#sidebar').css('top', '');
+        $('#sidebar').css('width', '');
       }
-
-      });
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top - 100) {
+        $('#sidebar').css('top', -($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset().top + 100));
+      }
+    });
 
   }
-
-  // CompareProduct() {
-  //   $('#compare-products-modal').modal('hide');
-  //   this.ShowSelectedDetails = true;
-  // }
 
   RedirectPopup() {
     $('#compare-products-modal').modal('hide');
@@ -140,41 +123,36 @@ export class MutualFundCartComponent implements OnInit {
       }
     }
     // console.log('bank name',this.BankNames)
-    if(this.BankNames.filter((a:any)=>a.selectBank==1).length>4){
-      this.BankNames[index].selectBank==0;
+    if (this.BankNames.filter((a: any) => a.selectBank == 1).length > 4) {
+      this.BankNames[index].selectBank == 0;
       this.toastr.info("You can add max 4 offer for compare");
-    }else{
-       this.SelectedBank=this.BankNames.filter((a:any)=>a.selectBank==1);
-       localStorage.setItem("SelectedFunds",this.crypto.Encrypt(this.SelectedBank));
-       localStorage.setItem("BankNames",this.crypto.Encrypt(this.BankNames));
+    } else {
+      this.SelectedBank = this.BankNames.filter((a: any) => a.selectBank == 1);
+      localStorage.setItem("SelectedFunds", this.crypto.Encrypt(this.SelectedBank));
+      localStorage.setItem("BankNames", this.crypto.Encrypt(this.BankNames));
       //  console.log("SelectedFunds",this.SelectedBank);
     }
   }
 
   ConfirmCart() {
-    debugger
     var uniqueId;
-    if(this.ProceedCart != null){
+    if (this.ProceedCart != null) {
       uniqueId = this.ProceedCart.uniqueId;
     }
-    else{
+    else {
       uniqueId = this.InvestWithoutGoal.uniqueId;
     }
-    console.log("uniquiID",uniqueId)
-    
-    var postData = new FormData();    
-    postData.append("uniqueId", uniqueId)
-
+    // console.log("uniquiID", uniqueId)
+    var postData = new FormData();
+    postData.append("uniqueId", uniqueId);
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
       this.ConfirmedCart = resp.data;
       // console.log('confirm cart',resp.data)
-      if(resp.response.n==1){
-        // this.toastr.success(resp.Msg)
+      if (resp.response.n == 1) {
         this.CommontRouterUrl('/kyc-verification')
       }
       // this.route.navigate(["/mutual-payment-successful"])
     })
-    
   }
 
   CommontRouterUrl(Path: any) {
