@@ -7,119 +7,139 @@
 
     </div>
   </div>
-  
+
   <div class="row mt-4 mb-5-mob align-items-end">
     <div class="col-lg-2 col-3 pr-mob">
-      <input hidden type="file" #uploader (change)="uploadFile($event)" accept="image/*"/>
+      <input hidden type="file" #uploader (change)="uploadFile($event)" accept="image/*" />
       <img id="profileimg" src="assets/img/cam.svg" alt="" class="camera img-fluid" (click)="uploader.click()">
     </div>
     <div class="col-lg-10 col-9 ps-0 savings">
-      <input type="text" (keypress)="validate.alphabetOnly($event)" id="name" placeholder="What are you saving for?" class=" form-control" [(ngModel)]="CreateGoal.Savings">
+      <input type="text" (keypress)="validate.alphabetOnly($event)" id="name" placeholder="What are you saving for?"
+        class=" form-control" [(ngModel)]="CreateGoal.Savings">
       <!-- <h4 class="save">What are you saving for?</h4> -->
     </div>
   </div>
-  
+
   <div class="row pt-5">
     <div class="col-lg-6">
       <h6>Select Mode of Payment</h6>
       <div class="left-box year-div">
         <ul class="nav nav-tabs" id="year-tabs" role="tablist">
-          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '1'" >
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '1'; CalculateSavingAmount()">
             <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '1'?'active':''" type="button" role="tab"
               aria-controls="oy" aria-selected="true">Monthly</button>
           </li>
-          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '2'">
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '2'; CalculateSavingAmount()">
             <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '2'?'active':''" type="button" role="tab"
               aria-controls="ty" aria-selected="false">Quarterly</button>
           </li>
-          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '3'">
+          <li class="nav-item " role="presentation" (click)="CreateGoal.Payment_Mode = '3'; CalculateSavingAmount()">
             <button class="nav-link" [ngClass]="CreateGoal.Payment_Mode == '3'?'active':''" type="button" role="tab"
               aria-controls="thy" aria-selected="false">One-time</button>
           </li>
         </ul>
       </div>
-      </div>
+    </div>
 
-      <div class="col-lg-6">
-        <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Amount</h6>
-        <div class="position-relative">
-          <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)" placeholder="Goal Target Amount" [(ngModel)]="CreateGoal.Goal_Amount"/>
-          <span class="pin-name">INR</span>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Duration</h6>
+    <div class="col-lg-6">
+      <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Amount</h6>
       <div class="position-relative">
-        <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)" placeholder="Goal Duration" [(ngModel)]="CreateGoal.Goal_Duartion" />
+        <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)" maxlength="10"
+          placeholder="Goal Target Amount" [(ngModel)]="CreateGoal.Goal_Amount"  (keyup)="CalculateSavingAmount()"/>
+        <span class="pin-name">INR</span>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h6 class="d-none d-lg-block d-md-block d-sm-block">Select Start Date</h6>
+      <div class="position-relative">
+        <input type="date" id="startDate" class="form-control custom-formfield" 
+          placeholder="Goal Duration" [(ngModel)]="CreateGoal.startDate" (keyup)="CalculateSavingAmount()" (change)="GetTargetDate()"/>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <h6 class="d-none d-lg-block d-md-block d-sm-block">Select End Date</h6>
+      <div class="position-relative">
+        <input type="date" id="targetDate" class="form-control custom-formfield" 
+          placeholder="Goal Duration" [(ngModel)]="CreateGoal.targetDate"  (keyup)="CalculateSavingAmount()"/>       
+      </div>
+    </div>
+
+    <!-- <div class="col-lg-6">
+      <h6 class="d-none d-lg-block d-md-block d-sm-block">Enter Goal Duration</h6>
+      <div class="position-relative">
+        <input type="text" class="form-control custom-formfield" (keypress)="validate.numberOnly($event)"
+          placeholder="Goal Duration" [(ngModel)]="CreateGoal.Goal_Duartion" />
         <span class="pin-name">Yrs</span>
       </div>
-      </div>
+    </div> -->
 
-      <div class="col-lg-6 position-relative">
-        <div class="d-flex mt-5 install justify-content-between">
-          <h6 class="d-none d-lg-block d-md-block d-sm-block">Installment will be deducted on <span>{{CreateGoal.Date_For_Installments}}th of every month.</span>
-          </h6>
-          <h6 class="d-block d-lg-none d-md-none d-sm-none">Select a Date for SIP</h6>
-          <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="dob" placeholder="Date Of Birth" class="form-control calender">
-          <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
-        </div>
+    <!-- <div class="col-lg-6 position-relative">
+      <div class="d-flex mt-5 install justify-content-between">
+        <h6 class="d-none d-lg-block d-md-block d-sm-block">Installment will be deducted on
+          <span>{{CreateGoal.Date_For_Installments}}th of every month.</span>
+        </h6>
+        <h6 class="d-block d-lg-none d-md-none d-sm-none">Select a Date for SIP</h6>
+        <input type="date" [(ngModel)]="CreateGoal.Date_For_Installments" id="dob" placeholder="Date Of Birth"
+          class="form-control calender">
+        <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image" class="w-75"></label>
       </div>
-      
+    </div> -->
 
-      <div class="col-lg-6">
-        <div class="custom-slider mt-5 mb-5">
-          <div class="row align-items-center">
-            <div class="col-lg-8 col-6">
-              <h6 class="mt-1">Expected Rate of Return</h6>
-              <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
-            </div>
-            <div class="col-lg-4 col-6 position-relative">
-              <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="CreateGoal.Return_Rate"/>
-              <span class="percent">%</span>
-            </div>
+
+    <div class="col-lg-6">
+      <div class="custom-slider mt-5 mb-5">
+        <div class="row align-items-center">
+          <div class="col-lg-8 col-6">
+            <h6 class="mt-1">Expected Rate of Return</h6>
+            <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
           </div>
-          <ngx-slider [(value)]="CreateGoal.Return_Rate" [options]="options12"></ngx-slider>
-          <!-- <span>(min)</span>
+          <div class="col-lg-4 col-6 position-relative">
+            <input type="text" (keypress)="validate.numberOnly($event)" class="form-control"
+              [(ngModel)]="CreateGoal.Return_Rate"  (keyup)="CalculateSavingAmount()"/>
+            <span class="percent">%</span>
+          </div>
+        </div>
+        <ngx-slider [(value)]="CreateGoal.Return_Rate" [options]="options12"></ngx-slider>
+        <!-- <span>(min)</span>
           <span>(max)</span> -->
-        </div>
       </div>
+    </div>
 
-      <div class="col-lg-6 pt-1">
-        <div class="custom-slider slide-margin">
-          <div class="row align-items-center">
-            <div class="col-lg-8 col-6">
-              <h6 class="mt-1">Rate of Inflation</h6>
-              <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
-            </div>
-            <div class="col-lg-4 col-6 position-relative">
-              <input type="text" (keypress)="validate.numberOnly($event)" class="form-control" [(ngModel)]="CreateGoal.Inflation_Rate" />
-              <span class="percent">%</span>
-            </div>
+    <div class="col-lg-6 pt-1">
+      <div class="custom-slider slide-margin">
+        <div class="row align-items-center">
+          <div class="col-lg-8 col-6">
+            <h6 class="mt-1">Rate of Inflation</h6>
+            <!-- <h5 class="mb-0">Tenure <span>(Years)</span></h5> -->
           </div>
-          <ngx-slider [(value)]="CreateGoal.Inflation_Rate" [options]="options13"></ngx-slider>
+          <div class="col-lg-4 col-6 position-relative">
+            <input type="text" (keypress)="validate.numberOnly($event)" class="form-control"
+              [(ngModel)]="CreateGoal.Inflation_Rate"  (keyup)="CalculateSavingAmount()"/>
+            <span class="percent">%</span>
+          </div>
         </div>
+        <ngx-slider [(value)]="CreateGoal.Inflation_Rate" [options]="options13" (userChange)="CalculateSavingAmount()"></ngx-slider>
       </div>
+    </div>
 
-      <div class="col-lg-6 col-12 marg">
-        <h6>Monthly Saving Amount</h6>
-        <div>
-          <span class="rupee cursor-pointer">Rs.0</span>
-        </div>
-        <!-- <div *ngIf="RupeeChange" (click)="RupeeChange = false">
+    <div class="col-lg-6 col-12 marg" *ngIf="!validate.isNullEmptyUndefined(CreateGoal.AmountRS)">
+      <h6>Monthly Saving Amount</h6>
+      <div>
+        <span class="rupee cursor-pointer">₹{{CreateGoal.AmountRS.toFixed(2)}}</span>
+      </div>
+      <!-- <div *ngIf="RupeeChange" (click)="RupeeChange = false">
           <span class="rupee cursor-pointer">Rs.25,000</span>
         </div> -->
-      </div>
     </div>
-
-    <div class="row m0-mob">
-      <button type="button" class="btn btn-primary theme-button mt-5" (click)="CreateGoalAndInvest()">
-        Create Goal & Invest
-      </button>
-    </div>
-
-    
   </div>
 
-  
+  <div class="row m0-mob">
+    <button type="button" class="btn btn-primary theme-button mt-5" (click)="CreateGoalAndInvest()">
+      Create Goal & Invest
+    </button>
+  </div>
 
+
+</div>

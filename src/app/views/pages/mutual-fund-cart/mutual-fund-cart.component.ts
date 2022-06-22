@@ -32,10 +32,17 @@ export class MutualFundCartComponent implements OnInit {
   CartItems: any = [];
   CommonUrl = environment.CommonUrl;
 
+  CreatedGoal:any;
+
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
+
+    if(localStorage.getItem("CreatedGoal") != null){
+      this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
+      console.log("CreatedGoal", this.CreatedGoal);
+    }
 
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
@@ -160,6 +167,11 @@ export class MutualFundCartComponent implements OnInit {
     this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
     this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
     window.location.href = this.CommonUrl;
+  }
+
+  RemoveGoal(){
+    this.CreatedGoal ='';
+    localStorage.removeItem("CreatedGoal");
   }
 
 }

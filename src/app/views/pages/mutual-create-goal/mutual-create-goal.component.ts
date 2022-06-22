@@ -5,6 +5,8 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ToastrService } from 'ngx-toastr';
+import { EligibilityService } from 'src/app/services/eligibility/eligibility.service';
+import { DatePipe } from '@angular/common';
 
 declare var $: any;
 
@@ -28,7 +30,10 @@ export class MutualCreateGoalComponent implements OnInit {
     "Date_For_Installments": "15",
     "Return_Rate": "0",
     "Inflation_Rate": "0",
-    "Saving_Amount": ""
+    "Saving_Amount": "",
+    "startDate": "",
+    "targetDate": "",
+    "AmountRS":"",
   }
 
   Goals: any;
@@ -36,10 +41,48 @@ export class MutualCreateGoalComponent implements OnInit {
 
   DateOfInstallment: any;
   ProceedCart: any;
+  ApplicantData: any;
 
-  constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
+  constructor(private datepipe: DatePipe, public route: Router, private toastr: ToastrService, public eligibilityService: EligibilityService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
+    this.GetStartDate();
+
+    if (localStorage.getItem("ApplicantData") != '') {
+      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
+      console.log('app data', this.ApplicantData)
+    }
+  }
+
+  GetStartDate() {
+    var dtToday = new Date();
+    var month = (dtToday.getMonth() + 1).toString();
+    var day = (dtToday.getDate()).toString();
+    var year = dtToday.getFullYear();
+    if (parseInt(month) < 10) {
+      month = '0' + month.toString();
+    }
+    if (parseInt(day) < 10) {
+      day = '0' + day.toString();
+    }
+    var maxDate = year + '-' + month + '-' + day;
+    $('#startDate').attr('min', maxDate);
+  }
+
+  GetTargetDate() {
+    var dtToday = new Date(this.CreateGoal.startDate);
+    dtToday.setDate(dtToday.getDate() + 30);
+    var month = (dtToday.getMonth() + 1).toString();
+    var day = (dtToday.getDate()).toString();
+    var year = dtToday.getFullYear();
+    if (parseInt(month) < 10) {
+      month = '0' + month.toString();
+    }
+    if (parseInt(day) < 10) {
+      day = '0' + day.toString();
+    }
+    var maxDate = year + '-' + month + '-' + day;
+    $('#targetDate').attr('min', maxDate);
   }
 
   uploadFile($event: any) {
@@ -90,8 +133,8 @@ export class MutualCreateGoalComponent implements OnInit {
   };
 
 
-  CreateGoalAndInvest() {
-
+  CalculateSavingAmount() {
+    debugger
     if (this.validate.isNullEmptyUndefined(this.CreateGoal.Savings)) {
       this.toastr.error('Reason for saving is mandatory');
     }
@@ -101,11 +144,11 @@ export class MutualCreateGoalComponent implements OnInit {
     else if (this.validate.isNullEmptyUndefined(this.CreateGoal.Goal_Amount)) {
       this.toastr.error('Goal Amount is mandatory');
     }
-    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.Goal_Duartion)) {
-      this.toastr.error('Goal Duration is mandatory');
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.startDate)) {
+      this.toastr.error('Please select start Date');
     }
-    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.Date_For_Installments)) {
-      this.toastr.error('Date of Month is mandatory');
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.targetDate)) {
+      this.toastr.error('Please select End Date');
     }
     else if (this.CreateGoal.Return_Rate == 0) {
       this.toastr.error('Rate of Return is mandatory');
@@ -115,29 +158,72 @@ export class MutualCreateGoalComponent implements OnInit {
     }
     else {
       var postData = new FormData();
-      postData.append("type", this.CreateGoal.Payment_Mode);
+      postData.append("type", '1');
       postData.append("investmentMode", this.CreateGoal.Payment_Mode);
       postData.append("targetAmount", this.CreateGoal.Goal_Amount);
-      postData.append("startDate", '2021-06-28');
-      postData.append("targetDate", this.CreateGoal.Date_For_Installments);
+      postData.append("targetDate", this.CreateGoal.targetDate);
+      postData.append("expectedCorpus", '');
+      postData.append("rateInflation", this.CreateGoal.Inflation_Rate);
+      postData.append("rateReturn", this.CreateGoal.Return_Rate);
+      postData.append("fullName", this.ApplicantData.firstName);
+      postData.append("email", this.ApplicantData.email);
+      postData.append("mobileNumber", this.ApplicantData.mobileNumber);
+      postData.append("name", this.CreateGoal.Savings);
+      this.api.post('sipCalculator/goal-tools',postData,true).subscribe(response=>{
+        console.log('tool',response);
+        if(response.response.n==1){
+          this.CreateGoal.AmountRS=response.data.monthly;
+          console.log(this.CreateGoal.AmountRS);
+        }
+      })
+
+
+    }
+  }
+
+
+  CreateGoalAndInvest() {
+    if (this.validate.isNullEmptyUndefined(this.CreateGoal.Savings)) {
+      this.toastr.error('Reason for saving is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.Payment_Mode)) {
+      this.toastr.error('Payment Mode is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.Goal_Amount)) {
+      this.toastr.error('Goal Amount is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.startDate)) {
+      this.toastr.error('Please select start Date');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.CreateGoal.targetDate)) {
+      this.toastr.error('Please select End Date');
+    }
+    else if (this.CreateGoal.Return_Rate == 0) {
+      this.toastr.error('Rate of Return is mandatory');
+    }
+    else if (this.CreateGoal.Inflation_Rate == 0) {
+      this.toastr.error('Rate of Inflation is mandatory');
+    }
+    else {
+      var postData = new FormData();
+      postData.append("type", '1');
+      postData.append("investmentMode", this.CreateGoal.Payment_Mode);
+      postData.append("targetAmount", this.CreateGoal.Goal_Amount);
+      postData.append("startDate", this.CreateGoal.startDate);
+      postData.append("targetDate", this.CreateGoal.targetDate);
       postData.append("rateInflation", this.CreateGoal.Inflation_Rate);
       postData.append("rateReturn", this.CreateGoal.Return_Rate);
       postData.append("name", this.CreateGoal.Savings);
-
-      this.api.post("goalDetails/create-goal", postData,true).subscribe(response => {
+      this.api.post("goalDetails/create-goal", postData, true).subscribe(response => {
         console.log('create goal', response)
         if (response.response.n == 1) {
-          debugger;
-          this.toastr.success(response.response.Msg);
+          localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
           this.CreateInvestor(response.goalId);
-          // this.route.navigate(['/mutual-fund-cart']);
         }
         else {
           this.toastr.error(response.response.Msg);
         }
       })
-
-
     }
   }
 
@@ -146,7 +232,7 @@ export class MutualCreateGoalComponent implements OnInit {
     var postData = new FormData();
     postData.append("birth_date", "2000-01-01T06:30:00.000Z");
     postData.append("investor_type", "1");
-    postData.append("pan", "AAXPB469M");
+    postData.append("pan", this.ApplicantData.panCard);
     postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
     postData.append("guardian_details", JSON.stringify(data));
     this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {

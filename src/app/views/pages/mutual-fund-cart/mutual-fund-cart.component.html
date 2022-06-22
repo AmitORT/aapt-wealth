@@ -82,21 +82,21 @@
               </div>
             </div>
           </div>
-          <div class="assigned-row">
+          <div class="assigned-row" *ngIf="!this.validate.isNullEmptyUndefined(CreatedGoal)">
             <div class="goal-div">
               <div>
                 <img src="assets/img/goal_image.svg" />
               </div>
               <div class="goal-name">
-                <h5>Buy a New Car</h5>
-                <p>in 4 years at age of 30</p>
+                <h5>{{CreatedGoal.Savings}}</h5>
+                <p>Target Date : {{CreatedGoal.targetDate | date}}</p>
               </div>
             </div>
             <div>
-              <a class="remove-cartgoal">Remove Goal</a>
+              <a class="remove-cartgoal" (click)="RemoveGoal()">Remove Goal</a>
             </div>
           </div>
-          <div class="assigned-row" style="display: none;">
+          <div class="assigned-row" *ngIf="this.validate.isNullEmptyUndefined(CreatedGoal)">
             <div class="goal-div">
               <div>             
                 <h5>No Goal Assigned</h5>

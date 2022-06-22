@@ -380,7 +380,7 @@ export class FooterComponent implements OnInit {
 
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(response => {
-      // console.log(response.user);
+      // console.log(response.data);
       localStorage.setItem("ApplicantData", this.cryptoManager.Encrypt(response.data));
     })
   }

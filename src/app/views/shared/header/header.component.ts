@@ -447,8 +447,8 @@ export class HeaderComponent implements OnInit, DoCheck {
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
       debugger;
-      console.log(response.user);
-      localStorage.setItem("ApplicantData", this.cryptoManager.Encrypt(response.user));
+      console.log(response.data);
+      localStorage.setItem("ApplicantData", this.cryptoManager.Encrypt(response.data));
     })
   }
 

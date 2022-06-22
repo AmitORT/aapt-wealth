@@ -220,7 +220,7 @@ export class RiskProfilingComponent implements OnInit {
       postData.append("riskProfileType",this.GetQuestionsData[0].type);
       postData.append("recalculateRiskProfile",'1');
     
-    this.api.post("riskProfiling/submit-risk-profile-questions",postData).subscribe((resp: any)=>{
+    this.api.post("riskProfiling/submit-risk-profile-questions",postData,true).subscribe((resp: any)=>{
       if(resp.response.n==1){    
         let encrypted=this.crypto.Encrypt(resp.data);
         localStorage.setItem("RiskProfilesubmitResponse",encrypted);

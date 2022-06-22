@@ -141,6 +141,7 @@ export class SignInComponent implements OnInit {
             var encryptedTokenCustomer = { "token": resp.data.token.customer };
             localStorage.setItem("CustToken", this.crypto.Encrypt(encryptedTokenCustomer));
             console.log("CustToken", encryptedTokenCustomer)
+            this.GetApplicantData();
             this.route.navigate(["/mutual-fund-cart"])
           }
           if (!this.validate.isNullEmptyUndefined(resp.data.token.agent)) {
@@ -269,5 +270,13 @@ export class SignInComponent implements OnInit {
       };
     }, 1000);
 
+  }
+
+  GetApplicantData() {
+    this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
+      debugger;
+      console.log(response.user);
+      localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+    })
   }
 }

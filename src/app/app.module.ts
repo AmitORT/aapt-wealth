@@ -5,6 +5,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { NgApexchartsModule } from 'ng-apexcharts'
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -146,7 +147,9 @@ import { SignInComponent } from './views/pages/sign-in/sign-in.component';
     
     
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
