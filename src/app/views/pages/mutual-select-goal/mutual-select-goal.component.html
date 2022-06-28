@@ -14,7 +14,7 @@
     </div>
 
     <div class="col-lg-6">
-      <h5 class="ofr-head">My Goals <span>({{MyGoals?.length}})</span></h5>
+      <h5 class="ofr-head">My Goals <span *ngIf="MyGoals?.length > 0">({{MyGoals?.length}})</span></h5>
       <div class="col-12">
         <div class=" mt-2 finance owl-1">
           <div class="financial-slider trendprod">

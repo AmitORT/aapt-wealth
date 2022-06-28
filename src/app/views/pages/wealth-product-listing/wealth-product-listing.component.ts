@@ -143,9 +143,11 @@ export class WealthProductListingComponent implements OnInit {
   CategoryFiltercheckedList: any = [];
   GoalList: any;
   InvestWithoutGoalResp: any;
+  ProductOverviewData: any;
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
+    this.scrolltotop();
     if (localStorage.getItem("RiskProfilesubmitResponse") != null) {
       this.RiskProfilesubmitResponse = this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
       console.log("RiskProfilesubmitResponse", this.RiskProfilesubmitResponse);
@@ -153,6 +155,11 @@ export class WealthProductListingComponent implements OnInit {
     }
     else {
       this.riskprofileId = 0;
+    }
+
+    if (localStorage.getItem("ProductOverview") != null) {
+      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+      console.log('ngoninit ProductOverview', this.ProductOverview);
     }
 
     this.GetRiskProfileFilterList();
@@ -193,6 +200,12 @@ export class WealthProductListingComponent implements OnInit {
     });
   }
 
+  scrolltotop() {
+    $('.body-color').animate({
+      scrollTop: 0
+    }, 0);
+  }
+
   GetMyGoals() {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
@@ -211,21 +224,21 @@ export class WealthProductListingComponent implements OnInit {
   GetRiskProfileFilterList() {
     this.api.get("wealthfy/get-riskprofile-filter").subscribe(response => {
       this.RiskProfileFilterList = response.data;
-      console.log('GetRiskProfileFilterList', this.RiskProfileFilterList)
+      // console.log('GetRiskProfileFilterList', this.RiskProfileFilterList)
     })
   }
 
   GetAMCFilterList() {
     this.api.get("wealthfy/get-amc-filter").subscribe(response => {
       this.AMCFilterList = response.data;
-      console.log('AMCFilterList', this.AMCFilterList)
+      // console.log('AMCFilterList', this.AMCFilterList)
     })
   }
 
   GetCategoryFilterList() {
     this.api.get("wealthfy/get-category-filter").subscribe(response => {
       this.CategoryFilterList = response.data;
-      console.log('CategoryFilterList', this.CategoryFilterList)
+      // console.log('CategoryFilterList', this.CategoryFilterList)
     })
   }
 
@@ -237,13 +250,13 @@ export class WealthProductListingComponent implements OnInit {
   getOffersProductList() {
 
     this.AMCFiltercheckedList = this.AMCFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
-    console.log('amc check list', this.AMCFiltercheckedList);
+    // console.log('amc check list', this.AMCFiltercheckedList);
 
     this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
-    console.log('risk check list', this.RiskFiltercheckedList);
+    // console.log('risk check list', this.RiskFiltercheckedList);
 
     this.CategoryFiltercheckedList = this.CategoryFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
-    console.log('category check list', this.CategoryFiltercheckedList);
+    // console.log('category check list', this.CategoryFiltercheckedList);
 
 
     var postData = new FormData();
@@ -260,7 +273,7 @@ export class WealthProductListingComponent implements OnInit {
       else {
         var RiskFiltercheckedList = this.RiskFiltercheckedList.split(',');
         postData.append("risk_filter", JSON.stringify(RiskFiltercheckedList));
-        console.log('check list', RiskFiltercheckedList)
+        // console.log('check list', RiskFiltercheckedList)
       }
     }
     if (this.IsAMCChecked) {
@@ -270,7 +283,7 @@ export class WealthProductListingComponent implements OnInit {
       else {
         var AMCFiltercheckedList = this.AMCFiltercheckedList.split(',');
         postData.append("amc_filter", JSON.stringify(AMCFiltercheckedList));
-        console.log('check list', AMCFiltercheckedList)
+        // console.log('check list', AMCFiltercheckedList)
       }
     }
     if (this.IsCategoryChecked) {
@@ -280,7 +293,7 @@ export class WealthProductListingComponent implements OnInit {
       else {
         var CategoryFiltercheckedList = this.CategoryFiltercheckedList.split(',');
         postData.append("category_filter", JSON.stringify(CategoryFiltercheckedList));
-        console.log('check list', CategoryFiltercheckedList)
+        // console.log('check list', CategoryFiltercheckedList)
       }
     }
 
@@ -288,7 +301,7 @@ export class WealthProductListingComponent implements OnInit {
     this.OfferListingLoader = true;
     this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
       this.OfferListingLoader = false;
-      console.log("ProductList", resp)
+      // console.log("ProductList", resp)
       if (resp.response.n != 0) {
         this.ProductList = resp.data;
         // console.log("ProductList", this.ProductList)
@@ -355,8 +368,9 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   AppliedFund(offer: any) {
-    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
-    this.route.navigate(['/wealth-product-details']);
+    console.log('offer', offer)
+    // localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    // this.route.navigate(['/wealth-product-details']);
   }
 
   InvestWithoutGoal() {
@@ -369,7 +383,7 @@ export class WealthProductListingComponent implements OnInit {
     postData.append("transactionSubType", "2");
     postData.append("frequencyDay", "1");
     postData.append("serviceProviderAccountId", "20753");
-    this.api.post("wealthfy/proceed-to-cart", postData,true).subscribe(resp => {
+    this.api.post("wealthfy/proceed-to-cart", postData, true).subscribe(resp => {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
@@ -382,6 +396,71 @@ export class WealthProductListingComponent implements OnInit {
   //   console.log('modal',modal.id);
   //   this.route.navigate(['/wealth-product-details/'+modal.id]);
   // }
+  ProductManager: any;
+  ProductOverview: any = [];
+  Productreturn: any;
+  ProductSectorDetails: any;
+  holdings: any;
+  SimilarProducts: any;
+
+  GetProductDetail(offer: any) {
+    var orderby = [{ "name": "weight", "sort": "DESC" }];
+
+    var postData = new FormData();
+    postData.append("instrumentId", offer.id);
+    postData.append("limit", "10");
+    postData.append("offset", "0");
+    postData.append("holdinglimit", "10");
+    postData.append("orderBy", JSON.stringify(orderby));
+    postData.append("whereClause", "{}");
+
+    this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
+
+      // console.log("resp", resp)
+      if (resp.response.n == 1) {
+        // debugger
+        // this.ProductOverviewData = resp.data;
+        localStorage.setItem("ProductOverviewData", JSON.stringify(resp.data));
+        console.log(resp.data);
+        debugger
+
+        if (this.ProductOverview.length > 0) {
+          var flag = true;
+          for (var i = 0; i < this.ProductOverview.length; i++) {
+            if (this.ProductOverview[i].id == resp.data.productOverview.id) {
+              flag = false;
+              break;
+            }
+          }
+          if (flag) {
+            this.ProductOverview.push(resp.data.productOverview);
+          }
+        }
+        else {
+          this.ProductOverview.push(resp.data.productOverview);
+        }
+
+
+
+        // this.ProductOverview.push(resp.data.productOverview);
+        localStorage.setItem("ProductOverview", this.crypto.Encrypt(this.ProductOverview));
+
+        localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+
+
+        // this.ProductManager = resp.data.productManager;
+        // this.Productreturn = resp.data.productReturn;
+        // this.ProductSectorDetails = resp.data.productSectorDetails;
+        // this.SimilarProducts = resp.data.similarProducts;
+        // this.holdings = resp.data.fetchHoldings.instrumentHoldings;
+
+        this.route.navigate(['/wealth-product-details']);
+
+      } else {
+        this.toastr.error(resp.response.Msg)
+      }
+    });
+  }
 
 
 }

@@ -16,7 +16,7 @@ import {
   ApexStroke
 } from "ng-apexcharts";
 import { analyzeAndValidateNgModules, ConditionalExpr } from '@angular/compiler';
-declare var $ : any;
+declare var $: any;
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -38,154 +38,116 @@ export class WealthProductDetailsComponent implements OnInit {
   @ViewChild("chart")
   chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
-  flag:boolean=false;
-  PreminumTime:boolean=true;
+  flag: boolean = false;
+  PreminumTime: boolean = true;
 
   customOptions: OwlOptions = {
     items: 3,
-		margin: 3,
-		loop: true,
-		stagePadding: 64,
-		responsive:{
-			0:{items:1,stagePadding: 30},
-			480:{items:1,stagePadding: 30},
-			600:{items:2,stagePadding: 30},
-			1000:{items:3},
-			1200:{items:3}
-		},
-		nav: true,
-      // navText: ['Back','Next'],
-      navText: ["<img src='assets/img/arrow_left.svg'>","<img src='assets/img/arrow_right.svg'>"],
-      dots: false,
-      dotsEach: true,
-      lazyLoad: false,
-      autoplay: true,
-      autoplaySpeed: 500,
-      navSpeed: 500,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true
+    margin: 3,
+    loop: true,
+    stagePadding: 64,
+    responsive: {
+      0: { items: 1, stagePadding: 30 },
+      480: { items: 1, stagePadding: 30 },
+      600: { items: 2, stagePadding: 30 },
+      1000: { items: 3 },
+      1200: { items: 3 }
+    },
+    nav: true,
+    // navText: ['Back','Next'],
+    navText: ["<img src='assets/img/arrow_left.svg'>", "<img src='assets/img/arrow_right.svg'>"],
+    dots: false,
+    dotsEach: true,
+    lazyLoad: false,
+    autoplay: true,
+    autoplaySpeed: 500,
+    navSpeed: 500,
+    autoplayTimeout: 5000,
+    autoplayHoverPause: true
   }
 
-  value12:any = 7; 
+  value12: any = 7;
   options12: Options = {
     floor: 3700,
     ceil: 5300,
-    hidePointerLabels:true,
-    translate: (value12: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>Rs. 3,700</b> Rs." + value12; 
-          case label.High:  
-              return "<b>Rs. 5,300</b> Rs." + value12;  
-          default:  
-              return "Rs.&nbsp;" + value12 + "&nbsp;" ;  
-      }  
-    }     
+    hidePointerLabels: true,
+    translate: (value12: number, label: any): string => {
+      switch (label) {
+        case label.Low:
+          return "<b>Rs. 3,700</b> Rs." + value12;
+        case label.High:
+          return "<b>Rs. 5,300</b> Rs." + value12;
+        default:
+          return "Rs.&nbsp;" + value12 + "&nbsp;";
+      }
+    }
   };
 
-  monthly_amt:any = 500; 
+  monthly_amt: any = 500;
   monthly_amt1: Options = {
     floor: 500,
     ceil: 100000,
-    hidePointerLabels:true,
-    translate: (monthly_amt: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + monthly_amt; 
-          case label.High:  
-              return "<b>₹ 5,300</b> ₹" + monthly_amt;  
-          default:  
-              return "₹ &nbsp;" + monthly_amt + "&nbsp;" ;  
-      }  
-    }     
+    hidePointerLabels: true,
+    translate: (monthly_amt: number, label: any): string => {
+      switch (label) {
+        case label.Low:
+          return "<b>₹ 3,700</b> ₹" + monthly_amt;
+        case label.High:
+          return "<b>₹ 5,300</b> ₹" + monthly_amt;
+        default:
+          return "₹ &nbsp;" + monthly_amt + "&nbsp;";
+      }
+    }
   };
-  
-  yearly_amt:any = 500; 
+
+  yearly_amt: any = 500;
   yearly_amt1: Options = {
     floor: 500,
     ceil: 100000,
-    hidePointerLabels:true,
-    translate: (yearly_amt: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + yearly_amt; 
-          case label.High:  
-              return "<b>₹ 5,300</b> ₹" + yearly_amt;  
-          default:  
-              return "₹ &nbsp;" + yearly_amt + "&nbsp;" ;  
-      }  
-    }     
+    hidePointerLabels: true,
+    translate: (yearly_amt: number, label: any): string => {
+      switch (label) {
+        case label.Low:
+          return "<b>₹ 3,700</b> ₹" + yearly_amt;
+        case label.High:
+          return "<b>₹ 5,300</b> ₹" + yearly_amt;
+        default:
+          return "₹ &nbsp;" + yearly_amt + "&nbsp;";
+      }
+    }
   };
 
-  OneYearReturn:any=1;
-  SimilarProducts:any;
-  ProductManager:any;
-  ProductOverview:any;
-  Productreturn:any;
-  ProductSectorDetails:any;
-  holdings:any;
-  select_amt:any;
-  SetModeOfInvestment:any;
-  ShowCarousel:any;
-  ProductList:any;
+  OneYearReturn: any = 1;
+  SimilarProducts: any;
+  ProductManager: any;
+  ProductOverview: any = [];
+  ProductOverviewShow: any;
+  Productreturn: any;
+  ProductSectorDetails: any;
+  holdings: any;
+  select_amt: any;
+  SetModeOfInvestment: any;
+  ShowCarousel: any;
+  ProductList: any;
   private routeSub: any;
   id: any;
-  SelectedMutualFund:any;
-  public_series:any;
-  chartData:any;
-  dataLabels:any;
-  stroke:any;
-  xaxis:any;
-  tooltip:any;
-  ModeOfInvestment:any={
-    "Payment_mode":"1",
-    "DateForMonth":"15",
-    "monthly_amt":"",
-    "yearly_amt":""
+  SelectedMutualFund: any;
+  public_series: any;
+  chartData: any;
+  dataLabels: any;
+  stroke: any;
+  xaxis: any;
+  tooltip: any;
+  ProductOverviewData: any;
+  ModeOfInvestment: any = {
+    "Payment_mode": "1",
+    "DateForMonth": "15",
+    "monthly_amt": "",
+    "yearly_amt": ""
   }
- 
 
-  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService, private router: ActivatedRoute) {
-    this.chartOptions = {
-      // series: [
-      //   {
-      //     name: "series1",
-      //     data: [31, 40, 28, 51, 42, 109, 100]
-      //   },
-      //   {
-      //     name: "series2",
-      //     data: [11, 32, 45, 32, 34, 52, 41]
-      //   }
-      // ],
-      // chart: {
-      //   height: 350,
-      //   type: "area"
-      // },
-      // dataLabels: {
-      //   enabled: false
-      // },
-      // stroke: {
-      //   curve: "smooth"
-      // },
-      // xaxis: {
-      //   type: "datetime",
-      //   categories: [
-      //     "2018-09-19T00:00:00.000Z",
-      //     "2018-09-19T01:30:00.000Z",
-      //     "2018-09-19T02:30:00.000Z",
-      //     "2018-09-19T03:30:00.000Z",
-      //     "2018-09-19T04:30:00.000Z",
-      //     "2018-09-19T05:30:00.000Z",
-      //     "2018-09-19T06:30:00.000Z"
-      //   ]
-      // },
-      // tooltip: {
-      //   x: {
-      //     format: "dd/MM/yy HH:mm"
-      //   }
-      // }
-      
-    };
+
+  constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private router: ActivatedRoute) {
 
 
     this.public_series = [
@@ -194,78 +156,104 @@ export class WealthProductDetailsComponent implements OnInit {
         data: [],
         color: "#e27e28"
       },
-      // {
-      //   name: "series2",
-      //   data: [11, 32, 45, 32, 34, 52, 41]
-      // }
     ],
 
-    this.chartData = {
-      height: 350,
-      type: "area"
-    }
-    
+      this.chartData = {
+        height: 350,
+        type: "area"
+      }
+
     this.dataLabels = {
       enabled: false
     }
     this.stroke = {
       curve: "smooth"
     },
-    this.xaxis = {
-      type: "datetime",
-      categories: [
-        // "2018-09-19T00:00:00.000Z",
-        // "2018-09-19T01:30:00.000Z",
-        // "2018-09-19T02:30:00.000Z",
-        // "2018-09-19T03:30:00.000Z",
-        // "2018-09-19T04:30:00.000Z",
-        // "2018-09-19T05:30:00.000Z",
-        // "2018-09-19T06:30:00.000Z"
-      ]
-    }
-    this.tooltip= {
+      this.xaxis = {
+        type: "datetime",
+        categories: [
+          // "2018-09-19T00:00:00.000Z",
+          // "2018-09-19T01:30:00.000Z",
+          // "2018-09-19T02:30:00.000Z",
+          // "2018-09-19T03:30:00.000Z",
+          // "2018-09-19T04:30:00.000Z",
+          // "2018-09-19T05:30:00.000Z",
+          // "2018-09-19T06:30:00.000Z"
+        ]
+      }
+    this.tooltip = {
       x: {
         format: "dd/MM/yy HH:mm"
       }
     }
 
-   
-  
-   
-   }
+
+
+
+  }
 
   ngOnInit(): void {
-  
-    this.SelectedMutualFund=this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-    console.log("SelectedMutualFund",this.SelectedMutualFund)
-    
-    this.GetProductDetail();
+    this.scrolltotop();
+
+    if (localStorage.getItem("SelectedMutualFund") != null) {
+      this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
+      console.log("SelectedMutualFund", this.SelectedMutualFund);
+    }
+
+    if (localStorage.getItem("ProductOverview") != null) {
+      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+      console.log('ngoninit ProductOverview', this.ProductOverview);
+    }
+
+    if (localStorage.getItem("ProductOverviewData") != null) {
+      this.ProductOverviewData = JSON.parse(localStorage.getItem("ProductOverviewData") || "");
+      console.log('ngoninit ProductOverviewData', this.ProductOverviewData);
+      this.getProductOverviewData();
+    }
+
+    if (localStorage.getItem("ModeOfInvestment") != null) {
+      this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
+      // console.log("ModeOfInvestment", this.ModeOfInvestment)
+    }
+
+
+
+    // this.GetProductDetail();
     this.GetGraphData();
 
-    this.ModeOfInvestment=this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-    // console.log("ModeOfInvestment",this.ModeOfInvestment)
 
-  
+
+
     $(".body-color").scroll(function () {
-      if($(".body-color").scrollTop() > 150) {
-      $('#sidebar').css('position','fixed');
-      $('#sidebar').css('top','13%');
-      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
+      if ($(".body-color").scrollTop() > 150) {
+        $('#sidebar').css('position', 'fixed');
+        $('#sidebar').css('top', '13%');
+        $('#sidebar').css('width', $("#sidebar-main").width() + 'px');
 
       }
       else if ($(".body-color").scrollTop() <= 150) {
-      $('#sidebar').css('position','');
-      $('#sidebar').css('top','');
-      $('#sidebar').css('width','');
+        $('#sidebar').css('position', '');
+        $('#sidebar').css('top', '');
+        $('#sidebar').css('width', '');
       }
-      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-350) {
-      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top+350));
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top - 350) {
+        $('#sidebar').css('top', -($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset()?.top + 350));
       }
-      });
+    });
 
-     this.scrolltotop();
-     
-    
+    this.scrolltotop();
+
+
+  }
+
+  getProductOverviewData() {
+    this.ProductOverviewShow = this.ProductOverviewData.productOverview;
+    // console.log('ProductOverviewShow', this.ProductOverviewShow)
+
+    this.Productreturn = this.ProductOverviewData.productReturn;
+    this.ProductSectorDetails = this.ProductOverviewData.productSectorDetails;
+    this.SimilarProducts = this.ProductOverviewData.similarProducts;
+    this.holdings = this.ProductOverviewData.fetchHoldings.instrumentHoldings;
   }
 
 
@@ -274,17 +262,17 @@ export class WealthProductDetailsComponent implements OnInit {
   GraphDataArrayForXaxis: any = [];
   GraphCurrentValue: any;
   GraphCurrentDate: any;
-  GetGraphData(){
-    var postData=new FormData();  
-    postData.append("instrumentId",this.SelectedMutualFund.id);
-    postData.append("filterDate","all");
-    this.api.post("wealthfy/get-fetch-nav",postData).subscribe(response=>{
-      console.log("graph data",response)     
+  GetGraphData() {
+    var postData = new FormData();
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("filterDate", "all");
+    this.api.post("wealthfy/get-fetch-nav", postData).subscribe(response => {
+      // console.log("graph data", response)
       this.GraphDataList = response.data;
       this.GraphCurrentValue = this.GraphDataList[this.GraphDataList.length - 1].price;
       this.GraphCurrentDate = this.GraphDataList[this.GraphDataList.length - 1].priceDate
-     // console.log("graph data1", this.GraphDataList[this.GraphDataList.length - 1].priceDate);
-      
+      // console.log("graph data1", this.GraphDataList[this.GraphDataList.length - 1].priceDate);
+
       for (var i = 0; i <= this.GraphDataList.length; i++) {
         this.GraphDataArrayForYaxis.push(this.GraphDataList[i]?.price)
         this.GraphDataArrayForXaxis.push(this.GraphDataList[i]?.priceDate);
@@ -295,90 +283,101 @@ export class WealthProductDetailsComponent implements OnInit {
 
       // console.log('GraphDataArrayForYaxis',this.GraphDataArrayForYaxis)
       this.xaxis.categories = this.GraphDataArrayForXaxis;
-      console.log('categories', this.xaxis.categories);
-      
+      // console.log('categories', this.xaxis.categories);
+
     })
   }
 
-  scrolltotop(){
+  scrolltotop() {
     $('.body-color').animate({
       scrollTop: 0
-  }, 0);
+    }, 0);
   }
 
-  GetOnlyDay(){    
-    this.ModeOfInvestment.DateForMonth=this.ModeOfInvestment.DateForMonth.slice(8);
+  GetOnlyDay() {
+    this.ModeOfInvestment.DateForMonth = this.ModeOfInvestment.DateForMonth.slice(8);
   }
 
-  showTenureForPopup(){
-    if(this.validate.isNullEmptyUndefined(this.SelectedMutualFund.selectedYear)){
-      this.SelectedMutualFund.selectedYear=1;
-      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor1Year.toFixed(2);
-    }else if(this.SelectedMutualFund.selectedYear==1){
-      this.SelectedMutualFund.selectedYear=3;
-      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor3Year.toFixed(2);
-    }else if(this.SelectedMutualFund.selectedYear==3){
-      this.SelectedMutualFund.selectedYear=5;
-      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor5Year.toFixed(2);
-    }else if(this.SelectedMutualFund.selectedYear==5){
-      this.SelectedMutualFund.selectedYear=1;
-      this.SelectedMutualFund.Rate=this.SelectedMutualFund.returnFor1Year.toFixed(2);
+  showTenureForPopup() {
+    if (this.validate.isNullEmptyUndefined(this.SelectedMutualFund.selectedYear)) {
+      this.SelectedMutualFund.selectedYear = 1;
+      this.SelectedMutualFund.Rate = this.SelectedMutualFund.returnFor1Year.toFixed(2);
+    } else if (this.SelectedMutualFund.selectedYear == 1) {
+      this.SelectedMutualFund.selectedYear = 3;
+      this.SelectedMutualFund.Rate = this.SelectedMutualFund.returnFor3Year.toFixed(2);
+    } else if (this.SelectedMutualFund.selectedYear == 3) {
+      this.SelectedMutualFund.selectedYear = 5;
+      this.SelectedMutualFund.Rate = this.SelectedMutualFund.returnFor5Year.toFixed(2);
+    } else if (this.SelectedMutualFund.selectedYear == 5) {
+      this.SelectedMutualFund.selectedYear = 1;
+      this.SelectedMutualFund.Rate = this.SelectedMutualFund.returnFor1Year.toFixed(2);
     }
   }
 
 
-  CreateSip(){
-   
-    if(this.validate.isNullEmptyUndefined(this.ModeOfInvestment.Payment_mode)){
+  CreateSip() {
+
+    if (this.validate.isNullEmptyUndefined(this.ModeOfInvestment.Payment_mode)) {
       this.toastr.error('Payment Mode is mandatory');
     }
-    else if(this.ModeOfInvestment.Payment_mode == 1 && this.validate.isNullEmptyUndefined(this.ModeOfInvestment.DateForMonth)){
+    else if (this.ModeOfInvestment.Payment_mode == 1 && this.validate.isNullEmptyUndefined(this.ModeOfInvestment.DateForMonth)) {
       this.toastr.error('Date is mandatory');
     }
-    else{
+    else {
       $("#invest-screen").modal("hide");
-      let encrypted=this.crypto.Encrypt(this.ModeOfInvestment);
-      localStorage.setItem("ModeOfInvestment",encrypted);
+      // let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
+      // localStorage.setItem("ModeOfInvestment", encrypted);
 
-      let encryptedProduct=this.crypto.Encrypt(this.ProductOverview);
-      localStorage.setItem("ProductOverview",encryptedProduct);
-  
+
+      for (var i = 0; i < this.ProductOverview.length; i++) {
+        if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+          this.ProductOverview[i].ModeOfInvestment = this.ModeOfInvestment;
+        }
+      }
+      console.log('product with ModeOfInvestment',this.ProductOverview);
+
+
+
+      let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+      localStorage.setItem("ProductOverview", encryptedProduct);
+
       this.route.navigate(['/mutual-select-goal']);
 
       $('.body-color').animate({
         scrollTop: 0
-    }, 0);
-    } 
+      }, 0);
+    }
   }
 
-  GetProductDetail(){
-    
-    var orderby=[{"name": "weight", "sort": "DESC"}];
+  GetProductDetail() {
+    var orderby = [{ "name": "weight", "sort": "DESC" }];
 
-    var postData=new FormData();
-    // this.id
-    postData.append("instrumentId",this.SelectedMutualFund.id);
-    postData.append("limit","10");
-    postData.append("offset","0");
-    postData.append("holdinglimit","10");
-    postData.append("orderBy",JSON.stringify(orderby));
-    postData.append("whereClause","{}");
+    var postData = new FormData();
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("limit", "10");
+    postData.append("offset", "0");
+    postData.append("holdinglimit", "10");
+    postData.append("orderBy", JSON.stringify(orderby));
+    postData.append("whereClause", "{}");
 
-    this.api.post("wealthfy/get-product-overview",postData).subscribe((resp: any)=>{
-    
-      console.log("resp",resp)
-      if(resp.response.n==1){
-        this.ProductManager=resp.data.productManager;
-        this.ProductOverview=resp.data.productOverview;
-        this.Productreturn=resp.data.productReturn;
-        this.ProductSectorDetails=resp.data.productSectorDetails;
-        this.SimilarProducts=resp.data.similarProducts;  
-        this.holdings=resp.data.fetchHoldings.instrumentHoldings;   
-        
-       
-        // console.log(this.ProductSectorDetails)
-      }else{
-        alert(resp.response.Msg)
+    this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
+
+      // console.log("resp", resp)
+      if (resp.response.n == 1) {
+        debugger
+        this.ProductManager = resp.data.productManager;
+
+        this.ProductOverview.push(resp.data.productOverview);
+        this.ProductOverviewShow = resp.data.productOverview;
+
+
+        this.Productreturn = resp.data.productReturn;
+        this.ProductSectorDetails = resp.data.productSectorDetails;
+        this.SimilarProducts = resp.data.similarProducts;
+        this.holdings = resp.data.fetchHoldings.instrumentHoldings;
+
+      } else {
+        this.toastr.error(resp.response.Msg)
       }
     });
   }

@@ -46,7 +46,8 @@ export class SignInComponent implements OnInit {
   pancard = "";
   aadhar_card_no = "";
   calltype: any;
-
+  nextPath:any;
+  InvestWithoutGoalResp: any;
   usertype: any = 'Customer';
   UrlRegister: any = 'auth/customer/register';
   UrlSendOTP: any = 'auth/customer/send-otp';
@@ -58,6 +59,9 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
 
     this.DOB();
+
+    this.nextPath=this.crypto.Decrypt(localStorage.getItem("nextPath"))
+    console.log("nextPath",this.nextPath)
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -142,7 +146,16 @@ export class SignInComponent implements OnInit {
             localStorage.setItem("CustToken", this.crypto.Encrypt(encryptedTokenCustomer));
             console.log("CustToken", encryptedTokenCustomer)
             this.GetApplicantData();
-            this.route.navigate(["/mutual-fund-cart"])
+
+            if(this.nextPath != '/mutual-fund-cart'){
+              this.route.navigate([this.nextPath]);
+            }
+            else if(this.nextPath == '/mutual-fund-cart'){
+              this.CreateInvestor()
+            }
+
+
+            // this.route.navigate(["/mutual-fund-cart"])
           }
           if (!this.validate.isNullEmptyUndefined(resp.data.token.agent)) {
             var encryptedTokenAgent = { "token": resp.data.token.agent };
@@ -158,6 +171,51 @@ export class SignInComponent implements OnInit {
       this.toastr.error("kindly enter valid otp");
     }
   }
+
+
+  CreateInvestor() {
+    if (localStorage.getItem("CustToken") == null) {
+      localStorage.setItem("nextPath", this.crypto.Encrypt("/mutual-fund-cart"))
+      this.route.navigate(["/sign-in"])
+    }
+    else {
+
+      var data={'panCardNumber': 'IFSPS1505L','name': 'Gaurdian1911','gender': 1,'birthDate': '1965-01-01','relation': 1};
+      var postData = new FormData();
+      postData.append("birth_date", "2000-01-01T06:30:00.000Z");
+      postData.append("investor_type", "1");
+      postData.append("pan", "AAXPB4698R");
+      postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
+      postData.append("guardian_details",JSON.stringify(data));
+      this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
+        console.log('inverstor create', response)
+        if(response.response.n==1){
+          this.InvestWithoutGoal();
+        }
+      })
+    }
+  }
+
+  InvestWithoutGoal() {
+    var postData = new FormData();
+    postData.append("transactionTypeId", "1");
+    postData.append("instrumentId", "255527");
+    postData.append("totalAmount", "1234");
+    postData.append("modeOfTransaction", "1");
+    postData.append("frequency", "4");
+    postData.append("transactionSubType", "2");
+    postData.append("frequencyDay", "1");
+    postData.append("serviceProviderAccountId", "20753");
+    this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
+      this.InvestWithoutGoalResp = resp.data;
+      let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
+      localStorage.setItem("InvestWithoutGoal", encrypted)
+      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
+      this.route.navigate(["/mutual-fund-cart"])
+    })
+  }
+
+
 
   sendotp() {
     if (this.validate.isNullEmptyUndefined(this.firstname.trim())) {
@@ -275,7 +333,7 @@ export class SignInComponent implements OnInit {
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
       debugger;
-      console.log(response.user);
+      console.log(response.data);
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
     })
   }

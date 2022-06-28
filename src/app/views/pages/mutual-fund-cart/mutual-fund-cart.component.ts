@@ -32,18 +32,24 @@ export class MutualFundCartComponent implements OnInit {
   CartItems: any = [];
   CommonUrl = environment.CommonUrl;
 
-  CreatedGoal:any;
+  CreatedGoal: any;
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
+    this.scrolltotop();
 
-    if(localStorage.getItem("CreatedGoal") != null){
+    if (localStorage.getItem("CreatedGoal") != null) {
       this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
       console.log("CreatedGoal", this.CreatedGoal);
     }
-
+    else{
+      if(localStorage.getItem("GetSelectedGoals") != null){
+        this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("GetSelectedGoals"));
+        console.log("GetSelectedGoals", this.CreatedGoal);
+      }
+    }
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
       console.log("ModeOfInvestment", this.ModeOfInvestment);
@@ -53,12 +59,13 @@ export class MutualFundCartComponent implements OnInit {
       console.log("Newcart", this.CartItems)
     }
     if (localStorage.getItem("ProductOverview") != null) {
-      this.ProductOverview.push(this.crypto.Decrypt(localStorage.getItem("ProductOverview")));
+      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+      console.log('ngoninit ProductOverview', this.ProductOverview);
     }
-    for (let i = 0; i < this.CartItems.length; i++) {
-      this.ProductOverview.push(this.CartItems[i]);
-    }
-    console.log("ProductOverview", this.ProductOverview)
+    // for (let i = 0; i < this.CartItems.length; i++) {
+    //   this.ProductOverview.push(this.CartItems[i]);
+    // }
+    // console.log("ProductOverview after cart items", this.ProductOverview)
     if (localStorage.getItem("InvestWithoutGoal") != null) {
       this.InvestWithoutGoal = this.crypto.Decrypt(localStorage.getItem("InvestWithoutGoal"));
       // console.log("InvestWithoutGoal", this.InvestWithoutGoal)
@@ -67,13 +74,14 @@ export class MutualFundCartComponent implements OnInit {
       this.ProceedCart = this.crypto.Decrypt(localStorage.getItem("ProceedCart"));
       // console.log("GotProceedCart", this.ProceedCart)
     }
-    if (localStorage.getItem("BankNames") != null) {
-      this.BankNames = this.crypto.Decrypt(localStorage.getItem("BankNames"));
-      // console.log('BankNames',this.BankNames)
-    }
-    else {
-      this.GetBankDetails();
-    }
+    // if (localStorage.getItem("BankNames") != null) {
+    //   debugger
+    //   this.BankNames = this.crypto.Decrypt(localStorage.getItem("BankNames"));
+    //   console.log('BankNames',this.BankNames)
+    // }
+    // else {
+    this.GetBankDetails();
+    // }
     if (localStorage.getItem("SelectedFunds") != null) {
       this.SelectedBank = this.crypto.Decrypt(localStorage.getItem("SelectedFunds"));
       // console.log('SelectedBank',this.SelectedBank)
@@ -96,19 +104,27 @@ export class MutualFundCartComponent implements OnInit {
     });
 
   }
+  scrolltotop() {
+    $('.body-color').animate({
+      scrollTop: 0
+    }, 0);
+  }
 
   RedirectPopup() {
     $('#compare-products-modal').modal('hide');
     this.route.navigate(['/wealth-product-listing']);
   }
 
-  GetOnlyDay() {
+  GetOnlyDay(i: any) {
+    // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth);
+    // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth.getDate())
+    // this.ProductOverview[i].ModeOfInvestment.DateForMonth = this.ProductOverview[i].ModeOfInvestment.DateForMonth.slice(8);
     this.ModeOfInvestment.DateForMonth = this.ModeOfInvestment.DateForMonth.slice(8);
   }
 
   GetBackToFunds() {
-    let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
-    localStorage.setItem("ModeOfInvestment", encrypted);
+    // let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
+    // localStorage.setItem("ModeOfInvestment", encrypted);
     this.route.navigate(["/mutual-select-goal"])
     // console.log("ChangesDataofMutualInvest", this.ModeOfInvestment)
   }
@@ -117,7 +133,7 @@ export class MutualFundCartComponent implements OnInit {
     this.api.get("bankDetails/get-banks", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.BankNames = resp.data;
-        // console.log("BankNames", this.BankNames)
+        console.log("BankNames", this.BankNames)
       }
     })
   }
@@ -169,9 +185,21 @@ export class MutualFundCartComponent implements OnInit {
     window.location.href = this.CommonUrl;
   }
 
-  RemoveGoal(){
-    this.CreatedGoal ='';
-    localStorage.removeItem("CreatedGoal");
+  RemoveGoal(i:any) {
+    this.ProductOverview[i].CreatedGoal = '';
+    let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+    localStorage.setItem("ProductOverview", encryptedProduct);
+  }
+
+  DeleteFund(i: any) {
+    this.ProductOverview.splice(i, 1);
+    console.log('After Delete Fund', this.ProductOverview);
+    if (this.ProductOverview.length == 0) {
+      localStorage.removeItem('ProductOverview');
+    }
+    else {
+      localStorage.setItem("ProductOverview", this.crypto.Encrypt(this.ProductOverview));
+    }
   }
 
 }

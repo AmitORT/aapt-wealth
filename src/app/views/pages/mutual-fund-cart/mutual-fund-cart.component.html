@@ -9,191 +9,199 @@
   <div class="row  risk1 mt-5">
     <div class="col-lg-6 hidden-xs" id="sidebar-main">
       <div class="left-sidebar" id="sidebar">
-      <img src="assets/img/fund-cart.svg" alt="risk-profiling" class="w-75" />
-    </div>
+        <img src="assets/img/fund-cart.svg" alt="risk-profiling" class="w-75" />
+      </div>
     </div>
     <div class="col-lg-6">
       <div>
-        <div class="container1" *ngFor="let cartItems of ProductOverview">
-          <div class="row">
-            <div class="col-lg-10 col-10">
-              <div class="d-flex">
-                <img src="assets/img/ICICI.png" alt="">
-                <h5>{{cartItems?.name}}</h5>
-              </div>
-            </div>
-            <div class="col-lg-2 col-2">
-              <img src="assets/img/delete_icon1.svg" alt="" class="del-icon">
-            </div>
-  
-          </div>
-          <div class="row mfc-tabs">
-            <div class="col-lg-12">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
-                  <button class="nav-link" [ngClass]="ModeOfInvestment?.Payment_mode != '2' ? 'active' :''"
-                    data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
-                    aria-selected="true">Monthly SIP</button>
-                </li>
-                <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
-                  <button class="nav-link" [ngClass]="ModeOfInvestment?.Payment_mode=='2' ? 'active' :''"
-                    data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
-                    aria-selected="false">Lumpsum</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-  
-          <div class="tab-content">
-            <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
-              [ngClass]="ModeOfInvestment?.Payment_mode != '2'?'active':''">
-              <div class="row amount">
-                <div class="col-lg-7 col-10 position-relative">
-                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"  [(ngModel)]="ModeOfInvestment.monthly_amt =='' ? 0 : ModeOfInvestment.monthly_amt" />
-                  <span class="rupees">₹</span>
-                  <!-- <p>₹ {{ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p> -->
-                  <span class="units">15 Units</span>
-                </div>
-  
-                <div class="col-lg-2 col-2 offset-lg-3 position-relative text-end">
-                  <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
-                    [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
-                  <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
+        <div *ngIf="ProductOverview.length > 0">
+          <div class="container1" *ngFor="let cartItems of ProductOverview; let i=index">
+            <div class="row">
+              <div class="col-lg-10 col-10">
+                <div class="d-flex">
+                  <img src="assets/img/ICICI.png" alt="">
+                  <h5>{{cartItems?.name}}</h5>
                 </div>
               </div>
-  
-              <div class="row">
-                <div class="col-lg-12">
-                  <p class="n-line">SIP Date Installment will be deducted on <b>{{ModeOfInvestment?.DateForMonth}}th of
-                      every month.</b></p>
+              <div class="col-lg-2 col-2" (click)="DeleteFund(i)">
+                <img src="assets/img/delete_icon1.svg" alt="" class="del-icon">
+              </div>
+
+            </div>
+            <div class="row mfc-tabs">
+              <div class="col-lg-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation" (click)="cartItems.ModeOfInvestment.Payment_mode = '1'">
+                    <button class="nav-link" [ngClass]="cartItems.ModeOfInvestment?.Payment_mode != '2' ? 'active' :''"
+                      data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
+                      aria-selected="true">Monthly SIP</button>
+                  </li>
+                  <li class="nav-item" role="presentation" (click)="cartItems.ModeOfInvestment.Payment_mode = '2'">
+                    <button class="nav-link" [ngClass]="cartItems.ModeOfInvestment?.Payment_mode=='2' ? 'active' :''"
+                      data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
+                      aria-selected="false">Lumpsum</button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
+                [ngClass]="cartItems.ModeOfInvestment?.Payment_mode != '2'?'active':''">
+                <div class="row amount">
+                  <div class="col-lg-7 col-10 position-relative">
+                    <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
+                      [(ngModel)]="cartItems.ModeOfInvestment.monthly_amt =='' ? 0 : cartItems.ModeOfInvestment.monthly_amt" />
+                    <span class="rupees">₹</span>
+                    <!-- <p>₹ {{cartItems.ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p> -->
+                    <!-- <span class="units">15 Units</span> -->
+                  </div>
+
+                  <div class="col-lg-2 col-2 offset-lg-3 position-relative text-end">
+                    <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
+                      [(ngModel)]="cartItems.ModeOfInvestment.DateForMonth" (change)="GetOnlyDay(i)">
+                    <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <p class="n-line">SIP Date Installment will be deducted on <b>{{cartItems.ModeOfInvestment?.DateForMonth}}th
+                        of
+                        every month.</b></p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
+                [ngClass]="cartItems.ModeOfInvestment.Payment_mode == '2'?'active':''">
+                <div class="row amount">
+                  <div class="col-lg-7 col-10 position-relative">
+                    <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
+                      [(ngModel)]="cartItems.ModeOfInvestment.yearly_amt" />
+                    <span class="rupees">₹</span>
+                    <!-- <p>₹ {{cartItems.ModeOfInvestment?.yearly_amt}}<span>15 Units</span></p> -->
+                    <!-- <span class="units">15 Units</span> -->
+                  </div>
                 </div>
               </div>
             </div>
-  
-            <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
-              [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
-              <div class="row amount">
-                <div class="col-lg-7 col-10 position-relative">
-                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.yearly_amt" />
-                  <span class="rupees">₹</span>
-                  <!-- <p>₹ {{ModeOfInvestment?.yearly_amt}}<span>15 Units</span></p> -->
-                  <span class="units">15 Units</span>
+            <div class="assigned-row" *ngIf="!this.validate.isNullEmptyUndefined(cartItems?.CreatedGoal)">
+              <div class="goal-div">
+                <div>
+                  <img src="assets/img/goal_image.svg" />
+                </div>
+                <div class="goal-name">
+                  <h5>{{cartItems?.CreatedGoal.name}}</h5>
+                  <p>Target Date : {{cartItems?.CreatedGoal.targetedDate | date}}</p>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="assigned-row" *ngIf="!this.validate.isNullEmptyUndefined(CreatedGoal)">
-            <div class="goal-div">
               <div>
-                <img src="assets/img/goal_image.svg" />
-              </div>
-              <div class="goal-name">
-                <h5>{{CreatedGoal.Savings}}</h5>
-                <p>Target Date : {{CreatedGoal.targetDate | date}}</p>
+                <a class="remove-cartgoal" (click)="RemoveGoal(i)">Remove Goal</a>
               </div>
             </div>
-            <div>
-              <a class="remove-cartgoal" (click)="RemoveGoal()">Remove Goal</a>
-            </div>
-          </div>
-          <div class="assigned-row" *ngIf="this.validate.isNullEmptyUndefined(CreatedGoal)">
-            <div class="goal-div">
-              <div>             
-                <h5>No Goal Assigned</h5>
+            <div class="assigned-row" *ngIf="this.validate.isNullEmptyUndefined(cartItems?.CreatedGoal)">
+              <div class="goal-div">
+                <div>
+                  <h5>No Goal Assigned</h5>
+                </div>
               </div>
-            </div>
-            <div>
-              <a class="remove-cartgoal"><i class="fa fa-plus"></i> Assign Goal</a>
+              <div>
+                <a class="remove-cartgoal"><i class="fa fa-plus"></i> Assign Goal</a>
+              </div>
             </div>
           </div>
         </div>
-  
-    
-        <div class="container1" *ngFor="let bankname of SelectedBank; let i= index" >
+
+
+        <div class="container1" *ngFor="let bankname of SelectedBank; let i= index">
           <div class="row">
             <div class="col-lg-10 col-10">
               <div class="d-flex">
                 <img src="assets/img/digit_logo.png" alt="" class="digit">
-                <h5 class="ps-2" >{{bankname.name}}</h5>
+                <h5 class="ps-2">{{bankname.name}}</h5>
               </div>
             </div>
             <div class="col-lg-2 col-2">
               <img src="assets/img/delete_icon1.svg" alt="" class="del-icon">
             </div>
-  
+
           </div>
           <div class="row mfc-tabs">
             <div class="col-lg-12">
               <ul class="nav nav-tabs" id="myTab" role="tablist">
-  
-                <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
-                  <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode != '2' ? 'active' :''"
+
+                <li class="nav-item" role="presentation" (click)="bankname.ModeOfInvestment.Payment_mode = '1'">
+                  <button class="nav-link" [ngClass]="bankname.ModeOfInvestment.Payment_mode != '2' ? 'active' :''"
                     data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
                     aria-selected="true">Monthly SIP</button>
                 </li>
-                <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
-                  <button class="nav-link" [ngClass]="ModeOfInvestment.Payment_mode=='2' ? 'active' :''"
+                <li class="nav-item" role="presentation" (click)="bankname.ModeOfInvestment.Payment_mode = '2'">
+                  <button class="nav-link" [ngClass]="bankname.ModeOfInvestment.Payment_mode=='2' ? 'active' :''"
                     data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
                     aria-selected="false">Lumpsum</button>
                 </li>
-  
+
               </ul>
-  
+
             </div>
           </div>
-  
+
           <div class="tab-content">
-  
+
             <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
-              [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
+              [ngClass]="bankname.ModeOfInvestment.Payment_mode != '2'?'active':''">
               <div class="row amount">
                 <div class="col-lg-7 col-10 position-relative">
-                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.monthly_amt" />
+                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
+                    [(ngModel)]="bankname.ModeOfInvestment.monthly_amt" />
                   <span class="rupees">₹</span>
-              
-                  <span class="units">15 Units</span>
+
+                  <!-- <span class="units">15 Units</span> -->
                 </div>
-  
+
                 <div class="col-lg-2 col-2 offset-lg-3 position-relative text-end">
                   <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
-                    [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
+                    [(ngModel)]="bankname.ModeOfInvestment.DateForMonth" (change)="GetOnlyDay(i)">
                   <label for="dob"><img src="assets/img/orange-cal.svg" alt="image" class="c-icon"></label>
                 </div>
               </div>
-  
+
               <div class="row">
                 <div class="col-lg-12">
-                  <p class="n-line">SIP Date Installment will be deducted on <b>{{ModeOfInvestment?.DateForMonth}}th of
+                  <p class="n-line">SIP Date Installment will be deducted on <b>{{bankname.ModeOfInvestment?.DateForMonth}}th of
                       every month.</b></p>
                 </div>
               </div>
             </div>
-  
+
             <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
-              [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">
+              [ngClass]="bankname.ModeOfInvestment.Payment_mode == '2'?'active':''">
               <div class="row amount">
                 <div class="col-lg-7 col-10 position-relative">
-                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)" [(ngModel)]="ModeOfInvestment.yearly_amt" />
+                  <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
+                    [(ngModel)]="bankname.ModeOfInvestment.yearly_amt" />
                   <span class="rupees">₹</span>
-               
-                  <span class="units">15 Units</span>
+
+                  <!-- <span class="units">15 Units</span> -->
                 </div>
               </div>
             </div>
-  
+
           </div>
 
         </div>
-      
-     
 
 
 
-      <div class="d-flex border1" data-bs-toggle="modal" data-bs-target="#compare-products-modal">
-        <img src="assets/img/shopping-cart-add.svg" alt="">
-        <p class="ps-2 pt-3 colr">Add New Instrument</p>
+
+
+        <div class="d-flex border1" (click)="RedirectPopup()">
+          <!-- data-bs-toggle="modal" data-bs-target="#compare-products-modal" -->
+          <img src="assets/img/shopping-cart-add.svg" alt="">
+          <p class="ps-2 pt-3 colr">Add New Instrument</p>
+        </div>
       </div>
-    </div>
 
       <button type="button" class="btn btn-primary theme-button mt-3" (click)="ConfirmCart()">
         Proceed to Payment
@@ -237,12 +245,12 @@
                 </div>
                 <!-- <span class="hidden-lg">Invested Amount: <b >₹ 466.72 Cr</b><p > (2500 Units)</p></span> -->
               </div>
-              
+
               <div class="d-flex">
                 <button type="button" class="btn btn-primary transper-btn w-10" *ngIf="bank.selectBank != true"
-                (click)="AddCart(i, bank.id)">+ Add</button>
-                <button type="button" class="btn btn-primary theme-button w-10 remove-btn" *ngIf="bank.selectBank == true"
-                (click)="AddCart(i, bank.id)">Remove</button>
+                  (click)="AddCart(i, bank.id)">+ Add</button>
+                <button type="button" class="btn btn-primary theme-button w-10 remove-btn"
+                  *ngIf="bank.selectBank == true" (click)="AddCart(i, bank.id)">Remove</button>
               </div>
             </div>
             <hr>
@@ -355,7 +363,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button data-bs-dismiss="modal" type="button" class="btn red  w-mob-50 w-10">Cancel</button>
-        <button data-bs-dismiss="modal" type="button" class="btn btn-primary theme-button w-mob-50" >Add Fund</button>
+        <button data-bs-dismiss="modal" type="button" class="btn btn-primary theme-button w-mob-50">Add Fund</button>
       </div>
     </div>
   </div>

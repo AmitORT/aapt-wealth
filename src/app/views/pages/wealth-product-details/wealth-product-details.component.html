@@ -17,7 +17,7 @@
           <!-- <img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/> -->
         </div>
         <div class="mt-4">
-          <h2>{{ProductOverview?.name}}</h2>
+          <h2>{{ProductOverviewShow?.name}}</h2>
           <div class="d-flex m-block">
             <div class="star-component">
               <ul class="rating-star">
@@ -39,17 +39,17 @@
         <div class="d-flex justify-content-between blue-box hidden-lg">
           <div>
             <h2>Net Asset Value (NAV)</h2>
-            <p>as on {{ProductOverview?.navDate}}</p>
+            <p>as on {{ProductOverviewShow?.navDate}}</p>
           </div>
           <div>
-            <h2>Rs. {{ProductOverview?.fundNav}}</h2>
+            <h2>Rs. {{ProductOverviewShow?.fundNav}}</h2>
             <p class="text-green m-0 text-end">+0.6%</p>
           </div>
         </div>
         <div class="d-flex justify-content-between">
         
           <div class="left-body">
-            <h5>132.64%</h5>
+            <h5>{{ProductOverviewShow?.returnSinceInception.toFixed(2)}}%</h5>
             <p><span class="text-green">+1.08%</span>1 day Change</p>
           </div>
           <div class="right-body">
@@ -100,10 +100,10 @@
               <div class="d-flex justify-content-between blue-box hidden-xs">
                 <div>
                   <h2>Net Asset Value (NAV)</h2>
-                  <p>as on {{ProductOverview?.navDate}}</p>
+                  <p>as on {{ProductOverviewShow?.navDate}}</p>
                 </div>
                 <div>
-                  <h2>Rs. {{ProductOverview?.fundNav}}</h2>
+                  <h2>Rs. {{ProductOverviewShow?.fundNav}}</h2>
                   <p class="text-green m-0 text-end">+0.6%</p>
                 </div>
               </div>
@@ -111,29 +111,29 @@
               <div class="overview-details">
                 <div>
                   <h2>AUM</h2>
-                  <h3>Rs. {{ProductOverview?.AUM}}</h3>
+                  <h3>Rs. {{ProductOverviewShow?.AUM}}</h3>
                 </div>
                 <div>
                   <h2>Min SIP Amount</h2>
-                  <h3 class="text-end">Rs. {{ProductOverview?.minSipAmount}}</h3>
+                  <h3 class="text-end">Rs. {{ProductOverviewShow?.minSipAmount}}</h3>
                 </div>
               </div>
               <hr class="m-0">
               <div class="overview-details">
                 <div>
                   <h2>Expense Ratio</h2>
-                  <h3>{{ProductOverview?.expenseRatio}}%</h3>
+                  <h3>{{ProductOverviewShow?.expenseRatio}}%</h3>
                 </div>
                 <div>
                   <h2>Exit Load</h2>
-                  <h3 class="text-end">{{ProductOverview?.exitLoad}}%</h3>
+                  <h3 class="text-end">{{ProductOverviewShow?.exitLoad}}%</h3>
                 </div>
               </div>
               <hr class="m-0">
               <div class="overview-details">
                 <div>
                   <h2>Fund Started</h2>
-                  <h3>{{ProductOverview?.fundStarted.slice(0, -14)}}</h3>
+                  <h3>{{ProductOverviewShow?.fundStarted?.slice(0, -14)}}</h3>
                 </div>
                 <!-- .slice(8) -->
                 <!--  -->
@@ -167,7 +167,7 @@
               </div>
               <div class="col-lg-3 col-4">
                 <h5 class="text-center">Since Inception</h5>
-                <p class="val"><b>{{ProductOverview?.returnSinceInception?.toFixed(2)}}%</b></p>
+                <p class="val"><b>{{ProductOverviewShow?.returnSinceInception?.toFixed(2)}}%</b></p>
                 <p class="val"><b>1</b></p>
                 <!-- <p class="val"><b>-</b></p> -->
               </div>
@@ -229,7 +229,7 @@
             <div class="row">
               <div class="col-lg-12 about-fund">
                 <h5>About the Fund</h5>
-                <h6 class="pt-2 pb-2">{{ProductOverview?.fundDescription}}</h6>
+                <h6 class="pt-2 pb-2">{{ProductOverviewShow?.fundDescription}}</h6>
               </div>
               <hr>
               <div class="col-lg-12 mb-4">
@@ -253,7 +253,7 @@
                         <img src="assets/img/icici-bank.png">
                       </div>
                       <div class="col-lg-10 col-10">
-                        <h5>{{ProductOverview?.name}}</h5>
+                        <h5>{{ProductOverviewShow?.name}}</h5>
                         <p>3 High Risk</p>
                         
                       </div>

@@ -45,6 +45,7 @@ export class RiskProfilingComponent implements OnInit {
   retire:any;
   selectedItem2:any;
 
+
   RiskProfilingData:any={
     "First_Name":"",
     "Last_Name":"",
@@ -83,14 +84,37 @@ export class RiskProfilingComponent implements OnInit {
 
   GetQuestionsData:any;
   RiskProfilingSubmitData:any=[];
+  isLoggedIn: any = false;
 
   ngOnInit(): void {
 
     this.DOB();
 
-    $("#riskModal1").modal("show");
+    if (localStorage.getItem("CustToken") != null) {
+      $("#riskModal3").modal("show");
+      this.isLoggedIn=true;
+      this.getRiskProfileStatus();
+      // this.RiskProfiling=false;
+    }
+    else{
+      $("#riskModal1").modal("show");
+      // this.route.navigate(["/wealth-product-listing"]);
+    }
+
+    // $("#riskModal1").modal("show");
     this.GetQuestions();
 
+  }
+
+  getRiskProfileStatus(){
+    this.api.get('riskProfiling/submit-risk-profile-questions',true).subscribe(response=>{
+      console.log('risk profile',response);
+      if(response.response.n==1){
+        let encrypted=this.crypto.Encrypt(response.data);
+        localStorage.setItem("RiskProfilesubmitResponse",encrypted);
+      }
+     
+    })
   }
 
   DOB(){
@@ -142,6 +166,18 @@ export class RiskProfilingComponent implements OnInit {
   hidemodal(){
     $("#riskModal1").modal("hide");
     $("#riskModal2").modal("hide");
+    localStorage.setItem("nextPath", this.crypto.Encrypt("/risk-profiling"));
+    this.route.navigate(["/sign-in"]);
+  }
+
+  updateriskandhide(){
+    $("#riskModal3").modal("hide");
+    this.RiskProfiling=false;
+  }
+
+  Gotolisting(){
+    $("#riskModal3").modal("hide");
+    this.route.navigate(["/wealth-product-listing"]);
   }
 
   ProceedTonextStep(){

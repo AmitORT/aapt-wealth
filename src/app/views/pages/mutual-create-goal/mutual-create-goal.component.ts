@@ -41,17 +41,34 @@ export class MutualCreateGoalComponent implements OnInit {
 
   DateOfInstallment: any;
   ProceedCart: any;
-  ApplicantData: any;
+  ApplicantData: any;  
+  ProductOverview: any = [];
+  SelectedMutualFund: any;
 
   constructor(private datepipe: DatePipe, public route: Router, private toastr: ToastrService, public eligibilityService: EligibilityService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
     this.GetStartDate();
+    this.scrolltotop();
 
     if (localStorage.getItem("ApplicantData") != '') {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
       console.log('app data', this.ApplicantData)
     }
+    if (localStorage.getItem("ProductOverview") != null) {
+      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+      console.log('ngoninit ProductOverview', this.ProductOverview);
+    }
+    if (localStorage.getItem("SelectedMutualFund") != null) {
+      this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
+      console.log("SelectedMutualFund", this.SelectedMutualFund);
+    }
+  }
+
+  scrolltotop() {
+    $('.body-color').animate({
+      scrollTop: 0
+    }, 0);
   }
 
   GetStartDate() {
@@ -71,7 +88,7 @@ export class MutualCreateGoalComponent implements OnInit {
 
   GetTargetDate() {
     var dtToday = new Date(this.CreateGoal.startDate);
-    dtToday.setDate(dtToday.getDate() + 30);
+    dtToday.setDate(dtToday.getDate() + 90);
     var month = (dtToday.getMonth() + 1).toString();
     var day = (dtToday.getDate()).toString();
     var year = dtToday.getFullYear();
@@ -217,7 +234,20 @@ export class MutualCreateGoalComponent implements OnInit {
       this.api.post("goalDetails/create-goal", postData, true).subscribe(response => {
         console.log('create goal', response)
         if (response.response.n == 1) {
-          localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
+          this.CreateGoal.name=this.CreateGoal.Savings;
+          this.CreateGoal.targetedDate=this.CreateGoal.targetDate;
+
+          for (var i = 0; i < this.ProductOverview.length; i++) {
+            if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+              this.ProductOverview[i].CreatedGoal = this.CreateGoal;
+            }
+          }
+
+          let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+          localStorage.setItem("ProductOverview", encryptedProduct);
+          console.log('product with CreatedGoal',this.ProductOverview);
+
+          // localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
           this.CreateInvestor(response.goalId);
         }
         else {
