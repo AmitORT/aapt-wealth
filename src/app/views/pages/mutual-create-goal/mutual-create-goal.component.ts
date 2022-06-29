@@ -33,7 +33,7 @@ export class MutualCreateGoalComponent implements OnInit {
     "Saving_Amount": "",
     "startDate": "",
     "targetDate": "",
-    "AmountRS":"",
+    "AmountRS": "",
   }
 
   Goals: any;
@@ -41,7 +41,7 @@ export class MutualCreateGoalComponent implements OnInit {
 
   DateOfInstallment: any;
   ProceedCart: any;
-  ApplicantData: any;  
+  ApplicantData: any;
   ProductOverview: any = [];
   SelectedMutualFund: any;
 
@@ -186,10 +186,10 @@ export class MutualCreateGoalComponent implements OnInit {
       postData.append("email", this.ApplicantData.email);
       postData.append("mobileNumber", this.ApplicantData.mobileNumber);
       postData.append("name", this.CreateGoal.Savings);
-      this.api.post('sipCalculator/goal-tools',postData,true).subscribe(response=>{
-        console.log('tool',response);
-        if(response.response.n==1){
-          this.CreateGoal.AmountRS=response.data.monthly;
+      this.api.post('sipCalculator/goal-tools', postData, true).subscribe(response => {
+        console.log('tool', response);
+        if (response.response.n == 1) {
+          this.CreateGoal.AmountRS = response.data.monthly;
           console.log(this.CreateGoal.AmountRS);
         }
       })
@@ -234,18 +234,22 @@ export class MutualCreateGoalComponent implements OnInit {
       this.api.post("goalDetails/create-goal", postData, true).subscribe(response => {
         console.log('create goal', response)
         if (response.response.n == 1) {
-          this.CreateGoal.name=this.CreateGoal.Savings;
-          this.CreateGoal.targetedDate=this.CreateGoal.targetDate;
+          this.CreateGoal.name = this.CreateGoal.Savings;
+          this.CreateGoal.targetedDate = this.CreateGoal.targetDate;
 
-          for (var i = 0; i < this.ProductOverview.length; i++) {
-            if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
-              this.ProductOverview[i].CreatedGoal = this.CreateGoal;
-            }
-          }
+          // for (var i = 0; i < this.ProductOverview.length; i++) {
+          //   if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+          //     this.ProductOverview[i].CreatedGoal = this.CreateGoal;
+          //   }
+          // }
 
-          let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
-          localStorage.setItem("ProductOverview", encryptedProduct);
-          console.log('product with CreatedGoal',this.ProductOverview);
+          // let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+          // localStorage.setItem("ProductOverview", encryptedProduct);
+          // console.log('product with CreatedGoal',this.ProductOverview);
+
+          this.SelectedMutualFund.CreatedGoal = this.CreateGoal;
+          let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
+          localStorage.setItem("SelectedMutualFund", encryptedProduct);
 
           // localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
           this.CreateInvestor(response.goalId);
@@ -297,6 +301,26 @@ export class MutualCreateGoalComponent implements OnInit {
       let encrypted = this.crypto.Encrypt(this.ProceedCart);
       localStorage.setItem("ProceedCart", encrypted);
       console.log("ProceedToCart", resp.data)
+
+      if (this.ProductOverview.length > 0) {
+        var flag = true;
+        for (var i = 0; i < this.ProductOverview.length; i++) {
+          if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          this.ProductOverview.push(this.SelectedMutualFund);
+        }
+      }
+      else {
+        this.ProductOverview.push(this.SelectedMutualFund);
+      }
+      console.log('ProductOverview', this.ProductOverview);
+  
+      let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+      localStorage.setItem("ProductOverview", encryptedProduct);
 
       this.route.navigate(["/mutual-fund-cart"])
 

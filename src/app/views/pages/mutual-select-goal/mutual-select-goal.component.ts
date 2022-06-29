@@ -46,9 +46,9 @@ export class MutualSelectGoalComponent implements OnInit {
   Token: any;
   CreateGoalListToken: any;
   goals: any;
-  ProductOverview: any = [];
   id: any;
   SelectedMutualFund: any;
+  ProductOverview: any = [];
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService, private router: ActivatedRoute) { }
 
@@ -75,9 +75,9 @@ export class MutualSelectGoalComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.MyGoals = resp.data;
-        // console.log("my goals", this.MyGoals);
-        let encrypted = this.crypto.Encrypt(resp.data);
-        localStorage.setItem("GoalsList", encrypted);
+        console.log("my goals", this.MyGoals);
+        // let encrypted = this.crypto.Encrypt(resp.data);
+        // localStorage.setItem("GoalsList", encrypted);
 
       }
       else {
@@ -92,14 +92,42 @@ export class MutualSelectGoalComponent implements OnInit {
     // localStorage.setItem("GetSelectedGoals", this.crypto.Encrypt(this.SelectedGoal));
     console.log("SelectedGoal", this.SelectedGoal[0]);
 
-    for (var i = 0; i < this.ProductOverview.length; i++) {
-      if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
-        this.ProductOverview[i].CreatedGoal = this.SelectedGoal[0];
+    // for (var i = 0; i < this.ProductOverview.length; i++) {
+    //   if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+    //     this.ProductOverview[i].CreatedGoal = this.SelectedGoal[0];
+    //   }
+    // }
+    // console.log('product with CreatedGoal', this.ProductOverview);
+    // let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+    // localStorage.setItem("ProductOverview", encryptedProduct);
+
+
+
+    this.SelectedMutualFund.CreatedGoal = this.SelectedGoal[0];
+    console.log('SelectedMutualFund', this.SelectedMutualFund);
+
+
+    if (this.ProductOverview.length > 0) {
+      var flag = true;
+      for (var i = 0; i < this.ProductOverview.length; i++) {
+        if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+          this.ProductOverview[i].CreatedGoal = this.SelectedGoal[0];
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        this.ProductOverview.push(this.SelectedMutualFund);
       }
     }
-    console.log('product with CreatedGoal',this.ProductOverview);
+    else {
+      this.ProductOverview.push(this.SelectedMutualFund);
+    }
+    console.log('ProductOverview', this.ProductOverview);
+
     let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
     localStorage.setItem("ProductOverview", encryptedProduct);
+
 
     this.route.navigate(["/mutual-fund-cart"]);
   }
@@ -141,7 +169,29 @@ export class MutualSelectGoalComponent implements OnInit {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
-      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
+      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp);
+
+      if (this.ProductOverview.length > 0) {
+        var flag = true;
+        for (var i = 0; i < this.ProductOverview.length; i++) {
+          if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          this.ProductOverview.push(this.SelectedMutualFund);
+        }
+      }
+      else {
+        this.ProductOverview.push(this.SelectedMutualFund);
+      }
+      console.log('ProductOverview', this.ProductOverview);
+  
+      let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+      localStorage.setItem("ProductOverview", encryptedProduct);
+
+
       this.route.navigate(["/mutual-fund-cart"])
     })
   }

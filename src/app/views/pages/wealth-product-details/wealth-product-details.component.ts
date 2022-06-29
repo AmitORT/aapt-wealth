@@ -208,10 +208,10 @@ export class WealthProductDetailsComponent implements OnInit {
       console.log("SelectedMutualFund", this.SelectedMutualFund);
     }
 
-    if (localStorage.getItem("ProductOverview") != null) {
-      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
-    }
+    // if (localStorage.getItem("ProductOverview") != null) {
+    //   this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+    //   console.log('ngoninit ProductOverview', this.ProductOverview);
+    // }
 
     // if (localStorage.getItem("ProductOverviewData") != null) {
     //   this.ProductOverviewData = JSON.parse(localStorage.getItem("ProductOverviewData") || "");
@@ -334,41 +334,46 @@ export class WealthProductDetailsComponent implements OnInit {
     }
     else {
       $("#invest-screen").modal("hide");
-      // let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
-      // localStorage.setItem("ModeOfInvestment", encrypted);
+      let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
+      localStorage.setItem("ModeOfInvestment", encrypted);
 
       // debugger
 
-      if (this.ProductOverview.length > 0) {
-        var flag = true;
-        for (var i = 0; i < this.ProductOverview.length; i++) {
-          if (this.ProductOverview[i].id == this.ProductOverviewShow.id) {
-            flag = false;
-            break;
-          }
-        }
-        if (flag) {
-          this.ProductOverview.push(this.ProductOverviewShow);
-        }
-      }
-      else {
-        this.ProductOverview.push(this.ProductOverviewShow);
-      }
-      console.log('product with ModeOfInvestment', this.ProductOverview);
+      // if (this.ProductOverview.length > 0) {
+      //   var flag = true;
+      //   for (var i = 0; i < this.ProductOverview.length; i++) {
+      //     if (this.ProductOverview[i].id == this.ProductOverviewShow.id) {
+      //       flag = false;
+      //       break;
+      //     }
+      //   }
+      //   if (flag) {
+      //     this.ProductOverview.push(this.ProductOverviewShow);
+      //   }
+      // }
+      // else {
+      //   this.ProductOverview.push(this.ProductOverviewShow);
+      // }
+      // console.log('product with ModeOfInvestment', this.ProductOverview);
 
-      if (this.ProductOverview.length > 0) {
-        for (var i = 0; i < this.ProductOverview.length; i++) {
-          if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
-            this.ProductOverview[i].ModeOfInvestment = this.ModeOfInvestment;
-          }
-        }
-      }
+      // if (this.ProductOverview.length > 0) {
+      //   for (var i = 0; i < this.ProductOverview.length; i++) {
+      //     if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+      //       this.ProductOverview[i].ModeOfInvestment = this.ModeOfInvestment;
+      //     }
+      //   }
+      // }
+
+      this.SelectedMutualFund.ModeOfInvestment = this.ModeOfInvestment;
+
+      console.log('SelectedMutualFund', this.SelectedMutualFund);
 
 
+      let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
+      localStorage.setItem("SelectedMutualFund", encryptedProduct);
 
-
-      let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
-      localStorage.setItem("ProductOverview", encryptedProduct);
+      // let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+      // localStorage.setItem("ProductOverview", encryptedProduct);
 
       this.route.navigate(['/mutual-select-goal']);
 
