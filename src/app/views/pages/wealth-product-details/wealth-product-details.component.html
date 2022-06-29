@@ -523,7 +523,7 @@
               </div>
               <div class="row l-values">
                 <div class="col-lg-6 col-6">
-                  <p class="cf">Compare Fund</p>
+                  <p class="cf" (click)="CompareSimilarFunds(funds.id)">Compare Fund</p>
                 </div>
                 <div class="col-lg-6 col-6">
                   <button class="nav-link btn btn-primary invest-button" [routerLink]="['/mutual-select-goal']">Invest</button>

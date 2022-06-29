@@ -304,6 +304,7 @@ export class WealthProductListingComponent implements OnInit {
       // console.log("ProductList", resp)
       if (resp.response.n != 0) {
         this.ProductList = resp.data;
+        localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.ProductList));
         // console.log("ProductList", this.ProductList)
         if (!this.validate.isNullEmptyUndefined(resp.riskprofileId)) {
           for (var i = 0; i < this.RiskProfileFilterList.length; i++) {
@@ -319,7 +320,7 @@ export class WealthProductListingComponent implements OnInit {
     });
   }
 
-  compareCheckboxclick(index: number) {
+  compareCheckboxclick(index: number) {debugger
     this.ProductList[index].checkforcompare = !this.ProductList[index].checkforcompare;
     if (this.ProductList.filter((a: any) => a.checkforcompare == 1).length > 4) {
       this.ProductList[index].checkforcompare = 0;

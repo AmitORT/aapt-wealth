@@ -192,8 +192,16 @@ export class WealthProductDetailsComponent implements OnInit {
 
   }
 
+  MutualProductCompareFund: any;
+
   ngOnInit(): void {
     this.scrolltotop();
+
+    if (localStorage.getItem("MutualProductCompareFund") != null) {
+      this.MutualProductCompareFund = this.crypto.Decrypt(localStorage.getItem("MutualProductCompareFund"));
+      console.log("MutualProductCompareFund", this.MutualProductCompareFund);
+    }
+
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
@@ -253,6 +261,7 @@ export class WealthProductDetailsComponent implements OnInit {
     this.Productreturn = this.ProductOverviewData.productReturn;
     this.ProductSectorDetails = this.ProductOverviewData.productSectorDetails;
     this.SimilarProducts = this.ProductOverviewData.similarProducts;
+    console.log("similar products", this.SimilarProducts)
     this.holdings = this.ProductOverviewData.fetchHoldings.instrumentHoldings;
   }
 
@@ -328,7 +337,7 @@ export class WealthProductDetailsComponent implements OnInit {
       // let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
       // localStorage.setItem("ModeOfInvestment", encrypted);
 
-      debugger
+      // debugger
 
       if (this.ProductOverview.length > 0) {
         var flag = true;
@@ -354,7 +363,7 @@ export class WealthProductDetailsComponent implements OnInit {
           }
         }
       }
-     
+
 
 
 
@@ -386,7 +395,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
       // console.log("resp", resp)
       if (resp.response.n == 1) {
-        debugger
+        // debugger
         this.ProductManager = resp.data.productManager;
 
         // this.ProductOverview.push(resp.data.productOverview);
@@ -396,12 +405,28 @@ export class WealthProductDetailsComponent implements OnInit {
         this.Productreturn = resp.data.productReturn;
         this.ProductSectorDetails = resp.data.productSectorDetails;
         this.SimilarProducts = resp.data.similarProducts;
+        console.log("similar products", this.SimilarProducts)
         this.holdings = resp.data.fetchHoldings.instrumentHoldings;
 
       } else {
         this.toastr.error(resp.response.Msg)
       }
     });
+  }
+
+  CompareSimilarFunds(id: any) {
+    for (let i = 0; i < this.MutualProductCompareFund.length; i++) {
+      this.MutualProductCompareFund[i].checkforcompare = false;
+      if (this.SelectedMutualFund.id == this.MutualProductCompareFund[i].id) {
+        this.MutualProductCompareFund[i].checkforcompare = true;
+      }
+
+      if (id == this.MutualProductCompareFund[i].id) {
+        this.MutualProductCompareFund[i].checkforcompare = true;
+      }
+    }
+    localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.MutualProductCompareFund));
+    this.route.navigate(['/compare-products']);
   }
 
   public generateData(baseval: any, count: any, yrange: { max: any; min: any; }) {

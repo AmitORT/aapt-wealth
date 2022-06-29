@@ -16,7 +16,7 @@
                 class="minus" />
               <img src="assets/img/icici-bank2.png" />
               <h5>{{OffersForCompareList?.name}}</h5>
-              <button type="button" class="btn btn-primary apply-btn" [routerLink]="['/wealth-product-details']">
+              <button type="button" class="btn btn-primary apply-btn" (click)="InvestINFund(OffersForCompareList)">
                 Invest</button>
             </div>
           </td>

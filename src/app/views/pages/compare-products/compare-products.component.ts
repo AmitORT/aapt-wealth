@@ -167,4 +167,10 @@ export class CompareProductsComponent implements OnInit {
     }
   }
 
+  InvestINFund(offer:any){
+    console.log(offer);
+    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    this.route.navigate(['/wealth-product-details']);
+  }
+
 }
