@@ -75,7 +75,7 @@ export class MutualSelectGoalComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.MyGoals = resp.data;
-        console.log("my goals", this.MyGoals);
+        // console.log("my goals", this.MyGoals);
         let encrypted = this.crypto.Encrypt(resp.data);
         localStorage.setItem("GoalsList", encrypted);
 

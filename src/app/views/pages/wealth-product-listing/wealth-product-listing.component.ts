@@ -369,8 +369,8 @@ export class WealthProductListingComponent implements OnInit {
 
   AppliedFund(offer: any) {
     console.log('offer', offer)
-    // localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
-    // this.route.navigate(['/wealth-product-details']);
+    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    this.route.navigate(['/wealth-product-details']);
   }
 
   InvestWithoutGoal() {

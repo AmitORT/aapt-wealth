@@ -205,11 +205,11 @@ export class WealthProductDetailsComponent implements OnInit {
       console.log('ngoninit ProductOverview', this.ProductOverview);
     }
 
-    if (localStorage.getItem("ProductOverviewData") != null) {
-      this.ProductOverviewData = JSON.parse(localStorage.getItem("ProductOverviewData") || "");
-      console.log('ngoninit ProductOverviewData', this.ProductOverviewData);
-      this.getProductOverviewData();
-    }
+    // if (localStorage.getItem("ProductOverviewData") != null) {
+    //   this.ProductOverviewData = JSON.parse(localStorage.getItem("ProductOverviewData") || "");
+    //   console.log('ngoninit ProductOverviewData', this.ProductOverviewData);
+    //   this.getProductOverviewData();
+    // }
 
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
@@ -218,7 +218,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
 
 
-    // this.GetProductDetail();
+    this.GetProductDetail();
     this.GetGraphData();
 
 
@@ -328,13 +328,33 @@ export class WealthProductDetailsComponent implements OnInit {
       // let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
       // localStorage.setItem("ModeOfInvestment", encrypted);
 
+      debugger
 
-      for (var i = 0; i < this.ProductOverview.length; i++) {
-        if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
-          this.ProductOverview[i].ModeOfInvestment = this.ModeOfInvestment;
+      if (this.ProductOverview.length > 0) {
+        var flag = true;
+        for (var i = 0; i < this.ProductOverview.length; i++) {
+          if (this.ProductOverview[i].id == this.ProductOverviewShow.id) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          this.ProductOverview.push(this.ProductOverviewShow);
         }
       }
-      console.log('product with ModeOfInvestment',this.ProductOverview);
+      else {
+        this.ProductOverview.push(this.ProductOverviewShow);
+      }
+      console.log('product with ModeOfInvestment', this.ProductOverview);
+
+      if (this.ProductOverview.length > 0) {
+        for (var i = 0; i < this.ProductOverview.length; i++) {
+          if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+            this.ProductOverview[i].ModeOfInvestment = this.ModeOfInvestment;
+          }
+        }
+      }
+     
 
 
 
@@ -348,6 +368,8 @@ export class WealthProductDetailsComponent implements OnInit {
       }, 0);
     }
   }
+
+
 
   GetProductDetail() {
     var orderby = [{ "name": "weight", "sort": "DESC" }];
@@ -367,7 +389,7 @@ export class WealthProductDetailsComponent implements OnInit {
         debugger
         this.ProductManager = resp.data.productManager;
 
-        this.ProductOverview.push(resp.data.productOverview);
+        // this.ProductOverview.push(resp.data.productOverview);
         this.ProductOverviewShow = resp.data.productOverview;
 
 

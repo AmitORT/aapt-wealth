@@ -89,12 +89,25 @@
 <!-- Risk Modal -->
 <div class="modal fade" id="riskModal3" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered justify-content-center">
-    <div class="modal-content modal-sm">
+    <div class="modal-content modal-md">
       <div class="modal-body">
-        <div class="row mb-5">
+        <div class="row mb-3">
+          <div *ngIf="!validate.isNullEmptyUndefined(RiskProfilesubmitResponse)">
+          <div class="position-relative mb-3">
+            <h4 class="title">{{RiskProfilesubmitResponse.name}}</h4>
+            <div class="orange-dash"></div>
+          </div>
+          <div>
+            <p class="center">{{RiskProfilesubmitResponse.description}}</p>
+            <div class="grey-box">
+              <p>{{RiskProfilesubmitResponse.validate}}</p>
+            </div>
+          </div>
+        </div>
+
           <h5>Do you want to update your risk profile?</h5>
         </div>
-        <div class="btn-div d-flex justify-content-between mt-5">
+        <div class="btn-div d-flex justify-content-between mt-3">
           <button type="button" class="btn btn-primary feature-cancel me-2" data-toggle="modal"
             data-target="#riskModal2" (click)="Gotolisting()">Skip</button>
           <button type="button" class="btn btn-primary feature-apply" (click)="updateriskandhide()">Update</button>

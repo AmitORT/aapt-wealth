@@ -202,4 +202,10 @@ export class MutualFundCartComponent implements OnInit {
     }
   }
 
+  AssignGoal(offer:any){
+    console.log('offer', offer);
+    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    this.route.navigate(["/mutual-select-goal"])
+  }
+
 }
