@@ -111,8 +111,8 @@ export class RiskProfilingComponent implements OnInit {
       console.log('risk profile',response);
       if(response.response.n==1){
         this.RiskProfilesubmitResponse=response.data;
-        // let encrypted=this.crypto.Encrypt(response.data);
-        // localStorage.setItem("RiskProfilesubmitResponse",encrypted);
+        let encrypted=this.crypto.Encrypt(response.data);
+        localStorage.setItem("RiskProfilesubmitResponse",encrypted);
       }
      
     })

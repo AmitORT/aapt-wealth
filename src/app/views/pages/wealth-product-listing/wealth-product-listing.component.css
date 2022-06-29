@@ -1288,3 +1288,15 @@ background-color: transparent;
 .cartnew-btn{
   font-weight: 500;
 }
+.search-box1 i {
+  position: absolute;
+  color: #b4b4b4;
+  right: 3%;
+  top: 30%;
+}
+.search-box1 .form-control{
+  padding-right: 2rem;
+  box-shadow: none;
+  border-color: #b4b4b4;
+  font-size: 14px;
+}

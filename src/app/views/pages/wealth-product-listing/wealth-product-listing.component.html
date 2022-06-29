@@ -312,9 +312,22 @@
     </div>
 
     <div class="col-md-9">
-      <div [hidden]="ProductList.length == 0" class="row page-result ms-0 me-0 hidden-xs">
-        <p>Showing {{ProductList?.length}} of {{ProductList?.length}} results</p>
+      <div class="row page-result align-items-center">
+        <div class="col-8">
+          <div  class=" ms-0 me-0 hidden-xs">
+            <p>Showing {{ProductList?.length}} results</p>
+             <!-- of {{ProductList?.length}} -->
+          </div>
+        </div>
+        <div class="col-4">
+          <div  class="position-relative search-box1 ms-0 me-0 hidden-xs">
+            <i aria-hidden="true" class="fa fa-search cursor-pointer" (click)="getOffersProductList()"></i>
+           <input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchText" (keyup.enter)="getOffersProductList()">
+          </div>
+        </div>
+
       </div>
+      
       <div class="product-scroll">
 
         <div *ngIf="ProductList.length < 1 && !OfferListingLoader" class="col-lg-9 col-md-8 text-center">

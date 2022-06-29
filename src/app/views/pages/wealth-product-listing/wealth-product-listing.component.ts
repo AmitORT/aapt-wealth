@@ -144,6 +144,7 @@ export class WealthProductListingComponent implements OnInit {
   GoalList: any;
   InvestWithoutGoalResp: any;
   ProductOverviewData: any;
+  searchText:any='';
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
@@ -248,6 +249,7 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   getOffersProductList() {
+    this.ProductList = [];
 
     this.AMCFiltercheckedList = this.AMCFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
     // console.log('amc check list', this.AMCFiltercheckedList);
@@ -263,6 +265,7 @@ export class WealthProductListingComponent implements OnInit {
     postData.append("searchFilter", '{"productId":5}');
     postData.append("limit", '1000');
     postData.append("offset", '0');
+    postData.append("search",this.searchText)
     if (this.riskprofileId == 1) {
       postData.append("risk_profile_mapping", this.RiskProfilesubmitResponse.id);
     }

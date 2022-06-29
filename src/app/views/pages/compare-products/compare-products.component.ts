@@ -81,6 +81,7 @@ export class CompareProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.scrolltotop();
 
     this.MutualProductCompareFund = this.crypto.Decrypt(localStorage.getItem("MutualProductCompareFund"));
     // console.log("MutualProductCompareFund", this.MutualProductCompareFund)
@@ -93,6 +94,11 @@ export class CompareProductsComponent implements OnInit {
 
     this.getGraphDetailsToCompare();
 
+  }
+  scrolltotop() {
+    $('.body-color').animate({
+      scrollTop: 0
+    }, 0);
   }
 
   GraphXSeries: any = [];
