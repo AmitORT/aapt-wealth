@@ -398,12 +398,13 @@ export class WealthProductDetailsComponent implements OnInit {
 
     this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
 
-      // console.log("resp", resp)
+      console.log("GetProductDetail", resp)
       if (resp.response.n == 1) {
         // debugger
         this.ProductManager = resp.data.productManager;
 
         // this.ProductOverview.push(resp.data.productOverview);
+        this.SelectedMutualFund = resp.data.productOverview;
         this.ProductOverviewShow = resp.data.productOverview;
 
 

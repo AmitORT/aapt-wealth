@@ -49,6 +49,7 @@ export class MutualSelectGoalComponent implements OnInit {
   id: any;
   SelectedMutualFund: any;
   ProductOverview: any = [];
+  ApplicantData:any;
 
   constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService, private router: ActivatedRoute) { }
 
@@ -61,6 +62,11 @@ export class MutualSelectGoalComponent implements OnInit {
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
       console.log("SelectedMutualFund", this.SelectedMutualFund);
+    }
+
+    if(localStorage.getItem("ApplicantData") != null){
+      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"))
+      console.log("ApplicantData", this.ApplicantData);
     }
     this.GetMyGoals();
   }
@@ -141,11 +147,11 @@ export class MutualSelectGoalComponent implements OnInit {
 
       var data = { 'panCardNumber': 'IFSPS1505L', 'name': 'Gaurdian1911', 'gender': 1, 'birthDate': '1965-01-01', 'relation': 1 };
       var postData = new FormData();
-      postData.append("birth_date", "2000-01-01T06:30:00.000Z");
+      postData.append("birth_date", this.ApplicantData.dob);
       postData.append("investor_type", "1");
-      postData.append("pan", "AAXPB4698R");
-      postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
-      postData.append("guardian_details", JSON.stringify(data));
+      postData.append("pan", this.ApplicantData.panCard);
+      // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
+      // postData.append("guardian_details", JSON.stringify(data));
       this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
         console.log('inverstor create', response)
         if (response.response.n == 1) {
@@ -158,13 +164,13 @@ export class MutualSelectGoalComponent implements OnInit {
   InvestWithoutGoal() {
     var postData = new FormData();
     postData.append("transactionTypeId", "1");
-    postData.append("instrumentId", "255527");
-    postData.append("totalAmount", "1234");
-    postData.append("modeOfTransaction", "1");
+    postData.append("instrumentId",this.SelectedMutualFund.id);
+    postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1'? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt );
+    postData.append("modeOfTransaction", this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
     postData.append("frequency", "4");
     postData.append("transactionSubType", "2");
-    postData.append("frequencyDay", "1");
-    postData.append("serviceProviderAccountId", "20753");
+    // postData.append("frequencyDay", "1");
+    postData.append("serviceProviderAccountId", this.SelectedMutualFund.serviceProviderId);
     this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)

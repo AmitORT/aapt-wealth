@@ -46,13 +46,14 @@ export class SignInComponent implements OnInit {
   pancard = "";
   aadhar_card_no = "";
   calltype: any;
-  nextPath:any;
+  nextPath: any;
   InvestWithoutGoalResp: any;
   usertype: any = 'Customer';
   UrlRegister: any = 'auth/customer/register';
   UrlSendOTP: any = 'auth/customer/send-otp';
   urlValidateOTP: any = 'auth/customer/ValidateOTP';
-
+  SelectedMutualFund: any;
+  ProductOverview: any = [];
 
   constructor(public validate: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private crypto: AescryptoService, private eligibility: EligibilityService) { }
 
@@ -60,8 +61,18 @@ export class SignInComponent implements OnInit {
 
     this.DOB();
 
-    this.nextPath=this.crypto.Decrypt(localStorage.getItem("nextPath"))
-    console.log("nextPath",this.nextPath)
+    this.nextPath = this.crypto.Decrypt(localStorage.getItem("nextPath"))
+    console.log("nextPath", this.nextPath);
+
+    if (localStorage.getItem("ProductOverview") != null) {
+      this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
+      console.log('ngoninit ProductOverview', this.ProductOverview);
+    }
+
+    if (localStorage.getItem("SelectedMutualFund") != null) {
+      this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
+      console.log("SelectedMutualFund", this.SelectedMutualFund);
+    }
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -147,12 +158,12 @@ export class SignInComponent implements OnInit {
             console.log("CustToken", encryptedTokenCustomer)
             this.GetApplicantData();
 
-            if(this.nextPath != '/mutual-fund-cart'){
+            if (this.nextPath != '/mutual-fund-cart') {
               this.route.navigate([this.nextPath]);
             }
-            else if(this.nextPath == '/mutual-fund-cart'){
-              this.CreateInvestor()
-            }
+            // else if (this.nextPath == '/mutual-fund-cart') {
+            //   this.CreateInvestor()
+            // }
 
 
             // this.route.navigate(["/mutual-fund-cart"])
@@ -180,16 +191,16 @@ export class SignInComponent implements OnInit {
     }
     else {
 
-      var data={'panCardNumber': 'IFSPS1505L','name': 'Gaurdian1911','gender': 1,'birthDate': '1965-01-01','relation': 1};
+      var data = { 'panCardNumber': 'IFSPS1505L', 'name': 'Gaurdian1911', 'gender': 1, 'birthDate': '1965-01-01', 'relation': 1 };
       var postData = new FormData();
-      postData.append("birth_date", "2000-01-01T06:30:00.000Z");
+      postData.append("birth_date", this.ApplicantData.dob);
       postData.append("investor_type", "1");
-      postData.append("pan", "AAXPB4698R");
-      postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
-      postData.append("guardian_details",JSON.stringify(data));
+      postData.append("pan", this.ApplicantData.panCard);
+      // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
+      // postData.append("guardian_details", JSON.stringify(data));
       this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
         console.log('inverstor create', response)
-        if(response.response.n==1){
+        if (response.response.n == 1) {
           this.InvestWithoutGoal();
         }
       })
@@ -199,19 +210,39 @@ export class SignInComponent implements OnInit {
   InvestWithoutGoal() {
     var postData = new FormData();
     postData.append("transactionTypeId", "1");
-    postData.append("instrumentId", "255527");
-    postData.append("totalAmount", "1234");
-    postData.append("modeOfTransaction", "1");
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1'? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt);
+    postData.append("modeOfTransaction",this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
     postData.append("frequency", "4");
     postData.append("transactionSubType", "2");
-    postData.append("frequencyDay", "1");
-    postData.append("serviceProviderAccountId", "20753");
+    // postData.append("frequencyDay", "1");
+    postData.append("serviceProviderAccountId", this.SelectedMutualFund.serviceProviderId);
     this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
       console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
       this.route.navigate(["/mutual-fund-cart"])
+
+      if (this.ProductOverview.length > 0) {
+        var flag = true;
+        for (var i = 0; i < this.ProductOverview.length; i++) {
+          if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
+            flag = false;
+            break;
+          }
+        }
+        if (flag) {
+          this.ProductOverview.push(this.SelectedMutualFund);
+        }
+      }
+      else {
+        this.ProductOverview.push(this.SelectedMutualFund);
+      }
+      console.log('ProductOverview', this.ProductOverview);
+  
+      let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
+      localStorage.setItem("ProductOverview", encryptedProduct);
     })
   }
 
@@ -329,12 +360,17 @@ export class SignInComponent implements OnInit {
     }, 1000);
 
   }
+  ApplicantData: any;
 
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
       debugger;
       console.log(response.data);
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+      this.ApplicantData = response.data;
+      if (this.nextPath == '/mutual-fund-cart') {
+        this.CreateInvestor()
+      }
     })
   }
 }

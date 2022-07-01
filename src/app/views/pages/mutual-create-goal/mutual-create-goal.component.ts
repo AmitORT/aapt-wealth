@@ -59,6 +59,7 @@ export class MutualCreateGoalComponent implements OnInit {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
       console.log('ngoninit ProductOverview', this.ProductOverview);
     }
+
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
       console.log("SelectedMutualFund", this.SelectedMutualFund);
@@ -264,11 +265,11 @@ export class MutualCreateGoalComponent implements OnInit {
   CreateInvestor(goalid: any) {
     var data = { 'panCardNumber': 'IFSPS1505L', 'name': 'Gaurdian1911', 'gender': 1, 'birthDate': '1965-01-01', 'relation': 1 };
     var postData = new FormData();
-    postData.append("birth_date", "2000-01-01T06:30:00.000Z");
+    postData.append("birth_date", this.ApplicantData.dob);
     postData.append("investor_type", "1");
     postData.append("pan", this.ApplicantData.panCard);
-    postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
-    postData.append("guardian_details", JSON.stringify(data));
+    // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
+    // postData.append("guardian_details", JSON.stringify(data));
     this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
       console.log('inverstor create', response)
       if (response.response.n == 1) {
@@ -286,15 +287,15 @@ export class MutualCreateGoalComponent implements OnInit {
     var postData = new FormData();
     postData.append("goalId", goalid);
     postData.append("transactionTypeId", '1');
-    postData.append("endDateForSip", '2023-02-01T11:01:56.652Z');
-    postData.append("instrumentId", '255527');
-    postData.append("totalAmount", '1234');
-    postData.append("modeOfTransaction", '1');
+    postData.append("endDateForSip", this.CreateGoal.targetDate);
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1'? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt);
+    postData.append("modeOfTransaction", this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
     postData.append("frequency", '4');
     postData.append("transactionSubType", '2');
-    postData.append("frequencyDay", '1');
-    postData.append("startDateForSip", '2021-09-01T11:01:56.652Z');
-    postData.append("serviceProviderAccountId", '20753');
+    // postData.append("frequencyDay", '1');
+    postData.append("startDateForSip", this.SelectedMutualFund.ModeOfInvestment.DateForMonth);
+    postData.append("serviceProviderAccountId", this.SelectedMutualFund.serviceProviderId);
 
     this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {
       this.ProceedCart = resp.data;
