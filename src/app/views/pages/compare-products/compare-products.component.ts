@@ -32,47 +32,32 @@ export class CompareProductsComponent implements OnInit {
   Graph: any = [];
 
 
+  GraphYSeriesData: any = [];
   GraphXSeriesData: any = [];
 
 
   constructor(private crypto: AescryptoService, private toastr: ToastrService, public validate: ValidateService, private api: ApiService, private route: Router) {
 
-    this.public_series = [
-      // {
-      //   name: "series1",
-      //   data: [11, 32, 45, 32, 34, 52, 41],
-      //   // color: "#e27e28"
-      // },
-      // {
-      //   name: "series2",
-      //   data: [8, 38, 55, 39, 34, 52, 71],
-      //   // color: "#e27e28"
-      // },
-    ],
+    this.public_series = []
 
-      this.chartData = {
-        height: 350,
-        type: "area"
-      }
+    this.chartData = {
+      height: 350,
+      type: "area"
+    }
 
     this.dataLabels = {
       enabled: false
     }
+
     this.stroke = {
       curve: "smooth"
-    },
-      this.xaxis = {
-        type: "datetime",
-        categories: [
-          "2018-09-19T00:00:00.000Z",
-          "2018-09-19T01:30:00.000Z",
-          "2018-09-19T02:30:00.000Z",
-          "2018-09-19T03:30:00.000Z",
-          "2018-09-19T04:30:00.000Z",
-          "2018-09-19T05:30:00.000Z",
-          "2018-09-19T06:30:00.000Z"
-        ]
-      }
+    }
+
+    this.xaxis = {
+      type: "date",
+      categories: []
+    }
+
     this.tooltip = {
       x: {
         format: "dd/MM/yy HH:mm"
@@ -101,11 +86,15 @@ export class CompareProductsComponent implements OnInit {
     }, 0);
   }
 
+  GraphYSeries: any = [];
   GraphXSeries: any = [];
 
   getGraphDetailsToCompare() {
-    debugger
+    // debugger
     this.inputListforGraph = [];
+    this.GraphXSeries = [];
+    this.GraphYSeries = [];
+
     for (var i = 0; i < this.OffersForCompare.length; i++) {
       this.inputListforGraph.push(this.OffersForCompare[i].id);
     }
@@ -116,28 +105,31 @@ export class CompareProductsComponent implements OnInit {
     this.api.post("wealthfy/compare-insturments", postData).subscribe(response => {
       console.log('graph', response);
       this.GraphList = response.data;
-      if (this.GraphList.length > 1) {
+      if (this.GraphList.length > 0) {
         for (let i = 0; i < this.GraphList.length; i++) {
-          this.GraphXSeriesData = [];
+          this.GraphYSeriesData = [];
           for (let j = 0; j < this.GraphList[i].length; j++) {
-            this.GraphXSeriesData.push(this.GraphList[i][j].price)
+            this.GraphXSeries.push((this.GraphList[i][j].priceDate).slice(0, 10));
+            this.GraphYSeriesData.push(this.GraphList[i][j].price)
           }
           let data = {
-            name: 'series' + [i+1],
-            data: this.GraphXSeriesData,
+            name: 'series' + [i + 1],
+            data: this.GraphYSeriesData,
           }
-          this.GraphXSeries.push(data);
+
+          this.GraphYSeries.push(data);
         }
       }
-      this.public_series = this.GraphXSeries;
+      this.public_series = this.GraphYSeries;
+
+      this.GraphXSeries = [...new Set(this.GraphXSeries)];
+      this.xaxis.categories = this.GraphXSeries;
+
+      console.log('GraphYSeries', this.GraphYSeries)
       console.log('GraphXSeries', this.GraphXSeries)
-
+      // console.log('this.xaxis.categories', this.xaxis.categories)
     })
-
   }
-
-
-
 
   compareCheckboxclick(index: number, ID: any) {
     for (let i = 0; i < this.MutualProductCompareFund.length; i++) {
@@ -173,7 +165,7 @@ export class CompareProductsComponent implements OnInit {
     }
   }
 
-  InvestINFund(offer:any){
+  InvestINFund(offer: any) {
     console.log(offer);
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);

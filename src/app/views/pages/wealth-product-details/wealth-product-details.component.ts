@@ -195,6 +195,9 @@ export class WealthProductDetailsComponent implements OnInit {
   MutualProductCompareFund: any;
 
   ngOnInit(): void {
+    this.route.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
     this.scrolltotop();
 
     if (localStorage.getItem("MutualProductCompareFund") != null) {
@@ -334,6 +337,8 @@ export class WealthProductDetailsComponent implements OnInit {
     }
     else {
       $("#invest-screen").modal("hide");
+      this.ModeOfInvestment.Payment_mode == '1' ? this.ModeOfInvestment.yearly_amt = '' : this.ModeOfInvestment.monthly_amt = '';
+
       let encrypted = this.crypto.Encrypt(this.ModeOfInvestment);
       localStorage.setItem("ModeOfInvestment", encrypted);
 
@@ -404,8 +409,8 @@ export class WealthProductDetailsComponent implements OnInit {
         this.ProductManager = resp.data.productManager;
 
         // this.ProductOverview.push(resp.data.productOverview);
-        this.SelectedMutualFund = resp.data.productOverview;
-        this.ProductOverviewShow = resp.data.productOverview;
+        this.SelectedMutualFund = resp.data.productOverview[0];
+        this.ProductOverviewShow = resp.data.productOverview[0];
 
 
         this.Productreturn = resp.data.productReturn;
@@ -434,6 +439,20 @@ export class WealthProductDetailsComponent implements OnInit {
     localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.MutualProductCompareFund));
     this.route.navigate(['/compare-products']);
   }
+
+  InvestINFund(id: any) {
+    console.log(id)
+    var offer;
+    for (let i = 0; i < this.MutualProductCompareFund.length; i++) {
+      if (id == this.MutualProductCompareFund[i].id) {
+        offer = this.MutualProductCompareFund[i];
+      }
+    }
+    console.log(offer)
+    localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
+    this.route.navigate(['/wealth-product-details']);
+  }
+
 
   public generateData(baseval: any, count: any, yrange: { max: any; min: any; }) {
     var i = 0;

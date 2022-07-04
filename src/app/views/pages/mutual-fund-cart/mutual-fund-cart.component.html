@@ -31,22 +31,24 @@
             <div class="row mfc-tabs">
               <div class="col-lg-12">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                  <li class="nav-item" role="presentation" (click)="cartItems.ModeOfInvestment.Payment_mode = '1'">
+                  <li class="nav-item" role="presentation"
+                    (click)="cartItems.ModeOfInvestment.Payment_mode = '1'; democart(ProductOverview)">
                     <button class="nav-link" [ngClass]="cartItems.ModeOfInvestment?.Payment_mode != '2' ? 'active' :''"
-                      data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly"
-                      aria-selected="true">Monthly SIP</button>
+                      data-bs-toggle="tab" attr.data-bs-target="#monthly{{i}}" type="button" role="tab"
+                      aria-controls="monthly" aria-selected="true">Monthly SIP</button>
                   </li>
-                  <li class="nav-item" role="presentation" (click)="cartItems.ModeOfInvestment.Payment_mode = '2'">
+                  <li class="nav-item" role="presentation"
+                    (click)="cartItems.ModeOfInvestment.Payment_mode = '2'; democart(ProductOverview)">
                     <button class="nav-link" [ngClass]="cartItems.ModeOfInvestment?.Payment_mode=='2' ? 'active' :''"
-                      data-bs-toggle="tab" data-bs-target="#lumpsum" type="button" role="tab" aria-controls="lumpsum"
-                      aria-selected="false">Lumpsum</button>
+                      data-bs-toggle="tab" attr.data-bs-target="#lumpsum{{i}}" type="button" role="tab"
+                      aria-controls="lumpsum" aria-selected="false">Lumpsum</button>
                   </li>
                 </ul>
               </div>
             </div>
 
             <div class="tab-content">
-              <div class="tab-pane fade show" id="monthly" role="tab" aria-labelledby="monthly-tab"
+              <div class="tab-pane fade show" id="monthly{{i}}" role="tab" aria-labelledby="monthly-tab"
                 [ngClass]="cartItems.ModeOfInvestment?.Payment_mode != '2'?'active':''">
                 <div class="row amount">
                   <div class="col-lg-7 col-10 position-relative">
@@ -66,19 +68,20 @@
 
                 <div class="row">
                   <div class="col-lg-12">
-                    <p class="n-line">SIP Date Installment will be deducted on <b>{{cartItems.ModeOfInvestment?.DateForMonth}}th
+                    <p class="n-line">SIP Date Installment will be deducted on
+                      <b>{{cartItems.ModeOfInvestment?.DateForMonth}}{{validate.getCurrentDateWithSpecificFormat(cartItems.ModeOfInvestment?.DateForMonth)}}
                         of
                         every month.</b></p>
                   </div>
                 </div>
               </div>
 
-              <div class="tab-pane fade show" id="lumpsum" role="tab" aria-labelledby="monthly-tab"
+              <div class="tab-pane fade show" id="lumpsum{{i}}" role="tab" aria-labelledby="monthly-tab"
                 [ngClass]="cartItems.ModeOfInvestment.Payment_mode == '2'?'active':''">
                 <div class="row amount">
                   <div class="col-lg-7 col-10 position-relative">
                     <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
-                      [(ngModel)]="cartItems.ModeOfInvestment.yearly_amt" />
+                      [(ngModel)]="cartItems.ModeOfInvestment.yearly_amt =='' ? 0 : cartItems.ModeOfInvestment.yearly_amt" />
                     <span class="rupees">₹</span>
                     <!-- <p>₹ {{cartItems.ModeOfInvestment?.yearly_amt}}<span>15 Units</span></p> -->
                     <!-- <span class="units">15 Units</span> -->
@@ -169,7 +172,8 @@
 
               <div class="row">
                 <div class="col-lg-12">
-                  <p class="n-line">SIP Date Installment will be deducted on <b>{{bankname.ModeOfInvestment?.DateForMonth}}th of
+                  <p class="n-line">SIP Date Installment will be deducted on
+                    <b>{{bankname.ModeOfInvestment?.DateForMonth}}th of
                       every month.</b></p>
                 </div>
               </div>

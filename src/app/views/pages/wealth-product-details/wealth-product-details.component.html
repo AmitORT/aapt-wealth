@@ -6,7 +6,8 @@
     </div>
     <div class="col-lg-12 hidden-lg">
       <h4 class=" "><span class="me-3 cursor-pointer" [routerLink]="['/wealth-product-listing']"><i
-            class="fa fa-arrow-left i-icon"></i></span><img src="assets/img/icici-bank2.png" alt="icici" class="header-img"/></h4>
+            class="fa fa-arrow-left i-icon"></i></span><img src="assets/img/icici-bank2.png" alt="icici"
+          class="header-img" /></h4>
     </div>
   </div>
   <div class="row mb-5">
@@ -47,7 +48,7 @@
           </div>
         </div>
         <div class="d-flex justify-content-between">
-        
+
           <div class="left-body">
             <h5>{{ProductOverviewShow?.returnSinceInception.toFixed(2)}}%</h5>
             <p><span class="text-green">+1.08%</span>1 day Change</p>
@@ -58,14 +59,8 @@
           </div>
         </div>
         <div id="chart" *ngIf="GraphDataList.length > 0">
-          <apx-chart
-            [series]="public_series"
-            [chart]="chartData"
-            [xaxis]="xaxis"
-            [stroke]="stroke"
-            [tooltip]="tooltip"
-            [dataLabels]="dataLabels"
-          ></apx-chart>
+          <apx-chart [series]="public_series" [chart]="chartData" [xaxis]="xaxis" [stroke]="stroke" [tooltip]="tooltip"
+            [dataLabels]="dataLabels"></apx-chart>
         </div>
         <!-- <img src="assets/img/prod-details-graph.svg" alt="icici" class="graph-img" /> -->
         <!-- <div class="graph-footer">
@@ -84,11 +79,11 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
 
-          <li class="nav-item" [ngClass]="ShowCarousel == '1'?'active':''" (click)="ShowCarousel = '1'" >
-            <a class="nav-link" data-bs-toggle="tab" href="#menu1" >Overview</a>
+          <li class="nav-item" [ngClass]="ShowCarousel == '1'?'active':''" (click)="ShowCarousel = '1'">
+            <a class="nav-link" data-bs-toggle="tab" href="#menu1">Overview</a>
           </li>
           <li class="nav-item" [ngClass]="ShowCarousel == '2'?'active':''" (click)="ShowCarousel = '2'">
-            <a class="nav-link" data-bs-toggle="tab" href="#menu2" >Asset Allocation</a>
+            <a class="nav-link" data-bs-toggle="tab" href="#menu2">Asset Allocation</a>
           </li>
         </ul>
 
@@ -151,19 +146,20 @@
                 <p>Fund Returns</p>
                 <p>Category Average</p>
                 <!-- <p>Rank Within Category</p> -->
-                <p class="blue-text" >*All returns are annualized.</p>
+                <p class="blue-text">*All returns are annualized.</p>
               </div>
-              <div class="col-lg-3 col-4" >
-                  <div class="monthly justify-content-center" [(ngModel)]="OneYearReturn" (click)="showTenureForPopup()">{{SelectedMutualFund.selectedYear}}Y
-                    Return
-                    <img src="assets/img/unfold_more.svg" class="orange-pencil">
-                  </div>
-                
-                  <p class="val"><b>{{SelectedMutualFund.Rate}}%</b></p>
-                  <p class="val"><b>113.0%</b></p>
-                  <!-- <p class="val"><b>-</b></p> -->
+              <div class="col-lg-3 col-4">
+                <div class="monthly justify-content-center" [(ngModel)]="OneYearReturn" (click)="showTenureForPopup()">
+                  {{SelectedMutualFund.selectedYear}}Y
+                  Return
+                  <img src="assets/img/unfold_more.svg" class="orange-pencil">
+                </div>
+
+                <p class="val"><b>{{SelectedMutualFund.Rate}}%</b></p>
+                <p class="val"><b>113.0%</b></p>
+                <!-- <p class="val"><b>-</b></p> -->
                 <!-- </div> -->
-         
+
               </div>
               <div class="col-lg-3 col-4">
                 <h5 class="text-center">Since Inception</h5>
@@ -171,7 +167,7 @@
                 <p class="val"><b>1</b></p>
                 <!-- <p class="val"><b>-</b></p> -->
               </div>
-              
+
             </div>
             <hr>
             <div class="row align-items-center">
@@ -206,7 +202,8 @@
                 <p><b>SIP Amount</b></p>
               </div>
               <div class="col-lg-5 col-5 position-relative">
-                <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="value12" />
+                <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4"
+                  [(ngModel)]="value12" />
                 <span class="rupee-symbol">₹</span>
               </div>
               <div class="col-lg-12">
@@ -255,7 +252,7 @@
                       <div class="col-lg-10 col-10">
                         <h5>{{ProductOverviewShow?.name}}</h5>
                         <p>3 High Risk</p>
-                        
+
                       </div>
                     </div>
 
@@ -272,7 +269,7 @@
             </div>
 
           </div>
-          <div id="menu2" class="container tab-pane fade ps-0 pe-0" ><br>
+          <div id="menu2" class="container tab-pane fade ps-0 pe-0"><br>
             <div class="row graph-div">
               <div class="col-lg-12">
                 <h5><b>Fund Distribution</b></h5>
@@ -325,7 +322,8 @@
               <div class="col-lg-12 col-12">
                 <h5>Sector Allocation</h5>
               </div>
-              <div class="col-lg-6 col-12" *ngFor="let sector of (flag ? ProductSectorDetails : ProductSectorDetails?.slice(0,8))">
+              <div class="col-lg-6 col-12"
+                *ngFor="let sector of (flag ? ProductSectorDetails : ProductSectorDetails?.slice(0,8))">
                 <div class="row">
 
                   <div class="col-lg-9 col-9">
@@ -352,12 +350,12 @@
               <h5>Holdings (40)</h5>
               <h6>Top 10 Holdings (40)</h6>
             </div>
-            
-            <div class="row sector-div" *ngFor="let holding of holdings">
-              
-              <div class="col-lg-9 col-6" >
 
-                
+            <div class="row sector-div" *ngFor="let holding of holdings">
+
+              <div class="col-lg-9 col-6">
+
+
                 <p>{{holding.name}}</p>
                 <!-- <p>HCL Technologies Ltd.</p>
                 <p>Tech Mahindra Ltd.</p>
@@ -399,9 +397,10 @@
         <div class="right-box">
           <h5>Select Mode of Investment</h5>
           <ul class="nav nav-tabs" id="year-tabs" role="tablist">
-            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'" >
+            <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
               <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab"
-                aria-controls="monthly" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
+                aria-controls="monthly" aria-selected="true"
+                [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">
                 Monthly</button>
             </li>
             <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
@@ -413,32 +412,35 @@
 
           <div class="tab-content">
             <div class="tab-pane fade show active" id="monthly" role="tabpanel" aria-labelledby="monthly-tab"
-            *ngIf="ModeOfInvestment.Payment_mode != '2'">
+              *ngIf="ModeOfInvestment.Payment_mode != '2'">
               <div class="row mt-3">
                 <div class="col-lg-7 col-7">
                   <p class="pt-2"><b>SIP Amount</b></p>
                 </div>
                 <div class="col-lg-5 col-5 position-relative">
-                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.monthly_amt"/>
+                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4"
+                    [(ngModel)]="ModeOfInvestment.monthly_amt" />
                   <span class="rupee-symbol">₹</span>
                 </div>
                 <div class="col-lg-12">
                   <div class="custom-slider mb-5">
                     <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
                   </div>
-                  <p>Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}}th of every month.</span></p>
+                  <p>Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}}th of
+                      every month.</span></p>
                 </div>
                 <div class="col-lg-12 col-12 position-relative">
                   <div class="row">
                     <div class="col-lg-2">
-                      <input type="date" id="dob"  placeholder="Date Of Birth" class="form-control calender" [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
+                      <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
+                        [(ngModel)]="ModeOfInvestment.DateForMonth" (change)="GetOnlyDay()">
                       <label for="dob"><img src="assets/img/fi-calendar.svg" id="date-imput" alt="image"></label>
                     </div>
                     <!-- <div class="form-floating mb-3 input-box">
                   <input type="date" class="form-control calendar-button">
                   </div> -->
                     <div class="col-lg-10">
-                      <button type="button" (click)="CreateSip()"  class="btn btn-primary sip-btn">
+                      <button type="button" (click)="CreateSip()" class="btn btn-primary sip-btn">
                         Create Monthly SIP </button>
                     </div>
                   </div>
@@ -446,14 +448,15 @@
               </div>
             </div>
 
-            <div class="tab-pane fade show active" id="otl" role="tabpanel" aria-labelledby="otl-tab" 
-            *ngIf="ModeOfInvestment.Payment_mode == '2'">
+            <div class="tab-pane fade show active" id="otl" role="tabpanel" aria-labelledby="otl-tab"
+              *ngIf="ModeOfInvestment.Payment_mode == '2'">
               <div class="row mt-3">
                 <div class="col-lg-7 col-7">
                   <p class="pt-2"><b>SIP Amount</b></p>
                 </div>
                 <div class="col-lg-5 col-5 position-relative">
-                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.yearly_amt" />
+                  <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4"
+                    [(ngModel)]="ModeOfInvestment.yearly_amt" />
                   <span class="rupee-symbol">₹</span>
                 </div>
                 <div class="col-lg-12">
@@ -476,8 +479,8 @@
                 </div>
 
                 <div class="col-lg-12">
-                  <button type="button" (click)="CreateSip()"
-                    class="btn btn-primary sip-btn w-100 ms-0"> Invest Now </button>
+                  <button type="button" (click)="CreateSip()" class="btn btn-primary sip-btn w-100 ms-0"> Invest Now
+                  </button>
                 </div>
               </div>
             </div>
@@ -526,7 +529,9 @@
                   <p class="cf" (click)="CompareSimilarFunds(funds.id)">Compare Fund</p>
                 </div>
                 <div class="col-lg-6 col-6">
-                  <button class="nav-link btn btn-primary invest-button" [routerLink]="['/mutual-select-goal']">Invest</button>
+                  <button class="nav-link btn btn-primary invest-button" (click)="InvestINFund(funds.id)">
+                    <!-- [routerLink]="['/mutual-select-goal']" -->
+                    Invest</button>
                 </div>
               </div>
 
@@ -568,37 +573,41 @@
           <div class="right-box">
             <h5>Select Mode of Investment</h5>
             <ul class="nav nav-tabs" id="invest-tabs" role="tablist">
-              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'"> 
-                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly-mob" type="button"
-                  role="tab" aria-controls="monthly-mob" aria-selected="true" [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">Monthly</button>
+              <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '1'">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#monthly-mob" type="button" role="tab"
+                  aria-controls="monthly-mob" aria-selected="true"
+                  [ngClass]="ModeOfInvestment.Payment_mode != '2'?'active':''">Monthly</button>
               </li>
               <li class="nav-item" role="presentation" (click)="ModeOfInvestment.Payment_mode = '2'">
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#otl-mob" type="button" role="tab"
-                  aria-controls="otl-mob" aria-selected="false" [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">One-time Lumpsum</button>
+                  aria-controls="otl-mob" aria-selected="false"
+                  [ngClass]="ModeOfInvestment.Payment_mode == '2'?'active':''">One-time Lumpsum</button>
               </li>
             </ul>
 
             <div class="tab-content">
               <div class="tab-pane fade show active" id="monthly-mob" role="tabpanel" aria-labelledby="monthly-tab"
-              *ngIf="ModeOfInvestment.Payment_mode != '2'">
+                *ngIf="ModeOfInvestment.Payment_mode != '2'">
                 <div class="row mt-3">
                   <div class="col-lg-7 col-7">
                     <p class="pt-2"><b>SIP Amount</b></p>
                   </div>
                   <div class="col-lg-5 col-5 position-relative">
-                    <input type="text" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.monthly_amt"/>
+                    <input type="text" class="form-control ps-4" [(ngModel)]="ModeOfInvestment.monthly_amt" />
                     <span class="rupee-symbol">₹</span>
                   </div>
                   <div class="col-lg-12">
                     <div class="custom-slider mb-5">
                       <ngx-slider [(value)]="ModeOfInvestment.monthly_amt" [options]="monthly_amt1"></ngx-slider>
                     </div>
-                    <p class="space1">Installment will be deducted on <span class="text-orange">{{ModeOfInvestment.DateForMonth}}th of every month.</span></p>
+                    <p class="space1">Installment will be deducted on <span
+                        class="text-orange">{{ModeOfInvestment.DateForMonth}}th of every month.</span></p>
                   </div>
                   <div class="col-lg-12 col-12 position-relative">
                     <div class="row">
                       <div class="col-2">
-                        <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender" [(ngModel)]="ModeOfInvestment.DateForMonth">
+                        <input type="date" id="dob" placeholder="Date Of Birth" class="form-control calender"
+                          [(ngModel)]="ModeOfInvestment.DateForMonth">
                         <label for="dob"><img src="assets/img/fi-calendar.svg" alt="image"></label>
                       </div>
                       <div class="col-10">
@@ -610,7 +619,7 @@
                 </div>
               </div>
               <div class="tab-pane fade show active" id="otl-mob" role="tabpanel" aria-labelledby="otl-tab"
-              *ngIf="ModeOfInvestment.Payment_mode == '2'">
+                *ngIf="ModeOfInvestment.Payment_mode == '2'">
                 <div class="row mt-3">
                   <div class="col-lg-7 col-7">
                     <p class="pt-2"><b>SIP Amount</b></p>
@@ -640,8 +649,8 @@
                   </div>
 
                   <div class="col-lg-12">
-                    <button type="button" (click)="CreateSip()"
-                      class="btn btn-primary sip-btn w-100 ms-0" > Invest Now </button>
+                    <button type="button" (click)="CreateSip()" class="btn btn-primary sip-btn w-100 ms-0"> Invest Now
+                    </button>
                   </div>
                 </div>
               </div>

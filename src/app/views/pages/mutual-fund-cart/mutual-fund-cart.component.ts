@@ -115,11 +115,12 @@ export class MutualFundCartComponent implements OnInit {
     this.route.navigate(['/wealth-product-listing']);
   }
 
-  GetOnlyDay(i: any) {
+  GetOnlyDay(i:any) {
     // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth);
     // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth.getDate())
-    // this.ProductOverview[i].ModeOfInvestment.DateForMonth = this.ProductOverview[i].ModeOfInvestment.DateForMonth.slice(8);
-    this.ModeOfInvestment.DateForMonth = this.ModeOfInvestment.DateForMonth.slice(8);
+   this.ProductOverview[i].ModeOfInvestment.DateForMonth = this.ProductOverview[i].ModeOfInvestment.DateForMonth.slice(8);
+    
+    // this.ProductOverview[i].ModeOfInvestment.DateForMonth =  cartitem.ModeOfInvestment.DateForMonth.slice(8);
   }
 
   GetBackToFunds() {
@@ -206,6 +207,10 @@ export class MutualFundCartComponent implements OnInit {
     console.log('offer', offer);
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(["/mutual-select-goal"])
+  }
+
+  democart(cartItems:any){
+    console.log('cartItems',cartItems)
   }
 
 }

@@ -46,4 +46,22 @@ export class ValidateService {
     return regularExpression.test(String(aadharNumber).toLowerCase());
   }
 
+  getCurrentDateWithSpecificFormat(date:any): string {
+    let dateString;
+
+    if(date == 1 || date == 21 || date == 31){
+      dateString =  "st";
+    }
+    else if(date == 2 || date == 22){
+      dateString = "nd";
+    }
+    else if(date == 3 || date == 23){
+      dateString = "rd";
+    }
+    else{
+      dateString = "th";
+    }
+    return dateString;
+  }
+
 }

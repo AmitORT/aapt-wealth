@@ -54,7 +54,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.GetBlogList();
 
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
       // console.log(params);
@@ -71,10 +70,11 @@ export class HomeComponent implements OnInit {
     }
 
     if (!this.validation.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
-      // debugger;
+      debugger;
       this.QueryToken = decodeURIComponent(this.QueryToken);
       localStorage.setItem("CustToken", this.QueryToken);
       this.api.get("auth/customer/user", true).subscribe(async response => {
+        console.log('ApplicantData',response)
         localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
       })
     }
@@ -92,6 +92,8 @@ export class HomeComponent implements OnInit {
     this.getwealthBanner();
     this.TestimonialWealth();
     this.ProductsWealth();
+    this.GetBlogList();
+
   }
   getwealthBanner() {
     this.api.get("banner?vertical=3").subscribe((resp) => {
