@@ -314,20 +314,21 @@
     <div class="col-md-9">
       <div class="row page-result align-items-center">
         <div class="col-8">
-          <div  class=" ms-0 me-0 hidden-xs">
+          <div class=" ms-0 me-0 hidden-xs">
             <p>Showing {{ProductList?.length}} results</p>
-             <!-- of {{ProductList?.length}} -->
+            <!-- of {{ProductList?.length}} -->
           </div>
         </div>
         <div class="col-4">
-          <div  class="position-relative search-box1 ms-0 me-0 hidden-xs">
+          <div class="position-relative search-box1 ms-0 me-0 hidden-xs">
             <i aria-hidden="true" class="fa fa-search cursor-pointer" (click)="getOffersProductList()"></i>
-           <input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchText" (keyup.enter)="getOffersProductList()">
+            <input type="text" class="form-control" placeholder="Search here" [(ngModel)]="searchText"
+              (keyup.enter)="getOffersProductList()">
           </div>
         </div>
 
       </div>
-      
+
       <div class="product-scroll">
 
         <div *ngIf="ProductList.length < 1 && !OfferListingLoader" class="col-lg-9 col-md-8 text-center">
@@ -364,7 +365,8 @@
                                 class="green-dot"></span>{{offer.instrumentCategoryName}}
                               <!-- High Risk  -->
                               <span class="green-dot"></span>
-                              {{offer.assetName}}</p>
+                              {{offer.assetName}}
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -381,7 +383,7 @@
                             </div>
 
                           </span>
-                          <span data-bs-toggle="modal" data-bs-target="#share-modal">
+                          <span (click)="getoffer(offer)">
                             <img src="assets/img/share_icon.svg">
                           </span>
                         </div>
@@ -507,18 +509,26 @@
       </div>
       <div class="modal-body">
         <ul class="share-link">
+          <!-- whatspp -->
           <li>
-            <a href="javascript:void(0)"><img src="assets/img/facebook-1.svg"></a>
+            <a href="https://wa.me/send?text=check out this link:{{ShareUrl}}" title="Share On Whatsapp"><img src="assets/img/s-facebook.svg"></a>
           </li>
+          <!-- whatspp -->
+          <!-- Message -->
           <li>
-            <a href="javascript:void(0)"><img src="assets/img/instagram-1.svg"></a>
+            <a href="javascript:void(0)" title="Share On Message"><img src="assets/img/s-instagram.svg"></a>
           </li>
+          <!-- Message -->
+          <!-- Mail -->
           <li>
-            <a href="javascript:void(0)"><img src="assets/img/linkedin-1.svg"></a>
+            <a href="mailto:?Subject=Hello&body=links: {{ShareUrl}}" title="Share On Mail"><img src="assets/img/s-linkedin.svg"></a>
           </li>
-          <li>
-            <a href="javascript:void(0)"><img src="assets/img/twitter-1.svg"></a>
+          <!-- Mail -->
+          <!-- Copy Link -->
+          <li (click)="ShareFund()">
+            <a href="javascript:void(0)" title="Copy Link"><img src="assets/img/s-twitter.svg"></a>
           </li>
+          <!-- Copy Link -->
         </ul>
         <div class="cancel-btn">
           <a href="javascript:void(0)" data-bs-dismiss="modal">Cancel</a>

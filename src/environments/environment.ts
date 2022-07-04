@@ -9,7 +9,7 @@ export const environment = {
   // --LOCAL--
 
   // ng serve --port 4200
-  CommonUrl: "http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}",
+  CommonUrl: "http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}&TXN={TXN}",
 
   // ng serve --port 54775
   CreditUrl: "http://localhost:54775?TOKEN={TOKEN}&PATH={PATH}",
@@ -19,9 +19,12 @@ export const environment = {
 
   // ng serve --port 57617
   WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
+  ShareUrl: "http://localhost:57617/assisted-share-wealth?FID={FID}",
 
   // ng serve --port 50533
   AgentUrl: "http://localhost:50533?ATOKEN={ATOKEN}&PATH={PATH}",
+
+
 
   // --LOCAL--
 
@@ -33,7 +36,7 @@ export const environment = {
   //WealthUrl:"https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}",
 
   // --UAT FINIZON--
-  
+
 
   // --UAT ONEROOFTECH--
 

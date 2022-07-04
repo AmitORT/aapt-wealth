@@ -1,8 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <g id="linkedin" transform="translate(0 0.001)">
-    <circle id="Ellipse_97" data-name="Ellipse 97" cx="16" cy="16" r="16" transform="translate(0 -0.001)" fill="#465a65"/>
-    <g id="Group_3372" data-name="Group 3372" transform="translate(7.72 6.836)">
-      <path id="Path_594" data-name="Path 594" d="M44.908,34.42v6.6H41.083V34.862c0-1.545-.552-2.6-1.937-2.6a2.092,2.092,0,0,0-1.962,1.4,2.618,2.618,0,0,0-.127.932v6.424H33.233s.051-10.423,0-11.5h3.825v1.63c-.008.013-.019.025-.025.038h.025v-.038a3.8,3.8,0,0,1,3.447-1.9c2.516,0,4.4,1.644,4.4,5.176ZM29.232,23.969a1.993,1.993,0,1,0-.05,3.975h.025a1.994,1.994,0,1,0,.025-3.975ZM27.3,41.016h3.823v-11.5H27.3Z" transform="translate(-27.068 -23.969)" fill="#f1f2f2"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+  <g id="Group_19091" data-name="Group 19091" transform="translate(20711 18079)">
+    <circle id="Ellipse_1005" data-name="Ellipse 1005" cx="24" cy="24" r="24" transform="translate(-20711 -18079)" fill="#465a65"/>
+    <g id="email" transform="translate(-20699 -18067)">
+      <path id="Path_35096" data-name="Path 35096" d="M21.75,20H2.25A2.252,2.252,0,0,1,0,17.75V6.25A2.252,2.252,0,0,1,2.25,4h19.5A2.252,2.252,0,0,1,24,6.25v11.5A2.252,2.252,0,0,1,21.75,20ZM2.25,5.5a.75.75,0,0,0-.75.75v11.5a.75.75,0,0,0,.75.75h19.5a.75.75,0,0,0,.75-.75V6.25a.75.75,0,0,0-.75-.75Z" fill="#fff" stroke="#fff" stroke-width="1"/>
+      <path id="Path_35097" data-name="Path 35097" d="M12,14a2.768,2.768,0,0,1-1.273-.309L.4,8.294A.749.749,0,1,1,1.1,6.966l10.32,5.39a1.294,1.294,0,0,0,1.169,0L22.9,6.966A.75.75,0,0,1,23.6,8.3l-10.32,5.39A2.791,2.791,0,0,1,12,14Z" fill="#fff" stroke="#fff" stroke-width="1"/>
     </g>
   </g>
 </svg>

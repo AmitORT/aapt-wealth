@@ -67,6 +67,7 @@ import { PortfolioManagementSuccessfullySubmittedComponent } from './views/pages
 import { FdCompareProductsComponent } from './views/pages/fd-compare-products/fd-compare-products.component';
 import { BondsCompareProductsComponent } from './views/pages/bonds-compare-products/bonds-compare-products.component';
 import { SignInComponent } from './views/pages/sign-in/sign-in.component';
+import { AssistedShareComponent } from './views/pages/assisted-share/assisted-share.component';
 
 
 
@@ -130,6 +131,7 @@ import { SignInComponent } from './views/pages/sign-in/sign-in.component';
     FdCompareProductsComponent,
     BondsCompareProductsComponent,
     SignInComponent,
+    AssistedShareComponent,
   
 
 

@@ -7,6 +7,7 @@ import { ValidateService } from 'src/app/services/validate/validate.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -144,7 +145,10 @@ export class WealthProductListingComponent implements OnInit {
   GoalList: any;
   InvestWithoutGoalResp: any;
   ProductOverviewData: any;
-  searchText:any='';
+  searchText: any = '';
+  ShareUrl: any;
+  ShareFundData: any;
+
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
@@ -265,7 +269,7 @@ export class WealthProductListingComponent implements OnInit {
     postData.append("searchFilter", '{"productId":5}');
     postData.append("limit", '1000');
     postData.append("offset", '0');
-    postData.append("search",this.searchText)
+    postData.append("search", this.searchText)
     if (this.riskprofileId == 1) {
       postData.append("risk_profile_mapping", this.RiskProfilesubmitResponse.id);
     }
@@ -323,7 +327,8 @@ export class WealthProductListingComponent implements OnInit {
     });
   }
 
-  compareCheckboxclick(index: number) {debugger
+  compareCheckboxclick(index: number) {
+    debugger
     this.ProductList[index].checkforcompare = !this.ProductList[index].checkforcompare;
     if (this.ProductList.filter((a: any) => a.checkforcompare == 1).length > 4) {
       this.ProductList[index].checkforcompare = 0;
@@ -464,6 +469,20 @@ export class WealthProductListingComponent implements OnInit {
         this.toastr.error(resp.response.Msg)
       }
     });
+  }
+
+  getoffer(offer: any){    
+    this.ShareFundData=offer;
+    $("#share-modal").modal('show');
+    this.ShareUrl = environment.ShareUrl.replace("{FID}", encodeURIComponent(this.ShareFundData.id));
+
+    // data-bs-toggle="modal" data-bs-target="#share-modal"
+  }
+
+  ShareFund() {
+    navigator.clipboard.writeText(this.ShareUrl).then().catch(e => console.error(e));
+    this.toastr.success("Link copied");
+    $("#share-modal").modal('hide');
   }
 
 
