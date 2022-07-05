@@ -52,7 +52,7 @@
                 [ngClass]="cartItems.ModeOfInvestment?.Payment_mode != '2'?'active':''">
                 <div class="row amount">
                   <div class="col-lg-7 col-10 position-relative">
-                    <input type="text" class="custom-formfield form-control" (keypress)="validate.numberOnly($event)"
+                    <input type="text" class="custom-formfield form-control " (keypress)="validate.numberOnly($event)"
                       [(ngModel)]="cartItems.ModeOfInvestment.monthly_amt =='' ? 0 : cartItems.ModeOfInvestment.monthly_amt" />
                     <span class="rupees">₹</span>
                     <!-- <p>₹ {{cartItems.ModeOfInvestment?.monthly_amt}}<span>15 Units</span></p> -->
