@@ -38,7 +38,7 @@ export class MutualFundCartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.scrolltotop();
+    this.scrolltotop(); 
 
     if (localStorage.getItem("CreatedGoal") != null) {
       this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
