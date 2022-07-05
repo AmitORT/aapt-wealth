@@ -46,7 +46,7 @@ export class MutualFundCartComponent implements OnInit {
     }
     else{
       if(localStorage.getItem("GetSelectedGoals") != null){
-        this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("GetSelectedGoals"));    
+        this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("GetSelectedGoals"));
         console.log("GetSelectedGoals", this.CreatedGoal);
       }
     }
