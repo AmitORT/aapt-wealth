@@ -169,7 +169,7 @@ export class MutualFundCartComponent implements OnInit {
     // console.log("uniquiID", uniqueId)
     var postData = new FormData();
     postData.append("uniqueId", uniqueId);
-    this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
+    this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {  
       this.ConfirmedCart = resp.data;
       // console.log('confirm cart',resp.data)
       if (resp.response.n == 1) {
