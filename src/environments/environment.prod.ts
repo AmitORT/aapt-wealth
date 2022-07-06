@@ -8,7 +8,7 @@ export const environment = {
   CreditUrl: "https://uat.finizon.com/credit/#/?TOKEN={TOKEN}&PATH={PATH}",
   InsuranceUrl: "http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
   WealthUrl: "https://uat.finizon.com/wealth/#/?TOKEN={TOKEN}&PATH={PATH}",
-  ShareUrl: "https://uat.finizon.com/wealth/assisted-share-wealth?FID={FID}",
+  ShareUrl: "https://uat.finizon.com/wealth/#/assisted-share-wealth?FID={FID}",
   AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
 
 
