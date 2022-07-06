@@ -118,56 +118,11 @@ const routes: Routes = [
   { path: 'bonds-compare-products', component: BondsCompareProductsComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'assisted-share-wealth', component: AssistedShareComponent },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', relativeLinkResolution: 'legacy', onSameUrlNavigation: 'reload' }),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'top', relativeLinkResolution: 'legacy', onSameUrlNavigation: 'reload', useHash: true }),
     BrowserAnimationsModule
   ],
   exports: [RouterModule]
