@@ -19,7 +19,7 @@ export class CongratulationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.RiskProfilesubmitResponse=this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
-    console.log("RiskProfilesubmitResponse",this.RiskProfilesubmitResponse)
+    // console.log("RiskProfilesubmitResponse",this.RiskProfilesubmitResponse)
 
   }
 

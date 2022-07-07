@@ -62,16 +62,16 @@ export class SignInComponent implements OnInit {
     this.DOB();
 
     this.nextPath = this.crypto.Decrypt(localStorage.getItem("nextPath"))
-    console.log("nextPath", this.nextPath);
+    // console.log("nextPath", this.nextPath);
 
     if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
+      // console.log('ngoninit ProductOverview', this.ProductOverview);
     }
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-      console.log("SelectedMutualFund", this.SelectedMutualFund);
+      // console.log("SelectedMutualFund", this.SelectedMutualFund);
     }
 
     $(".body-color").scroll(function () {
@@ -143,19 +143,19 @@ export class SignInComponent implements OnInit {
 
   verifyOtp() {
     var otp = this.otp1.toString() + this.otp2.toString() + this.otp3.toString() + this.otp4.toString() + this.otp5.toString() + this.otp6.toString();
-    console.log("OTP", otp);
+    // console.log("OTP", otp);
     if (otp.length == 6) {
       let data = new FormData();
       data.append("email", this.emailid);
       data.append("otp", otp);
       this.api.post("auth/customer/ValidateOTP", data).subscribe((resp) => {
-        console.log("verifyOtp", resp);
+        // console.log("verifyOtp", resp);
         if (resp.response.n == 1) {
           $("#otp-screen").modal("hide");
           if (!this.validate.isNullEmptyUndefined(resp.data.token.customer)) {
             var encryptedTokenCustomer = { "token": resp.data.token.customer };
             localStorage.setItem("CustToken", this.crypto.Encrypt(encryptedTokenCustomer));
-            console.log("CustToken", encryptedTokenCustomer)
+            // console.log("CustToken", encryptedTokenCustomer)
             this.GetApplicantData();
 
             if (this.nextPath != '/mutual-fund-cart') {
@@ -199,7 +199,7 @@ export class SignInComponent implements OnInit {
       // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
       // postData.append("guardian_details", JSON.stringify(data));
       this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
-        console.log('inverstor create', response)
+        // console.log('inverstor create', response)
         if (response.response.n == 1) {
           this.InvestWithoutGoal();
         }
@@ -221,7 +221,7 @@ export class SignInComponent implements OnInit {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
-      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
+      // console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
       this.route.navigate(["/mutual-fund-cart"])
 
       if (this.ProductOverview.length > 0) {
@@ -239,7 +239,7 @@ export class SignInComponent implements OnInit {
       else {
         this.ProductOverview.push(this.SelectedMutualFund);
       }
-      console.log('ProductOverview', this.ProductOverview);
+      // console.log('ProductOverview', this.ProductOverview);
   
       let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
       localStorage.setItem("ProductOverview", encryptedProduct);
@@ -294,9 +294,9 @@ export class SignInComponent implements OnInit {
       data.append("aadharCard", this.aadhar_card_no);
 
       this.api.post("auth/customer/check-and-add", data).subscribe((resp) => {
-        console.log("check-and-add", resp);
+        // console.log("check-and-add", resp);
         if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.otp)) {
-          console.log("check-and-add OTP", resp.data.otp);
+          // console.log("check-and-add OTP", resp.data.otp);
           this.ResetOTP();
           $("#otp-screen").modal("show");
           this.resendbuttonText = "2:30"
@@ -317,7 +317,7 @@ export class SignInComponent implements OnInit {
     data.append("email", this.emailid);
     this.api.post('auth/customer/send-otp', data, false).subscribe(response => {
       if (response.response.n == 1) {
-        console.log(response.data.otp);
+        // console.log(response.data.otp);
         // this.toastr.success(response.data.otp);
         this.resendbuttonText = "2:30"
         this.countdown();
@@ -364,8 +364,8 @@ export class SignInComponent implements OnInit {
 
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
-      debugger;
-      console.log(response.data);
+      // debugger;
+      // console.log(response.data);
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
       this.ApplicantData = response.data;
       if (this.nextPath == '/mutual-fund-cart') {

@@ -57,16 +57,16 @@ export class MutualSelectGoalComponent implements OnInit {
     this.scrolltotop();
     if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
+      // console.log('ngoninit ProductOverview', this.ProductOverview);
     }
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-      console.log("SelectedMutualFund", this.SelectedMutualFund);
+      // console.log("SelectedMutualFund", this.SelectedMutualFund);
     }
 
     if(localStorage.getItem("ApplicantData") != null){
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"))
-      console.log("ApplicantData", this.ApplicantData);
+      // console.log("ApplicantData", this.ApplicantData);
     }
     this.GetMyGoals();
   }
@@ -81,7 +81,7 @@ export class MutualSelectGoalComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.MyGoals = resp.data;
-        console.log("my goals", this.MyGoals);
+        // console.log("my goals", this.MyGoals);
         // let encrypted = this.crypto.Encrypt(resp.data);
         // localStorage.setItem("GoalsList", encrypted);
 
@@ -96,7 +96,7 @@ export class MutualSelectGoalComponent implements OnInit {
     this.MyGoals[index].selectGoal = !this.MyGoals[index].selectGoal;
     this.SelectedGoal = this.MyGoals.filter((a: any) => a.selectGoal == 1);
     // localStorage.setItem("GetSelectedGoals", this.crypto.Encrypt(this.SelectedGoal));
-    console.log("SelectedGoal", this.SelectedGoal[0]);
+    // console.log("SelectedGoal", this.SelectedGoal[0]);
 
     // for (var i = 0; i < this.ProductOverview.length; i++) {
     //   if (this.ProductOverview[i].id == this.SelectedMutualFund.id) {
@@ -110,7 +110,7 @@ export class MutualSelectGoalComponent implements OnInit {
 
 
     this.SelectedMutualFund.CreatedGoal = this.SelectedGoal[0];
-    console.log('SelectedMutualFund', this.SelectedMutualFund);
+    // console.log('SelectedMutualFund', this.SelectedMutualFund);
 
 
     if (this.ProductOverview.length > 0) {
@@ -129,7 +129,7 @@ export class MutualSelectGoalComponent implements OnInit {
     else {
       this.ProductOverview.push(this.SelectedMutualFund);
     }
-    console.log('ProductOverview', this.ProductOverview);
+    // console.log('ProductOverview', this.ProductOverview);
 
     let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
     localStorage.setItem("ProductOverview", encryptedProduct);
@@ -153,7 +153,7 @@ export class MutualSelectGoalComponent implements OnInit {
       // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
       // postData.append("guardian_details", JSON.stringify(data));
       this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
-        console.log('inverstor create', response)
+        // console.log('inverstor create', response)
         if (response.response.n == 1) {
           this.InvestWithoutGoal();
         }
@@ -175,7 +175,7 @@ export class MutualSelectGoalComponent implements OnInit {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
-      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp);
+      // console.log("InvestWithoutGoal", this.InvestWithoutGoalResp);
 
       if (this.ProductOverview.length > 0) {
         var flag = true;
@@ -192,7 +192,7 @@ export class MutualSelectGoalComponent implements OnInit {
       else {
         this.ProductOverview.push(this.SelectedMutualFund);
       }
-      console.log('ProductOverview', this.ProductOverview);
+      // console.log('ProductOverview', this.ProductOverview);
   
       let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
       localStorage.setItem("ProductOverview", encryptedProduct);

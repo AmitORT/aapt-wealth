@@ -202,13 +202,13 @@ export class WealthProductDetailsComponent implements OnInit {
 
     if (localStorage.getItem("MutualProductCompareFund") != null) {
       this.MutualProductCompareFund = this.crypto.Decrypt(localStorage.getItem("MutualProductCompareFund"));
-      console.log("MutualProductCompareFund", this.MutualProductCompareFund);
+      // console.log("MutualProductCompareFund", this.MutualProductCompareFund);
     }
 
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-      console.log("SelectedMutualFund", this.SelectedMutualFund);
+      // console.log("SelectedMutualFund", this.SelectedMutualFund);
     }
 
     // if (localStorage.getItem("ProductOverview") != null) {
@@ -264,7 +264,7 @@ export class WealthProductDetailsComponent implements OnInit {
     this.Productreturn = this.ProductOverviewData.productReturn;
     this.ProductSectorDetails = this.ProductOverviewData.productSectorDetails;
     this.SimilarProducts = this.ProductOverviewData.similarProducts;
-    console.log("similar products", this.SimilarProducts)
+    // console.log("similar products", this.SimilarProducts)
     this.holdings = this.ProductOverviewData.fetchHoldings.instrumentHoldings;
   }
 
@@ -371,7 +371,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
       this.SelectedMutualFund.ModeOfInvestment = this.ModeOfInvestment;
 
-      console.log('SelectedMutualFund', this.SelectedMutualFund);
+      // console.log('SelectedMutualFund', this.SelectedMutualFund);
 
 
       let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
@@ -403,7 +403,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
     this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
 
-      console.log("GetProductDetail", resp)
+      // console.log("GetProductDetail", resp)
       if (resp.response.n == 1) {
         // debugger
         this.ProductManager = resp.data.productManager;
@@ -416,7 +416,7 @@ export class WealthProductDetailsComponent implements OnInit {
         this.Productreturn = resp.data.productReturn;
         this.ProductSectorDetails = resp.data.productSectorDetails;
         this.SimilarProducts = resp.data.similarProducts;
-        console.log("similar products", this.SimilarProducts)
+        // console.log("similar products", this.SimilarProducts)
         this.holdings = resp.data.fetchHoldings.instrumentHoldings;
 
       } else {
@@ -441,14 +441,14 @@ export class WealthProductDetailsComponent implements OnInit {
   }
 
   InvestINFund(id: any) {
-    console.log(id)
+    // console.log(id)
     var offer;
     for (let i = 0; i < this.MutualProductCompareFund.length; i++) {
       if (id == this.MutualProductCompareFund[i].id) {
         offer = this.MutualProductCompareFund[i];
       }
     }
-    console.log(offer)
+    // console.log(offer)
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
   }

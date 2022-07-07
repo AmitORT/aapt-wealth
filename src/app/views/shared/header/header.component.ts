@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     $("#site-backdrop").click(function () {
       self.handleOpenCloseNav();
     });
-    console.log("Common Uerl", this.CommonUrl);
+    // console.log("Common Uerl", this.CommonUrl);
 
   }
 
@@ -147,7 +147,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   }
 
   GotoCredit() {
-    debugger;
+    // debugger;
     this.Token = localStorage.getItem("CustToken");
     this.CreditUrl = environment.CreditUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
     window.location.href = this.CreditUrl;
@@ -196,7 +196,7 @@ export class HeaderComponent implements OnInit, DoCheck {
           $("#headerotp-screen").modal("show");
           this.resendbuttonText = "2:30"
           this.countdown();
-          console.log('response', response)
+          // console.log('response', response)
           this.toastr.success(response.response.Msg);
         }
         else {
@@ -208,7 +208,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       });
     }
     catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   }
 
@@ -233,14 +233,14 @@ export class HeaderComponent implements OnInit, DoCheck {
       registerData.gender = 1;
 
       this.api.post(this.UrlRegister, registerData, false).subscribe(async (response: any) => {
-        console.log(response);
+        // console.log(response);
         if (response.response.n == 1) {
           this.isOTPSent = true;
           $("#headerotp-screen").modal("show");
           this.resendbuttonText = "2:30"
           this.countdown();
           this.toastr.success(response.response.Msg);
-          console.log(response);
+          // console.log(response);
         }
         else {
           this.toastr.error(response.response.Msg);
@@ -250,7 +250,7 @@ export class HeaderComponent implements OnInit, DoCheck {
         }
       });
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   }
 
@@ -284,10 +284,10 @@ export class HeaderComponent implements OnInit, DoCheck {
         let sOTP = otp;
 
         this.api.post('auth/customer/ValidateOTP', data).subscribe(async response => {
-          debugger;
-          console.log('login', response);
+          // debugger;
+          // console.log('login', response);
           if (response.response.n == 1) {
-            console.log('VerifyOTP', response);
+            // console.log('VerifyOTP', response);
             this.toastr.success("OTP Validation Success");
             $("#headerotp-screen").modal("hide");
             this.isLoggedIn = true;
@@ -314,7 +314,7 @@ export class HeaderComponent implements OnInit, DoCheck {
             }
             else if (this.validation.isNullEmptyUndefined(response.data.token.agent)) {
               setTimeout(() => {
-                console.log('route url', this.route.url);
+                // console.log('route url', this.route.url);
                 if (this.route.url == '/') {
                   this.GoToCommon('overview');
                 }// have to uncomment.
@@ -435,7 +435,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     data.append("email", this.FormEmail);
     this.api.post(this.UrlSendOTP, data, false).subscribe(response => {
       if (response.response.n == 1) {
-        console.log(response.data.otp);
+        // console.log(response.data.otp);
         this.toastr.success(response.data.otp);
         this.resendbuttonText = "2:30"
         this.countdown();
@@ -446,8 +446,8 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   GetApplicantData() {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
-      debugger;
-      console.log(response.data);
+      // debugger;
+      // console.log(response.data);
       localStorage.setItem("ApplicantData", this.cryptoManager.Encrypt(response.data));
     })
   }

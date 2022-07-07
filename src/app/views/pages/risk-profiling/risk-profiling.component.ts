@@ -108,7 +108,7 @@ export class RiskProfilingComponent implements OnInit {
   RiskProfilesubmitResponse:any
   getRiskProfileStatus(){
     this.api.get('riskProfiling/submit-risk-profile-questions',true).subscribe(response=>{
-      console.log('risk profile',response);
+      // console.log('risk profile',response);
       if(response.response.n==1){
         this.RiskProfilesubmitResponse=response.data;
         let encrypted=this.crypto.Encrypt(response.data);

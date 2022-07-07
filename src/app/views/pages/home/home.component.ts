@@ -70,11 +70,11 @@ export class HomeComponent implements OnInit {
     }
 
     if (!this.validation.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
-      debugger;
+      // debugger;
       this.QueryToken = decodeURIComponent(this.QueryToken);
       localStorage.setItem("CustToken", this.QueryToken);
       this.api.get("auth/customer/user", true).subscribe(async response => {
-        console.log('ApplicantData',response)
+        // console.log('ApplicantData',response)
         localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
       })
     }

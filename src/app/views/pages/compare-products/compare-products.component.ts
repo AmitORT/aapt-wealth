@@ -75,7 +75,7 @@ export class CompareProductsComponent implements OnInit {
       element.Rate = element.returnFor1Year?.toFixed(2);
     });
     this.OffersForCompare = this.MutualProductCompareFund.filter((a: any) => a.checkforcompare == 1);
-    console.log("OffersForCompare", this.OffersForCompare);
+    // console.log("OffersForCompare", this.OffersForCompare);
 
     this.getGraphDetailsToCompare();
 
@@ -103,7 +103,7 @@ export class CompareProductsComponent implements OnInit {
     postData.append("compareInstruments", JSON.stringify(this.inputListforGraph));
     postData.append("filterDate", "all");
     this.api.post("wealthfy/compare-insturments", postData).subscribe(response => {
-      console.log('graph', response);
+      // console.log('graph', response);
       this.GraphList = response.data;
       if (this.GraphList.length > 0) {
         for (let i = 0; i < this.GraphList.length; i++) {
@@ -125,8 +125,8 @@ export class CompareProductsComponent implements OnInit {
       this.GraphXSeries = [...new Set(this.GraphXSeries)];
       this.xaxis.categories = this.GraphXSeries;
 
-      console.log('GraphYSeries', this.GraphYSeries)
-      console.log('GraphXSeries', this.GraphXSeries)
+      // console.log('GraphYSeries', this.GraphYSeries)
+      // console.log('GraphXSeries', this.GraphXSeries)
       // console.log('this.xaxis.categories', this.xaxis.categories)
     })
   }
@@ -141,11 +141,11 @@ export class CompareProductsComponent implements OnInit {
       this.MutualProductCompareFund[index].checkforcompare = 0;
       this.toastr.error("You can add max 4 offer for compare");
     } else {
-      debugger
+      // debugger
       this.OffersForCompare = this.MutualProductCompareFund.filter((a: any) => a.checkforcompare == 1);
       localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.MutualProductCompareFund));
       this.getGraphDetailsToCompare();
-      console.log("compareoffer", this.OffersForCompare);
+      // console.log("compareoffer", this.OffersForCompare);
     }
   }
 
@@ -166,7 +166,7 @@ export class CompareProductsComponent implements OnInit {
   }
 
   InvestINFund(offer: any) {
-    console.log(offer);
+    // console.log(offer);
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
   }

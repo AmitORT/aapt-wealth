@@ -53,16 +53,16 @@ export class MutualCreateGoalComponent implements OnInit {
 
     if (localStorage.getItem("ApplicantData") != '') {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
-      console.log('app data', this.ApplicantData)
+      // console.log('app data', this.ApplicantData)
     }
     if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
+      // console.log('ngoninit ProductOverview', this.ProductOverview);
     }
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-      console.log("SelectedMutualFund", this.SelectedMutualFund);
+      // console.log("SelectedMutualFund", this.SelectedMutualFund);
     }
   }
 
@@ -110,12 +110,12 @@ export class MutualCreateGoalComponent implements OnInit {
     Image = $event.target.files[0];
     reader.onload = function () {
       var ThumbnailBase64 = reader.result;
-      console.log("thumbnail ", ThumbnailBase64);
+      // console.log("thumbnail ", ThumbnailBase64);
       $("#profileimg").attr("src", ThumbnailBase64);
       // Image=ThumbnailBase64;
     }
-    console.log($event.target.files[0]); // outputs the first file
-    console.log("Image", Image)
+    // console.log($event.target.files[0]); // outputs the first file
+    // console.log("Image", Image)
   }
 
   options12: Options = {
@@ -187,10 +187,10 @@ export class MutualCreateGoalComponent implements OnInit {
       postData.append("mobileNumber", this.ApplicantData.mobileNumber);
       postData.append("name", this.CreateGoal.Savings);
       this.api.post('sipCalculator/goal-tools', postData, true).subscribe(response => {
-        console.log('tool', response);
+        // console.log('tool', response);
         if (response.response.n == 1) {
           this.CreateGoal.AmountRS = response.data.monthly;
-          console.log(this.CreateGoal.AmountRS);
+          // console.log(this.CreateGoal.AmountRS);
         }
       })
 
@@ -232,7 +232,7 @@ export class MutualCreateGoalComponent implements OnInit {
       postData.append("rateReturn", this.CreateGoal.Return_Rate);
       postData.append("name", this.CreateGoal.Savings);
       this.api.post("goalDetails/create-goal", postData, true).subscribe(response => {
-        console.log('create goal', response)
+        // console.log('create goal', response)
         if (response.response.n == 1) {
           this.CreateGoal.name = this.CreateGoal.Savings;
           this.CreateGoal.targetedDate = this.CreateGoal.targetDate;
@@ -299,7 +299,7 @@ export class MutualCreateGoalComponent implements OnInit {
       this.ProceedCart = resp.data;
       let encrypted = this.crypto.Encrypt(this.ProceedCart);
       localStorage.setItem("ProceedCart", encrypted);
-      console.log("ProceedToCart", resp.data)
+      // console.log("ProceedToCart", resp.data)
 
       if (this.ProductOverview.length > 0) {
         var flag = true;
@@ -316,7 +316,7 @@ export class MutualCreateGoalComponent implements OnInit {
       else {
         this.ProductOverview.push(this.SelectedMutualFund);
       }
-      console.log('ProductOverview', this.ProductOverview);
+      // console.log('ProductOverview', this.ProductOverview);
   
       let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
       localStorage.setItem("ProductOverview", encryptedProduct);

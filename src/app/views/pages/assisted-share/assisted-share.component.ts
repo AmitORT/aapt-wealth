@@ -21,7 +21,7 @@ export class AssistedShareComponent implements OnInit {
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
       this.ProductId = params.FID;
     });
-    console.log(this.ProductId);
+    // console.log(this.ProductId);
     if (!this.validate.isNullEmptyUndefined(this.ProductId)) {
       this.GetProductDetail();
     }
@@ -37,10 +37,10 @@ export class AssistedShareComponent implements OnInit {
     postData.append("orderBy", JSON.stringify(orderby));
     postData.append("whereClause", "{}");
     this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
-      console.log("GetProductDetail", resp)
+      // console.log("GetProductDetail", resp)
       if (resp.response.n == 1) {
         this.SelectedMutualFund = resp.data.productOverview[0];
-        console.log(this.SelectedMutualFund);
+        // console.log(this.SelectedMutualFund);
         let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
         localStorage.setItem("SelectedMutualFund", encryptedProduct);
         this.route.navigate(['/wealth-product-details']);

@@ -155,7 +155,7 @@ export class WealthProductListingComponent implements OnInit {
     this.scrolltotop();
     if (localStorage.getItem("RiskProfilesubmitResponse") != null) {
       this.RiskProfilesubmitResponse = this.crypto.Decrypt(localStorage.getItem("RiskProfilesubmitResponse"));
-      console.log("RiskProfilesubmitResponse", this.RiskProfilesubmitResponse);
+      // console.log("RiskProfilesubmitResponse", this.RiskProfilesubmitResponse);
       this.riskprofileId = 1;
     }
     else {
@@ -164,7 +164,7 @@ export class WealthProductListingComponent implements OnInit {
 
     if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
+      // console.log('ngoninit ProductOverview', this.ProductOverview);
     }
 
     this.GetRiskProfileFilterList();
@@ -249,7 +249,7 @@ export class WealthProductListingComponent implements OnInit {
 
   getList() {
     this.RiskFiltercheckedList = this.RiskProfileFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
-    console.log('check list', this.RiskFiltercheckedList)
+    // console.log('check list', this.RiskFiltercheckedList)
   }
 
   getOffersProductList() {
@@ -328,7 +328,7 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   compareCheckboxclick(index: number) {
-    debugger
+    // debugger
     this.ProductList[index].checkforcompare = !this.ProductList[index].checkforcompare;
     if (this.ProductList.filter((a: any) => a.checkforcompare == 1).length > 4) {
       this.ProductList[index].checkforcompare = 0;
@@ -336,8 +336,8 @@ export class WealthProductListingComponent implements OnInit {
     } else {
       this.OffersForCompare = this.ProductList.filter((a: any) => a.checkforcompare == 1);
       localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.ProductList));
-      console.log("ProductList", this.ProductList);
-      console.log("compareoffer", this.OffersForCompare);
+      // console.log("ProductList", this.ProductList);
+      // console.log("compareoffer", this.OffersForCompare);
     }
   }
 
@@ -350,13 +350,13 @@ export class WealthProductListingComponent implements OnInit {
     this.CartItems = this.ProductList.filter((a: any) => a.checkCart == 1);
     localStorage.setItem("CartItems", this.crypto.Encrypt(this.CartItems));
     this.InvestWithoutGoal();
-    console.log("CartItems", this.CartItems);
+    // console.log("CartItems", this.CartItems);
 
   }
 
 
   RemoveFromCompare(model: any, i: any) {
-    console.log("model", model)
+    // console.log("model", model)
     this.OffersForCompare.splice(i, 1);
     this.ProductList.forEach((element: any) => {
       if (element.id == model.id) {
@@ -377,7 +377,7 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   AppliedFund(offer: any) {
-    console.log('offer', offer)
+    // console.log('offer', offer)
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
   }
@@ -396,7 +396,7 @@ export class WealthProductListingComponent implements OnInit {
       this.InvestWithoutGoalResp = resp.data;
       let encrypted = this.crypto.Encrypt(this.InvestWithoutGoalResp)
       localStorage.setItem("InvestWithoutGoal", encrypted)
-      console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
+      // console.log("InvestWithoutGoal", this.InvestWithoutGoalResp)
       // this.route.navigate(["/mutual-fund-cart"])
     })
   }
@@ -430,8 +430,8 @@ export class WealthProductListingComponent implements OnInit {
         // debugger
         // this.ProductOverviewData = resp.data;
         localStorage.setItem("ProductOverviewData", JSON.stringify(resp.data));
-        console.log(resp.data);
-        debugger
+        // console.log(resp.data);
+        // debugger
 
         if (this.ProductOverview.length > 0) {
           var flag = true;

@@ -24,13 +24,13 @@ export class PortfolioManagementCompareProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.MutualProductCompareFund=this.crypto.Decrypt(localStorage.getItem("MutualProductCompareFund"));
-    console.log("MutualProductCompareFund",this.MutualProductCompareFund)
+    // console.log("MutualProductCompareFund",this.MutualProductCompareFund)
     this.MutualProductCompareFund.forEach((element: any) => {
       element.selectedYear=1;
       element.Rate=element.returnFor1Year.toFixed(2);
     });
     this.OffersForCompare=this.MutualProductCompareFund.filter((a:any)=>a.checkforcompare==1);
-    console.log("OffersForCompare",this.OffersForCompare)
+    // console.log("OffersForCompare",this.OffersForCompare)
     
   }
 
@@ -47,7 +47,7 @@ export class PortfolioManagementCompareProductsComponent implements OnInit {
     }else{
        this.OffersForCompare=this.MutualProductCompareFund.filter((a:any)=>a.checkforcompare==1);
        localStorage.setItem("MutualProductCompareFund",this.crypto.Encrypt(this.MutualProductCompareFund));
-       console.log("compareoffer",this.OffersForCompare);
+      //  console.log("compareoffer",this.OffersForCompare);
      }
     }
     

@@ -23,10 +23,10 @@ export class AccountLinkedProfilesComponent implements OnInit {
     reader.readAsDataURL($event.target.files[0]);
     reader.onload = function () {
     var ThumbnailBase64 = reader.result;
-    console.log("thumbnail ",ThumbnailBase64);
+    // console.log("thumbnail ",ThumbnailBase64);
     $("#profileimg").attr("src",ThumbnailBase64);
     }
-    console.log($event.target.files[0]); // outputs the first file
+    // console.log($event.target.files[0]); // outputs the first file
     }
 
 }

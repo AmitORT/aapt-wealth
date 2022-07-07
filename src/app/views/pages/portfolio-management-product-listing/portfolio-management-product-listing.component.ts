@@ -168,7 +168,7 @@ export class PortfolioManagementProductListingComponent implements OnInit {
     postData.append("offset","0");
     
     this.api.post("wealthfy/top-rated-amc",postData).subscribe((resp)=>{
-      console.log("resp",resp)
+      // console.log("resp",resp)
       if(resp.response.n==1){      
         this.ProductOfferForBinding = resp.data;
   
@@ -188,12 +188,12 @@ export class PortfolioManagementProductListingComponent implements OnInit {
    }else{
      this.OffersForCompare=this.ProductOfferForBinding.filter((a:any)=>a.checkforcompare==1);
      localStorage.setItem("MutualProductCompareFund",this.crypto.Encrypt(this.ProductOfferForBinding));
-     console.log("compareoffer",this.OffersForCompare);
+    //  console.log("compareoffer",this.OffersForCompare);
    }
   }
   
   RemoveFromCompare(model:any,i:any){
-    console.log("model",model)
+    // console.log("model",model)
     this.OffersForCompare.splice(i,1);    
     
     this.ProductOfferForBinding.forEach((element: any) => {

@@ -160,7 +160,7 @@ export class FooterComponent implements OnInit {
       loginData.append('email', this.FormEmail);
       this.api.post('auth/customer/login', loginData, false).subscribe(async response => {
         if (response.response.n == 1) {
-          console.log('response', response);
+          // console.log('response', response);
           this.isOTPSent = true;
           $("#mob_signin").modal("hide");
           this.resendbuttonText = "2:30";
@@ -178,7 +178,7 @@ export class FooterComponent implements OnInit {
       });
     }
     catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   }
 
@@ -202,10 +202,10 @@ export class FooterComponent implements OnInit {
       registerData.gender = 1;
 
       this.api.post(this.UrlRegister, registerData, false).subscribe(async response => {
-        console.log(response);
+        // console.log(response);
         if (response.response.n == 1) {
           this.toastr.success(response.response.Msg);
-          console.log(response);
+          // console.log(response);
           this.isOTPSent = true;
           $("#mob_signup").modal("hide");
           this.resendbuttonText = "2:30";
@@ -221,7 +221,7 @@ export class FooterComponent implements OnInit {
         }
       });
     } catch (ex) {
-      console.log(ex);
+      // console.log(ex);
     }
   }
 
@@ -246,7 +246,7 @@ export class FooterComponent implements OnInit {
     data.append("email", this.FormEmail);
     this.api.post(this.UrlSendOTP, data, false).subscribe(response => {
       if (response.response.n == 1) {
-        console.log(response.data.otp);
+        // console.log(response.data.otp);
         // this.toastr.success(response.data.otp);
         this.resendbuttonText = "2:30";
         this.countdownforOTP();
@@ -348,7 +348,7 @@ export class FooterComponent implements OnInit {
           }
           else if (this.validation.isNullEmptyUndefined(response.data.token.agent)) {
             setTimeout(() => {
-              console.log('route url', this.route.url);
+              // console.log('route url', this.route.url);
               if (this.route.url == '/') {
                 this.CommontRouterUrl('/overview');
               }

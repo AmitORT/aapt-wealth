@@ -42,25 +42,25 @@ export class MutualFundCartComponent implements OnInit {
 
     if (localStorage.getItem("CreatedGoal") != null) {
       this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
-      console.log("CreatedGoal", this.CreatedGoal);
+      // console.log("CreatedGoal", this.CreatedGoal);
     }
     else{
       if(localStorage.getItem("GetSelectedGoals") != null){
         this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("GetSelectedGoals"));
-        console.log("GetSelectedGoals", this.CreatedGoal);
+        // console.log("GetSelectedGoals", this.CreatedGoal);
       }
     }
     if (localStorage.getItem("ModeOfInvestment") != null) {
       this.ModeOfInvestment = this.crypto.Decrypt(localStorage.getItem("ModeOfInvestment"));
-      console.log("ModeOfInvestment", this.ModeOfInvestment);
+      // console.log("ModeOfInvestment", this.ModeOfInvestment);
     }
     if (localStorage.getItem("CartItems") != null) {
       this.CartItems = this.crypto.Decrypt(localStorage.getItem("CartItems"));
-      console.log("Newcart", this.CartItems)
+      // console.log("Newcart", this.CartItems)
     }
     if (localStorage.getItem("ProductOverview") != null) {
       this.ProductOverview = this.crypto.Decrypt(localStorage.getItem("ProductOverview"));
-      console.log('ngoninit ProductOverview', this.ProductOverview);
+      // console.log('ngoninit ProductOverview', this.ProductOverview);
     }
     // for (let i = 0; i < this.CartItems.length; i++) {
     //   this.ProductOverview.push(this.CartItems[i]);
@@ -134,7 +134,7 @@ export class MutualFundCartComponent implements OnInit {
     this.api.get("bankDetails/get-banks", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.BankNames = resp.data;
-        console.log("BankNames", this.BankNames)
+        // console.log("BankNames", this.BankNames)
       }
     })
   }
@@ -194,7 +194,7 @@ export class MutualFundCartComponent implements OnInit {
 
   DeleteFund(i: any) {
     this.ProductOverview.splice(i, 1);
-    console.log('After Delete Fund', this.ProductOverview);
+    // console.log('After Delete Fund', this.ProductOverview);
     if (this.ProductOverview.length == 0) {
       localStorage.removeItem('ProductOverview');
     }
@@ -204,13 +204,13 @@ export class MutualFundCartComponent implements OnInit {
   }
 
   AssignGoal(offer:any){
-    console.log('offer', offer);
+    // console.log('offer', offer);
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(["/mutual-select-goal"])
   }
 
   democart(cartItems:any){
-    console.log('cartItems',cartItems)
+    // console.log('cartItems',cartItems)
   }
 
 }
