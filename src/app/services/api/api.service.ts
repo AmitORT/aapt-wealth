@@ -51,14 +51,14 @@ export class ApiService {
         window.location.href = "/";
       }
     }
-    // else if (error.status != 200) {
-    //   if (localStorage.getItem("SessionAlert") == null) {
-    //     localStorage.setItem("SessionAlert", "1");
-    //     alert("Session expired..! Please login again");
-    //     localStorage.clear();
-    //     window.location.href = "/";
-    //   }
-    // }
+    else if (error.status != 200) {
+      if (localStorage.getItem("SessionAlert") == null) {
+        localStorage.setItem("SessionAlert", "1");
+        alert("Session expired..! Please login again");
+        localStorage.clear();
+        window.location.href = "/";
+      }
+    }
     return throwError('Something bad happened; please try again later.');
   };
 }
