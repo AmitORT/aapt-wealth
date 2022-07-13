@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   ServerUrl: "https://findev.aaptfin.com/api/",
 
+  DGLoginEmail: "finizonuser@finizon.com",
+  DGLoginPassword: "test2$",
+
   // --LOCAL--
 
   // ng serve --port 4200

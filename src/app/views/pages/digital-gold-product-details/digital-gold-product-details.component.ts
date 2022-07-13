@@ -1,12 +1,11 @@
 import { Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-declare var $:any
-import { OwlOptions } from 'ngx-owl-carousel-o';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
+declare var $: any;
 
 @Component({
   selector: 'app-digital-gold-product-details',
@@ -14,200 +13,91 @@ import { ValidateService } from 'src/app/services/validate/validate.service';
   styleUrls: ['./digital-gold-product-details.component.css']
 })
 export class DigitalGoldProductDetailsComponent implements OnInit {
-    
-  PreminumTime:boolean=true;
 
-  customOptions: OwlOptions = {
-    items: 3,
-		margin: 3,
-		loop: true,
-		stagePadding: 64,
-		responsive:{
-			0:{items:1,stagePadding: 30},
-			480:{items:1,stagePadding: 30},
-			600:{items:2,stagePadding: 30},
-			1000:{items:3},
-			1200:{items:3}
-		},
-		nav: true,
-      // navText: ['Back','Next'],
-      navText: ["<img src='assets/img/arrow_left.svg'>","<img src='assets/img/arrow_right.svg'>"],
-      dots: false,
-      dotsEach: true,
-      lazyLoad: false,
-      autoplay: true,
-      autoplaySpeed: 500,
-      navSpeed: 500,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true
-  }
 
-  value12:any = 7; 
-  options12: Options = {
-    floor: 3700,
-    ceil: 5300,
-    hidePointerLabels:true,
-    translate: (value12: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>Rs. 3,700</b> Rs." + value12; 
-          case label.High:  
-              return "<b>Rs. 5,300</b> Rs." + value12;  
-          default:  
-              return "Rs.&nbsp;" + value12 + "&nbsp;" ;  
-      }  
-    }     
-  };
+  Action: string = "Buy";
+  Amount: any;
+  Weight: any;
+  GoldRatePerGram: string = "";
 
-  monthly_amt:any = 500; 
-  monthly_amt1: Options = {
-    floor: 500,
-    ceil: 100000,
-    hidePointerLabels:true,
-    translate: (monthly_amt: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + monthly_amt; 
-          case label.High:  
-              return "<b>₹ 5,300</b> ₹" + monthly_amt;  
-          default:  
-              return "₹ &nbsp;" + monthly_amt + "&nbsp;" ;  
-      }  
-    }     
-  };
-  
-  yearly_amt:any = 500; 
-  yearly_amt1: Options = {
-    floor: 500,
-    ceil: 100000,
-    hidePointerLabels:true,
-    translate: (yearly_amt: number, label: any): string => {  
-      switch (label) {  
-          case label.Low:  
-              return "<b>₹ 3,700</b> ₹" + yearly_amt; 
-          case label.High:  
-              return "<b>₹ 5,300</b> ₹" + yearly_amt;  
-          default:  
-              return "₹ &nbsp;" + yearly_amt + "&nbsp;" ;  
-      }  
-    }     
-  };
 
-  SimilarProducts:any;
-  ProductManager:any;
-  ProductOverview:any;
-  Productreturn:any;
-  ProductSectorDetails:any;
-  holdings:any;
-  select_amt:any;
-  SetModeOfInvestment:any;
-  otp1:string="";
-  otp2:string="";
-  otp3:string="";
-  otp4:string="";
-  otp5:string="";
-  otp6:string="";
-
-  EnterAmount:boolean=true;
-  EnterWeight:boolean=true;
-  EnterWeight1:boolean=false;
-  EnterAmount1:boolean=false;
- 
-  ModeOfInvestment:any={
-    "Payment_mode":"",
-    "DateForMonth":"",
-    "monthly_amt":"",
-    "yearly_amt":""
-  }
-
-  constructor(public route:Router, public validate:ValidateService, private toastr: ToastrService , private crypto:AescryptoService, private api:ApiService) { }
+  constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
-     
+
+    this.getGoldRatePerGram();
+
     $(".body-color").scroll(function () {
-      if($(".body-color").scrollTop() > 150) {
-      $('#sidebar').css('position','fixed');
-      $('#sidebar').css('top','10%');
-      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
+      if ($(".body-color").scrollTop() > 150) {
+        $('#sidebar').css('position', 'fixed');
+        $('#sidebar').css('top', '10%');
+        $('#sidebar').css('width', $("#sidebar-main").width() + 'px');
       }
       else if ($(".body-color").scrollTop() <= 150) {
-      $('#sidebar').css('position','');
-      $('#sidebar').css('top','');
-      $('#sidebar').css('width','');
-      }    
-
-      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top-100) {
-      $('#sidebar').css('top',-($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset().top+100));
+        $('#sidebar').css('position', '');
+        $('#sidebar').css('top', '');
+        $('#sidebar').css('width', '');
       }
 
-      });
+      if ($('#sidebar').offset()?.top + $("#sidebar").height() > $("#footer").offset()?.top - 100) {
+        $('#sidebar').css('top', -($("#sidebar").offset()?.top + $("#sidebar").height() - $("#footer").offset().top + 100));
+      }
+
+    });
   }
 
-  DoLogin(){
-    if(localStorage.getItem("CustToken") == null){
-      $("#login").modal("show");
-      // console.log("CustToken", localStorage.getItem("CustToken"))
-      // $("#login").modal("hide");
-      // this.route.navigate(["/sign-in"])
+  getGoldRatePerGram() {
+    const data = {
+      "amount": 0,
+      "quantity": 1
     }
-    else{
+    this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
+      console.log(resp)
+      if (resp.response.n == 1) {
+        this.GoldRatePerGram = resp.data;
+      }
+    })
+  }
+
+  GetConvertedGold(para: string) {
+    para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
+    const data = {
+      "amount": parseFloat(this.Amount),
+      "quantity": parseFloat(this.Weight),
+    }
+    this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
+      if (resp.response.n == 1) {
+        para == 'Amount' ? this.Weight = resp.data.toFixed(2) : this.Amount = resp.data.toFixed(2);
+      }
+    })
+  }
+
+
+
+
+
+
+
+
+  DoLogin() {
+    if (localStorage.getItem("CustToken") == null) {
+      $("#login").modal("show");
+    }
+    else {
       $("#update-kyc").modal("show");
     }
   }
 
-  GoToSignUp(){
+  GoToSignUp() {
+    localStorage.setItem("nextPath",this.crypto.Encrypt("/digital-gold-product-details"))
     $("#login").modal("hide");
     this.route.navigate(["/sign-in"])
   }
-  
-  
-  
 
-  keytab(nextTabId:number,event:any) {
-    let actionFlag=false;
-    const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode<96 || charCode>105)) {
-
-    }
-    else if(charCode == 8){
-      nextTabId--;
-      if(nextTabId < 1){
-      nextTabId = 1;
-      }
-    actionFlag=true;
-    }
-    else{ 
-      if(nextTabId > 6){
-         nextTabId = 6; 
-        } 
-        actionFlag=true; 
-      }
-    if(actionFlag){
-       const field = document.getElementById("otp" + nextTabId);
-    if (field) {
-      field.focus();
-      field.click();
-    } 
-  } 
-}
-
-
-
-  Navigate(){
-    this.route.navigateByUrl("/digital-gold-purchased-successful"); 
+  Navigate() {
+    this.route.navigateByUrl("/digital-gold-purchased-successful");
     $('.modal-backdrop').remove();
   }
-
-  // SwitchInputs(){
-  //   debugger;
-  //   if(this.EnterAmount == true){
-  //     !this.EnterAmount &&  this.EnterAmount1==true
-  //   }
-  //    else{
-
-  //    }
-
-  // }
 }
 
 

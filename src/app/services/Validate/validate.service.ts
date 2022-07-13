@@ -29,6 +29,7 @@ export class ValidateService {
     }
     return true;
   }
+  
   validateEmail(email: any) {
     const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regularExpression.test(String(email).toLowerCase());
@@ -48,7 +49,6 @@ export class ValidateService {
 
   getCurrentDateWithSpecificFormat(date:any): string {
     let dateString;
-
     if(date == 1 || date == 21 || date == 31){
       dateString =  "st";
     }
@@ -62,6 +62,29 @@ export class ValidateService {
       dateString = "th";
     }
     return dateString;
+  }
+
+  amountWithLakhComma(value: string): string {
+    value = value.toString();
+    let valueDecimalSeprated = value.split('.');
+    let AfterDecimal = "";
+    if (valueDecimalSeprated.length > 0) {
+      AfterDecimal = valueDecimalSeprated[1];
+      value = valueDecimalSeprated[0];
+    }
+    value = value.replace(/,/g, '').split('').reverse().join('');//value.replace(',','');
+    let valueLen = value.length;
+    let pointer = 0;
+    var str = new String(value);
+    let LastChar = str.charAt(0);
+    value = value.substring(1);
+    for (let i = 0; i < valueLen; i++) {
+      if (i % 2 === 0 && i < valueLen - 1 && i !== 0) {
+        value = value.slice(0, i + pointer) + ',' + value.slice(i + pointer, valueLen + pointer);
+        pointer++;
+      }
+    }
+    return this.isNullEmptyUndefined(AfterDecimal) ? value.split('').reverse().join('') + LastChar : value.split('').reverse().join('') + LastChar + "." + AfterDecimal;
   }
 
 }
