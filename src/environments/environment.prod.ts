@@ -1,6 +1,9 @@
 export const environment = {
   production: true,
   ServerUrl: "https://findev.aaptfin.com/api/",
+  
+  DGLoginEmail: "finizonuser@finizon.com",
+  DGLoginPassword: "test2$",
 
   // --UAT FINIZON--
 
