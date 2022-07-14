@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
+import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
 declare var $: any;
 
 @Component({
@@ -14,18 +15,36 @@ declare var $: any;
 })
 export class DigitalGoldProductDetailsComponent implements OnInit {
 
-
-  Action: string = "Buy";
+  Action: any = "Buy";
   Amount: any;
   Weight: any;
   GoldRatePerGram: string = "";
+  QuoteResponse: any;
+  validateCreateOrderResponse: any;
+  ApplicantData: any;
+  PortfolioBalance:any;
+  calculationType:any='A';
 
+  constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
-  constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService) { }
+  async ngOnInit(): Promise<void> {
+    debugger
+    if (localStorage.getItem('DGAction') != null) {
+      this.Action = localStorage.getItem('DGAction');
+      localStorage.removeItem('DGAction');
+    }
+    this.Action == "Buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
 
-  ngOnInit(): void {
+    if (localStorage.getItem('DGProceed') == '1') {
+      this.Action == "Buy" ? this.validateCreateOrder() : '';
+    }
 
-    this.getGoldRatePerGram();
+    if (localStorage.getItem("ApplicantData") != null) {
+      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
+      console.log(this.ApplicantData)
+    }
+
+    // this.GetPortfolioBalance();
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -46,15 +65,47 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     });
   }
 
-  getGoldRatePerGram() {
-    const data = {
-      "amount": 0,
-      "quantity": 1
-    }
-    this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
-      console.log(resp)
-      if (resp.response.n == 1) {
-        this.GoldRatePerGram = resp.data;
+  async GetBuyAmountPerGram() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        this.api.get("digitalGold/trade/quote-buy", false, true).subscribe(async resp => {
+          if (resp.response.n == 1) {
+            this.GoldRatePerGram = resp.data.totalAmount;
+            this.QuoteResponse = resp.data;
+            console.log('QuoteResponse', this.QuoteResponse)
+            resolve(0);
+          }
+        })
+      }
+      catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  async GetSellAmountPerGram() {
+    return new Promise(async (resolve, reject) => {
+      try {
+        this.api.get("digitalGold/trade/quote-sell", false, true).subscribe(async resp => {
+          if (resp.response.n == 1) {
+            this.GoldRatePerGram = resp.data.totalAmount;
+            this.QuoteResponse = resp.data;
+            console.log('QuoteResponse', this.QuoteResponse)
+            resolve(0);
+          }
+        })
+      }
+      catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  GetPortfolioBalance() {
+    this.api.get("digitalGold/oat/get-portfolio-balance", true, true).subscribe(resp => {
+      console.log('digitalGold/oat/get-portfolio-balance',resp)
+      if(resp.response.n==1){
+        this.PortfolioBalance = resp.data.balQuantity;
       }
     })
   }
@@ -72,31 +123,114 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     })
   }
 
-
-
-
-
-
-
-
-  DoLogin() {
+  CheckLogin() {
     if (localStorage.getItem("CustToken") == null) {
       $("#login").modal("show");
     }
     else {
-      $("#update-kyc").modal("show");
+      // alert(this.calculationType)
+      // $("#update-kyc").modal("show");
+      this.validateCreateOrder();
     }
   }
 
   GoToSignUp() {
-    localStorage.setItem("nextPath",this.crypto.Encrypt("/digital-gold-product-details"))
+    localStorage.setItem("nextPath", this.crypto.Encrypt("/digital-gold-product-details"));
+    localStorage.setItem("DGAction", this.Action);
     $("#login").modal("hide");
     this.route.navigate(["/sign-in"])
   }
 
-  Navigate() {
-    this.route.navigateByUrl("/digital-gold-purchased-successful");
-    $('.modal-backdrop').remove();
+  validateCreateOrder() {
+    if(this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A'){
+      this.toastr.error('Please Enter the Amount');
+    }
+    else if(this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q'){
+      this.toastr.error('Please Enter the Weight/Quantity');
+    }
+    else{
+      debugger
+      const data = {
+        "quoteId": this.QuoteResponse.quoteId,//
+        "transactionDate": "2020-08-03 10:10:10.123",//no
+        "transactionOrderID": "FIN1654579916296000000001",//no
+        "quantity": this.Weight,
+        "preTaxAmount": this.QuoteResponse.preTaxAmount,//
+        "tax1Amt": this.QuoteResponse.tax1Amt,//
+        "tax2Amt": this.QuoteResponse.tax2Amt,//
+        "tax3Amt": "727.63",
+        "tax3Perc": "0.075",
+        "totalAmount": this.Amount,//
+        "calculationType": this.calculationType,
+        "customerRefNo": "11211"//no
+      }
+      this.api.post("digitalGold/trade/validate-create-order", data, true, true).subscribe(resp => {
+        console.log('validateCreateOrder', resp)
+        if (resp.response.n == 1) {
+          this.validateCreateOrderResponse = resp.data;
+          this.PayWithRazor();
+          localStorage.removeItem('DGProceed');
+        }
+      })
+    }
+   
+    
+  }
+
+  PayWithRazor() {
+    debugger
+    const options: any = {
+      "key": this.validateCreateOrderResponse.key,// Enter the Key ID returned from validateAndCreateOrder
+      "currency": "INR", //optional
+      "name": "Glide", //optional
+      "description": "Gold Purchase", //optional
+      "image": "https://******.com/glide.jpg", // optional
+      "order_id": this.validateCreateOrderResponse.id,  //Enter the Order ID returned from validateAndCreateOrder
+      "handler": function (response: any) {
+        console.log(response.razorpay_payment_id);
+        console.log(response.razorpay_order_id);
+        console.log(response.razorpay_signature)
+      },
+      "prefill": {
+        "name": this.ApplicantData.firstName,   // optional username can be passed here
+        "email": this.ApplicantData.email, // optional user email can be passed here
+        "contact": this.ApplicantData.mobileNumber // optional user contact number can be passed here
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office" // optional
+      },
+      "theme": {
+        "color": "#CA2907" //optional
+      }
+    }
+    console.log('resp', options.handler.response)
+    options.handler = ((response: any, error: any) => {
+      debugger
+      options.response = response;
+      console.log(response);
+      console.log(options);
+      // call your backend api to verify payment signature & capture transaction
+      const data = {
+        "quoteId": this.QuoteResponse.quoteId,
+        "transactionDate": "2020-08-03 10:10:10.123",
+        "payIn": {
+          "pgPaymentId": options.response.razorpay_payment_id,
+          "pgOrderId": options.response.razorpay_order_id,
+          "pgSignature": options.response.razorpay_signature
+        }
+      }
+      this.api.post("digitalGold/trade/execute-order-with-payin", data, true, true).subscribe(resp => {
+        console.log('razor pay check', resp)
+        if(resp.response.n==1){
+          window.location.href ='/digital-gold-purchased-successful';
+        }
+      })
+    });
+    // options.modal.ondismiss=(()=>{
+
+    // });
+    const rzp = new this.winRef.nativeWindow.Razorpay(options);
+    rzp.open();
   }
 }
 

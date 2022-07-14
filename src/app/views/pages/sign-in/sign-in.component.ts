@@ -158,6 +158,10 @@ export class SignInComponent implements OnInit {
             // console.log("CustToken", encryptedTokenCustomer)
             this.GetApplicantData();
 
+            if (this.nextPath == '/digital-gold-product-details') {
+              localStorage.setItem('DGProceed','1');
+            }
+
             if (this.nextPath != '/mutual-fund-cart') {
               this.route.navigate([this.nextPath]);
             }

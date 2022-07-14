@@ -21,11 +21,15 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient, private crypto: AescryptoService) { }
 
-  public get(url: string, auth = false): Observable<any> {
+  public get(url: string, auth = false, session = false): Observable<any> {
     url = this.serverUrl + url;
     if (auth) {
       let token = this.crypto.Decrypt(localStorage.getItem("CustToken")).token;
       this.header.headers = this.header.headers.set("Authorization", "Bearer " + token);
+    }
+    if (session) {
+      let sessionid = this.crypto.Decrypt(localStorage.getItem("DGSessionID"));
+      this.header.headers = this.header.headers.set("SessionID", "sessionid=" + sessionid);
     }
     return this.httpClient.get<any>(url, this.header).pipe(
       catchError(this.handleError)
