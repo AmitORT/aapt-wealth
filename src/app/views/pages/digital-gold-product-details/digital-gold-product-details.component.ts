@@ -22,8 +22,15 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   QuoteResponse: any;
   validateCreateOrderResponse: any;
   ApplicantData: any;
-  PortfolioBalance:any;
-  calculationType:any='A';
+  PortfolioBalance: any;
+  calculationType: any = 'A';
+  paymentChannel: any = "UPI"
+
+
+  VPA: any;
+  AccountNumber: any;
+  BankName: any;
+  IFSCCode: any;
 
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
@@ -103,8 +110,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
 
   GetPortfolioBalance() {
     this.api.get("digitalGold/oat/get-portfolio-balance", true, true).subscribe(resp => {
-      console.log('digitalGold/oat/get-portfolio-balance',resp)
-      if(resp.response.n==1){
+      console.log('digitalGold/oat/get-portfolio-balance', resp)
+      if (resp.response.n == 1) {
         this.PortfolioBalance = resp.data.balQuantity;
       }
     })
@@ -127,10 +134,19 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     if (localStorage.getItem("CustToken") == null) {
       $("#login").modal("show");
     }
+    else if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
+      this.toastr.error('Please Enter the Amount');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
+      this.toastr.error('Please Enter the Weight/Quantity');
+    }
     else {
-      // alert(this.calculationType)
-      // $("#update-kyc").modal("show");
-      this.validateCreateOrder();
+      if (this.Action == 'Buy') {
+        this.validateCreateOrder();
+      }
+      else if (this.Action == 'Sell') {
+        $("#Customer-account-info").modal("show");
+      }
     }
   }
 
@@ -142,43 +158,30 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   validateCreateOrder() {
-    if(this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A'){
-      this.toastr.error('Please Enter the Amount');
+    const data = {
+      "quoteId": this.QuoteResponse.quoteId,//
+      "transactionDate": "2020-08-03 10:10:10.123",//no
+      "transactionOrderID": "FIN1654579916296000000001",//no
+      "quantity": this.Weight,
+      "preTaxAmount": this.QuoteResponse.preTaxAmount,//
+      "tax1Amt": this.QuoteResponse.tax1Amt,//
+      "tax2Amt": this.QuoteResponse.tax2Amt,//
+      "tax3Amt": "727.63",
+      "tax3Perc": "0.075",
+      "totalAmount": this.Amount,//
+      "calculationType": this.calculationType,
     }
-    else if(this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q'){
-      this.toastr.error('Please Enter the Weight/Quantity');
-    }
-    else{
-      debugger
-      const data = {
-        "quoteId": this.QuoteResponse.quoteId,//
-        "transactionDate": "2020-08-03 10:10:10.123",//no
-        "transactionOrderID": "FIN1654579916296000000001",//no
-        "quantity": this.Weight,
-        "preTaxAmount": this.QuoteResponse.preTaxAmount,//
-        "tax1Amt": this.QuoteResponse.tax1Amt,//
-        "tax2Amt": this.QuoteResponse.tax2Amt,//
-        "tax3Amt": "727.63",
-        "tax3Perc": "0.075",
-        "totalAmount": this.Amount,//
-        "calculationType": this.calculationType,
-        "customerRefNo": "11211"//no
+    this.api.post("digitalGold/trade/validate-create-order", data, true, true).subscribe(resp => {
+      console.log('validateCreateOrder', resp)
+      if (resp.response.n == 1) {
+        this.validateCreateOrderResponse = resp.data;
+        this.PayWithRazor();
+        localStorage.removeItem('DGProceed');
       }
-      this.api.post("digitalGold/trade/validate-create-order", data, true, true).subscribe(resp => {
-        console.log('validateCreateOrder', resp)
-        if (resp.response.n == 1) {
-          this.validateCreateOrderResponse = resp.data;
-          this.PayWithRazor();
-          localStorage.removeItem('DGProceed');
-        }
-      })
-    }
-   
-    
+    })
   }
 
   PayWithRazor() {
-    debugger
     const options: any = {
       "key": this.validateCreateOrderResponse.key,// Enter the Key ID returned from validateAndCreateOrder
       "currency": "INR", //optional
@@ -221,16 +224,61 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payin", data, true, true).subscribe(resp => {
         console.log('razor pay check', resp)
-        if(resp.response.n==1){
-          window.location.href ='/digital-gold-purchased-successful';
+        if (resp.response.n == 1) {
+          window.location.href = '/digital-gold-purchased-successful';
         }
       })
     });
-    // options.modal.ondismiss=(()=>{
-
-    // });
     const rzp = new this.winRef.nativeWindow.Razorpay(options);
     rzp.open();
+  }
+
+  ExecuteOrderWithPayout() {
+    debugger
+    if (this.validate.isNullEmptyUndefined(this.VPA) && this.paymentChannel == 'UPI') {
+      this.toastr.error('Please Enter the VPA');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.AccountNumber) && this.paymentChannel == 'ACCOUNT') {
+      this.toastr.error('Please Enter the Account Number');
+    }
+    else if (!this.validate.validateAccountNumber(this.AccountNumber) && this.paymentChannel == 'ACCOUNT') {
+      this.toastr.error("Please Enter valid Account Number");
+    }
+    else if (this.validate.isNullEmptyUndefined(this.BankName) && this.paymentChannel == 'ACCOUNT') {
+      this.toastr.error('Please Enter the Bank Name');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.IFSCCode) && this.paymentChannel == 'ACCOUNT') {
+      this.toastr.error('Please Enter the IFSC Code');
+    }
+    else if (!this.validate.validateIFSCCode(this.IFSCCode) && this.paymentChannel == 'ACCOUNT') {
+      this.toastr.error("Please enter valid IFSC Code");
+    }
+    else {
+      const data = {
+        "quoteId": this.QuoteResponse.quoteId,
+        "quantity": '1',
+        "preTaxAmount": this.QuoteResponse.preTaxAmount,
+        "tax1Amt": this.QuoteResponse.tax1Amt,
+        "tax2Amt": this.QuoteResponse.tax2Amt,
+        "totalAmount": this.QuoteResponse.totalAmount,
+        "calculationType": this.calculationType,
+        "payOut": {
+          "customerAccountInfo": {
+            "vpa": this.paymentChannel == 'UPI' ? this.VPA : '',
+            "accountNumber": this.paymentChannel == 'ACCOUNT' ? this.AccountNumber : '',
+            "ifsc": this.paymentChannel == 'ACCOUNT' ? this.IFSCCode : '',
+            "bankName": this.paymentChannel == 'ACCOUNT' ? this.BankName : '',
+          },
+          "paymentChannel": this.paymentChannel,
+        }
+      }
+      this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
+        console.log('ExecuteOrderWithPayout', resp)
+        if (resp.response.n == 1) {
+          window.location.href = '/digital-gold-purchased-successful';
+        }
+      })
+    }
   }
 }
 

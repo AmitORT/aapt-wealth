@@ -46,6 +46,14 @@ export class ValidateService {
     const regularExpression = /^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/;
     return regularExpression.test(String(aadharNumber).toLowerCase());
   }
+  validateAccountNumber(accountNumber:any){
+    const regularExpression = /^\d{9,18}$/;
+    return regularExpression.test(String(accountNumber));
+  }
+  validateIFSCCode(accountNumber:any){
+    const regularExpression = /^[A-Za-z]{4}\d{7}$/;
+    return regularExpression.test(String(accountNumber).toUpperCase());
+  }
 
   getCurrentDateWithSpecificFormat(date:any): string {
     let dateString;
