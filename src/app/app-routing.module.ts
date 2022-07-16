@@ -56,6 +56,8 @@ import { FdCompareProductsComponent } from './views/pages/fd-compare-products/fd
 import { BondsCompareProductsComponent } from './views/pages/bonds-compare-products/bonds-compare-products.component';
 import { SignInComponent } from './views/pages/sign-in/sign-in.component';
 import { AssistedShareComponent } from './views/pages/assisted-share/assisted-share.component';
+import { DigitalGoldSoldSuccessfullComponent } from './views/pages/digital-gold-sold-successfull/digital-gold-sold-successfull.component';
+
 
 
 
@@ -99,6 +101,7 @@ const routes: Routes = [
   { path: 'account-portfolio-product-details', component: AccountPortfolioProductDetailsComponent },
   { path: 'digital-gold-product-details', component: DigitalGoldProductDetailsComponent },
   { path: 'digital-gold-purchased-successful', component: DigitalGoldPurchasedSuccessfulComponent },
+  { path: 'digital-gold-sold-successful', component: DigitalGoldSoldSuccessfullComponent },
   { path: 'FD-details', component: FdDetailsComponent },
   { path: 'FD-eligible', component: FdEligibilityComponent },
   { path: 'FD-open', component: FdOpenComponent },

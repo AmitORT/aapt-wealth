@@ -140,13 +140,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
     }
-    else {
-      if (this.Action == 'Buy') {
-        this.validateCreateOrder();
-      }
-      else if (this.Action == 'Sell') {
-        $("#Customer-account-info").modal("show");
-      }
+    // else if(this.Amount .)
+    else if (this.Action == 'Buy') {
+      this.validateCreateOrder();
+    }
+    else if (this.Action == 'Sell') {
+      $("#Customer-account-info").modal("show");
     }
   }
 
@@ -224,6 +223,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payin", data, true, true).subscribe(resp => {
         console.log('razor pay check', resp)
+        debugger
         if (resp.response.n == 1) {
           window.location.href = '/digital-gold-purchased-successful';
         }
@@ -274,8 +274,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
         console.log('ExecuteOrderWithPayout', resp)
+        debugger
         if (resp.response.n == 1) {
-          window.location.href = '/digital-gold-purchased-successful';
+          window.location.href = '/digital-gold-sold-successful';
         }
       })
     }

@@ -68,6 +68,7 @@ import { FdCompareProductsComponent } from './views/pages/fd-compare-products/fd
 import { BondsCompareProductsComponent } from './views/pages/bonds-compare-products/bonds-compare-products.component';
 import { SignInComponent } from './views/pages/sign-in/sign-in.component';
 import { AssistedShareComponent } from './views/pages/assisted-share/assisted-share.component';
+import { DigitalGoldSoldSuccessfullComponent } from './views/pages/digital-gold-sold-successfull/digital-gold-sold-successfull.component';
 
 
 
@@ -132,6 +133,7 @@ import { AssistedShareComponent } from './views/pages/assisted-share/assisted-sh
     BondsCompareProductsComponent,
     SignInComponent,
     AssistedShareComponent,
+    DigitalGoldSoldSuccessfullComponent,
   
 
 
