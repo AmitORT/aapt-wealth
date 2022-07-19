@@ -38,14 +38,14 @@ export class MutualFundCartComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.scrolltotop();  
+    this.scrolltotop();
 
     if (localStorage.getItem("CreatedGoal") != null) {
       this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
       // console.log("CreatedGoal", this.CreatedGoal);
     }
-    else{
-      if(localStorage.getItem("GetSelectedGoals") != null){
+    else {
+      if (localStorage.getItem("GetSelectedGoals") != null) {
         this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("GetSelectedGoals"));
         // console.log("GetSelectedGoals", this.CreatedGoal);
       }
@@ -72,7 +72,7 @@ export class MutualFundCartComponent implements OnInit {
     }
     if (localStorage.getItem("ProceedCart") != null) {
       this.ProceedCart = this.crypto.Decrypt(localStorage.getItem("ProceedCart"));
-      // console.log("GotProceedCart", this.ProceedCart)
+      console.log("GotProceedCart", this.ProceedCart)
     }
     // if (localStorage.getItem("BankNames") != null) {
     //   debugger
@@ -115,11 +115,11 @@ export class MutualFundCartComponent implements OnInit {
     this.route.navigate(['/wealth-product-listing']);
   }
 
-  GetOnlyDay(i:any) {
+  GetOnlyDay(i: any) {
     // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth);
     // console.log(this.ProductOverview[i].ModeOfInvestment.DateForMonth.getDate())
-   this.ProductOverview[i].ModeOfInvestment.DateForMonth = this.ProductOverview[i].ModeOfInvestment.DateForMonth.slice(8);
-    
+    this.ProductOverview[i].ModeOfInvestment.DateForMonth = this.ProductOverview[i].ModeOfInvestment.DateForMonth.slice(8);
+
     // this.ProductOverview[i].ModeOfInvestment.DateForMonth =  cartitem.ModeOfInvestment.DateForMonth.slice(8);
   }
 
@@ -160,6 +160,7 @@ export class MutualFundCartComponent implements OnInit {
 
   ConfirmCart() {
     var uniqueId;
+    var options: any = [{ "paymentMode": "NETBANKING", "mandateId": null, "bankAccountId": null }]
     if (this.ProceedCart != null) {
       uniqueId = this.ProceedCart.uniqueId;
     }
@@ -169,7 +170,8 @@ export class MutualFundCartComponent implements OnInit {
     // console.log("uniquiID", uniqueId)
     var postData = new FormData();
     postData.append("uniqueId", uniqueId);
-    this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {  
+    postData.append("options", JSON.stringify(options));
+    this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
       this.ConfirmedCart = resp.data;
       // console.log('confirm cart',resp.data)
       if (resp.response.n == 1) {
@@ -186,7 +188,7 @@ export class MutualFundCartComponent implements OnInit {
     window.location.href = this.CommonUrl;
   }
 
-  RemoveGoal(i:any) {
+  RemoveGoal(i: any) {
     this.ProductOverview[i].CreatedGoal = '';
     let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
     localStorage.setItem("ProductOverview", encryptedProduct);
@@ -203,13 +205,13 @@ export class MutualFundCartComponent implements OnInit {
     }
   }
 
-  AssignGoal(offer:any){
+  AssignGoal(offer: any) {
     // console.log('offer', offer);
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(["/mutual-select-goal"])
   }
 
-  democart(cartItems:any){
+  democart(cartItems: any) {
     // console.log('cartItems',cartItems)
   }
 

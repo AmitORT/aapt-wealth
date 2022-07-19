@@ -50,8 +50,8 @@ export class HomeComponent implements OnInit {
   BlogList: any;
   blogimage: any;
   ShowLoader: any = false;
-  DGLoginEmail=environment.DGLoginEmail;
-  DGLoginPassword=environment.DGLoginPassword;
+  DGLoginEmail = environment.DGLoginEmail;
+  DGLoginPassword = environment.DGLoginPassword;
 
   constructor(private api: ApiService, private route: Router, public activeRoute: ActivatedRoute, public validation: ValidateService, private crypto: AescryptoService,) { }
 
@@ -117,22 +117,7 @@ export class HomeComponent implements OnInit {
     });
   }
   GotoRecommendedOffers(Product: any) {
-    if (Product.path == '/digital-gold-product-details') {
-      const data = {
-        "email":this.DGLoginEmail,
-        "password":this.DGLoginPassword,
-      }
-      this.api.post('digitalGold/security/login',data).subscribe(resp=>{
-        console.log('dg',resp)
-        if(resp.response.n==1){
-          localStorage.setItem('DGSessionID',this.crypto.Encrypt(resp.data.sessionid));
-          this.route.navigate([Product.path.trim()]);
-        }
-      })
-    }
-    else{
-      this.route.navigate([Product.path.trim()]);
-    }
+    this.route.navigate([Product.path.trim()]);
   }
 
   GetApplicantData() {

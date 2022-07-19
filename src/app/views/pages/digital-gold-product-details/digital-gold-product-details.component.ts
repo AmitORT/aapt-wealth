@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
+import { environment } from 'src/environments/environment';
 declare var $: any;
 
 @Component({
@@ -25,17 +26,21 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   PortfolioBalance: any;
   calculationType: any = 'A';
   paymentChannel: any = "UPI"
-
+  Token: any;
+  CommonUrl = environment.CommonUrl;
 
   VPA: any;
   AccountNumber: any;
   BankName: any;
   IFSCCode: any;
+  DGLoginEmail = environment.DGLoginEmail;
+  DGLoginPassword = environment.DGLoginPassword;
 
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
     debugger
+    this.GetSession();
     if (localStorage.getItem('DGAction') != null) {
       this.Action = localStorage.getItem('DGAction');
       localStorage.removeItem('DGAction');
@@ -70,6 +75,19 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
 
     });
+  }
+
+  GetSession(){
+    const data = {
+      "email":this.DGLoginEmail,
+      "password":this.DGLoginPassword,
+    }
+    this.api.post('digitalGold/security/login',data).subscribe(resp=>{
+      console.log('dg',resp)
+      if(resp.response.n==1){
+        localStorage.setItem('DGSessionID',this.crypto.Encrypt(resp.data.sessionid));
+      }
+    })
   }
 
   async GetBuyAmountPerGram() {
@@ -130,6 +148,14 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     })
   }
 
+  GoToCommon() {
+    this.Token = localStorage.getItem("CustToken");
+    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent('/profile-details'));
+    this.CommonUrl = this.CommonUrl.replace("{FROM}", encodeURIComponent('/digital-gold-product-details'))
+    window.location.href = this.CommonUrl;
+  }
+
   CheckLogin() {
     if (localStorage.getItem("CustToken") == null) {
       $("#login").modal("show");
@@ -140,7 +166,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
     }
-    // else if(this.Amount .)
+    else if (this.Amount > 199000 && (this.ApplicantData.profileDetail != true)) {
+      $("#update-kyc").modal("show");
+    }
     else if (this.Action == 'Buy') {
       this.validateCreateOrder();
     }

@@ -251,8 +251,8 @@ export class MutualCreateGoalComponent implements OnInit {
           let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
           localStorage.setItem("SelectedMutualFund", encryptedProduct);
 
-          // localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
-          // this.CreateInvestor(response.goalId);
+          localStorage.setItem("CreatedGoal", this.crypto.Encrypt(this.CreateGoal));
+          this.CreateInvestor(response.goalId);
         }
         else {
           this.toastr.error(response.response.Msg);
@@ -261,21 +261,21 @@ export class MutualCreateGoalComponent implements OnInit {
     }
   }
 
-  // CreateInvestor(goalid: any) {
-  //   var data = { 'panCardNumber': 'IFSPS1505L', 'name': 'Gaurdian1911', 'gender': 1, 'birthDate': '1965-01-01', 'relation': 1 };
-  //   var postData = new FormData();
-  //   postData.append("birth_date", this.ApplicantData.dob);
-  //   postData.append("investor_type", "1");
-  //   postData.append("pan", this.ApplicantData.panCard);
-  //   // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
-  //   // postData.append("guardian_details", JSON.stringify(data));
-  //   this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
-  //     console.log('inverstor create', response)
-  //     if (response.response.n == 1) {
-  //       this.ProceedToCart(goalid);
-  //     }
-  //   })
-  // }
+  CreateInvestor(goalid: any) {
+    var data = { 'panCardNumber': 'IFSPS1505L', 'name': 'Gaurdian1911', 'gender': 1, 'birthDate': '1965-01-01', 'relation': 1 };
+    var postData = new FormData();
+    postData.append("birth_date", this.ApplicantData.dob);
+    postData.append("investor_type", "1");
+    postData.append("pan", this.ApplicantData.panCard);
+    // postData.append("date_of_incorporation", "2020-01-01T06:30:00.000Z");
+    // postData.append("guardian_details", JSON.stringify(data));
+    this.api.post("wealthfy/add-update-investor-details", postData, true).subscribe(response => {
+      console.log('inverstor create', response)
+      if (response.response.n == 1) {
+        this.ProceedToCart(goalid);
+      }
+    })
+  }
 
   // GetOnlyDay(){    
   //   this.CreateGoal.Date_For_Installments=this.CreateGoal.Date_For_Installments.slice(8);

@@ -12,7 +12,7 @@ export const environment = {
   // --LOCAL--
 
   // ng serve --port 4200
-  CommonUrl: "http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}&TXN={TXN}",
+  CommonUrl: "http://localhost:4200?TOKEN={TOKEN}&PATH={PATH}&TXN={TXN}&FROM={FROM}",
 
   // ng serve --port 54775
   CreditUrl: "http://localhost:54775?TOKEN={TOKEN}&PATH={PATH}",
