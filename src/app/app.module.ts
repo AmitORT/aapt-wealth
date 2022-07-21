@@ -69,6 +69,7 @@ import { BondsCompareProductsComponent } from './views/pages/bonds-compare-produ
 import { SignInComponent } from './views/pages/sign-in/sign-in.component';
 import { AssistedShareComponent } from './views/pages/assisted-share/assisted-share.component';
 import { DigitalGoldSoldSuccessfullComponent } from './views/pages/digital-gold-sold-successfull/digital-gold-sold-successfull.component';
+import { MutualFundsPaymentComponent } from './views/pages/mutual-funds-payment/mutual-funds-payment.component';
 
 
 
@@ -134,6 +135,7 @@ import { DigitalGoldSoldSuccessfullComponent } from './views/pages/digital-gold-
     SignInComponent,
     AssistedShareComponent,
     DigitalGoldSoldSuccessfullComponent,
+    MutualFundsPaymentComponent,
   
 
 

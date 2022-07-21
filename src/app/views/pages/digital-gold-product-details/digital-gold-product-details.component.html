@@ -116,12 +116,12 @@
         <div class="right-box">
           <ul class="nav nav-tabs" id="year-tabs">
             <li class="nav-item">
-              <button class="nav-link" [ngClass]="Action == 'Buy' ? 'active' : ''"
-                (click)="Action = 'Buy'; GetBuyAmountPerGram()">Buy</button>
+              <button class="nav-link" [ngClass]="Action == 'buy' ? 'active' : ''"
+                (click)="Action = 'buy'; GetBuyAmountPerGram()">Buy</button>
             </li>
             <li class="nav-item">
-              <button class="nav-link" [ngClass]="Action == 'Sell' ? 'active' : ''"
-                (click)="Action = 'Sell'; GetSellAmountPerGram()">Sell</button>
+              <button class="nav-link" [ngClass]="Action == 'sell' ? 'active' : ''"
+                (click)="Action = 'sell'; GetSellAmountPerGram()">Sell</button>
             </li>
           </ul>
           <div class="row mt-3">

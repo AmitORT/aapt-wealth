@@ -16,7 +16,7 @@ declare var $: any;
 })
 export class DigitalGoldProductDetailsComponent implements OnInit {
 
-  Action: any = "Buy";
+  Action: any = "buy";
   Amount: any;
   Weight: any;
   GoldRatePerGram: string = "";
@@ -39,16 +39,15 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
-    debugger
     this.GetSession();
     if (localStorage.getItem('DGAction') != null) {
       this.Action = localStorage.getItem('DGAction');
       localStorage.removeItem('DGAction');
     }
-    this.Action == "Buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
+    this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
 
     if (localStorage.getItem('DGProceed') == '1') {
-      this.Action == "Buy" ? this.validateCreateOrder() : '';
+      this.Action == "buy" ? this.validateCreateOrder() : '';
     }
 
     if (localStorage.getItem("ApplicantData") != null) {
@@ -77,15 +76,15 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     });
   }
 
-  GetSession(){
+  GetSession() {
     const data = {
-      "email":this.DGLoginEmail,
-      "password":this.DGLoginPassword,
+      "email": this.DGLoginEmail,
+      "password": this.DGLoginPassword,
     }
-    this.api.post('digitalGold/security/login',data).subscribe(resp=>{
-      console.log('dg',resp)
-      if(resp.response.n==1){
-        localStorage.setItem('DGSessionID',this.crypto.Encrypt(resp.data.sessionid));
+    this.api.post('digitalGold/security/login', data).subscribe(resp => {
+      console.log('dg', resp)
+      if (resp.response.n == 1) {
+        localStorage.setItem('DGSessionID', this.crypto.Encrypt(resp.data.sessionid));
       }
     })
   }
@@ -134,16 +133,19 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
     })
   }
+  QuoteID: any;
 
   GetConvertedGold(para: string) {
     para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
     const data = {
+      "action": this.Action,
       "amount": parseFloat(this.Amount),
       "quantity": parseFloat(this.Weight),
     }
     this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
       if (resp.response.n == 1) {
-        para == 'Amount' ? this.Weight = resp.data.toFixed(2) : this.Amount = resp.data.toFixed(2);
+        para == 'Amount' ? this.Weight = resp.data.value.toFixed(2) : this.Amount = resp.data.value.toFixed(2);
+        this.QuoteID = resp.data.quote_id;
       }
     })
   }
@@ -169,10 +171,10 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     else if (this.Amount > 199000 && (this.ApplicantData.profileDetail != true)) {
       $("#update-kyc").modal("show");
     }
-    else if (this.Action == 'Buy') {
+    else if (this.Action == 'buy') {
       this.validateCreateOrder();
     }
-    else if (this.Action == 'Sell') {
+    else if (this.Action == 'sell') {
       $("#Customer-account-info").modal("show");
     }
   }
@@ -185,18 +187,20 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   validateCreateOrder() {
-    const data = {
-      "quoteId": this.QuoteResponse.quoteId,//
-      "transactionDate": "2020-08-03 10:10:10.123",//no
-      "transactionOrderID": "FIN1654579916296000000001",//no
-      "quantity": this.Weight,
-      "preTaxAmount": this.QuoteResponse.preTaxAmount,//
-      "tax1Amt": this.QuoteResponse.tax1Amt,//
-      "tax2Amt": this.QuoteResponse.tax2Amt,//
-      "tax3Amt": "727.63",
-      "tax3Perc": "0.075",
-      "totalAmount": this.Amount,//
-      "calculationType": this.calculationType,
+    var data;
+    if (this.calculationType == 'A') {
+      data = {
+        "quoteId": this.QuoteID,
+        "amount": this.Amount,
+        "calculationType": this.calculationType,
+      }
+    }
+    if (this.calculationType == 'Q') {
+      data = {
+        "quoteId": this.QuoteID,
+        "quantity": this.Weight,
+        "calculationType": this.calculationType,
+      }
     }
     this.api.post("digitalGold/trade/validate-create-order", data, true, true).subscribe(resp => {
       console.log('validateCreateOrder', resp)
@@ -241,7 +245,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       console.log(options);
       // call your backend api to verify payment signature & capture transaction
       const data = {
-        "quoteId": this.QuoteResponse.quoteId,
+        "quoteId": this.QuoteID,
         "transactionDate": "2020-08-03 10:10:10.123",
         "payIn": {
           "pgPaymentId": options.response.razorpay_payment_id,
@@ -282,24 +286,41 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       this.toastr.error("Please enter valid IFSC Code");
     }
     else {
-      const data = {
-        "quoteId": this.QuoteResponse.quoteId,
-        "quantity": '1',
-        "preTaxAmount": this.QuoteResponse.preTaxAmount,
-        "tax1Amt": this.QuoteResponse.tax1Amt,
-        "tax2Amt": this.QuoteResponse.tax2Amt,
-        "totalAmount": this.QuoteResponse.totalAmount,
-        "calculationType": this.calculationType,
-        "payOut": {
-          "customerAccountInfo": {
-            "vpa": this.paymentChannel == 'UPI' ? this.VPA : '',
-            "accountNumber": this.paymentChannel == 'ACCOUNT' ? this.AccountNumber : '',
-            "ifsc": this.paymentChannel == 'ACCOUNT' ? this.IFSCCode : '',
-            "bankName": this.paymentChannel == 'ACCOUNT' ? this.BankName : '',
-          },
-          "paymentChannel": this.paymentChannel,
+      var data
+      if (this.calculationType == 'A') {
+        data = {
+          "quoteId": this.QuoteID,
+          "amount": this.Amount,
+          "calculationType": this.calculationType,
+          "payOut": {
+            "customerAccountInfo": {
+              "vpa": this.paymentChannel == 'UPI' ? this.VPA : '',
+              "accountNumber": this.paymentChannel == 'ACCOUNT' ? this.AccountNumber : '',
+              "ifsc": this.paymentChannel == 'ACCOUNT' ? this.IFSCCode : '',
+              "bankName": this.paymentChannel == 'ACCOUNT' ? this.BankName : '',
+            },
+            "paymentChannel": this.paymentChannel,
+          }
         }
       }
+      else if(this.calculationType == 'Q') {
+        data = {
+          "quoteId": this.QuoteID,
+          "quantity": this.Weight,
+          "calculationType": this.calculationType,
+          "payOut": {
+            "customerAccountInfo": {
+              "vpa": this.paymentChannel == 'UPI' ? this.VPA : '',
+              "accountNumber": this.paymentChannel == 'ACCOUNT' ? this.AccountNumber : '',
+              "ifsc": this.paymentChannel == 'ACCOUNT' ? this.IFSCCode : '',
+              "bankName": this.paymentChannel == 'ACCOUNT' ? this.BankName : '',
+            },
+            "paymentChannel": this.paymentChannel,
+          }
+        }
+      }
+
+       
       this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
         console.log('ExecuteOrderWithPayout', resp)
         debugger

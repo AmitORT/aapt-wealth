@@ -31,6 +31,7 @@ export class MutualFundCartComponent implements OnInit {
   Token: any;
   CartItems: any = [];
   CommonUrl = environment.CommonUrl;
+  ApplicantData: any;
 
   CreatedGoal: any;
 
@@ -39,6 +40,11 @@ export class MutualFundCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.scrolltotop();
+
+    if (localStorage.getItem("ApplicantData") != null) {
+      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
+      console.log('ApplicantData', this.ApplicantData)
+    }
 
     if (localStorage.getItem("CreatedGoal") != null) {
       this.CreatedGoal = this.crypto.Decrypt(localStorage.getItem("CreatedGoal"));
@@ -175,9 +181,13 @@ export class MutualFundCartComponent implements OnInit {
       this.ConfirmedCart = resp.data;
       // console.log('confirm cart',resp.data)
       if (resp.response.n == 1) {
-        this.CommontRouterUrl('/kyc-verification')
+        if(this.ApplicantData.kycVerified != true){
+          this.CommontRouterUrl('/kyc-verification');
+        }
+        else if(this.ApplicantData.kycVerified == true){
+          this.route.navigate(["/mutual-funds-payment-method"]);
+        }        
       }
-      // this.route.navigate(["/mutual-payment-successful"])
     })
   }
 
