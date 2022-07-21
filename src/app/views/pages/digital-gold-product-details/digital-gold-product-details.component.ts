@@ -327,6 +327,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         if (resp.response.n == 1) {
           window.location.href = '/digital-gold-sold-successful';
         }
+        else{
+          this.toastr.error(resp.response.Msg)
+        }
       })
     }
   }
