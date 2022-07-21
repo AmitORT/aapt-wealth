@@ -19,8 +19,8 @@
           </div>
           <div class="trans-footer w-100">
             <div class=" d-flex">
-              <a class="btn-primary transparent-button">My Investments</a>
-              <a class="btn-primary theme-button me-5" [routerLink]="['/dashboard']">Back to Dashboard</a>
+              <a class="btn-primary transparent-button cursor-pointer" (click)="GoToCommon('/account-digigold-portfolio')">My Investments</a>
+              <a class="btn-primary theme-button me-5 cursor-pointer" (click)="GoToCommon('/wealth-dashboard')">Back to Dashboard</a>
             </div>
           </div>
         </div>

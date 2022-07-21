@@ -22,7 +22,7 @@ export const environment = {
 
   // ng serve --port 57617
   WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
-  ShareUrl: "http://localhost:57617/assisted-share-wealth?FID={FID}",
+  ShareUrl: "http://localhost:57617/assisted-share-wealth?FID={FID}&TOKEN={TOKEN}",
 
   // ng serve --port 50533
   AgentUrl: "http://localhost:50533?ATOKEN={ATOKEN}&PATH={PATH}",

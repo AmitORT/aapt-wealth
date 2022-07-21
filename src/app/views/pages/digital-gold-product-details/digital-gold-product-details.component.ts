@@ -209,6 +209,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         this.PayWithRazor();
         localStorage.removeItem('DGProceed');
       }
+      else {
+        this.toastr.error(resp.response.Msg)
+      }
     })
   }
 
@@ -259,6 +262,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         if (resp.response.n == 1) {
           window.location.href = '/digital-gold-purchased-successful';
         }
+        else {
+          this.toastr.error(resp.response.Msg)
+        }
       })
     });
     const rzp = new this.winRef.nativeWindow.Razorpay(options);
@@ -303,7 +309,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
           }
         }
       }
-      else if(this.calculationType == 'Q') {
+      else if (this.calculationType == 'Q') {
         data = {
           "quoteId": this.QuoteID,
           "quantity": this.Weight,
@@ -319,15 +325,13 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
           }
         }
       }
-
-       
       this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
         console.log('ExecuteOrderWithPayout', resp)
         debugger
         if (resp.response.n == 1) {
           window.location.href = '/digital-gold-sold-successful';
         }
-        else{
+        else {
           this.toastr.error(resp.response.Msg)
         }
       })

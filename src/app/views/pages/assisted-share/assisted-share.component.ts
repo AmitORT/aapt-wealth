@@ -12,6 +12,7 @@ import { ValidateService } from 'src/app/services/validate/validate.service';
 })
 export class AssistedShareComponent implements OnInit {
   _paramSub: any;
+  QueryToken: any;
   ProductId: any;
   SelectedMutualFund: any;
   ShowLoader:any=true;
@@ -19,12 +20,23 @@ export class AssistedShareComponent implements OnInit {
 
   ngOnInit(): void {
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
+      this.QueryToken = params.TOKEN;
       this.ProductId = params.FID;
     });
     // console.log(this.ProductId);
-    if (!this.validate.isNullEmptyUndefined(this.ProductId)) {
+
+    if (!this.validate.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
+      this.QueryToken = decodeURIComponent(this.QueryToken);
+      localStorage.setItem("CustToken", this.QueryToken);
+      this.api.get("auth/customer/user", true).subscribe(async response => {
+        localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+      })
+    }
+
+    if (!this.validate.isNullEmptyUndefined(this.ProductId) && this.ProductId != 'null' && this.ProductId != "{FID}") {
       this.GetProductDetail();
     }
+
   }
 
   GetProductDetail() {
