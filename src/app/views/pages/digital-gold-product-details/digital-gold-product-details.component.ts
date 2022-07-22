@@ -55,7 +55,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       console.log(this.ApplicantData)
     }
 
-    // this.GetPortfolioBalance();
+    this.GetPortfolioBalance();
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
