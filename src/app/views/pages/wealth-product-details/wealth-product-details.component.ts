@@ -68,8 +68,8 @@ export class WealthProductDetailsComponent implements OnInit {
 
   value12: any = 7;
   options12: Options = {
-    floor: 3700,
-    ceil: 5300,
+    floor: 500,
+    ceil: 500000,
     hidePointerLabels: true,
     translate: (value12: number, label: any): string => {
       switch (label) {
@@ -208,7 +208,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
-      // console.log("SelectedMutualFund", this.SelectedMutualFund);
+      this.showTenureForPopup();
     }
 
     // if (localStorage.getItem("ProductOverview") != null) {

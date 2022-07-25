@@ -178,15 +178,16 @@ export class MutualFundCartComponent implements OnInit {
     postData.append("uniqueId", uniqueId);
     postData.append("options", JSON.stringify(options));
     this.api.post("wealthfy/confirm-cart", postData).subscribe(resp => {
-      this.ConfirmedCart = resp.data;
+      this.ConfirmedCart = resp.data;      
       // console.log('confirm cart',resp.data)
       if (resp.response.n == 1) {
-        if(this.ApplicantData.kycVerified != true){
+        localStorage.setItem('ConfirmedCartResponse', this.crypto.Encrypt(this.ConfirmedCart));
+        if (this.ApplicantData.kycVerified != true) {
           this.CommontRouterUrl('/kyc-verification');
         }
-        else if(this.ApplicantData.kycVerified == true){
+        else if (this.ApplicantData.kycVerified == true) {
           this.route.navigate(["/mutual-funds-payment-method"]);
-        }        
+        }
       }
     })
   }

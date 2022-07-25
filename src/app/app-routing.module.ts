@@ -58,6 +58,7 @@ import { SignInComponent } from './views/pages/sign-in/sign-in.component';
 import { AssistedShareComponent } from './views/pages/assisted-share/assisted-share.component';
 import { DigitalGoldSoldSuccessfullComponent } from './views/pages/digital-gold-sold-successfull/digital-gold-sold-successfull.component';
 import { MutualFundsPaymentComponent } from './views/pages/mutual-funds-payment/mutual-funds-payment.component';
+import { MutualFundsBSEPurchaseComponent } from './views/pages/mutual-funds-bse-purchase/mutual-funds-bse-purchase.component';
 
 
 
@@ -123,6 +124,7 @@ const routes: Routes = [
   { path: 'sign-in', component: SignInComponent },
   { path: 'assisted-share-wealth', component: AssistedShareComponent },
   { path: 'mutual-funds-payment-method', component:MutualFundsPaymentComponent},
+  { path : 'mutual-funds-BSE-purchase', component:MutualFundsBSEPurchaseComponent},
 ];
 
 @NgModule({

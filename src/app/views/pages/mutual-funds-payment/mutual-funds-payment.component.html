@@ -16,19 +16,19 @@
                 <div class="right-sec mt-5">
                     <h4 class="title">Select your payment method</h4>
                     <div class="row g-div m-0 mt-5">
-                        <div class="col-6 m-div" [ngClass]="PaymentType == 'RTGS/NEFT' ? 'active' : ''"
-                            (click)="PaymentType = 'RTGS/NEFT'">
+                        <div class="col-6 m-div" [ngClass]="PaymentType == 'NEFT' ? 'active' : ''"
+                            (click)="PaymentType = 'NEFT'">
                             <span>RTGS/NEFT</span>
                         </div>
-                        <div class="col-6 f-div" [ngClass]="PaymentType == 'Net Banking' ? 'active' : ''"
-                            (click)="PaymentType = 'Net Banking'">
+                        <div class="col-6 f-div" [ngClass]="PaymentType == 'NETBANKING' ? 'active' : ''"
+                            (click)="PaymentType = 'NETBANKING'">
                             <span>Net Banking</span>
                         </div>
                     </div>
                 </div>
                 <div class="trans-footer w-100">
-                    <div class=" d-flex">
-                        <a class="btn-primary theme-button">Proceed to Payment</a>
+                    <div class="d-flex">
+                        <a class="btn-primary theme-button cursor-pointer" (click)="ProceedToPayment()">Proceed to Payment</a>
                     </div>
                 </div>
             </div>
