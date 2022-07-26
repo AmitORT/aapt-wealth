@@ -66,7 +66,7 @@ export class WealthProductDetailsComponent implements OnInit {
     autoplayHoverPause: true
   }
 
-  value12: any = 7;
+  value12: any = 500;
   options12: Options = {
     floor: 500,
     ceil: 500000,
@@ -231,6 +231,7 @@ export class WealthProductDetailsComponent implements OnInit {
 
     this.GetProductDetail();
     this.GetGraphData();
+    this.CalculateInvestmentReturns();
 
 
 
@@ -452,6 +453,28 @@ export class WealthProductDetailsComponent implements OnInit {
     localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(offer));
     this.route.navigate(['/wealth-product-details']);
   }
+
+  CalculatorInvestmentMode: string = '1';
+  CalculatorCurrentAmount: string = '500';
+  CalculatorTenureInMonths: string = '12';
+  FutureValueResponse:any;
+
+  CalculateInvestmentReturns() {
+    var postData = new FormData();
+    postData.append("currentAmount", this.CalculatorCurrentAmount);
+    postData.append("tenureInMonths", this.CalculatorTenureInMonths);
+    postData.append("investmentMode", this.CalculatorInvestmentMode);
+    postData.append("rateInflation", this.SelectedMutualFund.id);
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    this.api.post("wealthfy/future-value", postData).subscribe(response => {
+      // console.log('future-value', response)
+      if(response.response.n==1){
+        this.FutureValueResponse = response.data;
+      }
+    })
+  }
+
+
 
 
   public generateData(baseval: any, count: any, yrange: { max: any; min: any; }) {

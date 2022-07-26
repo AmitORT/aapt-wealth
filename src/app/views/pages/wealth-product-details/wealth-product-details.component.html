@@ -173,20 +173,23 @@
             <div class="row align-items-center">
               <h5><b>Investment Returns Calculator</b></h5>
               <div class="col-lg-5 col-7 irc-tabs">
-                <ul class="nav nav-tabs" role="tablist">
+                <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    <a class="nav-link active" data-bs-toggle="tab" href="#sip">SIP</a>
+                    
+                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '1' ? 'active' : ''" (click)="CalculatorInvestmentMode = '1'; CalculateInvestmentReturns();">SIP</a>
+                    <!-- <a class="nav-link active" data-bs-toggle="tab" href="#sip">SIP</a> -->
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="tab" href="#one-time">One Time</a>
+                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '3' ? 'active' : ''" (click)="CalculatorInvestmentMode = '3'; CalculateInvestmentReturns();">One Time</a>
+                    <!-- <a class="nav-link" data-bs-toggle="tab" href="#one-time">One Time</a> -->
                   </li>
                 </ul>
               </div>
               <div class="col-lg-7 col-5">
-                <div class="monthly" *ngIf="PreminumTime" (click)="PreminumTime = false">1Y Return
+                <div class="monthly" *ngIf="CalculatorTenureInMonths == '12'" (click)="CalculatorTenureInMonths = '36'; CalculateInvestmentReturns();">1Y Return
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
                 </div>
-                <div class="monthly" *ngIf="!PreminumTime" (click)="PreminumTime = true">2Y Return
+                <div class="monthly" *ngIf="CalculatorTenureInMonths == '36'" (click)="CalculatorTenureInMonths = '12'; CalculateInvestmentReturns();">3Y Return
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
                 </div>
               </div>
@@ -196,19 +199,19 @@
                 <p>Select Investment Amount</p>
               </div>
               <div class="col-lg-6 col-6 text-end">
-                <p><b>Rs. 3,700</b></p>
+                <p><b>Rs. {{CalculatorCurrentAmount}}</b></p>
               </div>
               <div class="col-lg-7 col-7">
                 <p><b>SIP Amount</b></p>
               </div>
               <div class="col-lg-5 col-5 position-relative">
                 <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4"
-                  [(ngModel)]="value12" />
+                  [(ngModel)]="CalculatorCurrentAmount" (change)="value12 = CalculatorCurrentAmount" (keyup)="CalculateInvestmentReturns();"/>
                 <span class="rupee-symbol">₹</span>
               </div>
               <div class="col-lg-12">
                 <div class="custom-slider my-4">
-                  <ngx-slider [(value)]="value12" [options]="options12"></ngx-slider>
+                  <ngx-slider [(value)]="value12" (userChange)="CalculatorCurrentAmount = value12; CalculateInvestmentReturns();" [options]="options12"></ngx-slider>
                 </div>
                 <p class="text-orange">*Minimum SIP amount need to be Rs. 100</p>
               </div>
@@ -219,7 +222,7 @@
                 <p>with 116.1% returns per annum</p>
               </div>
               <div class="col-lg-5 col-5 text-end">
-                <p class="blue-text"><b>Rs. 104,356</b></p>
+                <p class="blue-text"><b>Rs. {{FutureValueResponse.futureValueOfInvestment.toFixed(2)}}</b></p>
               </div>
             </div>
             <hr>
