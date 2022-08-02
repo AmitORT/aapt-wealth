@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   ServerUrl: "https://findev.aaptfin.com/api/",
-  
+
   DGLoginEmail: "finizonuser@finizon.com",
   DGLoginPassword: "test2$",
 
@@ -17,6 +17,8 @@ export const environment = {
   ShareUrl: "https://uat.finizon.com/wealth#/assisted-share-wealth?FID={FID}",
 
   AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
 
 
   // --UAT FINIZON--
@@ -29,6 +31,8 @@ export const environment = {
   // WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
   // ShareUrl:"http://finizon-agent.onerooftechnologies.com/assisted-share-wealth?FID={FID}",
   // AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  // AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  // AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
 
   // --UAT ONEROOFTECH--
 };

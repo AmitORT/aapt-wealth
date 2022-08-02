@@ -49,6 +49,8 @@ export class FooterComponent implements OnInit {
   UrlRegister: any = 'auth/customer/register';
   UrlSendOTP: any = 'auth/customer/send-otp';
   urlValidateOTP: any = 'auth/customer/ValidateOTP';
+  AgentInsuranceUrl = environment.AgentInsuranceUrl;
+  AgentCommonUrl = environment.AgentCommonUrl;
 
   constructor(public api: ApiService, public validation: ValidateService, public toastr: ToastrService, public route: Router, private cryptoManager: AescryptoService, public eligibility: EligibilityService) { }
 
@@ -122,11 +124,17 @@ export class FooterComponent implements OnInit {
     this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
     window.location.href = this.CommonUrl;
   }
-  GoToAgent(para: any) {
+  GoToAgentInsurance(para: any) {
     this.AToken = localStorage.getItem("AgentToken");
-    this.AgentUrl = environment.AgentUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
-    this.AgentUrl = this.AgentUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.AgentUrl;
+    this.AgentInsuranceUrl = environment.AgentInsuranceUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
+    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{PATH}", encodeURIComponent(para));
+    window.location.href = this.AgentInsuranceUrl;
+  }
+  GoToAgentCommon(para: any) {
+    this.AToken = localStorage.getItem("AgentToken");
+    this.AgentCommonUrl = environment.AgentCommonUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
+    this.AgentCommonUrl = this.AgentCommonUrl.replace("{PATH}", encodeURIComponent(para));
+    window.location.href = this.AgentCommonUrl;
   }
 
   otpToggle(event: Event, calltype?: any) {
@@ -198,7 +206,7 @@ export class FooterComponent implements OnInit {
       registerData.lastName = this.FormLastName;
       registerData.consent_id = 1;
       registerData.ip_address = '192.168.0.1';
-      registerData.agentType = 2;
+      // registerData.agentType = 2;
       registerData.gender = 1;
 
       this.api.post(this.UrlRegister, registerData, false).subscribe(async response => {
@@ -339,11 +347,47 @@ export class FooterComponent implements OnInit {
           this.GetApplicantData();
 
           if (!this.validation.isNullEmptyUndefined(response.data.token.agent)) {
-            if (this.calltype == 'register') {
-              this.GoToAgent('/agent-type')
+            // if (this.calltype == 'register') {
+            //   this.GoToAgent('/agent-type')
+            // }
+            // else if (this.calltype == 'login') {
+            //   this.GoToAgent('/overview');
+            // }
+            if(response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)){
+              this.GoToAgentCommon('agent-overview');
             }
-            else if (this.calltype == 'login') {
-              this.GoToAgent('/overview');
+            else if (response.agentType.Insurance == true) {
+              if (response.agentKyc.Insurance == true) {
+                this.GoToAgentInsurance('/agent-insurance-dashboard');
+              }
+              else {
+                this.GoToAgentInsurance('/agent-insurance-onboarding');
+              }
+            }
+            else if (response.agentType.Insurance != true) {
+
+              if(response.agentType.credit == true && response.agentType.wealth == true){
+                this.GoToAgentCommon('agent-overview');
+              }
+              else if (response.agentType.credit == true) {
+                if (response.agentKyc.credit == true) {
+                  this.GoToAgentCommon('agent-credit-dashboard');
+                }
+                else{
+                  this.GoToAgentCommon('agent-credit-onboarding');
+                }
+              }
+              else if (response.agentType.wealth == true) {
+                if (response.agentKyc.wealth == true) {
+                  this.GoToAgentCommon('agent-wealth-dashboard');
+                }
+                else{
+                  this.GoToAgentCommon('agent-wealth-onboarding');
+                }
+              }
+              else{
+                this.GoToAgentCommon('agent-type');
+              }
             }
           }
           else if (this.validation.isNullEmptyUndefined(response.data.token.agent)) {
