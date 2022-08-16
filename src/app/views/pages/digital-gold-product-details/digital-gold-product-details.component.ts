@@ -44,7 +44,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       this.Action = localStorage.getItem('DGAction');
       localStorage.removeItem('DGAction');
     }
-    this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
+    // this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
 
     if (localStorage.getItem('DGProceed') == '1') {
       this.Action == "buy" ? this.validateCreateOrder() : '';
@@ -85,6 +85,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       console.log('dg', resp)
       if (resp.response.n == 1) {
         localStorage.setItem('DGSessionID', this.crypto.Encrypt(resp.data.sessionid));
+        this.Action == "buy" ? this.GetBuyAmountPerGram() : this.GetSellAmountPerGram();
       }
     })
   }
@@ -137,17 +138,21 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
 
   GetConvertedGold(para: string) {
     para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
-    const data = {
-      "action": this.Action,
-      "amount": parseFloat(this.Amount),
-      "quantity": parseFloat(this.Weight),
-    }
-    this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
-      if (resp.response.n == 1) {
-        para == 'Amount' ? this.Weight = resp.data.value.toFixed(2) : this.Amount = resp.data.value.toFixed(2);
-        this.QuoteID = resp.data.quote_id;
+
+    if (para == 'Amount' && !this.validate.isNullEmptyUndefined(this.Amount) || para == 'Weight' && !this.validate.isNullEmptyUndefined(this.Weight)) {
+      const data = {
+        "action": this.Action,
+        "amount": parseFloat(this.Amount),
+        "quantity": parseFloat(this.Weight),
       }
-    })
+      this.api.post('digitalGold/trade/convert-gold', data, false, true).subscribe(resp => {
+        if (resp.response.n == 1) {
+          para == 'Amount' ? this.Weight = resp.data.value.toFixed(2) : this.Amount = resp.data.value.toFixed(2);
+          this.QuoteID = resp.data.quote_id;
+        }
+      })
+    }
+
   }
 
   GoToCommon() {
@@ -159,14 +164,16 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   CheckLogin() {
-    if (localStorage.getItem("CustToken") == null) {
-      $("#login").modal("show");
-    }
-    else if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
+    
+     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
+    }
+    else if (localStorage.getItem("CustToken") == null) {
+      $("#invest-screen").modal("hide");
+      $("#login").modal("show");
     }
     else if (this.Amount > 199000 && (this.ApplicantData.profileDetail != true)) {
       $("#update-kyc").modal("show");
@@ -216,6 +223,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   PayWithRazor() {
+    debugger
     const options: any = {
       "key": this.validateCreateOrderResponse.key,// Enter the Key ID returned from validateAndCreateOrder
       "currency": "INR", //optional

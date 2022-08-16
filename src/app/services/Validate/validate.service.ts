@@ -29,6 +29,16 @@ export class ValidateService {
     }
     return true;
   }
+  DesimalOnly(event: KeyboardEvent, value: string): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
+      return false;
+    }
+    if (value.indexOf('.') > -1 && charCode === 46) {
+      return false;
+    }
+    return true;
+  }
   
   validateEmail(email: any) {
     const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
