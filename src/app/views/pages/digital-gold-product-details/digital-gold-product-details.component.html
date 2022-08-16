@@ -165,13 +165,13 @@
                 <div class="row position-relative">
                   <div class="col-6 pe-2">
                     <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" maxlength="10"
-                      placeholder="Enter Amount" [(ngModel)]="Amount" (keypress)="validate.numberOnly($event)"
-                      (keyup)="GetConvertedGold('Amount')">
+                      [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount"
+                      (keypress)="validate.numberOnly($event)" (keyup)="GetConvertedGold('Amount')">
                   </div>
                   <div class="col-6 ps-2">
                     <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" maxlength="10"
-                      placeholder="Enter Weight" [(ngModel)]="Weight" (keypress)="validate.DesimalOnly($event,Weight)"
-                      (keyup)="GetConvertedGold('Weight')">
+                      [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight"
+                      (keypress)="validate.DesimalOnly($event,Weight)" (keyup)="GetConvertedGold('Weight')">
                   </div>
                   <img src="assets/img/equalto.svg" alt="icici" class="amount-weight-change" />
                 </div>
@@ -262,13 +262,13 @@
                   <div class="row position-relative">
                     <div class="col-6 pe-2">
                       <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" maxlength="10"
-                        placeholder="Enter Amount" [(ngModel)]="Amount" (keypress)="validate.numberOnly($event)"
-                        (keyup)="GetConvertedGold('Amount')">
+                        [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount"
+                        (keypress)="validate.numberOnly($event)" (keyup)="GetConvertedGold('Amount')">
                     </div>
                     <div class="col-6 ps-2">
                       <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" maxlength="10"
-                        placeholder="Enter Weight" [(ngModel)]="Weight" (keypress)="validate.DesimalOnly($event,Weight)"
-                        (keyup)="GetConvertedGold('Weight')">
+                        [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight"
+                        (keypress)="validate.DesimalOnly($event,Weight)" (keyup)="GetConvertedGold('Weight')">
                     </div>
                     <img src="assets/img/amount-weight-change.svg" alt="icici" class="amount-weight-change" />
                   </div>
