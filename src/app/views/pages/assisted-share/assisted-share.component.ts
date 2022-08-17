@@ -15,15 +15,17 @@ export class AssistedShareComponent implements OnInit {
   QueryToken: any;
   ProductId: any;
   SelectedMutualFund: any;
-  ShowLoader:any=true;
-  constructor(public activeRoute: ActivatedRoute,private route: Router, private toastr: ToastrService, private crypto: AescryptoService, public validate: ValidateService, private api: ApiService) { }
+  ShowLoader: any = true;
+  ViewFund: any = 2;
+  constructor(public activeRoute: ActivatedRoute, private route: Router, private toastr: ToastrService, private crypto: AescryptoService, public validate: ValidateService, private api: ApiService) { }
 
   ngOnInit(): void {
     this._paramSub = this.activeRoute.queryParams.subscribe(async params => {
       this.QueryToken = params.TOKEN;
       this.ProductId = params.FID;
+      this.ViewFund = params.VIEWFUND;
     });
-    // console.log(this.ProductId);
+    console.log('ViewFund', this.ViewFund);
 
     if (!this.validate.isNullEmptyUndefined(this.QueryToken) && this.QueryToken != 'null' && this.QueryToken != "{TOKEN}") {
       this.QueryToken = decodeURIComponent(this.QueryToken);
@@ -49,12 +51,13 @@ export class AssistedShareComponent implements OnInit {
     postData.append("orderBy", JSON.stringify(orderby));
     postData.append("whereClause", "{}");
     this.api.post("wealthfy/get-product-overview", postData).subscribe((resp: any) => {
-      // console.log("GetProductDetail", resp)
+      console.log("GetProductDetail", resp)
       if (resp.response.n == 1) {
         this.SelectedMutualFund = resp.data.productOverview[0];
         // console.log(this.SelectedMutualFund);
         let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
         localStorage.setItem("SelectedMutualFund", encryptedProduct);
+        localStorage.setItem("ViewFund", this.ViewFund);
         this.route.navigate(['/wealth-product-details']);
       } else {
         this.toastr.error(resp.response.Msg);

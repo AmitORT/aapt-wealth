@@ -145,6 +145,13 @@ export class WealthProductDetailsComponent implements OnInit {
     "monthly_amt": "",
     "yearly_amt": ""
   }
+  ViewFund: any = 2;
+
+  RedeemSwitchFund: any = {
+    'sellType':'Amount',
+    'totalAmount':'',
+    'quantity':''
+  }
 
 
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private router: ActivatedRoute) {
@@ -205,9 +212,18 @@ export class WealthProductDetailsComponent implements OnInit {
       // console.log("MutualProductCompareFund", this.MutualProductCompareFund);
     }
 
+    if (localStorage.getItem("ViewFund") != null) {
+      this.ViewFund = localStorage.getItem("ViewFund")
+      // localStorage.removeItem("ViewFund");
+    }
+
 
     if (localStorage.getItem("SelectedMutualFund") != null) {
-      this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
+      this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"));
+      if(this.SelectedMutualFund.RedeemSwitchFund != null){
+        this.RedeemSwitchFund = this.SelectedMutualFund.RedeemSwitchFund;
+      }
+      console.log("SelectedMutualFund", this.SelectedMutualFund);
       this.showTenureForPopup();
     }
 
@@ -457,7 +473,7 @@ export class WealthProductDetailsComponent implements OnInit {
   CalculatorInvestmentMode: string = '1';
   CalculatorCurrentAmount: string = '500';
   CalculatorTenureInMonths: string = '12';
-  FutureValueResponse:any;
+  FutureValueResponse: any;
 
   CalculateInvestmentReturns() {
     var postData = new FormData();
@@ -468,12 +484,37 @@ export class WealthProductDetailsComponent implements OnInit {
     postData.append("instrumentId", this.SelectedMutualFund.id);
     this.api.post("wealthfy/future-value", postData).subscribe(response => {
       // console.log('future-value', response)
-      if(response.response.n==1){
+      if (response.response.n == 1) {
         this.FutureValueResponse = response.data;
       }
     })
   }
 
+
+  RedeemFunds() {
+    $("#sortby-screen").modal("hide");
+    this.route.navigate(["/switch-redeem-funds"]);
+
+  }
+  RedeemSwitchFunds() {
+    if(this.RedeemSwitchFund.sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemSwitchFund.totalAmount)){
+      this.toastr.error("Please Enter Total Amount");
+    }
+    else if(this.RedeemSwitchFund.sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemSwitchFund.quantity)){
+      this.toastr.error("Please Enter quantity");
+    }
+    else{
+      $("#sortby-screen").modal("hide");
+      debugger
+      this.RedeemSwitchFund.sellType == 'Amount' ? this.RedeemSwitchFund.quantity = '' : this.RedeemSwitchFund.totalAmount = '';
+      // this.ModeOfInvestment.sellType == 'Unit' ? this.RedeemSwitchFund.totalAmount = '';
+      this.SelectedMutualFund.RedeemSwitchFund = this.RedeemSwitchFund;
+      // console.log('SelectedMutualFund', this.SelectedMutualFund);
+
+      localStorage.setItem("SelectedMutualFund", this.crypto.Encrypt(this.SelectedMutualFund));
+      this.route.navigate(['/switch-redeem-funds']);
+    }
+  }
 
 
 

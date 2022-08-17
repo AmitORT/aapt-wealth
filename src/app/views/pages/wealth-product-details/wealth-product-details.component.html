@@ -175,21 +175,25 @@
               <div class="col-lg-5 col-7 irc-tabs">
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    
-                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '1' ? 'active' : ''" (click)="CalculatorInvestmentMode = '1'; CalculateInvestmentReturns();">SIP</a>
+
+                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '1' ? 'active' : ''"
+                      (click)="CalculatorInvestmentMode = '1'; CalculateInvestmentReturns();">SIP</a>
                     <!-- <a class="nav-link active" data-bs-toggle="tab" href="#sip">SIP</a> -->
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '3' ? 'active' : ''" (click)="CalculatorInvestmentMode = '3'; CalculateInvestmentReturns();">One Time</a>
+                    <a class="nav-link" [ngClass]="CalculatorInvestmentMode == '3' ? 'active' : ''"
+                      (click)="CalculatorInvestmentMode = '3'; CalculateInvestmentReturns();">One Time</a>
                     <!-- <a class="nav-link" data-bs-toggle="tab" href="#one-time">One Time</a> -->
                   </li>
                 </ul>
               </div>
               <div class="col-lg-7 col-5">
-                <div class="monthly" *ngIf="CalculatorTenureInMonths == '12'" (click)="CalculatorTenureInMonths = '36'; CalculateInvestmentReturns();">1Y Return
+                <div class="monthly" *ngIf="CalculatorTenureInMonths == '12'"
+                  (click)="CalculatorTenureInMonths = '36'; CalculateInvestmentReturns();">1Y Return
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
                 </div>
-                <div class="monthly" *ngIf="CalculatorTenureInMonths == '36'" (click)="CalculatorTenureInMonths = '12'; CalculateInvestmentReturns();">3Y Return
+                <div class="monthly" *ngIf="CalculatorTenureInMonths == '36'"
+                  (click)="CalculatorTenureInMonths = '12'; CalculateInvestmentReturns();">3Y Return
                   <img src="assets/img/unfold_more.svg" class="orange-pencil">
                 </div>
               </div>
@@ -206,12 +210,15 @@
               </div>
               <div class="col-lg-5 col-5 position-relative">
                 <input type="text" (keypress)="validate.numberOnly($event)" class="form-control ps-4"
-                  [(ngModel)]="CalculatorCurrentAmount" (change)="value12 = CalculatorCurrentAmount" (keyup)="CalculateInvestmentReturns();"/>
+                  [(ngModel)]="CalculatorCurrentAmount" (change)="value12 = CalculatorCurrentAmount"
+                  (keyup)="CalculateInvestmentReturns();" />
                 <span class="rupee-symbol">₹</span>
               </div>
               <div class="col-lg-12">
                 <div class="custom-slider my-4">
-                  <ngx-slider [(value)]="value12" (userChange)="CalculatorCurrentAmount = value12; CalculateInvestmentReturns();" [options]="options12"></ngx-slider>
+                  <ngx-slider [(value)]="value12"
+                    (userChange)="CalculatorCurrentAmount = value12; CalculateInvestmentReturns();"
+                    [options]="options12"></ngx-slider>
                 </div>
                 <p class="text-orange">*Minimum SIP amount need to be Rs. 100</p>
               </div>
@@ -394,8 +401,9 @@
     </div>
 
 
+    <!-- <div> -->
 
-    <div class="col-lg-4 d-none d-lg-block d-md-block d-sm-block" id="sidebar-main">
+    <div class="col-lg-4 d-none d-lg-block d-md-block d-sm-block" id="sidebar-main" *ngIf="ViewFund == 2">
       <div class="left-sidebar" id="sidebar">
         <div class="right-box">
           <h5>Select Mode of Investment</h5>
@@ -492,6 +500,51 @@
       </div>
     </div>
 
+    <div class="col-lg-4" *ngIf="ViewFund == 1">
+      <div class="right-box  d-none d-lg-block d-md-block d-sm-block">
+        <h5>Sell your Fund by</h5>
+        <ul class="nav nav-tabs" id="year-tabs">
+          <li class="nav-item">
+            <button class="nav-link " [ngClass]="RedeemSwitchFund.sellType == 'Amount' ? 'active' : ''"
+              (click)="RedeemSwitchFund.sellType = 'Amount'">Amount</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" [ngClass]="RedeemSwitchFund.sellType == 'Unit' ? 'active' : ''"
+              (click)="RedeemSwitchFund.sellType = 'Unit'">Unit</button>
+          </li>
+
+        </ul>
+        <div class="row mt-3">
+          <div class="col-lg-7 col-7">
+            <p class="pt-2"><b>Enter Amount</b></p>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- <h1>₹ 0</h1> -->
+            <input type="text" placeholder="Total Amount" maxlength="10" (keypress)="validate.numberOnly($event)"
+              class="form-control ps-4 mb-2" [(ngModel)]="RedeemSwitchFund.totalAmount" />
+            <!-- <p>Units 00</p> -->
+            <input type="text" placeholder="Quantity" maxlength="4" (keypress)="validate.numberOnly($event)"
+              class="form-control ps-4 mb-2" [(ngModel)]="RedeemSwitchFund.quantity" />
+          </div>
+
+          <div class="col-lg-12 col-12">
+            <button type="button" class="btn btn-primary sip-btn" (click)="RedeemSwitchFunds()">
+              Redeem/Switch Funds </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-box-mob d-block d-lg-none d-md-none d-sm-none">
+        <button type="button" class="btn btn-primary sip-btn" data-bs-toggle="modal"
+          data-bs-target="#sortby-screen">Redeem/Switch Funds </button>
+      </div>
+
+
+    </div>
+    <!-- </div> -->
+
+
     <div class=" pt-4 finance owl-1" *ngIf="ShowCarousel != '2'">
       <div class="row align-items-center">
         <div class="col-lg-12">
@@ -534,7 +587,8 @@
                 <div class="col-lg-6 col-6">
                   <button class="nav-link btn btn-primary invest-button" (click)="InvestINFund(funds.id)">
                     <!-- [routerLink]="['/mutual-select-goal']" -->
-                    Invest</button>
+                    Invest
+                  </button>
                 </div>
               </div>
 
@@ -551,8 +605,14 @@
     <div class="applybtn-mob">
 
       <div class="col-12">
-        <button type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal" data-bs-target="#invest-screen">
+        <button *ngIf="ViewFund == 2" type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal"
+          data-bs-target="#invest-screen">
           Invest Now
+        </button>
+
+        <button *ngIf="ViewFund == 1" type="button" class="btn btn-primary invest-btn" data-bs-toggle="modal"
+          data-bs-target="#sortby-screen">
+          Redeem/Switch Funds
         </button>
 
 
@@ -663,6 +723,50 @@
 
       </div>
 
+    </div>
+  </div>
+</div>
+
+
+<!-- sort by Modal -->
+<div class="modal fade" id="sortby-screen" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span class="mob-tab-dash"></span>
+        <h5>Sell your Fund by</h5>
+
+        <ul class="nav nav-tabs" id="year-tabs">
+          <li class="nav-item">
+            <button class="nav-link " [ngClass]="RedeemSwitchFund.sellType == 'Amount' ? 'active' : ''"
+              (click)="RedeemSwitchFund.sellType = 'Amount'">Amount</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" [ngClass]="RedeemSwitchFund.sellType == 'Unit' ? 'active' : ''"
+              (click)="RedeemSwitchFund.sellType = 'Unit'">Unit</button>
+          </li>
+
+        </ul>
+        <div class="row mt-3">
+          <div class="col-lg-7 col-7">
+            <p class="pt-2"><b>Enter Amount</b></p>
+          </div>
+
+          <div class="col-lg-12">
+            <!-- <h1>₹ 0</h1> -->
+            <input type="text" placeholder="Total Amount" maxlength="10" (keypress)="validate.numberOnly($event)"
+              class="form-control ps-4 mb-2" [(ngModel)]="RedeemSwitchFund.totalAmount" />
+            <!-- <p>Units 00</p> -->
+            <input type="text" placeholder="Quantity" maxlength="4" (keypress)="validate.numberOnly($event)"
+              class="form-control ps-4 mb-2" [(ngModel)]="RedeemSwitchFund.quantity" />
+          </div>
+
+          <div class="col-lg-12 col-12">
+            <button type="button" class="btn btn-primary sip-btn" (click)="RedeemSwitchFunds()">
+              Redeem/Switch Funds </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
