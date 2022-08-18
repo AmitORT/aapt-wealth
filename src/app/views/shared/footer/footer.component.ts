@@ -171,10 +171,10 @@ export class FooterComponent implements OnInit {
           // console.log('response', response);
           this.isOTPSent = true;
           $("#mob_signin").modal("hide");
-          this.resendbuttonText = "2:30";
+          this.resendbuttonText = "0:60";
           $("#Footerotp-screen").modal("show");
           this.toastr.success(response.response.Msg);
-          // this.resendbuttonText = "2:30";
+          // this.resendbuttonText = "0:60";
           this.countdownforOTP();
         }
         else {
@@ -216,9 +216,9 @@ export class FooterComponent implements OnInit {
           // console.log(response);
           this.isOTPSent = true;
           $("#mob_signup").modal("hide");
-          this.resendbuttonText = "2:30";
+          this.resendbuttonText = "0:60";
           $("#Footerotp-screen").modal("show");
-          // this.resendbuttonText = "2:30";
+          // this.resendbuttonText = "0:60";
           this.countdownforOTP();
         }
         else {
@@ -256,8 +256,11 @@ export class FooterComponent implements OnInit {
       if (response.response.n == 1) {
         // console.log(response.data.otp);
         // this.toastr.success(response.data.otp);
-        this.resendbuttonText = "2:30";
+        this.resendbuttonText = "0:60";
         this.countdownforOTP();
+      }
+      else{
+        this.toastr.error(response.response.Msg);
       }
     })
   }

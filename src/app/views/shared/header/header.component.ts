@@ -88,7 +88,7 @@ export class HeaderComponent implements OnInit, DoCheck {
       $(".sign-up").hide();
     });
 
-    this.resendbuttonText = "2:30"
+    this.resendbuttonText = "0:60"
 
     this.countdown();
 
@@ -203,7 +203,7 @@ export class HeaderComponent implements OnInit, DoCheck {
         if (response.response.n == 1) {
           this.isOTPSent = true;
           $("#headerotp-screen").modal("show");
-          this.resendbuttonText = "2:30"
+          this.resendbuttonText = "0:60"
           this.countdown();
           // console.log('response', response)
           this.toastr.success(response.response.Msg);
@@ -246,7 +246,7 @@ export class HeaderComponent implements OnInit, DoCheck {
         if (response.response.n == 1) {
           this.isOTPSent = true;
           $("#headerotp-screen").modal("show");
-          this.resendbuttonText = "2:30"
+          this.resendbuttonText = "0:60"
           this.countdown();
           this.toastr.success(response.response.Msg);
           // console.log(response);
@@ -482,8 +482,11 @@ export class HeaderComponent implements OnInit, DoCheck {
       if (response.response.n == 1) {
         // console.log(response.data.otp);
         this.toastr.success(response.data.otp);
-        this.resendbuttonText = "2:30"
+        this.resendbuttonText = "0:60"
         this.countdown();
+      }
+      else{
+        this.toastr.error(response.response.Msg);
       }
     })
   }

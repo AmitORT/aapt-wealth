@@ -303,7 +303,7 @@ export class SignInComponent implements OnInit {
           // console.log("check-and-add OTP", resp.data.otp);
           this.ResetOTP();
           $("#otp-screen").modal("show");
-          this.resendbuttonText = "2:30"
+          this.resendbuttonText = "0:60"
           this.countdown();
         } else if (resp.response.n == 1 && !this.validate.isNullEmptyUndefined(resp.data.token)) {
           var custToken = { "token": resp.data.token };
@@ -323,8 +323,11 @@ export class SignInComponent implements OnInit {
       if (response.response.n == 1) {
         // console.log(response.data.otp);
         // this.toastr.success(response.data.otp);
-        this.resendbuttonText = "2:30"
+        this.resendbuttonText = "0:60"
         this.countdown();
+      }
+      else{
+        this.toastr.error(response.response.Msg);
       }
     })
   }
