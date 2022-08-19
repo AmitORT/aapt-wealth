@@ -7,32 +7,32 @@ export const environment = {
 
   // --UAT FINIZON--
 
-  CommonUrl: "https://uat.finizon.com/#/?TOKEN={TOKEN}&PATH={PATH}&TXN={TXN}&FROM={FROM}",
+  // CommonUrl: "https://uat.finizon.com/#/?TOKEN={TOKEN}&PATH={PATH}&TXN={TXN}&FROM={FROM}",
 
-  CreditUrl: "https://uat.finizon.com/credit#/?TOKEN={TOKEN}&PATH={PATH}",
+  // CreditUrl: "https://uat.finizon.com/credit#/?TOKEN={TOKEN}&PATH={PATH}",
 
-  InsuranceUrl: "http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
+  // InsuranceUrl: "http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
 
-  WealthUrl: "https://uat.finizon.com/wealth#/?TOKEN={TOKEN}&PATH={PATH}",
-  ShareUrl: "https://uat.finizon.com/wealth#/assisted-share-wealth?FID={FID}",
+  // WealthUrl: "https://uat.finizon.com/wealth#/?TOKEN={TOKEN}&PATH={PATH}",
+  // ShareUrl: "https://uat.finizon.com/wealth#/assisted-share-wealth?FID={FID}",
 
-  AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
-  AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
-  AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  // AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  // AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  // AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
 
 
   // --UAT FINIZON--
 
   // --UAT ONEROOFTECH--
 
-  // CommonUrl:"http://finizon.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // CreditUrl:"http://finizon-credit.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // InsuranceUrl:"http://finizon-insurance.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // ShareUrl:"http://finizon-agent.onerooftechnologies.com/assisted-share-wealth?FID={FID}",
-  // AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
-  // AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
-  // AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  CommonUrl:"http://finizon.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  CreditUrl:"http://finizon-credit.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  InsuranceUrl:"http://finizon-insurance.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  ShareUrl:"http://finizon-agent.onerooftechnologies.com/assisted-share-wealth?FID={FID}",
+  AgentUrl: "http://finizon-agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentCommonUrl: "http://agent.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentInsuranceUrl: "http://agentinsurance.onerooftechnologies.com?ATOKEN={ATOKEN}&PATH={PATH}",
 
   // --UAT ONEROOFTECH--
 };

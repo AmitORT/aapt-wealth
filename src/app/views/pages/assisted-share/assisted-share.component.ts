@@ -54,7 +54,7 @@ export class AssistedShareComponent implements OnInit {
       console.log("GetProductDetail", resp)
       if (resp.response.n == 1) {
         this.SelectedMutualFund = resp.data.productOverview[0];
-        // console.log(this.SelectedMutualFund);
+        console.log(this.SelectedMutualFund);
         let encryptedProduct = this.crypto.Encrypt(this.SelectedMutualFund);
         localStorage.setItem("SelectedMutualFund", encryptedProduct);
         localStorage.setItem("ViewFund", this.ViewFund);
