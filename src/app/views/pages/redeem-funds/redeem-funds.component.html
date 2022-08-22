@@ -8,134 +8,153 @@
   </div>
   <div class="row  risk1 mt-5">
 
+
+
     <div class="col-lg-6 col-12" id="sidebar-main">
       <div class="left-sidebar" id="sidebar">
-        <img *ngIf="Steps != 2" src="assets/img/redeem-fund.svg" alt="risk-profiling" class="w-75 r-img" />
-        <img *ngIf="Steps==2" src="assets/img/tree.svg" alt="risk-profiling" class="w-75  hidden-xs" />
+        <img *ngIf="RedeemCartItemList.length < 1" src="assets/img/redeem-fund.svg" alt="risk-profiling"
+          class="w-75 r-img" />
+        <img *ngIf="RedeemCartItemList.length > 0" src="assets/img/tree.svg" alt="risk-profiling"
+          class="w-75  hidden-xs" />
       </div>
     </div>
 
     <div class="col-lg-6">
-      <div class="mb-5" *ngIf="RedeemCartItemList.length < 1" (click)="AddNewInstrument()">
-        <h5 class="mob-center">You have no orders in cart to redeem</h5>
-        <p class="border">+ Add New Instrument</p>
+
+      <div class="row mt-5" *ngIf="RedeemLoader">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <h5><i class="fa fa-spinner fa-spin" aria-hidden="true"></i> Please Wait...</h5>
+        </div>
       </div>
 
-      <div *ngIf="RedeemCartItemList.length > 0">
-        <div class="accordion" id="accordionExample-desk">
-          <div class="accordion-item" *ngFor="let Redeemlist of RedeemCartItemList; let i=index;">
-            <h2 class="accordion-header" id="headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                attr.data-bs-target="#collapse{{i}}">
-                <h6>Instrument {{i+1}}</h6>
-              </button>
-            </h2>
-            <div id="collapse{{i}}" class="accordion-collapse collapse"
-              [ngClass]="Redeemlist.isActive == 1 ? 'show' : ''" data-bs-parent="#accordionExample-desk">
-              <div class=" row accordion-body">
-                <div class="form-floating">
-                  <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example"
-                    [(ngModel)]="Redeemlist.instrumentId">
-                    <option value="">Select Instrument Name </option>
-                    <option value="{{list.instrumentId}}" *ngFor="let list of MyHoldings">{{list.instrumentName}}
-                    </option>
-                  </select>
-                  <label for="floatingSelect">Instrument Name</label>
-                </div>
-                <div class="form-floating">
-                  <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
-                    <option value="0">Brother </option>
-                    <option value="1">Mother</option>
-                    <option value="2">Sister</option>
-                  </select>
-                  <label for="floatingSelect">Folio</label>
-                </div>
-                <div class="justify-content-between d-flex mt-2 mb-3">
-                  <h6 class="mt-2">Redeem from Goal?</h6>
-                  <div class="toggle-none">
-                    <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" name="consent{{i}}"
-                        (click)="Checked('consent'+i,i)" id="consent{{i}}">
+      <div class="row" *ngIf="!RedeemLoader">
+
+        <div class="mb-5" *ngIf="RedeemCartItemList.length < 1" (click)="AddNewInstrument()">
+          <h5 class="mob-center">You have no orders in cart to redeem</h5>
+          <p class="border">+ Add New Instrument</p>
+        </div>
+
+        <div *ngIf="RedeemCartItemList.length > 0">
+          <div class="accordion" id="accordionExample-desk">
+            <div class="accordion-item" *ngFor="let Redeemlist of RedeemCartItemList; let i=index;">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                  attr.data-bs-target="#collapse{{i}}">
+                  <h6>Instrument {{i+1}}</h6>
+                </button>
+              </h2>
+              <div id="collapse{{i}}" class="accordion-collapse collapse"
+                [ngClass]="Redeemlist.isActive == 1 ? 'show' : ''" data-bs-parent="#accordionExample-desk">
+                <div class=" row accordion-body">
+                  <div class="form-floating">
+                    <select class="form-select mb-3 w-100" id="floatingSelect"
+                      aria-label="Floating label select example" [(ngModel)]="Redeemlist.instrumentId"
+                      (change)="GetMyHoldingsProductOverview(i,Redeemlist.instrumentId)">
+                      <option value="">Select Instrument Name </option>
+                      <option value="{{list.instrumentId}}" *ngFor="let list of MyHoldings">{{list.instrumentName}}
+                      </option>
+                    </select>
+                    <label for="floatingSelect">Instrument Name</label>
+                  </div>
+                  <div class="form-floating">
+                    <select class="form-select mb-3 w-100" id="floatingSelect"
+                      aria-label="Floating label select example">
+                      <option value="0">Brother </option>
+                      <option value="1">Mother</option>
+                      <option value="2">Sister</option>
+                    </select>
+                    <label for="floatingSelect">Folio</label>
+                  </div>
+                  <div class="justify-content-between d-flex mt-2 mb-3">
+                    <h6 class="mt-2">Redeem from Goal?</h6>
+                    <div class="toggle-none">
+                      <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="consent{{i}}"
+                          (click)="Checked('consent'+i,i)" id="consent{{i}}">
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="form-floating" *ngIf="Redeemlist.redeemFromGoal == 1">
+                    <select class="form-select mb-3 w-100" id="floatingSelect"
+                      aria-label="Floating label select example" [(ngModel)]="Redeemlist.goalId">
+                      <option value="">Select Goal </option>
+                      <option value="{{goals.goalId}}" *ngFor="let goals of MyGoals">{{goals.name}}</option>
+
+                    </select>
+                    <label for="floatingSelect">Select Goal</label>
+                  </div>
+
+                  <div class="cover-left-div mb-4"
+                    *ngIf="!validate.isNullEmptyUndefined(Redeemlist.myHoldingCurrentValue) && !validate.isNullEmptyUndefined(Redeemlist.myHoldingUnitsOwned)">
+                    <div class="row">
+                      <div class="col-lg-6 col-6 tex-center coverstext">
+                        <p>Current Value</p>
+                        <h5>₹ {{Redeemlist.myHoldingCurrentValue}}</h5>
+                      </div>
+                      <div class="col-lg-6 col-6 tex-center coverstext">
+                        <p>Units Owned</p>
+                        <h5>{{Redeemlist.myHoldingUnitsOwned}}</h5>
+                      </div>
                     </div>
                   </div>
 
-                </div>
-                <div class="form-floating" *ngIf="Redeemlist.redeemFromGoal == 1">
-                  <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example">
-                    <option value="">Select Goal </option>
-                    <option value="{{goals.goalId}}" *ngFor="let goals of MyGoals">{{goals.name}}</option>
+                  <h6>Sell your Fund by</h6>
 
-                  </select>
-                  <label for="floatingSelect">Select Goal</label>
-                </div>
+                  <div class="mt-3 mb-4 d-flex justify-content-between">
+                    <a class="btn-primary" [ngClass]="Redeemlist.sellType == 'Amount' ? 'theme-button' : 'unit-button'"
+                      (click)="Redeemlist.sellType = 'Amount'">Amount</a>
+                    <a class="btn-primary" [ngClass]="Redeemlist.sellType == 'Unit' ? 'theme-button' : 'unit-button'"
+                      (click)="Redeemlist.sellType = 'Unit'">Unit</a>
+                  </div>
 
-                <div class="cover-left-div mb-4">
-                  <div class="row">
-                    <div class="col-lg-6 col-6 tex-center coverstext">
-                      <p>Current Value</p>
-                      <h5>₹ {{Redeemlist.myHoldingCurrentValue}}</h5>
-                    </div>
-                    <div class="col-lg-6 col-6 tex-center coverstext">
-                      <p>Units Owned</p>
-                      <h5>{{Redeemlist.myHoldingUnitsOwned}}</h5>
-                    </div>
+                  <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Amount'">
+                    <input type="text" id="Amount" placeholder="Enter Amount" class="form-control"
+                      (keypress)="validate.numberOnly($event)" [(ngModel)]="Redeemlist.totalAmount"
+                      (keyup)="GetAmountAndUnit(i)">
+                    <label for="Amount">Enter Amount</label>
+                    <span class="units"
+                      *ngIf="!validate.isNullEmptyUndefined(Redeemlist.quantity)">{{Redeemlist.quantity}} Units</span>
+                  </div>
+
+                  <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Unit'">
+                    <input type="text" id="Units" placeholder="Enter Units" class="form-control"
+                      (keypress)="validate.DesimalOnly($event,Redeemlist.quantity)" [(ngModel)]="Redeemlist.quantity"
+                      (keyup)="GetAmountAndUnit(i)">
+                    <label for="Units">Enter Units</label>
+                    <span class="units" *ngIf="!validate.isNullEmptyUndefined(Redeemlist.totalAmount)">₹
+                      {{Redeemlist.totalAmount}}</span>
+                  </div>
+
+                  <div class="justify-content-between d-flex mt-2 font-units">
+                    <span class="cursor-pointer" *ngIf="Redeemlist.quantity < Redeemlist.myHoldingUnitsOwned"
+                      (click)="Redeemlist.quantity = Redeemlist.myHoldingUnitsOwned">+ Add all units</span>
+                    <p>{{Redeemlist.remainingUnits}}/{{Redeemlist.myHoldingUnitsOwned}} units remaining</p>
+                  </div>
+                  <div class="hidden-xs">
+                    <p>Total Amount <span class="rupee">Rs. {{Redeemlist.totalAmount}}</span></p>
+
+                    <!-- <div class="redeem mt-4">
+                      <a class="btn-primary theme-button" (click)="RedeemNow()">Redeem Now</a>
+                    </div> -->
+
                   </div>
                 </div>
-
-
-                <h6>Sell your Fund by</h6>
-
-                <div class="mt-3 mb-4 d-flex justify-content-between">
-                  <a class="btn-primary" [ngClass]="Redeemlist.sellType == 'Amount' ? 'theme-button' : 'unit-button'"
-                    (click)="Redeemlist.sellType = 'Amount'">Amount</a>
-                  <a class="btn-primary" [ngClass]="Redeemlist.sellType == 'Unit' ? 'theme-button' : 'unit-button'"
-                    (click)="Redeemlist.sellType = 'Unit'">Unit</a>
-                </div>
-
-                <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Amount'">
-                  <input type="text" id="Amount" placeholder="Enter Amount" class="form-control"
-                    [(ngModel)]="Redeemlist.totalAmount" (ngModelChange)="GetAmountAndUnit(i)">
-                  <label for="Amount">Enter Amount</label>
-                  <span class="units" *ngIf="validate.isNullEmptyUndefined(Redeemlist.quantity)">{{Redeemlist.quantity}} Units</span>
-                </div>
-
-                <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Unit'">
-                  <input type="text" id="Units" placeholder="Enter Units" class="form-control"
-                    [(ngModel)]="Redeemlist.quantity" (ngModelChange)="GetAmountAndUnit(i)">
-                  <label for="Units">Enter Units</label>
-                  <span class="units" *ngIf="validate.isNullEmptyUndefined(Redeemlist.totalAmount)">₹ {{Redeemlist.totalAmount}}</span>
-                </div>
-
-                <div class="justify-content-between d-flex mt-2 font-units">
-                  <span class="cursor-pointer" *ngIf="Redeemlist.quantity < Redeemlist.myHoldingUnitsOwned"
-                    (click)="Redeemlist.quantity = Redeemlist.myHoldingUnitsOwned">+ Add all units</span>
-                  <p>{{Redeemlist.remainingUnits}}/{{Redeemlist.myHoldingUnitsOwned}} units remaining</p>
-                </div>
-                <div class="hidden-xs">
-                  <p>Total Amount <span class="rupee">Rs. {{Redeemlist.totalAmount}}</span></p>
-
-                  <div class="redeem mt-4">
-                    <a class="btn-primary theme-button" (click)="RedeemNow()">Redeem Now</a>
-                  </div>
-                </div>
-
-
               </div>
+              <hr>
             </div>
 
-            <hr>
+            <div class="mt-5">
+              <h5 class="instrument" (click)="AddNewInstrument()">+ Add New Instrument</h5>
+            </div>
+
+            <!-- <p>Total Amount <span class="rupee">Rs. {{TotalAmount}}</span></p> -->
+
+            <div class="redeem mt-5">
+              <a class="btn-primary theme-button" (click)="RedeemNow()">Redeem Now</a>
+            </div>
+
           </div>
-
-          <div class="mt-5">
-            <h5 class="instrument" (click)="AddNewInstrument()">+ Add New Instrument</h5>
-          </div>
-
-          <!-- <div class="redeem mt-5">
-            <a class="btn-primary theme-button" (click)="RedeemNow()">Redeem Now</a>
-          </div> -->
-
-
-
         </div>
       </div>
     </div>

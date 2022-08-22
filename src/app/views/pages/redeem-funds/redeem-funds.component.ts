@@ -13,11 +13,7 @@ declare var $: any;
 })
 export class RedeemFundsComponent implements OnInit {
 
-  DisplayAccordion: boolean = false;
-  Steps: number = 2;
-  fund: any;
-
-
+  RedeemLoader: boolean = true;
   SelectedMutualFund: any;
   MyHoldings: any;
   MyHoldingsProductOverviewDetails: any;
@@ -33,15 +29,14 @@ export class RedeemFundsComponent implements OnInit {
     'quantity': '',
     'serviceProviderAccountId': '',
     'isAllUnits': '',
-    'remainingUnits':0,
+    'remainingUnits': 0,
     "modeOfTransaction": 2,
     "transactionSubType": 1,
     "transactionTypeId": 3,
-
     'isActive': 1
   }
-
   RedeemCartItemList: any = [];
+  TotalAmount:any;
 
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
@@ -53,10 +48,8 @@ export class RedeemFundsComponent implements OnInit {
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
       console.log("SelectedMutualFund", this.SelectedMutualFund);
-      this.GetMyHoldingsProductOverview();
+      this.GetMyHoldingsProductOverview(0, this.SelectedMutualFund.id);
     }
-
-
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -77,11 +70,17 @@ export class RedeemFundsComponent implements OnInit {
     });
   }
 
+  scrolltotop() {
+    $('.body-color').animate({
+      scrollTop: 0
+    }, 0);
+  }
+
   GetMyHoldings() {
     this.api.get("switchRedeemFunds/myholdings", true).subscribe(response => {
       if (response.response.n == 1) {
         this.MyHoldings = response.data;
-        console.log('MyHoldings', this.MyHoldings)
+        // console.log('MyHoldings', this.MyHoldings)
       }
     })
   }
@@ -90,7 +89,7 @@ export class RedeemFundsComponent implements OnInit {
     this.api.get("goalDetails/create-goal", true).subscribe(resp => {
       if (resp.response.n == 1) {
         this.MyGoals = resp.data;
-        console.log("my goals", this.MyGoals);
+        // console.log("my goals", this.MyGoals);
       }
     })
   }
@@ -99,14 +98,14 @@ export class RedeemFundsComponent implements OnInit {
       'instrumentId': '',
       'redeemFromGoal': 0,
       'goalId': '',
-      'myHoldingCurrentValue': this.MyHoldingsProductOverviewDetails.holdingData.totalCurrentValue,
-      'myHoldingUnitsOwned': this.MyHoldingsProductOverviewDetails.holdingData.quantity,
+      'myHoldingCurrentValue': '',
+      'myHoldingUnitsOwned': '',
       'sellType': 'Amount',
       'totalAmount': '',
       'quantity': '',
       'serviceProviderAccountId': '',
       'isAllUnits': '',
-      'remainingUnits':0,
+      'remainingUnits': 0,
       "modeOfTransaction": 2,
       "transactionSubType": 1,
       "transactionTypeId": 3,
@@ -114,12 +113,13 @@ export class RedeemFundsComponent implements OnInit {
     }
   }
 
-  GetMyHoldingsProductOverview() {
+  GetMyHoldingsProductOverview(i: any, instrumentId: any) {
+
     var orderby = [{ "name": "weight", "sort": "DESC" }];
     var searchFilter = { 'productId': 5 };
     var whereClause = {};
     var postData = new FormData();
-    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("instrumentId", instrumentId);
     postData.append("limit", "10");
     postData.append("offset", "0");
     postData.append("holdinglimit", "10");
@@ -128,13 +128,38 @@ export class RedeemFundsComponent implements OnInit {
     postData.append("searchFilter", JSON.stringify(whereClause));
     postData.append("searchlimit", "5000");
     this.api.post("switchRedeemFunds/myholdings-product-overview", postData).subscribe(response => {
-      console.log('GetMyHoldingsProductOverview', response);
+      console.log('GetMyHoldingsProductOver view', response);
       if (response.response.n == 1) {
-        this.MyHoldingsProductOverviewDetails = response.data;
-        this.GetRedeemCart();
+
+        if (this.RedeemLoader) {
+          this.MyHoldingsProductOverviewDetails = response.data;
+          this.GetAmountUnitDetail();
+        }
+        else {
+          this.RedeemCartItemList[i].myHoldingCurrentValue = response.data.holdingData.totalCurrentValue;
+          this.RedeemCartItemList[i].myHoldingUnitsOwned = response.data.holdingData.quantity;
+        }
       }
       else {
         this.toastr.error(response.response.Msg);
+      }
+    })
+  }
+
+  GetAmountUnitDetail() {
+    var postData = new FormData();
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("Type", this.SelectedMutualFund.RedeemSwitchFund.sellType);
+    postData.append("Amount", this.SelectedMutualFund.RedeemSwitchFund.totalAmount);
+    postData.append("Unit", this.SelectedMutualFund.RedeemSwitchFund.quantity);
+
+    this.api.post("switchRedeemFunds/calculate-amount-unit", postData).subscribe(response => {
+      console.log('calculate-amount-unit', response);
+      if (response.response.n == 1) {
+        this.Redeemcart.totalAmount = response.data.calculateAmount;
+        this.Redeemcart.quantity = response.data.calculateUnit;
+        this.Redeemcart.remainingUnits = response.data.remainingUnit;
+        this.GetRedeemCart();
       }
     })
   }
@@ -144,11 +169,13 @@ export class RedeemFundsComponent implements OnInit {
     this.Redeemcart.myHoldingCurrentValue = this.MyHoldingsProductOverviewDetails.holdingData.totalCurrentValue;
     this.Redeemcart.myHoldingUnitsOwned = this.MyHoldingsProductOverviewDetails.holdingData.quantity;
     this.Redeemcart.sellType = this.SelectedMutualFund.RedeemSwitchFund.sellType;
-    this.Redeemcart.totalAmount = this.SelectedMutualFund.RedeemSwitchFund.totalAmount;
-    this.Redeemcart.quantity = this.SelectedMutualFund.RedeemSwitchFund.quantity;
+    // this.Redeemcart.totalAmount = this.SelectedMutualFund.RedeemSwitchFund.totalAmount;
+    // this.Redeemcart.quantity = this.SelectedMutualFund.RedeemSwitchFund.quantity;
     this.Redeemcart.serviceProviderAccountId = this.SelectedMutualFund.serviceProviderId;
 
     this.RedeemCartItemList.push(this.Redeemcart);
+    console.log('GetRedeemCart', this.RedeemCartItemList)
+    this.RedeemLoader = false;
     this.EmptyRedeemCart();
   }
 
@@ -180,6 +207,9 @@ export class RedeemFundsComponent implements OnInit {
     else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
       this.toastr.error('Please enter unit');
     }
+    else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.RedeemCartItemList[i].quantity > this.RedeemCartItemList[i].myHoldingUnitsOwned) {
+      this.toastr.error('Unit value must be less than Units Owned');
+    }
     else {
       var postData = new FormData();
       postData.append("instrumentId", this.RedeemCartItemList[i].instrumentId);
@@ -198,54 +228,47 @@ export class RedeemFundsComponent implements OnInit {
     }
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  NextStep() {
-    this.Steps++;
-  }
-
-  scrolltotop() {
-    $('.body-color').animate({
-      scrollTop: 0
-    }, 0);
-  }
-
-  ShowAccordion() {
-    // this.DisplayAccordion = true;
-    // $("#collapseOne").collapse('hide');
-    // $("#collapseTwo").collapse('show');
-  }
-
   RedeemNow() {
-    this.route.navigate(["/order-placed"]);
+    let Flag = true;
+    for (let i = 0; i < this.RedeemCartItemList.length; i++) {
+
+      if (this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].instrumentId)) {
+        this.toastr.error('Please select Instument Name of Instrument' + (i + 1));
+        Flag = false;
+      }
+      else if (this.RedeemCartItemList[i].redeemFromGoal == 1 && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].goalId)) {
+        this.toastr.error('Please select Goal Name of Instrument' + (i + 1));
+        Flag = false;
+      }
+      else if (this.RedeemCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount)) {
+        this.toastr.error('Please enter Amount of Instrument' + (i + 1));
+        Flag = false;
+      }
+      else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
+        this.toastr.error('Please enter unit of Instrument' + (i + 1));
+        Flag = false;
+      }
+      else if (this.RedeemCartItemList[i].quantity > this.RedeemCartItemList[i].myHoldingUnitsOwned) {
+        this.toastr.error('Unit value must be less than Units Owned of Instrument' + (i + 1));
+        Flag = false;
+      }
+
+    }
+    if (Flag) {
+      console.log('RedeemNow', this.RedeemCartItemList);
+      var postData = new FormData();
+      postData.append("cartType", 'Redeem');
+      postData.append("cartItems", JSON.stringify(this.RedeemCartItemList));
+      this.api.post("switchRedeemFunds/redemption", postData, true).subscribe(response => {
+        console.log('RedeemNow response', response)
+        if (response.response.n == 1) {
+          this.route.navigate(["/order-placed"]);
+        }
+        else {
+          this.toastr.error(response.response.Msg);
+        }
+      })
+    }
   }
-
-
-
-
+  
 }
