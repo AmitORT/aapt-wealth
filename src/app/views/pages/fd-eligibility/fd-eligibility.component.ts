@@ -13,85 +13,86 @@ declare var $: any;
 })
 export class FdEligibilityComponent implements OnInit {
 
-  otp1:string="";
-  otp2:string="";
-  otp3:string="";
-  otp4:string="";
-  otp5:string="";
-  otp6:string="";
+  otp1: string = "";
+  otp2: string = "";
+  otp3: string = "";
+  otp4: string = "";
+  otp5: string = "";
+  otp6: string = "";
 
-  ApplicantData:any={
-    "First_Name":"",
-    "Last_Name":"",
-    "Mob_Number":"",
-    "Email_Id":"",
-    "Checked_Terms":""
+  ApplicantData: any = {
+    "First_Name": "",
+    "Last_Name": "",
+    "Mob_Number": "",
+    "Email_Id": "",
+    "Checked_Terms": ""
 
   }
 
-  constructor(private router:Router, private toastr: ToastrService, public validate:ValidateService, private crypto:AescryptoService, private api:ApiService) { }
+  constructor(private router: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
   ngOnInit(): void {
-    
+
   }
 
 
-  keytab(nextTabId:number,event:any) {
-    let actionFlag=false;
+  keytab(nextTabId: number, event: any) {
+    let actionFlag = false;
     const charCode = (event.which) ? event.which : event.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode<96 || charCode>105)) {
+    if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105)) {
 
     }
-    else if(charCode == 8){
-      nextTabId--;
-      if(nextTabId < 1){
-      nextTabId = 1;
+    else if (charCode == 8) {
+      // nextTabId--;
+      if (nextTabId < 1) {
+        nextTabId = 1;
       }
-    actionFlag=true;
+      nextTabId -= 2;
+      actionFlag = true;
     }
-    else{ 
-      if(nextTabId > 6){
-         nextTabId = 6; 
-        } 
-        actionFlag=true; 
+    else {
+      if (nextTabId > 6) {
+        nextTabId = 6;
       }
-    if(actionFlag){
-       const field = document.getElementById("otp" + nextTabId);
-    if (field) {
-      field.focus();
-      field.click();
-    } 
-  } 
-}
+      actionFlag = true;
+    }
+    if (actionFlag) {
+      const field = document.getElementById("otp" + nextTabId);
+      if (field) {
+        field.focus();
+        field.click();
+      }
+    }
+  }
 
-Navigate(){
-  $(".modal-backdrop").remove();
-  this.router.navigateByUrl("/FD-successful"); 
-  
-}
+  Navigate() {
+    $(".modal-backdrop").remove();
+    this.router.navigateByUrl("/FD-successful");
 
-ShowOTP(){
-  if(this.validate.isNullEmptyUndefined(this.ApplicantData.First_Name)){
-    this.toastr.error('First name is mandatory');
   }
-  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Last_Name)){
-    this.toastr.error('Last name is mandatory');
+
+  ShowOTP() {
+    if (this.validate.isNullEmptyUndefined(this.ApplicantData.First_Name)) {
+      this.toastr.error('First name is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.ApplicantData.Last_Name)) {
+      this.toastr.error('Last name is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.ApplicantData.Mob_Number)) {
+      this.toastr.error('Mobile number is mandatory');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.ApplicantData.Email_Id)) {
+      this.toastr.error('Email ID is mandatory');
+    }
+    else if (!this.validate.validateEmail(this.ApplicantData.Email_Id)) {
+      this.toastr.error('Please enter valid Email ID');
+    }
+    else if (this.validate.isNullEmptyUndefined(this.ApplicantData.Checked_Terms)) {
+      this.toastr.error('Please agree terms and conditions');
+    }
+    else {
+      $("#otp-screen").modal("show");
+    }
   }
-  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Mob_Number)){
-    this.toastr.error('Mobile number is mandatory');
-  }
-  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Email_Id)){
-    this.toastr.error('Email ID is mandatory');
-  }
-  else if(!this.validate.validateEmail(this.ApplicantData.Email_Id)){
-    this.toastr.error('Please enter valid Email ID');
-  }
-  else if(this.validate.isNullEmptyUndefined(this.ApplicantData.Checked_Terms)){
-    this.toastr.error('Please agree terms and conditions');
-  }
-  else{
-    $("#otp-screen").modal("show");
-  }
-}
 
 }

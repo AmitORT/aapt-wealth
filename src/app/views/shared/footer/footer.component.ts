@@ -259,7 +259,7 @@ export class FooterComponent implements OnInit {
         this.resendbuttonText = "0:60";
         this.countdownforOTP();
       }
-      else{
+      else {
         this.toastr.error(response.response.Msg);
       }
     })
@@ -296,10 +296,11 @@ export class FooterComponent implements OnInit {
     if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105)) {
     }
     else if (charCode == 8) {
-      nextTabId--;
+      // nextTabId--;
       if (nextTabId < 1) {
         nextTabId = 1;
       }
+      nextTabId -= 2;
       actionFlag = true;
     }
     else {
@@ -356,7 +357,7 @@ export class FooterComponent implements OnInit {
             // else if (this.calltype == 'login') {
             //   this.GoToAgent('/overview');
             // }
-            if(response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)){
+            if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
               this.GoToAgentCommon('agent-overview');
             }
             else if (response.agentType.Insurance == true) {
@@ -369,14 +370,14 @@ export class FooterComponent implements OnInit {
             }
             else if (response.agentType.Insurance != true) {
 
-              if(response.agentType.credit == true && response.agentType.wealth == true){
+              if (response.agentType.credit == true && response.agentType.wealth == true) {
                 this.GoToAgentCommon('agent-overview');
               }
               else if (response.agentType.credit == true) {
                 if (response.agentKyc.credit == true) {
                   this.GoToAgentCommon('agent-credit-dashboard');
                 }
-                else{
+                else {
                   this.GoToAgentCommon('agent-credit-onboarding');
                 }
               }
@@ -384,11 +385,11 @@ export class FooterComponent implements OnInit {
                 if (response.agentKyc.wealth == true) {
                   this.GoToAgentCommon('agent-wealth-dashboard');
                 }
-                else{
+                else {
                   this.GoToAgentCommon('agent-wealth-onboarding');
                 }
               }
-              else{
+              else {
                 this.GoToAgentCommon('agent-type');
               }
             }

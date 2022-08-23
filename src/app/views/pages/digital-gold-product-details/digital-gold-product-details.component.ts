@@ -36,6 +36,13 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   DGLoginEmail = environment.DGLoginEmail;
   DGLoginPassword = environment.DGLoginPassword;
 
+  DGData: any = {
+    'calculationType': '',
+    'Amount': '',
+    'Weight': '',
+    'QuoteID':'',
+  };
+
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
@@ -44,11 +51,23 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       this.Action = localStorage.getItem('DGAction');
       localStorage.removeItem('DGAction');
     }
-    // this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
 
-    if (localStorage.getItem('DGProceed') == '1') {
-      this.Action == "buy" ? this.validateCreateOrder() : '';
+    if (localStorage.getItem("DGData") != null) {
+      this.DGData = this.crypto.Decrypt(localStorage.getItem("DGData"));
+      console.log('DGData', this.DGData);
+      this.calculationType = this.DGData.calculationType;
+      this.Amount = this.DGData.Amount;
+      this.Weight = this.DGData.Weight;
+      var action = this.calculationType == 'A' ? 'Amount' : 'Weight';
+      this.GetConvertedGold(action);
     }
+    // this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
+    setTimeout(() => {
+      if (localStorage.getItem('DGProceed') == '1') {
+        this.Action == "buy" ? this.validateCreateOrder() : $("#Customer-account-info").modal("show");
+      }
+    }, 2000);
+    
 
     if (localStorage.getItem("ApplicantData") != null) {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
@@ -85,7 +104,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       console.log('dg', resp)
       if (resp.response.n == 1) {
         localStorage.setItem('DGSessionID', this.crypto.Encrypt(resp.data.sessionid));
-        this.Action == "buy" ? this.GetBuyAmountPerGram() : this.GetSellAmountPerGram();
+        this.Action == "buy" ? this.GetBuyAmountPerGram() : this.GetSellAmountPerGram();        
       }
     })
   }
@@ -164,8 +183,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   CheckLogin() {
-    
-     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
+
+    if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
@@ -187,6 +206,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   GoToSignUp() {
+    this.DGData.calculationType = this.calculationType;
+    this.DGData.Amount = this.Amount;
+    this.DGData.Weight = this.Weight;
+    this.DGData.QuoteID = this.QuoteID;
+    localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
+
     localStorage.setItem("nextPath", this.crypto.Encrypt("/digital-gold-product-details"));
     localStorage.setItem("DGAction", this.Action);
     $("#login").modal("hide");
@@ -194,6 +219,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   validateCreateOrder() {
+    debugger
     var data;
     if (this.calculationType == 'A') {
       data = {
@@ -215,6 +241,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         this.validateCreateOrderResponse = resp.data;
         this.PayWithRazor();
         localStorage.removeItem('DGProceed');
+        localStorage.removeItem('DGData');
       }
       else {
         this.toastr.error(resp.response.Msg)
@@ -268,6 +295,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         console.log('razor pay check', resp)
         debugger
         if (resp.response.n == 1) {
+          localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
+
           window.location.href = '/digital-gold-purchased-successful';
         }
         else {
@@ -337,6 +366,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         console.log('ExecuteOrderWithPayout', resp)
         debugger
         if (resp.response.n == 1) {
+          localStorage.removeItem('DGProceed');
+          localStorage.removeItem('DGData');
           window.location.href = '/digital-gold-sold-successful';
         }
         else {

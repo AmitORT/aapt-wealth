@@ -55,6 +55,7 @@ export class SignInComponent implements OnInit {
   SelectedMutualFund: any;
   ProductOverview: any = [];
 
+
   constructor(public validate: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private crypto: AescryptoService, private eligibility: EligibilityService) { }
 
   ngOnInit(): void {
@@ -97,10 +98,11 @@ export class SignInComponent implements OnInit {
     if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105)) {
     }
     else if (charCode == 8) {
-      nextTabId--;
+      // nextTabId--;
       if (nextTabId < 1) {
         nextTabId = 1;
       }
+      nextTabId -= 2;
       actionFlag = true;
     }
     else {
@@ -142,6 +144,7 @@ export class SignInComponent implements OnInit {
   }
 
   verifyOtp() {
+    debugger
     var otp = this.otp1.toString() + this.otp2.toString() + this.otp3.toString() + this.otp4.toString() + this.otp5.toString() + this.otp6.toString();
     // console.log("OTP", otp);
     if (otp.length == 6) {
@@ -159,7 +162,7 @@ export class SignInComponent implements OnInit {
             this.GetApplicantData();
 
             if (this.nextPath == '/digital-gold-product-details') {
-              localStorage.setItem('DGProceed','1');
+              localStorage.setItem('DGProceed', '1');
             }
 
             if (this.nextPath != '/mutual-fund-cart') {
@@ -215,8 +218,8 @@ export class SignInComponent implements OnInit {
     var postData = new FormData();
     postData.append("transactionTypeId", "1");
     postData.append("instrumentId", this.SelectedMutualFund.id);
-    postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1'? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt);
-    postData.append("modeOfTransaction",this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
+    postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1' ? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt);
+    postData.append("modeOfTransaction", this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
     postData.append("frequency", "4");
     postData.append("transactionSubType", "2");
     // postData.append("frequencyDay", "1");
@@ -244,7 +247,7 @@ export class SignInComponent implements OnInit {
         this.ProductOverview.push(this.SelectedMutualFund);
       }
       // console.log('ProductOverview', this.ProductOverview);
-  
+
       let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);
       localStorage.setItem("ProductOverview", encryptedProduct);
     })
@@ -326,7 +329,7 @@ export class SignInComponent implements OnInit {
         this.resendbuttonText = "0:60"
         this.countdown();
       }
-      else{
+      else {
         this.toastr.error(response.response.Msg);
       }
     })

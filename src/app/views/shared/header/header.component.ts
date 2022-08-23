@@ -437,10 +437,11 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 96 || charCode > 105)) {
     }
     else if (charCode == 8) {
-      nextTabId--;
+      // nextTabId--;
       if (nextTabId < 1) {
         nextTabId = 1;
       }
+      nextTabId -= 2;
       actionFlag = true;
     }
     else {
