@@ -156,6 +156,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   QuoteID: any;
 
   GetConvertedGold(para: string) {
+    debugger
     para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
 
     if (para == 'Amount' && !this.validate.isNullEmptyUndefined(this.Amount) || para == 'Weight' && !this.validate.isNullEmptyUndefined(this.Weight)) {
@@ -175,6 +176,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   GoToCommon() {
+    
+    this.DGData.calculationType = this.calculationType;
+    this.DGData.Amount = this.Amount;
+    this.DGData.Weight = this.Weight;
+    localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
+
     this.Token = localStorage.getItem("CustToken");
     this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
     this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent('/profile-details'));
@@ -194,6 +201,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       $("#invest-screen").modal("hide");
       $("#login").modal("show");
     }
+    else if (this.ApplicantData.profileDetail != true) {
+      this.GoToCommon()
+    }
     else if (this.Amount > 199000 && (this.ApplicantData.profileDetail != true)) {
       $("#update-kyc").modal("show");
     }
@@ -209,7 +219,6 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     this.DGData.calculationType = this.calculationType;
     this.DGData.Amount = this.Amount;
     this.DGData.Weight = this.Weight;
-    this.DGData.QuoteID = this.QuoteID;
     localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
 
     localStorage.setItem("nextPath", this.crypto.Encrypt("/digital-gold-product-details"));

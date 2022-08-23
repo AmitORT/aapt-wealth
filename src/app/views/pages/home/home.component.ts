@@ -83,6 +83,10 @@ export class HomeComponent implements OnInit {
     }
     setTimeout(() => {
       if (!this.validation.isNullEmptyUndefined(this.Path) && this.Path != 'null' && this.Path != "{PATH}") {
+
+        if(this.Path == '/digital-gold-product-details'){
+          localStorage.setItem('DGProceed','1');
+        }
         this.route.navigate([this.Path]);
         this.ShowLoader = false;
       }
