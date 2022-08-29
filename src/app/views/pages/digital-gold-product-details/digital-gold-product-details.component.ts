@@ -28,6 +28,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   paymentChannel: any = "UPI"
   Token: any;
   CommonUrl = environment.CommonUrl;
+  QuoteID: any;
 
   VPA: any;
   AccountNumber: any;
@@ -47,6 +48,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.GetSession();
+debugger
+    if (localStorage.getItem("ApplicantData") != null) {
+      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
+      console.log(this.ApplicantData);
+      this.GetPortfolioBalance();
+    }
     if (localStorage.getItem('DGAction') != null) {
       this.Action = localStorage.getItem('DGAction');
       localStorage.removeItem('DGAction');
@@ -64,17 +71,15 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     // this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
     setTimeout(() => {
       if (localStorage.getItem('DGProceed') == '1') {
-        this.Action == "buy" ? this.validateCreateOrder() : $("#Customer-account-info").modal("show");
+        // this.Action == "buy" ? this.validateCreateOrder() : $("#Customer-account-info").modal("show");
+        this.CheckLogin();
       }
+      
     }, 2000);
     
 
-    if (localStorage.getItem("ApplicantData") != null) {
-      this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
-      console.log(this.ApplicantData)
-    }
+    
 
-    this.GetPortfolioBalance();
 
     $(".body-color").scroll(function () {
       if ($(".body-color").scrollTop() > 150) {
@@ -145,6 +150,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     });
   }
 
+  ResetData(){
+    this.Weight='';
+    this.Amount='';
+    this.calculationType='A';
+  }
+
   GetPortfolioBalance() {
     this.api.get("digitalGold/oat/get-portfolio-balance", true, true).subscribe(resp => {
       console.log('digitalGold/oat/get-portfolio-balance', resp)
@@ -153,7 +164,6 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
     })
   }
-  QuoteID: any;
 
   GetConvertedGold(para: string) {
     debugger
@@ -190,6 +200,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   CheckLogin() {
+    debugger
 
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');

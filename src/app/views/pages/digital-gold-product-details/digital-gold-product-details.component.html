@@ -117,11 +117,11 @@
           <ul class="nav nav-tabs" id="year-tabs">
             <li class="nav-item">
               <button class="nav-link" [ngClass]="Action == 'buy' ? 'active' : ''"
-                (click)="Action = 'buy'; GetBuyAmountPerGram()">Buy</button>
+                (click)="Action = 'buy'; GetBuyAmountPerGram(); ResetData();">Buy</button>
             </li>
             <li class="nav-item">
               <button class="nav-link" [ngClass]="Action == 'sell' ? 'active' : ''"
-                (click)="Action = 'sell'; GetSellAmountPerGram()">Sell</button>
+                (click)="Action = 'sell'; GetSellAmountPerGram(); ResetData();">Sell</button>
             </li>
           </ul>
           <div class="row mt-3">
@@ -213,11 +213,11 @@
             <ul class="nav nav-tabs">
               <li class="nav-item">
                 <button class="nav-link" [ngClass]="Action == 'buy' ? 'active' : ''"
-                  (click)="Action = 'buy'; GetBuyAmountPerGram()">Buy</button>
+                  (click)="Action = 'buy'; GetBuyAmountPerGram(); ResetData()">Buy</button>
               </li>
               <li class="nav-item">
                 <button class="nav-link" [ngClass]="Action == 'sell' ? 'active' : ''"
-                  (click)="Action = 'sell'; GetSellAmountPerGram()">Sell</button>
+                  (click)="Action = 'sell'; GetSellAmountPerGram(); ResetData()">Sell</button>
               </li>
             </ul>
 
