@@ -200,8 +200,6 @@ debugger
   }
 
   CheckLogin() {
-    debugger
-
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
@@ -212,10 +210,10 @@ debugger
       $("#invest-screen").modal("hide");
       $("#login").modal("show");
     }
-    else if (this.ApplicantData.profileDetail != true) {
+    else if (this.ApplicantData?.profileDetail != true) {
       this.GoToCommon()
     }
-    else if (this.Amount > 199000 && (this.ApplicantData.profileDetail != true)) {
+    else if (this.Amount > 199000 && (this.ApplicantData?.profileDetail != true)) {
       $("#update-kyc").modal("show");
     }
     else if (this.Action == 'buy') {
