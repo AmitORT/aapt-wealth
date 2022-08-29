@@ -268,6 +268,8 @@ export class HeaderComponent implements OnInit, DoCheck {
     this.isLoggedIn = false;
     localStorage.clear();
     this.handleOpenCloseNav();
+    this.CommonUrl = this.CommonUrl.replace("{LOGOUT}", "true");
+    window.location.href = this.CommonUrl;
   }
 
   async verifyOtpBtn() {
