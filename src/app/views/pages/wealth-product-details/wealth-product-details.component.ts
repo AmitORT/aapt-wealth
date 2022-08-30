@@ -91,11 +91,11 @@ export class WealthProductDetailsComponent implements OnInit {
     translate: (monthly_amt: number, label: any): string => {
       switch (label) {
         case label.Low:
-          return "<b>₹ 3,700</b> ₹" + monthly_amt;
+          return "<b>₹ 3,700</b> ₹" + this.validate.indianRupeeFormat(monthly_amt) ;
         case label.High:
-          return "<b>₹ 5,300</b> ₹" + monthly_amt;
+          return "<b>₹ 5,300</b> ₹" + this.validate.indianRupeeFormat(monthly_amt);
         default:
-          return "₹ &nbsp;" + monthly_amt + "&nbsp;";
+          return "₹ &nbsp;" + this.validate.indianRupeeFormat(monthly_amt) + "&nbsp;";
       }
     }
   };

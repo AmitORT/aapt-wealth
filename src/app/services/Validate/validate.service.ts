@@ -113,4 +113,8 @@ export class ValidateService {
     return this.isNullEmptyUndefined(AfterDecimal) ? value.split('').reverse().join('') + LastChar : value.split('').reverse().join('') + LastChar + "." + AfterDecimal;
   }
 
+  indianRupeeFormat(val: number) {
+    return Number(val).toLocaleString('en-IN');
+  }
+
 }
