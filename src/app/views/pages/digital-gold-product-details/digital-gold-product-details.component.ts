@@ -186,6 +186,7 @@ debugger
   }
 
   GoToCommon() {
+
     
     this.DGData.calculationType = this.calculationType;
     this.DGData.Amount = this.Amount;
@@ -196,10 +197,12 @@ debugger
     this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
     this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent('/profile-details'));
     this.CommonUrl = this.CommonUrl.replace("{FROM}", encodeURIComponent('/digital-gold-product-details'))
+    debugger
     window.location.href = this.CommonUrl;
   }
 
   CheckLogin() {
+    debugger
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
