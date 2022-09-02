@@ -136,7 +136,7 @@
                     </div>
                   </div>
                   <div class="d-flex align-items-start cursor-pointer "
-                    (click)="Action == 'Buy' ? GetBuyAmountPerGram() : GetSellAmountPerGram()">
+                    (click)="Action == 'buy' ? GetBuyAmountPerGram() : GetSellAmountPerGram()">
                     <img src="assets/img/refresh_button.svg" alt="icici" class="me-2" />
                     <h6 class="refresh-text">Refresh</h6>
                   </div>
@@ -347,7 +347,7 @@
           <p>Note : To make any investments or purchase a gold you have to update your KYC</p>
         </div>
         <div class="text-center">
-          <button type="button" class="btn btn-primary proceed-btn" (click)="GoToCommon()">Update KYC </button>
+          <button type="button" class="btn btn-primary proceed-btn" (click)="GoToCommon('/kyc-verification')">Update KYC </button>
         </div>
       </div>
     </div>

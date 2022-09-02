@@ -41,14 +41,14 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     'calculationType': '',
     'Amount': '',
     'Weight': '',
-    'QuoteID':'',
+    'QuoteID': '',
   };
 
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
     this.GetSession();
-debugger
+    debugger
     if (localStorage.getItem("ApplicantData") != null) {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
       console.log(this.ApplicantData);
@@ -74,11 +74,11 @@ debugger
         // this.Action == "buy" ? this.validateCreateOrder() : $("#Customer-account-info").modal("show");
         this.CheckLogin();
       }
-      
-    }, 2000);
-    
 
-    
+    }, 2000);
+
+
+
 
 
     $(".body-color").scroll(function () {
@@ -109,7 +109,7 @@ debugger
       console.log('dg', resp)
       if (resp.response.n == 1) {
         localStorage.setItem('DGSessionID', this.crypto.Encrypt(resp.data.sessionid));
-        this.Action == "buy" ? this.GetBuyAmountPerGram() : this.GetSellAmountPerGram();        
+        this.Action == "buy" ? this.GetBuyAmountPerGram() : this.GetSellAmountPerGram();
       }
     })
   }
@@ -150,10 +150,10 @@ debugger
     });
   }
 
-  ResetData(){
-    this.Weight='';
-    this.Amount='';
-    this.calculationType='A';
+  ResetData() {
+    this.Weight = '';
+    this.Amount = '';
+    this.calculationType = 'A';
   }
 
   GetPortfolioBalance() {
@@ -166,7 +166,7 @@ debugger
   }
 
   GetConvertedGold(para: string) {
-    debugger
+    
     para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
 
     if (para == 'Amount' && !this.validate.isNullEmptyUndefined(this.Amount) || para == 'Weight' && !this.validate.isNullEmptyUndefined(this.Weight)) {
@@ -185,9 +185,9 @@ debugger
 
   }
 
-  GoToCommon() {
+  GoToCommon(path: any) {
 
-    
+
     this.DGData.calculationType = this.calculationType;
     this.DGData.Amount = this.Amount;
     this.DGData.Weight = this.Weight;
@@ -195,7 +195,7 @@ debugger
 
     this.Token = localStorage.getItem("CustToken");
     this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent('/profile-details'));
+    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(path));
     this.CommonUrl = this.CommonUrl.replace("{FROM}", encodeURIComponent('/digital-gold-product-details'))
     debugger
     window.location.href = this.CommonUrl;
@@ -203,6 +203,9 @@ debugger
 
   CheckLogin() {
     debugger
+
+    var total = Number(this.Amount) + this.ApplicantData?.totalAmount;
+
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
@@ -213,11 +216,11 @@ debugger
       $("#invest-screen").modal("hide");
       $("#login").modal("show");
     }
-    else if (this.ApplicantData?.profileDetail != true) {
-      this.GoToCommon()
-    }
-    else if (this.Amount > 199000 && (this.ApplicantData?.profileDetail != true)) {
+    else if (total > 199000 && (this.ApplicantData?.kycVerified != true)) {
       $("#update-kyc").modal("show");
+    }
+    else if (this.ApplicantData?.profileDetail != true) {
+      this.GoToCommon('/profile-details')
     }
     else if (this.Action == 'buy') {
       this.validateCreateOrder();
@@ -318,7 +321,9 @@ debugger
         if (resp.response.n == 1) {
           localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
 
-          window.location.href = '/digital-gold-purchased-successful';
+
+          this.GetApplicantData();
+          
         }
         else {
           this.toastr.error(resp.response.Msg)
@@ -389,13 +394,23 @@ debugger
         if (resp.response.n == 1) {
           localStorage.removeItem('DGProceed');
           localStorage.removeItem('DGData');
-          window.location.href = '/digital-gold-sold-successful';
+          this.GetApplicantData();
+          // window.location.href = '/digital-gold-sold-successful';
         }
         else {
           this.toastr.error(resp.response.Msg)
         }
       })
     }
+  }
+
+  GetApplicantData() {
+    this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
+      debugger
+      console.log(response)
+      localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
+      window.location.href = '/digital-gold-purchased-successful';
+    })
   }
 }
 

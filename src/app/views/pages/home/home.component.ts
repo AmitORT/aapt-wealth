@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   private routeSub: any;
   QueryToken: any;
   Path: any;
+  DG:any;
   _paramSub: any;
   BlogList: any;
   blogimage: any;
@@ -62,6 +63,7 @@ export class HomeComponent implements OnInit {
       // console.log(params);
       this.QueryToken = params.TOKEN;
       this.Path = params.PATH;
+      this.DG = params.DG;
       // console.log("QueryToken", this.QueryToken);
       // console.log("Path", this.Path);
     });
@@ -84,9 +86,13 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       if (!this.validation.isNullEmptyUndefined(this.Path) && this.Path != 'null' && this.Path != "{PATH}") {
 
-        if(this.Path == '/digital-gold-product-details'){
+        if ((!this.validation.isNullEmptyUndefined(this.DG) && this.DG != "null" && this.DG != "{DG}") && (this.DG == "true")) {
           localStorage.setItem('DGProceed','1');
         }
+
+        // if(this.Path == '/digital-gold-product-details'){
+        //   localStorage.setItem('DGProceed','1');
+        // }
         this.route.navigate([this.Path]);
         this.ShowLoader = false;
       }

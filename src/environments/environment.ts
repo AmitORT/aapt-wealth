@@ -21,7 +21,7 @@ export const environment = {
   InsuranceUrl: "http://localhost:50196?TOKEN={TOKEN}&PATH={PATH}",
 
   // ng serve --port 57617
-  WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}",
+  WealthUrl: "http://localhost:57617?TOKEN={TOKEN}&PATH={PATH}&DG={DG}",
   ShareUrl: "http://localhost:57617/assisted-share-wealth?FID={FID}&TOKEN={TOKEN}",
 
   // ng serve --port 50533
@@ -41,7 +41,7 @@ export const environment = {
   //CommonUrl:"https://uat.finizon.com?TOKEN={TOKEN}&PATH={PATH}",
   //CreditUrl:"https://uat.finizon.com/credit?TOKEN={TOKEN}&PATH={PATH}",  
   //InsuranceUrl:"http://uat.finizoninsurance.com?TOKEN={TOKEN}&PATH={PATH}",
-  //WealthUrl:"https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}",
+  //WealthUrl:"https://uat.finizon.com/wealth?TOKEN={TOKEN}&PATH={PATH}&DG={DG}",
 
   // --UAT FINIZON--
 
@@ -51,7 +51,7 @@ export const environment = {
   // CommonUrl:"http://finizon.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
   // CreditUrl:"http://finizon-credit.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
   // InsuranceUrl:"http://finizon-insurance.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
-  // WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}",
+  // WealthUrl:"http://finizon-wealth.onerooftechnologies.com?TOKEN={TOKEN}&PATH={PATH}&DG={DG}",
 
   // --UAT ONEROOFTECH--
 };
