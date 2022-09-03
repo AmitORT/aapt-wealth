@@ -30,13 +30,13 @@ export class RedeemFundsComponent implements OnInit {
     'serviceProviderAccountId': '',
     'isAllUnits': '',
     'remainingUnits': 0,
-    "modeOfTransaction": 2,
-    "transactionSubType": 1,
-    "transactionTypeId": 3,
-    'isActive': 1
+    'isActive': 1,
+    'modeOfTransaction': 2,
+    'transactionSubType': 1,
+    'transactionTypeId': 3
   }
   RedeemCartItemList: any = [];
-  TotalAmount:any;
+  TotalAmount: any;
 
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
@@ -106,10 +106,10 @@ export class RedeemFundsComponent implements OnInit {
       'serviceProviderAccountId': '',
       'isAllUnits': '',
       'remainingUnits': 0,
-      "modeOfTransaction": 2,
-      "transactionSubType": 1,
-      "transactionTypeId": 3,
-      'isActive': 0
+      'isActive': 0,
+      'modeOfTransaction': 2,
+      'transactionSubType': 1,
+      'transactionTypeId': 3
     }
   }
 
@@ -124,8 +124,8 @@ export class RedeemFundsComponent implements OnInit {
     postData.append("offset", "0");
     postData.append("holdinglimit", "10");
     postData.append("orderBy", JSON.stringify(orderby));
-    postData.append("whereClause", JSON.stringify(searchFilter));
-    postData.append("searchFilter", JSON.stringify(whereClause));
+    postData.append("whereClause", JSON.stringify(whereClause));
+    postData.append("searchFilter", JSON.stringify(searchFilter));
     postData.append("searchlimit", "5000");
     this.api.post("switchRedeemFunds/myholdings-product-overview", postData).subscribe(response => {
       console.log('GetMyHoldingsProductOver view', response);
@@ -138,6 +138,7 @@ export class RedeemFundsComponent implements OnInit {
         else {
           this.RedeemCartItemList[i].myHoldingCurrentValue = response.data.holdingData.totalCurrentValue;
           this.RedeemCartItemList[i].myHoldingUnitsOwned = response.data.holdingData.quantity;
+          this.RedeemCartItemList[i].serviceProviderAccountId = response.data.productOverview.serviceProviderId;
         }
       }
       else {
@@ -256,19 +257,19 @@ export class RedeemFundsComponent implements OnInit {
     }
     if (Flag) {
       console.log('RedeemNow', this.RedeemCartItemList);
-      var postData = new FormData();
-      postData.append("cartType", 'Redeem');
-      postData.append("cartItems", JSON.stringify(this.RedeemCartItemList));
-      this.api.post("switchRedeemFunds/redemption", postData, true).subscribe(response => {
-        console.log('RedeemNow response', response)
-        if (response.response.n == 1) {
-          this.route.navigate(["/order-placed"]);
-        }
-        else {
-          this.toastr.error(response.response.Msg);
-        }
-      })
+      // var postData = new FormData();
+      // postData.append("cartType", 'Redeem');
+      // postData.append("cartItems", JSON.stringify(this.RedeemCartItemList));
+      // this.api.post("switchRedeemFunds/redemption", postData, true).subscribe(response => {
+      //   console.log('RedeemNow response', response)
+      //   if (response.response.n == 1) {
+      //     this.route.navigate(["/order-placed"]);
+      //   }
+      //   else {
+      //     this.toastr.error(response.response.Msg);
+      //   }
+      // })
     }
   }
-  
+
 }

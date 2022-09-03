@@ -21,36 +21,31 @@ export class SwitchFundComponent implements OnInit {
   MyHoldings: any;
   MyHoldingsProductOverviewDetails: any;
   MyGoals: any;
+  SchemeList: any;
 
   Switchcart: any = {
     'instrumentId': '',
-    'goalId': '',
+    'goalId': '', //1st
     'SwitchFromGoal': 0,
     'myHoldingCurrentValue': '',
     'myHoldingUnitsOwned': '',
     'sellType': 'Amount',
     'totalAmount': '',
     'quantity': '',
-    'secondaryInstrumentId':'',
-    'secondaryGoalId':'',
+    'secondaryInstrumentId': '', //2nd to sceme
+    'secondaryGoalId': '', //2nd
     'serviceProviderAccountId': '',
     'isAllUnits': '',
-    'fullSwitch':'',
+    'fullSwitch': '',
     'remainingUnits': 0,
+    'isActive': 1,
     'modeOfTransaction': 3,
-    "transactionSubType": 1,
-    "transactionTypeId": 11,
-    'isActive': 1
+    'transactionSubType': 1,
+    'transactionTypeId': 11,
+    'schemeList': []
 
   }
-  SwitchCartItemList: any = [
-    {
-      'isActive': 1
-    },
-    {
-      'isActive': 0
-    }
-  ];
+  SwitchCartItemList: any = [];
 
   constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
@@ -62,8 +57,8 @@ export class SwitchFundComponent implements OnInit {
     if (localStorage.getItem("SelectedMutualFund") != null) {
       this.SelectedMutualFund = this.crypto.Decrypt(localStorage.getItem("SelectedMutualFund"))
       console.log("SelectedMutualFund", this.SelectedMutualFund);
+      this.GetMyHoldingsProductOverview(0, this.SelectedMutualFund.id);
     }
-
   }
 
   scrolltotop() {
@@ -88,6 +83,185 @@ export class SwitchFundComponent implements OnInit {
         console.log("my goals", this.MyGoals);
       }
     })
+  }
+
+  EmptySwitchCart() {
+    this.Switchcart = {
+      'instrumentId': '',
+      'goalId': '',
+      'SwitchFromGoal': 0,
+      'myHoldingCurrentValue': '',
+      'myHoldingUnitsOwned': '',
+      'sellType': 'Amount',
+      'totalAmount': '',
+      'quantity': '',
+      'secondaryInstrumentId': '',
+      'secondaryGoalId': '',
+      'serviceProviderAccountId': '',
+      'isAllUnits': '',
+      'fullSwitch': '',
+      'remainingUnits': 0,
+      'isActive': 0,
+      'modeOfTransaction': 3,
+      'transactionSubType': 1,
+      'transactionTypeId': 11,
+      'schemeList': []
+    }
+  }
+
+  GetSchemeList(i: any) {
+    var postData = new FormData();
+    postData.append("serviceProviderId", this.SwitchCartItemList[i].serviceProviderAccountId);
+    postData.append("switchType", 'switch');
+    this.api.post("switchRedeemFunds/fetch-instruments", postData, true).subscribe(response => {
+      console.log('GetSchemeList', response.data)
+      if (response.response.n == 1) {
+        this.SwitchCartItemList[i].schemeList = response.data;
+      }
+    })
+
+  }
+
+  GetMyHoldingsProductOverview(i: any, instrumentId: any) {
+
+    var orderby = [{ "name": "weight", "sort": "DESC" }];
+    var searchFilter = { 'productId': 5 };
+    var whereClause = {};
+    var postData = new FormData();
+    postData.append("instrumentId", instrumentId);
+    postData.append("limit", "10");
+    postData.append("offset", "0");
+    postData.append("holdinglimit", "10");
+    postData.append("orderBy", JSON.stringify(orderby));
+    postData.append("whereClause", JSON.stringify(whereClause));
+    postData.append("searchFilter", JSON.stringify(searchFilter));
+    postData.append("searchlimit", "5000");
+    this.api.post("switchRedeemFunds/myholdings-product-overview", postData).subscribe(response => {
+      console.log('GetMyHoldingsProductOver view', response);
+      if (response.response.n == 1) {
+
+        if (this.SwitchLoader) {
+          this.MyHoldingsProductOverviewDetails = response.data;
+          this.GetAmountUnitDetail();
+        }
+        else {
+          // this.SwitchCartItemList[i].myHoldingCurrentValue = response.data.holdingData.totalCurrentValue;
+          // this.SwitchCartItemList[i].myHoldingUnitsOwned = response.data.holdingData.quantity;
+          this.SwitchCartItemList[i].serviceProviderAccountId = response.data.productOverview.serviceProviderId;
+          this.GetSchemeList(i);
+          this.GetSellableAmounts(i, instrumentId, this.SwitchCartItemList[i].serviceProviderAccountId)
+        }
+      }
+      else {
+        this.toastr.error(response.response.Msg);
+      }
+    })
+  }
+
+  GetAmountUnitDetail() {
+    var postData = new FormData();
+    postData.append("instrumentId", this.SelectedMutualFund.id);
+    postData.append("Type", this.SelectedMutualFund.RedeemSwitchFund.sellType);
+    postData.append("Amount", this.SelectedMutualFund.RedeemSwitchFund.totalAmount);
+    postData.append("Unit", this.SelectedMutualFund.RedeemSwitchFund.quantity);
+
+    this.api.post("switchRedeemFunds/calculate-amount-unit", postData).subscribe(response => {
+      console.log('calculate-amount-unit', response);
+      if (response.response.n == 1) {
+        this.Switchcart.totalAmount = response.data.calculateAmount;
+        this.Switchcart.quantity = response.data.calculateUnit;
+        this.Switchcart.remainingUnits = response.data.remainingUnit;
+        this.GetSwitchCart();
+      }
+    })
+  }
+
+  GetSellableAmounts(i: any, instrumentId: any, serviceProviderAccountId: any) {
+    // var postData = new FormData();
+    // postData.append("instrumentId", instrumentId);
+    // postData.append("serviceProviderAccountId", serviceProviderAccountId);
+
+    const postData = {
+      "instrumentId": instrumentId,
+      "serviceProviderAccountId": serviceProviderAccountId
+    }
+
+    this.api.post("switchRedeemFunds/fetch-sellable-amount", postData, true).subscribe(response => {
+      console.log('GetSellableAmounts', response);
+      if (response.response.n == 1) {
+        this.SwitchCartItemList[i].myHoldingCurrentValue = response.data.amount.toFixed(2);
+        this.SwitchCartItemList[i].myHoldingUnitsOwned = response.data.quantity.toFixed(2);
+      }
+    })
+
+  }
+
+  GetSwitchCart() {
+    this.Switchcart.instrumentId = this.SelectedMutualFund.id;
+    // this.Switchcart.myHoldingCurrentValue = this.MyHoldingsProductOverviewDetails.holdingData.totalCurrentValue;
+    // this.Switchcart.myHoldingUnitsOwned = this.MyHoldingsProductOverviewDetails.holdingData.quantity;
+    this.Switchcart.sellType = this.SelectedMutualFund.RedeemSwitchFund.sellType;
+    // this.Switchcart.totalAmount = this.SelectedMutualFund.RedeemSwitchFund.totalAmount;
+    // this.Switchcart.quantity = this.SelectedMutualFund.RedeemSwitchFund.quantity;
+    this.Switchcart.serviceProviderAccountId = this.SelectedMutualFund.serviceProviderId;
+
+    this.SwitchCartItemList.push(this.Switchcart);
+    console.log('GetSwitchCart', this.SwitchCartItemList)
+    this.GetSchemeList(0);
+    this.GetSellableAmounts(0, this.SwitchCartItemList[0].instrumentId, this.SwitchCartItemList[0].serviceProviderAccountId);
+    this.SwitchLoader = false;
+    this.EmptySwitchCart();
+  }
+
+  Checked(id: any, i: any) {
+    if ($("#" + id).is(":checked")) {
+      this.SwitchCartItemList[i].redeemFromGoal = 1;
+    }
+    else {
+      this.SwitchCartItemList[i].redeemFromGoal = 0;
+      this.SwitchCartItemList[i].goalId = '';
+      this.SwitchCartItemList[i].secondaryGoalId = '';
+    }
+  }
+
+  AddNewScheme() {
+    this.EmptySwitchCart();
+    this.SwitchCartItemList.push(this.Switchcart);
+    for (let i = 0; i < this.SwitchCartItemList.length; i++) {
+      this.SwitchCartItemList[i].isActive = 0;
+    }
+    var length = this.SwitchCartItemList.length - 1;
+    this.SwitchCartItemList[length].isActive = 1;
+    this.scrolltotop();
+  }
+
+  GetAmountAndUnit(i: any) {
+    debugger
+    if (this.SwitchCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].totalAmount)) {
+      this.toastr.error('Please enter amount');
+    }
+    else if (this.SwitchCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].quantity)) {
+      this.toastr.error('Please enter unit');
+    }
+    else if (this.SwitchCartItemList[i].sellType == 'Unit' && this.SwitchCartItemList[i].quantity > this.SwitchCartItemList[i].myHoldingUnitsOwned) {
+      this.toastr.error('Unit value must be less than Units Owned');
+    }
+    else {
+      var postData = new FormData();
+      postData.append("instrumentId", this.SwitchCartItemList[i].instrumentId);
+      postData.append("Type", this.SwitchCartItemList[i].sellType);
+      postData.append("Amount", this.SwitchCartItemList[i].totalAmount);
+      postData.append("Unit", this.SwitchCartItemList[i].quantity);
+
+      this.api.post("switchRedeemFunds/calculate-amount-unit", postData).subscribe(response => {
+        console.log(response);
+        if (response.response.n == 1) {
+          this.SwitchCartItemList[i].totalAmount = response.data.calculateAmount;
+          this.SwitchCartItemList[i].quantity = response.data.calculateUnit;
+          this.SwitchCartItemList[i].remainingUnits = response.data.remainingUnit;
+        }
+      })
+    }
   }
 
 
