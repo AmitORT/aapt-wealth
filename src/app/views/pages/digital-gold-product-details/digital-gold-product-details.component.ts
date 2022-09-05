@@ -218,8 +218,14 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
+    else if(Number(this.Amount) <= 0){
+      this.toastr.error('Please Enter Valid Amount');
+    }
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
+    }
+    else if(Number(this.Weight) <= 0){
+      this.toastr.error('Please Enter Valid Weight');
     }
     else if (Number(this.Amount) > 500000 && this.Action == 'buy') {
       this.toastr.error('You can not buy gold more than 5,00,000 at a time');
