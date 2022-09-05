@@ -265,6 +265,7 @@ export class HeaderComponent implements OnInit, DoCheck {
 
 
   Logout() {
+    debugger
     this.isLoggedIn = false;
     localStorage.clear();
     this.handleOpenCloseNav();

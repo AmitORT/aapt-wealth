@@ -17,8 +17,8 @@ declare var $: any;
 export class DigitalGoldProductDetailsComponent implements OnInit {
 
   Action: any = "buy";
-  Amount: any;
-  Weight: any;
+  Amount: any = '';
+  Weight: any = '';
   GoldRatePerGram: string = "";
   QuoteResponse: any;
   validateCreateOrderResponse: any;
@@ -47,16 +47,23 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
+    debugger;
     this.GetSession();
-    debugger
+
+    // this.Amount = '';
+    // this.Weight = '';
+    // debugger
     if (localStorage.getItem("ApplicantData") != null) {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
       console.log(this.ApplicantData);
+      this.AccountNumber = this.ApplicantData.account_number;
+      this.BankName = this.ApplicantData.bank_name;
+      this.IFSCCode = this.ApplicantData.IFSC_name;
       this.GetPortfolioBalance();
     }
     if (localStorage.getItem('DGAction') != null) {
       this.Action = localStorage.getItem('DGAction');
-      localStorage.removeItem('DGAction');
+      // localStorage.removeItem('DGAction');
     }
 
     if (localStorage.getItem("DGData") != null) {
@@ -67,6 +74,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       this.Weight = this.DGData.Weight;
       var action = this.calculationType == 'A' ? 'Amount' : 'Weight';
       this.GetConvertedGold(action);
+      localStorage.removeItem('DGData');
+
     }
     // this.Action == "buy" ? await this.GetBuyAmountPerGram() : await this.GetSellAmountPerGram();
     setTimeout(() => {
@@ -166,7 +175,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   GetConvertedGold(para: string) {
-    
+
     para == 'Amount' ? this.Weight = 0 : this.Amount = 0;
 
     if (para == 'Amount' && !this.validate.isNullEmptyUndefined(this.Amount) || para == 'Weight' && !this.validate.isNullEmptyUndefined(this.Weight)) {
@@ -212,11 +221,14 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
     }
+    else if (Number(this.Amount) > 500000 && this.Action == 'buy') {
+      this.toastr.error('You can not buy gold more than 5,00,000 at a time');
+    }
     else if (localStorage.getItem("CustToken") == null) {
       $("#invest-screen").modal("hide");
       $("#login").modal("show");
     }
-    else if (total > 199000 && (this.ApplicantData?.kycVerified != true)) {
+    else if (total > 199000 && (this.ApplicantData?.kycVerified != true) && this.Action == 'buy') {
       $("#update-kyc").modal("show");
     }
     else if (this.ApplicantData?.profileDetail != true) {
@@ -319,11 +331,11 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         console.log('razor pay check', resp)
         debugger
         if (resp.response.n == 1) {
-          localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
+          // localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
 
 
-          this.GetApplicantData();
-          
+          this.GetApplicantData('buy');
+
         }
         else {
           this.toastr.error(resp.response.Msg)
@@ -394,7 +406,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
         if (resp.response.n == 1) {
           localStorage.removeItem('DGProceed');
           localStorage.removeItem('DGData');
-          this.GetApplicantData();
+          this.GetApplicantData('sell');
           // window.location.href = '/digital-gold-sold-successful';
         }
         else {
@@ -404,12 +416,18 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     }
   }
 
-  GetApplicantData() {
+  GetApplicantData(para: any) {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
       debugger
       console.log(response)
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
-      window.location.href = '/digital-gold-purchased-successful';
+      if (para == 'buy') {
+        window.location.href = '/digital-gold-purchased-successful';
+      }
+      else if (para == 'sell') {
+        window.location.href = '/digital-gold-sold-successful';
+      }
+
     })
   }
 }

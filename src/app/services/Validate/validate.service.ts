@@ -30,25 +30,40 @@ export class ValidateService {
     return true;
   }
   DesimalOnly(event: KeyboardEvent, value: string): boolean {
-   // debugger
+    // debugger
     const charCode = (event.which) ? event.which : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57) && charCode !== 46) {
       return false;
     }
-    if(value != undefined){
-    if (value.indexOf('.') > -1 && charCode === 46) {
-      return false;
+    if (value != undefined) {
+      if (value.indexOf('.') > -1 && charCode === 46) {
+        return false;
+      }
     }
-  }
     return true;
   }
-  
+
+  toFixed(value:any,event:any){
+    debugger
+    value = parseFloat(value);
+    var isInteger = Number.isInteger(value);
+    if(!isInteger){
+      var spval = String(value).split(".");
+      if(spval[1].length > 4){
+        return value;
+      }
+    }
+    else{
+      return value;
+    }
+  }
+
   validateEmail(email: any) {
     const regularExpression = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return regularExpression.test(String(email).toLowerCase());
   }
- 
-  validateMobileNumber(number:any){
+
+  validateMobileNumber(number: any) {
     const regularExpression = /^[6-9]\d{9}$/;
     return regularExpression.test(String(number).toLowerCase());
   }
@@ -64,27 +79,27 @@ export class ValidateService {
     const regularExpression = /^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$/;
     return regularExpression.test(String(aadharNumber).toLowerCase());
   }
-  validateAccountNumber(accountNumber:any){
+  validateAccountNumber(accountNumber: any) {
     const regularExpression = /^\d{9,18}$/;
     return regularExpression.test(String(accountNumber));
   }
-  validateIFSCCode(accountNumber:any){
+  validateIFSCCode(accountNumber: any) {
     const regularExpression = /^[A-Za-z]{4}\d{7}$/;
     return regularExpression.test(String(accountNumber).toUpperCase());
   }
 
-  getCurrentDateWithSpecificFormat(date:any): string {
+  getCurrentDateWithSpecificFormat(date: any): string {
     let dateString;
-    if(date == 1 || date == 21 || date == 31){
-      dateString =  "st";
+    if (date == 1 || date == 21 || date == 31) {
+      dateString = "st";
     }
-    else if(date == 2 || date == 22){
+    else if (date == 2 || date == 22) {
       dateString = "nd";
     }
-    else if(date == 3 || date == 23){
+    else if (date == 3 || date == 23) {
       dateString = "rd";
     }
-    else{
+    else {
       dateString = "th";
     }
     return dateString;

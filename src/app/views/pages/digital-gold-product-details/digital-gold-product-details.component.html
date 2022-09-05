@@ -150,13 +150,15 @@
               <div class="amount-weight mb-4">
                 <div class="row position-relative mb-3 ms-2">
                   <div class="form-check w-50">
-                    <input class="form-check-input" id="calculationType1" type="radio" value="A" [(ngModel)]="calculationType">
+                    <input class="form-check-input" id="calculationType1" type="radio" value="A"
+                      [(ngModel)]="calculationType">
                     <label class="form-check-label" for="calculationType1">
                       Amount
                     </label>
                   </div>
                   <div class="form-check w-50">
-                    <input class="form-check-input" id="calculationType2" type="radio" value="Q" [(ngModel)]="calculationType">
+                    <input class="form-check-input" id="calculationType2" type="radio" value="Q"
+                      [(ngModel)]="calculationType">
                     <label class="form-check-label" for="calculationType2">
                       Quantity
                     </label>
@@ -165,12 +167,12 @@
                 <div class="row position-relative">
                   <div class="col-6 pe-2">
                     <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" maxlength="10"
-                      [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount"
-                      (keypress)="validate.numberOnly($event)" (keyup)="GetConvertedGold('Amount')">
+                      [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount" autocomplete="off"
+                      (keypress)="validate.DesimalOnly($event,Amount)" (keyup)="GetConvertedGold('Amount')">
                   </div>
                   <div class="col-6 ps-2">
                     <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" maxlength="10"
-                      [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight"
+                      [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight" autocomplete="off"
                       (keypress)="validate.DesimalOnly($event,Weight)" (keyup)="GetConvertedGold('Weight')">
                   </div>
                   <img src="assets/img/equalto.svg" alt="icici" class="amount-weight-change" />
@@ -247,13 +249,15 @@
                 <div class="amount-weight mb-4">
                   <div class="row position-relative mb-3 ms-2">
                     <div class="form-check w-50">
-                      <input class="form-check-input" id="calculationType3" type="radio" value="A" [(ngModel)]="calculationType">
+                      <input class="form-check-input" id="calculationType3" type="radio" value="A"
+                        [(ngModel)]="calculationType">
                       <label class="form-check-label" for="calculationType3">
                         Amount
                       </label>
                     </div>
                     <div class="form-check w-50">
-                      <input class="form-check-input" id="calculationType4" type="radio" value="Q" [(ngModel)]="calculationType">
+                      <input class="form-check-input" id="calculationType4" type="radio" value="Q"
+                        [(ngModel)]="calculationType">
                       <label class="form-check-label" for="calculationType4">
                         Quantity
                       </label>
@@ -261,13 +265,13 @@
                   </div>
                   <div class="row position-relative">
                     <div class="col-6 pe-2">
-                      <input type="text" class="form-control" id="amout1" aria-describedby="emailHelp" maxlength="10"
-                        [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount"
-                        (keypress)="validate.numberOnly($event)" (keyup)="GetConvertedGold('Amount')">
+                      <input type="text" class="form-control" id="amout2" aria-describedby="emailHelp" maxlength="10"
+                        [disabled]="calculationType != 'A'" placeholder="Enter Amount" [(ngModel)]="Amount" autocomplete="off"
+                        (keypress)="validate.DesimalOnly($event,Amount)" (keyup)="GetConvertedGold('Amount')">
                     </div>
                     <div class="col-6 ps-2">
-                      <input type="text" class="form-control" id="weight1" aria-describedby="emailHelp" maxlength="10"
-                        [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight"
+                      <input type="text" class="form-control" id="weight2" aria-describedby="emailHelp" maxlength="10"
+                        [disabled]="calculationType != 'Q'" placeholder="Enter Weight" [(ngModel)]="Weight" autocomplete="off"
                         (keypress)="validate.DesimalOnly($event,Weight)" (keyup)="GetConvertedGold('Weight')">
                     </div>
                     <img src="assets/img/amount-weight-change.svg" alt="icici" class="amount-weight-change" />
@@ -347,7 +351,8 @@
           <p>Note : To make any investments or purchase a gold you have to update your KYC</p>
         </div>
         <div class="text-center">
-          <button type="button" class="btn btn-primary proceed-btn" (click)="GoToCommon('/kyc-verification')">Update KYC </button>
+          <button type="button" class="btn btn-primary proceed-btn" (click)="GoToCommon('/kyc-verification')">Update KYC
+          </button>
         </div>
       </div>
     </div>

@@ -13,6 +13,8 @@ export class DigitalGoldSoldSuccessfullComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.removeItem('DGAction');
+    localStorage.removeItem('DGData');
   }
 
   GoToCommon(para: any) {
