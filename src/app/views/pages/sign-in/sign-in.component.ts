@@ -281,7 +281,7 @@ export class SignInComponent implements OnInit {
       this.toastr.error("Date of birth is mandatory");
     }
     else if (this.validate.isNullEmptyUndefined(this.pancard)) {
-      this.toastr.error("Pancard is mandatory");
+      this.toastr.error("Pancard Number is mandatory");
     }
     else if (!this.validate.validatePancard(this.pancard)) {
       this.toastr.error("Please enter valid Pancard Number");
