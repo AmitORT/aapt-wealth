@@ -70,7 +70,7 @@
                       <option value="">Select Goal </option>
                       <option value="{{goals.goalId}}" *ngFor="let goals of MyGoals">{{goals.name}}</option>
                     </select>
-                    <label for="floatingSelect">Select Goal</label>
+                    <label for="floatingSelect">Goal</label>
                   </div>
 
                   <div class="form-floating">
@@ -79,7 +79,7 @@
                       <option value="">Select Secondary Goal </option>
                       <option value="{{goals.goalId}}" *ngFor="let goals of MyGoals">{{goals.name}}</option>
                     </select>
-                    <label for="floatingSelect">Select Secondary Goal</label>
+                    <label for="floatingSelect">Secondary Goal</label>
                   </div>
                 </div>
 
@@ -89,28 +89,19 @@
                 <div class="form-floating" *ngIf="!validate.isNullEmptyUndefined(Switchlist.schemeList)">
                   <select class="form-select mb-3 w-100" id="floatingSelect" aria-label="Floating label select example"
                     [(ngModel)]="Switchlist.secondaryInstrumentId">
-                    <option value="">Select Secondary Goal </option>
+                    <option value="">Select Secondary Scheme </option>
                     <option value="{{list.instrumentId}}" *ngFor="let list of Switchlist.schemeList">
                       {{list.instrumentName}}</option>
                   </select>
-                  <label for="floatingSelect">Select Secondary Scheme</label>
+                  <label for="floatingSelect">Secondary Scheme</label>
                 </div>
-
-                <!-- <h6>Set Frequency for withdrawal</h6>
-
-                <div class="mt-3 mb-4 d-flex justify-content-between">
-                  <a class="btn-primary theme-button">Monthly</a>
-                  <a class="btn-primary unit-button">Quarterly</a>
-                </div> -->
-
-
 
                 <div class="cover-left-div mb-3"
                   *ngIf="!validate.isNullEmptyUndefined(Switchlist.myHoldingCurrentValue) && !validate.isNullEmptyUndefined(Switchlist.myHoldingUnitsOwned)">
                   <div class="row">
                     <div class="col-lg-6 col-6 tex-center coverstext">
                       <p>Current Value</p>
-                      <h5>₹ {{Switchlist.myHoldingCurrentValue}}</h5>
+                      <h5>₹ {{validate.indianRupeeFormat(Switchlist.myHoldingCurrentValue)}}</h5>
                     </div>
                     <div class="col-lg-6 col-6 tex-center coverstext">
                       <p>Units Owned</p>
@@ -123,16 +114,10 @@
 
                 <div class="mt-3 mb-4 d-flex justify-content-between">
                   <a class="btn-primary" [ngClass]="Switchlist.sellType == 'Amount' ? 'theme-button' : 'unit-button'"
-                      (click)="Switchlist.sellType = 'Amount'">Amount</a>
-                    <a class="btn-primary" [ngClass]="Switchlist.sellType == 'Unit' ? 'theme-button' : 'unit-button'"
-                      (click)="Switchlist.sellType = 'Unit'">Unit</a>
+                    (click)="Switchlist.sellType = 'Amount'">Amount</a>
+                  <a class="btn-primary" [ngClass]="Switchlist.sellType == 'Unit' ? 'theme-button' : 'unit-button'"
+                    (click)="Switchlist.sellType = 'Unit'">Unit</a>
                 </div>
-
-                <!-- <div class="form-floating mt-2">
-                  <input type="text" id="first_name" placeholder="Full Name" class="form-control ">
-                  <label for="first_name">Enter Amount</label>
-                  <span class="units">5 Units</span>
-                </div> -->
 
                 <div class="form-floating mt-2" *ngIf="Switchlist.sellType == 'Amount'">
                   <input type="text" id="Amount" placeholder="Enter Amount" class="form-control"
@@ -152,20 +137,16 @@
                     {{Switchlist.totalAmount}}</span>
                 </div>
 
-                
-
                 <div class="justify-content-between d-flex mt-2 font-units">
                   <span class="cursor-pointer" *ngIf="Switchlist.quantity < Switchlist.myHoldingUnitsOwned"
-                    (click)="Switchlist.quantity = Switchlist.myHoldingUnitsOwned; GetAmountAndUnit(i);">+ Add all units</span>
+                    (click)="Switchlist.quantity = Switchlist.myHoldingUnitsOwned; Switchlist.totalAmount = Switchlist.myHoldingCurrentValue">+ Add all
+                    units</span>
                   <p>{{Switchlist.remainingUnits}}/{{Switchlist.myHoldingUnitsOwned}} units remaining</p>
                 </div>
-                
-
-
-
 
                 <div class="hidden-xs">
-                  <p class="d-none d-lg-block d-md-block d-sm-block">Total Amount <span class="rupee">Rs. 1,500</span>
+                  <p class="d-none d-lg-block d-md-block d-sm-block">Total Amount <span class="rupee">Rs.
+                      {{validate.indianRupeeFormat(Switchlist.totalAmount)}}</span>
                   </p>
                 </div>
 
@@ -178,12 +159,8 @@
           </div>
 
           <div class="redeem mt-5 d-none d-lg-block d-md-block d-sm-block">
-            <a class="btn-primary theme-button" [routerLink]="['/fund-switch-suceesful']">Proceed</a>
+            <a class="btn-primary theme-button" (click)="SwitchProceed()">Proceed</a>
           </div>
-
-
-
-          <!-- // -->
 
         </div>
       </div>

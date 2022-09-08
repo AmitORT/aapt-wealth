@@ -236,39 +236,44 @@ export class RedeemFundsComponent implements OnInit {
       if (this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].instrumentId)) {
         this.toastr.error('Please select Instument Name of Instrument' + (i + 1));
         Flag = false;
+        break;
       }
       else if (this.RedeemCartItemList[i].redeemFromGoal == 1 && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].goalId)) {
         this.toastr.error('Please select Goal Name of Instrument' + (i + 1));
         Flag = false;
+        break;
       }
       else if (this.RedeemCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount)) {
         this.toastr.error('Please enter Amount of Instrument' + (i + 1));
         Flag = false;
+        break;
       }
       else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
         this.toastr.error('Please enter unit of Instrument' + (i + 1));
         Flag = false;
+        break;
       }
       else if (this.RedeemCartItemList[i].quantity > this.RedeemCartItemList[i].myHoldingUnitsOwned) {
         this.toastr.error('Unit value must be less than Units Owned of Instrument' + (i + 1));
         Flag = false;
+        break;
       }
 
     }
     if (Flag) {
       console.log('RedeemNow', this.RedeemCartItemList);
-      // var postData = new FormData();
-      // postData.append("cartType", 'Redeem');
-      // postData.append("cartItems", JSON.stringify(this.RedeemCartItemList));
-      // this.api.post("switchRedeemFunds/redemption", postData, true).subscribe(response => {
-      //   console.log('RedeemNow response', response)
-      //   if (response.response.n == 1) {
-      //     this.route.navigate(["/order-placed"]);
-      //   }
-      //   else {
-      //     this.toastr.error(response.response.Msg);
-      //   }
-      // })
+      var postData = new FormData();
+      postData.append("cartType", 'Redeem');
+      postData.append("cartItems", JSON.stringify(this.RedeemCartItemList));
+      this.api.post("switchRedeemFunds/redemption", postData, true).subscribe(response => {
+        console.log('RedeemNow response', response)
+        if (response.response.n == 1) {
+          this.route.navigate(["/order-placed"]);
+        }
+        else {
+          this.toastr.error(response.response.Msg);
+        }
+      })
     }
   }
 

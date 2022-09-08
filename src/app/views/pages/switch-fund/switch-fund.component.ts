@@ -264,6 +264,85 @@ export class SwitchFundComponent implements OnInit {
     }
   }
 
+  SwitchProceed(){
+    let Flag = true;
+    for (let i = 0; i < this.SwitchCartItemList.length; i++) {
+      if (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].instrumentId)) {
+        this.toastr.error('Please select Instument Name of Scheme' + (i + 1));
+        Flag = false;
+        break;
+      }
+      else if (this.SwitchCartItemList[i].redeemFromGoal == 1 && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].goalId)) {
+        this.toastr.error('Please select Goal Name of Scheme' + (i + 1));
+        Flag = false;
+        break;
+      }
+      else if (this.SwitchCartItemList[i].redeemFromGoal == 1 && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].secondaryGoalId)) {
+        this.toastr.error('Please select Secondary Goal Name of Scheme' + (i + 1));
+        Flag = false;
+        break;
+      }
+      else if (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].secondaryInstrumentId)) {
+        this.toastr.error('Please select Secondary Instument Name of Scheme' + (i + 1));
+        Flag = false;
+        break;
+      }
+      else if (this.SwitchCartItemList[i].sellType == 'Amount' && (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].totalAmount) || Number(this.SwitchCartItemList[i].totalAmount) == 0)) {
+        this.toastr.error('Please enter Amount of Scheme' + (i + 1) + ' and it should not be zero');
+        Flag = false;
+        break;
+      }
+      else if (this.SwitchCartItemList[i].sellType == 'Unit' && (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].quantity) || Number(this.SwitchCartItemList[i].quantity) == 0)) {
+        this.toastr.error('Please enter unit of Scheme' + (i + 1) + ' and it should not be zero');
+        Flag = false;
+        break;
+      }
+      else if (this.SwitchCartItemList[i].quantity > this.SwitchCartItemList[i].myHoldingUnitsOwned) {
+        this.toastr.error('Unit value must be less than Units Owned of Scheme' + (i + 1));
+        Flag = false;
+        break;
+      }
+    }
+
+    if (Flag) {
+      console.log('SwitchProceed', this.SwitchCartItemList);
+      var postData = new FormData();
+      postData.append("cartType", 'Switch');
+      postData.append("cartItems", JSON.stringify(this.SwitchCartItemList));
+      this.api.post("switchRedeemFunds/switch", postData, true).subscribe(response => {
+        console.log('SwitchProceed response', response)
+        // if (response.response.n == 1) {
+        //   this.route.navigate(["/fund-switch-suceesful"]);
+        // }
+        // else {
+        //   this.toastr.error(response.response.Msg);
+        // }
+      })
+      // [routerLink]="['/fund-switch-suceesful']"
+    }
+  }
+
+
+  // 'instrumentId': '',
+  //   'goalId': '', //1st
+  //   'SwitchFromGoal': 0,
+  //   'myHoldingCurrentValue': '',
+  //   'myHoldingUnitsOwned': '',
+  //   'sellType': 'Amount',
+  //   'totalAmount': '',
+  //   'quantity': '',
+  //   'secondaryInstrumentId': '', //2nd to sceme
+  //   'secondaryGoalId': '', //2nd
+  //   'serviceProviderAccountId': '',
+  //   'isAllUnits': '',
+  //   'fullSwitch': '',
+  //   'remainingUnits': 0,
+  //   'isActive': 1,
+  //   'modeOfTransaction': 3,
+  //   'transactionSubType': 1,
+  //   'transactionTypeId': 11,
+  //   'schemeList': []
+
 
 
 
