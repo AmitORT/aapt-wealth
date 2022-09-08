@@ -189,8 +189,9 @@ export class SwitchFundComponent implements OnInit {
     this.api.post("switchRedeemFunds/fetch-sellable-amount", postData, true).subscribe(response => {
       console.log('GetSellableAmounts', response);
       if (response.response.n == 1) {
-        this.SwitchCartItemList[i].myHoldingCurrentValue = response.data.amount.toFixed(2);
-        this.SwitchCartItemList[i].myHoldingUnitsOwned = response.data.quantity.toFixed(2);
+        this.SwitchCartItemList[i].myHoldingCurrentValue = response.data.amount;
+        this.SwitchCartItemList[i].myHoldingUnitsOwned = response.data.quantity;
+        console.log('GetSellableAmounts', this.SwitchCartItemList[i].myHoldingCurrentValue);
       }
     })
 
@@ -235,21 +236,21 @@ export class SwitchFundComponent implements OnInit {
     this.scrolltotop();
   }
 
-  GetAmountAndUnit(i: any) {
+  GetAmountAndUnit(i: any, sellType: any) {
     debugger
-    if (this.SwitchCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].totalAmount)) {
+    if (sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].totalAmount)) {
       this.toastr.error('Please enter amount');
     }
-    else if (this.SwitchCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].quantity)) {
+    else if (sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].quantity)) {
       this.toastr.error('Please enter unit');
     }
-    else if (this.SwitchCartItemList[i].sellType == 'Unit' && this.SwitchCartItemList[i].quantity > this.SwitchCartItemList[i].myHoldingUnitsOwned) {
+    else if (sellType == 'Unit' && this.SwitchCartItemList[i].quantity > this.SwitchCartItemList[i].myHoldingUnitsOwned) {
       this.toastr.error('Unit value must be less than Units Owned');
     }
     else {
       var postData = new FormData();
       postData.append("instrumentId", this.SwitchCartItemList[i].instrumentId);
-      postData.append("Type", this.SwitchCartItemList[i].sellType);
+      postData.append("Type", sellType);
       postData.append("Amount", this.SwitchCartItemList[i].totalAmount);
       postData.append("Unit", this.SwitchCartItemList[i].quantity);
 
@@ -264,9 +265,18 @@ export class SwitchFundComponent implements OnInit {
     }
   }
 
-  SwitchProceed(){
+  SwitchProceed() {
     let Flag = true;
     for (let i = 0; i < this.SwitchCartItemList.length; i++) {
+      if (this.SwitchCartItemList[i].quantity == this.SwitchCartItemList[i].myHoldingUnitsOwned) {
+        this.SwitchCartItemList[i].isAllUnits = true;
+        this.SwitchCartItemList[i].fullSwitch = true;
+      }
+      else{
+        this.SwitchCartItemList[i].isAllUnits = false;
+        this.SwitchCartItemList[i].fullSwitch = false;
+      }
+
       if (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].instrumentId)) {
         this.toastr.error('Please select Instument Name of Scheme' + (i + 1));
         Flag = false;
@@ -292,6 +302,11 @@ export class SwitchFundComponent implements OnInit {
         Flag = false;
         break;
       }
+      else if (this.SwitchCartItemList[i].totalAmount > this.SwitchCartItemList[i].myHoldingCurrentValue) {
+        this.toastr.error('Amount of Scheme' + (i + 1) + ' should not be greater than current value');
+        Flag = false;
+        break;
+      }
       else if (this.SwitchCartItemList[i].sellType == 'Unit' && (this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].quantity) || Number(this.SwitchCartItemList[i].quantity) == 0)) {
         this.toastr.error('Please enter unit of Scheme' + (i + 1) + ' and it should not be zero');
         Flag = false;
@@ -305,20 +320,21 @@ export class SwitchFundComponent implements OnInit {
     }
 
     if (Flag) {
+
+
       console.log('SwitchProceed', this.SwitchCartItemList);
-      var postData = new FormData();
-      postData.append("cartType", 'Switch');
-      postData.append("cartItems", JSON.stringify(this.SwitchCartItemList));
-      this.api.post("switchRedeemFunds/switch", postData, true).subscribe(response => {
-        console.log('SwitchProceed response', response)
-        // if (response.response.n == 1) {
-        //   this.route.navigate(["/fund-switch-suceesful"]);
-        // }
-        // else {
-        //   this.toastr.error(response.response.Msg);
-        // }
-      })
-      // [routerLink]="['/fund-switch-suceesful']"
+      // var postData = new FormData();
+      // postData.append("cartType", 'Switch');
+      // postData.append("cartItems", JSON.stringify(this.SwitchCartItemList));
+      // this.api.post("switchRedeemFunds/switch", postData, true).subscribe(response => {
+      //   console.log('SwitchProceed response', response)
+      //   if (response.response.n == 1) {
+      //     this.route.navigate(["/fund-switch-suceesful"]);
+      //   }
+      //   else {
+      //     this.toastr.error(response.response.Msg);
+      //   }
+      // })
     }
   }
 

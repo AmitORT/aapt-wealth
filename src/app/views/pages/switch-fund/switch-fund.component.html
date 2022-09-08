@@ -101,7 +101,7 @@
                   <div class="row">
                     <div class="col-lg-6 col-6 tex-center coverstext">
                       <p>Current Value</p>
-                      <h5>₹ {{validate.indianRupeeFormat(Switchlist.myHoldingCurrentValue)}}</h5>
+                      <h5>₹ {{Switchlist.myHoldingCurrentValue}}</h5>
                     </div>
                     <div class="col-lg-6 col-6 tex-center coverstext">
                       <p>Units Owned</p>
@@ -122,7 +122,7 @@
                 <div class="form-floating mt-2" *ngIf="Switchlist.sellType == 'Amount'">
                   <input type="text" id="Amount" placeholder="Enter Amount" class="form-control"
                     (keypress)="validate.numberOnly($event)" [(ngModel)]="Switchlist.totalAmount"
-                    (keyup)="GetAmountAndUnit(i)">
+                    (keyup)="GetAmountAndUnit(i,'Amount')">
                   <label for="Amount">Enter Amount</label>
                   <span class="units"
                     *ngIf="!validate.isNullEmptyUndefined(Switchlist.quantity)">{{Switchlist.quantity}} Units</span>
@@ -131,7 +131,7 @@
                 <div class="form-floating mt-2" *ngIf="Switchlist.sellType == 'Unit'">
                   <input type="text" id="Units" placeholder="Enter Units" class="form-control"
                     (keypress)="validate.DesimalOnly($event,Switchlist.quantity)" [(ngModel)]="Switchlist.quantity"
-                    (keyup)="GetAmountAndUnit(i)">
+                    (keyup)="GetAmountAndUnit(i,'Unit')">
                   <label for="Units">Enter Units</label>
                   <span class="units" *ngIf="!validate.isNullEmptyUndefined(Switchlist.totalAmount)">₹
                     {{Switchlist.totalAmount}}</span>
@@ -139,7 +139,7 @@
 
                 <div class="justify-content-between d-flex mt-2 font-units">
                   <span class="cursor-pointer" *ngIf="Switchlist.quantity < Switchlist.myHoldingUnitsOwned"
-                    (click)="Switchlist.quantity = Switchlist.myHoldingUnitsOwned; Switchlist.totalAmount = Switchlist.myHoldingCurrentValue">+ Add all
+                    (click)="Switchlist.quantity = Switchlist.myHoldingUnitsOwned; GetAmountAndUnit(i,'Unit')">+ Add all
                     units</span>
                   <p>{{Switchlist.remainingUnits}}/{{Switchlist.myHoldingUnitsOwned}} units remaining</p>
                 </div>
