@@ -136,9 +136,10 @@ export class RedeemFundsComponent implements OnInit {
           this.GetAmountUnitDetail();
         }
         else {
-          this.RedeemCartItemList[i].myHoldingCurrentValue = response.data.holdingData.totalCurrentValue;
-          this.RedeemCartItemList[i].myHoldingUnitsOwned = response.data.holdingData.quantity;
+          // this.RedeemCartItemList[i].myHoldingCurrentValue = response.data.holdingData.totalCurrentValue;
+          // this.RedeemCartItemList[i].myHoldingUnitsOwned = response.data.holdingData.quantity;
           this.RedeemCartItemList[i].serviceProviderAccountId = response.data.productOverview.serviceProviderId;
+          this.GetSellableAmounts(i, instrumentId, this.RedeemCartItemList[i].serviceProviderAccountId)
         }
       }
       else {
@@ -165,6 +166,28 @@ export class RedeemFundsComponent implements OnInit {
     })
   }
 
+  GetSellableAmounts(i: any, instrumentId: any, serviceProviderAccountId: any) {
+    // var postData = new FormData();
+    // postData.append("instrumentId", instrumentId);
+    // postData.append("serviceProviderAccountId", serviceProviderAccountId);
+
+    const postData = {
+      "instrumentId": instrumentId,
+      "serviceProviderAccountId": serviceProviderAccountId
+    }
+
+    this.api.post("switchRedeemFunds/fetch-sellable-amount", postData, true).subscribe(response => {
+      console.log('Get SellableAmounts', response);
+      if (response.response.n == 1) {
+        this.RedeemCartItemList[i].myHoldingCurrentValue = response.data.amount;
+        this.RedeemCartItemList[i].myHoldingUnitsOwned = response.data.quantity;
+        console.log('Get SellableAmounts', this.RedeemCartItemList[i].myHoldingCurrentValue);
+      }
+    })
+
+  }
+
+
   GetRedeemCart() {
     this.Redeemcart.instrumentId = this.SelectedMutualFund.id;
     this.Redeemcart.myHoldingCurrentValue = this.MyHoldingsProductOverviewDetails.holdingData.totalCurrentValue;
@@ -176,6 +199,8 @@ export class RedeemFundsComponent implements OnInit {
 
     this.RedeemCartItemList.push(this.Redeemcart);
     console.log('GetRedeemCart', this.RedeemCartItemList)
+    this.GetSellableAmounts(0, this.RedeemCartItemList[0].instrumentId, this.RedeemCartItemList[0].serviceProviderAccountId);
+
     this.RedeemLoader = false;
     this.EmptyRedeemCart();
   }
@@ -201,20 +226,20 @@ export class RedeemFundsComponent implements OnInit {
     this.scrolltotop();
   }
 
-  GetAmountAndUnit(i: any) {
-    if (this.RedeemCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount)) {
+  GetAmountAndUnit(i: any, sellType: any) {
+    if (sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount)) {
       this.toastr.error('Please enter amount');
     }
-    else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
+    else if (sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
       this.toastr.error('Please enter unit');
     }
-    else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.RedeemCartItemList[i].quantity > this.RedeemCartItemList[i].myHoldingUnitsOwned) {
+    else if (sellType == 'Unit' && this.RedeemCartItemList[i].quantity > this.RedeemCartItemList[i].myHoldingUnitsOwned) {
       this.toastr.error('Unit value must be less than Units Owned');
     }
     else {
       var postData = new FormData();
       postData.append("instrumentId", this.RedeemCartItemList[i].instrumentId);
-      postData.append("Type", this.RedeemCartItemList[i].sellType);
+      postData.append("Type", sellType);
       postData.append("Amount", this.RedeemCartItemList[i].totalAmount);
       postData.append("Unit", this.RedeemCartItemList[i].quantity);
 
@@ -228,6 +253,11 @@ export class RedeemFundsComponent implements OnInit {
       })
     }
   }
+
+  DeleteRedeemFromList(i: any) {
+    this.RedeemCartItemList.splice(i, 1);
+  }
+
 
   RedeemNow() {
     let Flag = true;
@@ -243,13 +273,18 @@ export class RedeemFundsComponent implements OnInit {
         Flag = false;
         break;
       }
-      else if (this.RedeemCartItemList[i].sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount)) {
-        this.toastr.error('Please enter Amount of Instrument' + (i + 1));
+      else if (this.RedeemCartItemList[i].sellType == 'Amount' && (this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].totalAmount) || Number(this.RedeemCartItemList[i].totalAmount) == 0)) {
+        this.toastr.error('Please enter Amount of Instrument' + (i + 1) + ' and it should not be zero');
         Flag = false;
         break;
       }
-      else if (this.RedeemCartItemList[i].sellType == 'Unit' && this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity)) {
-        this.toastr.error('Please enter unit of Instrument' + (i + 1));
+      else if (this.RedeemCartItemList[i].totalAmount > this.RedeemCartItemList[i].myHoldingCurrentValue) {
+        this.toastr.error('Amount of Instrument' + (i + 1) + ' should not be greater than current value');
+        Flag = false;
+        break;
+      }
+      else if (this.RedeemCartItemList[i].sellType == 'Unit' && (this.validate.isNullEmptyUndefined(this.RedeemCartItemList[i].quantity) || Number(this.RedeemCartItemList[i].quantity) == 0)) {
+        this.toastr.error('Please enter unit of Instrument' + (i + 1) + ' and it should not be zero');
         Flag = false;
         break;
       }

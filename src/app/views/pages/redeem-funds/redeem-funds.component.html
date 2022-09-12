@@ -35,8 +35,16 @@
         </div>
 
         <div *ngIf="RedeemCartItemList.length > 0">
+
+          <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
+            (click)="RedeemCartItemList = []">
+
           <div class="accordion" id="accordionExample-desk">
             <div class="accordion-item" *ngFor="let Redeemlist of RedeemCartItemList; let i=index;">
+
+              <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
+                (click)="DeleteRedeemFromList(i)">
+
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                   attr.data-bs-target="#collapse{{i}}">
@@ -111,7 +119,7 @@
                   <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Amount'">
                     <input type="text" id="Amount" placeholder="Enter Amount" class="form-control"
                       (keypress)="validate.numberOnly($event)" [(ngModel)]="Redeemlist.totalAmount"
-                      (keyup)="GetAmountAndUnit(i)">
+                      (keyup)="GetAmountAndUnit(i,'Amount')">
                     <label for="Amount">Enter Amount</label>
                     <span class="units"
                       *ngIf="!validate.isNullEmptyUndefined(Redeemlist.quantity)">{{Redeemlist.quantity}} Units</span>
@@ -120,7 +128,7 @@
                   <div class="form-floating mt-2" *ngIf="Redeemlist.sellType == 'Unit'">
                     <input type="text" id="Units" placeholder="Enter Units" class="form-control"
                       (keypress)="validate.DesimalOnly($event,Redeemlist.quantity)" [(ngModel)]="Redeemlist.quantity"
-                      (keyup)="GetAmountAndUnit(i)">
+                      (keyup)="GetAmountAndUnit(i,'Unit')">
                     <label for="Units">Enter Units</label>
                     <span class="units" *ngIf="!validate.isNullEmptyUndefined(Redeemlist.totalAmount)">₹
                       {{Redeemlist.totalAmount}}</span>
@@ -128,7 +136,7 @@
 
                   <div class="justify-content-between d-flex mt-2 font-units">
                     <span class="cursor-pointer" *ngIf="Redeemlist.quantity < Redeemlist.myHoldingUnitsOwned"
-                      (click)="Redeemlist.quantity = Redeemlist.myHoldingUnitsOwned">+ Add all units</span>
+                      (click)="Redeemlist.quantity = Redeemlist.myHoldingUnitsOwned; GetAmountAndUnit(i,'Unit')">+ Add all units</span>
                     <p>{{Redeemlist.remainingUnits}}/{{Redeemlist.myHoldingUnitsOwned}} units remaining</p>
                   </div>
                   <div class="hidden-xs">
