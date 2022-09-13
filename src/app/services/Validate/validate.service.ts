@@ -132,4 +132,60 @@ export class ValidateService {
     return Number(val).toLocaleString('en-IN');
   }
 
+  GetMonthText(val : any){
+    const month = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    return month[val];
+  }
+
+  getAge(value: string) {
+    let timeDiff = Math.abs(Date.now() - new Date(value).getTime());
+    let age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
+    return age;
+  }
+
+  checkLessThanCurrentDate(date:any){
+    // check for less than current date 
+    var today = new Date();
+    var todaydd = today.getDate();
+    var todaymm = today.getMonth(); 
+    var todayyyyy = today.getFullYear();
+    var selecteddate = new Date(date);
+    var selecteddd = selecteddate.getDate();
+    var selectedmm = selecteddate.getMonth(); 
+    var selectedyyyy = selecteddate.getFullYear();
+
+    var dateOne = new Date(todayyyyy, todaymm, todaydd);     
+    var dateTwo = new Date(selectedyyyy, selectedmm, selecteddd);
+
+    if(dateTwo < dateOne){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
+  checkTwoDateComparison(startdate: any, enddate: any, diffdays: any) {
+    var selectedstartdate = new Date(startdate);
+    selectedstartdate.setDate(selectedstartdate.getDate() + diffdays);
+    var todaydd = selectedstartdate.getDate();
+    var todaymm = selectedstartdate.getMonth();
+    var todayyyyy = selectedstartdate.getFullYear();
+
+    var selectedenddate = new Date(enddate);
+    var selecteddd = selectedenddate.getDate();
+    var selectedmm = selectedenddate.getMonth();
+    var selectedyyyy = selectedenddate.getFullYear();
+
+    var dateOne = new Date(todayyyyy, todaymm, todaydd);
+    var dateTwo = new Date(selectedyyyy, selectedmm, selecteddd);
+
+    if (dateOne > dateTwo) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
 }

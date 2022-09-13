@@ -13,9 +13,6 @@ declare var $: any;
 })
 export class SwitchFundComponent implements OnInit {
 
-  DisplayAccordion: boolean = false;
-
-
   SwitchLoader: boolean = true;
   SelectedMutualFund: any;
   MyHoldings: any;
@@ -177,9 +174,6 @@ export class SwitchFundComponent implements OnInit {
   }
 
   GetSellableAmounts(i: any, instrumentId: any, serviceProviderAccountId: any) {
-    // var postData = new FormData();
-    // postData.append("instrumentId", instrumentId);
-    // postData.append("serviceProviderAccountId", serviceProviderAccountId);
 
     const postData = {
       "instrumentId": instrumentId,

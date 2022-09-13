@@ -30,18 +30,19 @@
         </div>
 
         <div *ngIf="SwitchCartItemList.length > 0">
-
-          <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
-            (click)="SwitchCartItemList = []">
+          <a class="btn-primary alldel-button" (click)="SwitchCartItemList = []">Delete All</a>
+          <!-- <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
+            (click)="SwitchCartItemList = []"> -->
 
           <div class="accordion" id="accordionExample-desk">
-            <div class="accordion-item mb-3" *ngFor="let Switchlist of SwitchCartItemList; let i=index;">
+            <div class="accordion-item mb-3 position-relative" *ngFor="let Switchlist of SwitchCartItemList; let i=index;">
+
+             
 
               <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
-                (click)="DeleteSwitchFromList(i)">
-
-
+              (click)="DeleteSwitchFromList(i)">
               <h2 class="accordion-header" id="headingOne">
+               
                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                   attr.data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
                   <h6>Scheme {{i+1}}</h6>

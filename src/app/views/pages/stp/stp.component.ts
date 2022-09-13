@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { ValidateService } from 'src/app/services/validate/validate.service';
 declare var $:any;
 
 @Component({
@@ -8,44 +13,24 @@ declare var $:any;
 })
 export class StpComponent implements OnInit {
 
-  DisplayAccordion:boolean=false;
-  Steps:number= 1;
+  STPLoader: boolean = false;
+  SelectedMutualFund: any;
+  MyHoldings: any;
+  MyHoldingsProductOverviewDetails: any;
+  MyGoals: any;
 
-  constructor() { }
+  STPCartItemList: any = [
+    // {
+    //   'isActive': 1,
+    // },
+    // {
+    //   'isActive': 0,
+    // }
+  ];
 
-  ngOnInit(): void {
-    $(".applybtn-mob").hide();
-    $(".body-color").scroll(function() {
-      if ($(".body-color").scrollTop() > 150) {
-      $(".applybtn-mob").show();
-      }
-      else {
-      $(".applybtn-mob").hide();
-      }
-      });
+  constructor(public route: Router, private toastr: ToastrService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService) { }
 
-      
-    $(".body-color").scroll(function () {
-      if($(".body-color").scrollTop() > 150) {
-      $('#sidebar').css('position','fixed');
-      $('#sidebar').css('top','5%');
-      $('#sidebar').css('width',$("#sidebar-main").width()+'px');
-      }
-      
-      else if ($(".body-color").scrollTop() <= 150) {
-      $('#sidebar').css('position','');
-      $('#sidebar').css('top','');
-      $('#sidebar').css('width','');
-      }
-      
-      if ($('#sidebar').offset().top + $("#sidebar").height() > $("#footer").offset().top-100) {
-      $('#sidebar').css('top',-($("#sidebar").offset().top + $("#sidebar").height() - $("#footer").offset().top+100));
-      }
-      });
-  }
-
-  NextStep(){
-    this.Steps++; 
+  ngOnInit(): void {    
   }
 
   scrolltotop(){
@@ -54,10 +39,6 @@ export class StpComponent implements OnInit {
   }, 0);
   }
   
-  ShowAccordion(){
-    this.DisplayAccordion=true; 
-      $("#collapseOne").collapse('hide');
-      $("#collapseTwo").collapse('show');
-  }
+  
 
 }
