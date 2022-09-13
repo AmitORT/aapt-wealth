@@ -387,6 +387,10 @@ export class StpComponent implements OnInit {
       }
     }
     if (Flag) {
+      for (let i = 0; i < this.STPCartItemList.length; i++) {
+        this.STPCartItemList[i].schemeList = [];
+      }
+
       console.log('STPProceed', this.STPCartItemList);
       var postData = new FormData();
       postData.append("cartType", 'Stp');
