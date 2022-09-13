@@ -39,15 +39,19 @@
 
              
 
-              <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
-              (click)="DeleteSwitchFromList(i)">
-              <h2 class="accordion-header" id="headingOne">
+              
+              <div class="accord-delete">
+                <h2 class="accordion-header" id="headingOne">
                
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                  attr.data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
-                  <h6>Scheme {{i+1}}</h6>
-                </button>
-              </h2>
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    attr.data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
+                    <h6>Scheme {{i+1}}</h6>
+                  </button>
+                </h2>
+                <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
+              (click)="DeleteSwitchFromList(i)">
+              </div>
+              
               <div id="collapse{{i}}" class="accordion-collapse collapse "
                 [ngClass]="Switchlist.isActive == 1 ? 'show' : ''" data-bs-parent="#accordionExample-desk">
                 <div class=" row accordion-body">
@@ -82,7 +86,7 @@
                   </div>
 
                   <div *ngIf="Switchlist.redeemFromGoal == 1">
-                    <div class="form-floating">
+                    <div class="form-floating selectGoal">
                       <select class="form-select mb-3 w-100" id="floatingSelect"
                         aria-label="Floating label select example" [(ngModel)]="Switchlist.goalId">
                         <option value="">Select Goal </option>
@@ -91,7 +95,7 @@
                       <label for="floatingSelect">Goal</label>
                     </div>
 
-                    <div class="form-floating">
+                    <div class="form-floating selectGoal">
                       <select class="form-select mb-3 w-100" id="floatingSelect"
                         aria-label="Floating label select example" [(ngModel)]="Switchlist.secondaryGoalId">
                         <option value="">Select Secondary Goal </option>

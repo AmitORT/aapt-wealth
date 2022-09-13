@@ -14,6 +14,32 @@
   left: 0;
   bottom: 0.5rem;
 }
+.accord-delete{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header{
+  width: 90%;
+}
+.accordion-header button{
+  margin-bottom: 0px!important;
+}
+.alldel-button {
+  padding: 0.75rem 1.5rem;
+  color: #f54b4b !important;
+  font-weight: 600;
+  background-color: transparent !important;
+  width: 135px;
+  border: 1px solid #f54b4b;
+  border-radius: 8px;
+  font-size: 16px!important;
+  text-align: center;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 15px;
+}
 
 h5{
     font-weight: 600;
@@ -144,6 +170,11 @@ color: #222222;
 .form-floating>label {
   padding: 1rem 1.75rem;
 }
+
+.form-floating.selectGoal>label{
+  padding: 1rem 0.75rem;
+}
+
 .form-floating>.form-select {
   font-weight: 600;
 }

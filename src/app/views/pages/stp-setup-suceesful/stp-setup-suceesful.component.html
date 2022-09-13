@@ -24,8 +24,8 @@
         </div>
         <div class="trans-footer w-100">
           <div class=" d-flex">
-            <a class="btn-primary transparent-button" [routerLink]="['/mutual-investment']">My Investments</a>
-            <a class="btn-primary theme-button">Back to Dashboard</a>
+            <a class="btn-primary transparent-button" (click)="GoToCommon('/account-mutualfunds-portfolio')">My Investments</a>
+            <a class="btn-primary theme-button" (click)="GoToCommon('/wealth-dashboard')">Back to Dashboard</a>
           </div>
         </div>
       </div>

@@ -12,9 +12,7 @@ declare var $: any;
   styleUrls: ['./swp.component.css']
 })
 export class SwpComponent implements OnInit {
-
-
-
+  
   SWPLoader: boolean = true;
   SelectedMutualFund: any;
   MyHoldings: any;
@@ -291,6 +289,10 @@ export class SwpComponent implements OnInit {
         }
       })
     }
+  }
+
+  DeleteSWPFromList(i: any) {
+    this.SWPCartItemList.splice(i, 1);
   }
 
   SWPProceed() {

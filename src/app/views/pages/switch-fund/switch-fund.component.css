@@ -130,6 +130,18 @@ padding: 0;
 .delete-icon{
   float: right;
 }
+.accord-delete{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header{
+  width: 90%;
+}
+.accordion-header button{
+  margin-bottom: 0px!important;
+}
 .alldel-button {
   padding: 0.75rem 1.5rem;
   color: #f54b4b !important;
@@ -160,6 +172,10 @@ color: #222222;
 }
 .form-floating>label {
   padding: 1rem 1.75rem;
+}
+
+.form-floating.selectGoal>label{
+  padding: 1rem 0.75rem;
 }
 .form-floating>.form-select {
   font-weight: 600;

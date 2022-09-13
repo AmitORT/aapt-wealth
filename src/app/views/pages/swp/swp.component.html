@@ -30,16 +30,23 @@
 
 
         <div *ngIf="SWPCartItemList.length > 0">
+          <a class="btn-primary alldel-button" (click)="SWPCartItemList = []">Delete All</a>
+
           <!-- <img src="assets/img/delete_icon1.svg" alt="" class="delete"> -->
           <div class="accordion" id="accordionExample-desk">
             <div class="accordion-item mb-3" *ngFor="let SWPlist of SWPCartItemList; let i=index;">
 
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                  attr.data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
-                  <h6>Scheme {{i+1}}</h6>
-                </button>
-              </h2>
+              <div class="accord-delete">
+                <h2 class="accordion-header" id="headingOne">
+
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    attr.data-bs-target="#collapse{{i}}" aria-expanded="true" aria-controls="collapseOne">
+                    <h6>Scheme {{i+1}}</h6>
+                  </button>
+                </h2>
+                <img src="assets/img/delete_icon1.svg" alt="" class="delete-icon cursor-pointer"
+                  (click)="DeleteSWPFromList(i)">
+              </div>
 
               <div id="collapse{{i}}" class="accordion-collapse collapse "
                 [ngClass]="SWPlist.isActive == 1 ? 'show' : ''" data-bs-parent="#accordionExample-desk">
