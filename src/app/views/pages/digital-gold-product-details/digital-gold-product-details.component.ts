@@ -218,13 +218,13 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     if (this.validate.isNullEmptyUndefined(this.Amount) && this.calculationType == 'A') {
       this.toastr.error('Please Enter the Amount');
     }
-    else if(Number(this.Amount) <= 0){
+    else if (Number(this.Amount) <= 0) {
       this.toastr.error('Please Enter Valid Amount');
     }
     else if (this.validate.isNullEmptyUndefined(this.Weight) && this.calculationType == 'Q') {
       this.toastr.error('Please Enter the Weight/Quantity');
     }
-    else if(Number(this.Weight) <= 0){
+    else if (Number(this.Weight) <= 0) {
       this.toastr.error('Please Enter Valid Weight');
     }
     else if (Number(this.Amount) > 500000 && this.Action == 'buy') {
@@ -408,15 +408,21 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
         console.log('ExecuteOrderWithPayout', resp)
-        // debugger
+        debugger
         if (resp.response.n == 1) {
           localStorage.removeItem('DGProceed');
           localStorage.removeItem('DGData');
           this.GetApplicantData('sell');
           // window.location.href = '/digital-gold-sold-successful';
         }
+        else if (resp.response.n == 2) {
+          $("#Customer-account-info").modal('hide');
+          this.toastr.error(resp.response.Msg);
+          this.Amount = '';
+          this.Weight = '';
+        }
         else {
-          this.toastr.error(resp.response.Msg)
+          this.toastr.error(resp.response.Msg);
         }
       })
     }
