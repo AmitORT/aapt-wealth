@@ -47,7 +47,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
-    debugger;
+    // debugger;
     this.GetSession();
 
     // this.Amount = '';
@@ -206,12 +206,12 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
     this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(path));
     this.CommonUrl = this.CommonUrl.replace("{FROM}", encodeURIComponent('/digital-gold-product-details'))
-    debugger
+    // debugger
     window.location.href = this.CommonUrl;
   }
 
   CheckLogin() {
-    debugger
+    // debugger
 
     var total = Number(this.Amount) + this.ApplicantData?.totalAmount;
 
@@ -261,7 +261,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   validateCreateOrder() {
-    debugger
+    // debugger
     var data;
     if (this.calculationType == 'A') {
       data = {
@@ -292,7 +292,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   PayWithRazor() {
-    debugger
+    // debugger
     const options: any = {
       "key": this.validateCreateOrderResponse.key,// Enter the Key ID returned from validateAndCreateOrder
       "currency": "INR", //optional
@@ -319,7 +319,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     }
     console.log('resp', options.handler.response)
     options.handler = ((response: any, error: any) => {
-      debugger
+      // debugger
       options.response = response;
       console.log(response);
       console.log(options);
@@ -335,7 +335,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payin", data, true, true).subscribe(resp => {
         console.log('razor pay check', resp)
-        debugger
+        // debugger
         if (resp.response.n == 1) {
           // localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
 
@@ -353,7 +353,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   ExecuteOrderWithPayout() {
-    debugger
+    // debugger
     if (this.validate.isNullEmptyUndefined(this.VPA) && this.paymentChannel == 'UPI') {
       this.toastr.error('Please Enter the VPA');
     }
@@ -408,7 +408,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
       }
       this.api.post("digitalGold/trade/execute-order-with-payout", data, true, true).subscribe(resp => {
         console.log('ExecuteOrderWithPayout', resp)
-        debugger
+        // debugger
         if (resp.response.n == 1) {
           localStorage.removeItem('DGProceed');
           localStorage.removeItem('DGData');
@@ -424,7 +424,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
 
   GetApplicantData(para: any) {
     this.api.get("auth/customer/user", true).subscribe(async (response: any) => {
-      debugger
+      // debugger
       console.log(response)
       localStorage.setItem("ApplicantData", this.crypto.Encrypt(response.data));
       if (para == 'buy') {

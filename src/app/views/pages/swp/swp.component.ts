@@ -121,6 +121,7 @@ export class SwpComponent implements OnInit {
 
   GetStartDate() {
     var dtToday = new Date();
+    dtToday.setDate(dtToday.getDate() + 1);
     var month = (dtToday.getMonth() + 1).toString();
     var day = (dtToday.getDate()).toString();
     var year = dtToday.getFullYear();
@@ -263,7 +264,7 @@ export class SwpComponent implements OnInit {
   }
 
   GetAmountAndUnit(i: any, sellType: any) {
-    debugger
+    // debugger
     if (sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.SWPCartItemList[i].totalAmount)) {
       this.toastr.error('Please enter amount');
     }

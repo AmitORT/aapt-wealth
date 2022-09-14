@@ -231,7 +231,7 @@ export class SwitchFundComponent implements OnInit {
   }
 
   GetAmountAndUnit(i: any, sellType: any) {
-    debugger
+    // debugger
     if (sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.SwitchCartItemList[i].totalAmount)) {
       this.toastr.error('Please enter amount');
     }

@@ -125,6 +125,7 @@ export class StpComponent implements OnInit {
 
   GetStartDate() {
     var dtToday = new Date();
+    dtToday.setDate(dtToday.getDate() + 1);
     var month = (dtToday.getMonth() + 1).toString();
     var day = (dtToday.getDate()).toString();
     var year = dtToday.getFullYear();
@@ -281,7 +282,7 @@ export class StpComponent implements OnInit {
   }
 
   GetAmountAndUnit(i: any, sellType: any) {
-    debugger
+    // debugger
     if (sellType == 'Amount' && this.validate.isNullEmptyUndefined(this.STPCartItemList[i].totalAmount)) {
       this.toastr.error('Please enter amount');
     }
