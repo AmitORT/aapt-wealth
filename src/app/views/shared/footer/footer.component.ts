@@ -191,45 +191,67 @@ export class FooterComponent implements OnInit {
   }
 
   RegisterCust(event: Event) {
-    if (this.usertype == 'Customer') {
-      this.UrlRegister = 'auth/customer/register';
-    }
-    else if (this.usertype == 'Partner') {
-      this.UrlRegister = 'auth/agent/register';
-    }
-    try {
-      event.stopImmediatePropagation();
-      let registerData = new registerRequest();
-      registerData.mobileNumber = this.FormMobileNo;
-      registerData.email = this.FormEmail;
-      registerData.firstName = this.FormFirstName;
-      registerData.lastName = this.FormLastName;
-      registerData.consent_id = 1;
-      registerData.ip_address = '192.168.0.1';
-      // registerData.agentType = 2;
-      registerData.gender = 1;
 
-      this.api.post(this.UrlRegister, registerData, false).subscribe(async response => {
-        // console.log(response);
-        if (response.response.n == 1) {
-          this.toastr.success(response.response.Msg);
+    if (this.validation.isNullEmptyUndefined(this.FormFirstName)) {
+      this.toastr.error("First Name is Mandatory");
+    }
+    else if (this.validation.isNullEmptyUndefined(this.FormLastName)) {
+      this.toastr.error("Last Name is Mandatory");
+    }
+    else if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
+      this.toastr.error("Email id is Mandatory");
+    }
+    else if (!this.validation.validateEmail(this.FormEmail)) {
+      this.toastr.error("Please enter valid Email id");
+    }
+    else if (this.validation.isNullEmptyUndefined((this.FormMobileNo.toString()).trim())) {
+      this.toastr.error("Mobile Number is Mandatory");
+    }
+    else if (!this.validation.validateMobileNumber(this.FormMobileNo.trim())) {
+      this.toastr.error("Please enter valid Mobile number");
+    }
+    else {
+
+      if (this.usertype == 'Customer') {
+        this.UrlRegister = 'auth/customer/register';
+      }
+      else if (this.usertype == 'Partner') {
+        this.UrlRegister = 'auth/agent/register';
+      }
+      try {
+        event.stopImmediatePropagation();
+        let registerData = new registerRequest();
+        registerData.mobileNumber = this.FormMobileNo;
+        registerData.email = this.FormEmail;
+        registerData.firstName = this.FormFirstName;
+        registerData.lastName = this.FormLastName;
+        registerData.consent_id = 1;
+        registerData.ip_address = '192.168.0.1';
+        // registerData.agentType = 2;
+        registerData.gender = 1;
+
+        this.api.post(this.UrlRegister, registerData, false).subscribe(async response => {
           // console.log(response);
-          this.isOTPSent = true;
-          $("#mob_signup").modal("hide");
-          this.resendbuttonText = "0:60";
-          $("#Footerotp-screen").modal("show");
-          // this.resendbuttonText = "0:60";
-          this.countdownforOTP();
-        }
-        else {
-          this.toastr.error(response.response.Msg);
-          this.isOTPSent = false;
-          // localStorage.clear();
-          // this.route.navigate(['/']);
-        }
-      });
-    } catch (ex) {
-      // console.log(ex);
+          if (response.response.n == 1) {
+            this.toastr.success(response.response.Msg);
+            // console.log(response);
+            this.isOTPSent = true;
+            $("#mob_signup").modal("hide");
+            this.resendbuttonText = "0:60";
+            $("#Footerotp-screen").modal("show");
+            // this.resendbuttonText = "0:60";
+            this.countdownforOTP();
+          }
+          else {
+            this.toastr.error(response.response.Msg);
+            this.isOTPSent = false;
+            // localStorage.clear();
+            // this.route.navigate(['/']);
+          }
+        });
+      } catch (ex) {
+        // console.log(ex);
+      }
     }
   }
 

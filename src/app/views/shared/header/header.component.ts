@@ -179,6 +179,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
       this.toastr.error("Please enter a valid email");
     }
+    else if (!this.validation.validateEmail(this.FormEmail)) {
+      this.toastr.error("Please enter valid Email id");
+    }
     else {
       this.ResetOTP();
       setTimeout(() => {
@@ -223,43 +226,64 @@ export class HeaderComponent implements OnInit, DoCheck {
 
 
   RegisterCust(event: Event) {
-    if (this.usertype == 'Customer') {
-      this.UrlRegister = 'auth/customer/register';
+    if (this.validation.isNullEmptyUndefined(this.FormFirstName)) {
+      this.toastr.error("First Name is Mandatory");
     }
-    else if (this.usertype == 'Partner') {
-      this.UrlRegister = 'auth/agent/register';
+    else if (this.validation.isNullEmptyUndefined(this.FormLastName)) {
+      this.toastr.error("Last Name is Mandatory");
     }
-    try {
-      event.stopImmediatePropagation();
-      let registerData = new registerRequest();
-      registerData.mobileNumber = this.FormMobileNo;
-      registerData.email = this.FormEmail;
-      registerData.firstName = this.FormFirstName;
-      registerData.lastName = this.FormLastName;
-      registerData.consent_id = 1;
-      registerData.ip_address = '192.168.0.1';
-      // registerData.agentType = 2;
-      registerData.gender = 1;
+    else if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
+      this.toastr.error("Email id is Mandatory");
+    }
+    else if (!this.validation.validateEmail(this.FormEmail)) {
+      this.toastr.error("Please enter valid Email id");
+    }
+    else if (this.validation.isNullEmptyUndefined((this.FormMobileNo.toString()).trim())) {
+      this.toastr.error("Mobile Number is Mandatory");
+    }
+    else if (!this.validation.validateMobileNumber(this.FormMobileNo.trim())) {
+      this.toastr.error("Please enter valid Mobile number");
+    }
+    else {
 
-      this.api.post(this.UrlRegister, registerData, false).subscribe(async (response: any) => {
-        // console.log(response);
-        if (response.response.n == 1) {
-          this.isOTPSent = true;
-          $("#headerotp-screen").modal("show");
-          this.resendbuttonText = "0:60"
-          this.countdown();
-          this.toastr.success(response.response.Msg);
+      if (this.usertype == 'Customer') {
+        this.UrlRegister = 'auth/customer/register';
+      }
+      else if (this.usertype == 'Partner') {
+        this.UrlRegister = 'auth/agent/register';
+      }
+      try {
+        event.stopImmediatePropagation();
+        let registerData = new registerRequest();
+        registerData.mobileNumber = this.FormMobileNo;
+        registerData.email = this.FormEmail;
+        registerData.firstName = this.FormFirstName;
+        registerData.lastName = this.FormLastName;
+        registerData.consent_id = 1;
+        registerData.ip_address = '192.168.0.1';
+        // registerData.agentType = 2;
+        registerData.gender = 1;
+
+        this.api.post(this.UrlRegister, registerData, false).subscribe(async (response: any) => {
           // console.log(response);
-        }
-        else {
-          this.toastr.error(response.response.Msg);
-          this.isOTPSent = false;
-          // localStorage.clear();
-          // this.route.navigate(['/']);
-        }
-      });
-    } catch (ex) {
-      // console.log(ex);
+          if (response.response.n == 1) {
+            this.isOTPSent = true;
+            $("#headerotp-screen").modal("show");
+            this.resendbuttonText = "0:60"
+            this.countdown();
+            this.toastr.success(response.response.Msg);
+            // console.log(response);
+          }
+          else {
+            this.toastr.error(response.response.Msg);
+            this.isOTPSent = false;
+            // localStorage.clear();
+            // this.route.navigate(['/']);
+          }
+        });
+      } catch (ex) {
+        // console.log(ex);
+      }
     }
   }
 
@@ -323,7 +347,7 @@ export class HeaderComponent implements OnInit, DoCheck {
               // else if (this.calltype == 'login') {
               //   this.GoToAgent('/overview');
               // }
-              if(response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)){
+              if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
                 this.GoToAgentCommon('agent-overview');
               }
               else if (response.agentType.Insurance == true) {
@@ -336,14 +360,14 @@ export class HeaderComponent implements OnInit, DoCheck {
               }
               else if (response.agentType.Insurance != true) {
 
-                if(response.agentType.credit == true && response.agentType.wealth == true){
+                if (response.agentType.credit == true && response.agentType.wealth == true) {
                   this.GoToAgentCommon('agent-overview');
                 }
                 else if (response.agentType.credit == true) {
                   if (response.agentKyc.credit == true) {
                     this.GoToAgentCommon('agent-credit-dashboard');
                   }
-                  else{
+                  else {
                     this.GoToAgentCommon('agent-credit-onboarding');
                   }
                 }
@@ -351,11 +375,11 @@ export class HeaderComponent implements OnInit, DoCheck {
                   if (response.agentKyc.wealth == true) {
                     this.GoToAgentCommon('agent-wealth-dashboard');
                   }
-                  else{
+                  else {
                     this.GoToAgentCommon('agent-wealth-onboarding');
                   }
                 }
-                else{
+                else {
                   this.GoToAgentCommon('agent-type');
                 }
               }
@@ -489,7 +513,7 @@ export class HeaderComponent implements OnInit, DoCheck {
         this.resendbuttonText = "0:60"
         this.countdown();
       }
-      else{
+      else {
         this.toastr.error(response.response.Msg);
       }
     })
@@ -504,9 +528,9 @@ export class HeaderComponent implements OnInit, DoCheck {
     })
   }
 
-  cancleModal(){
+  cancleModal() {
     // $(".login-popup").addClass('show');
-    this.isOTPSent=false;
+    this.isOTPSent = false;
   }
 
 
