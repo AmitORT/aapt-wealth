@@ -53,7 +53,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     // this.Amount = '';
     // this.Weight = '';
     // debugger
-    if (localStorage.getItem("ApplicantData") != null) {
+    if (this.validate.isNullEmptyUndefined(localStorage.getItem("ApplicantData") || '{}')) {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
       console.log(this.ApplicantData);
       this.AccountNumber = this.ApplicantData.account_number;
