@@ -137,13 +137,17 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   GoToAgentInsurance(para: any) {
     this.AToken = localStorage.getItem("AgentToken");
-    this.AgentInsuranceUrl = environment.AgentInsuranceUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
+    this.Token = localStorage.getItem("CustToken");
+    this.AgentInsuranceUrl = environment.AgentInsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
     this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{PATH}", encodeURIComponent(para));
     window.location.href = this.AgentInsuranceUrl;
   }
   GoToAgentCommon(para: any) {
     this.AToken = localStorage.getItem("AgentToken");
-    this.AgentCommonUrl = environment.AgentCommonUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
+    this.Token = localStorage.getItem("CustToken");
+    this.AgentCommonUrl = environment.AgentCommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
+    this.AgentCommonUrl = this.AgentCommonUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
     this.AgentCommonUrl = this.AgentCommonUrl.replace("{PATH}", encodeURIComponent(para));
     window.location.href = this.AgentCommonUrl;
   }

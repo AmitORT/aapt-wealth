@@ -28,10 +28,10 @@ export const environment = {
   AgentUrl: "http://localhost:50533?ATOKEN={ATOKEN}&PATH={PATH}",
 
   // ng serve --port 64833
-  AgentCommonUrl: "http://localhost:64833?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentCommonUrl: "http://localhost:64833?ATOKEN={ATOKEN}&TOKEN={TOKEN}&PATH={PATH}",
 
   // ng serve --port 65099
-  AgentInsuranceUrl: "http://localhost:65099?ATOKEN={ATOKEN}&PATH={PATH}",
+  AgentInsuranceUrl: "http://localhost:65099?ATOKEN={ATOKEN}&TOKEN={TOKEN}&PATH={PATH}",
 
 
   // --LOCAL--
