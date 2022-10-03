@@ -222,12 +222,32 @@ export class HeaderComponent implements OnInit, DoCheck {
 
 
   Logout() {
-    debugger
-    this.isLoggedIn = false;
-    localStorage.clear();
-    this.handleOpenCloseNav();
-    this.CommonUrl = this.CommonUrl.replace("{LOGOUT}", "true");
-    window.location.href = this.CommonUrl;
+    var CustToken;
+    var AgentToken;
+    if (localStorage.getItem("CustToken") != null) {
+      CustToken = this.cryptoManager.Decrypt(localStorage.getItem('CustToken'));
+    }
+    if (localStorage.getItem("AgentToken") != null) {
+      AgentToken = this.cryptoManager.Decrypt(localStorage.getItem('AgentToken'));
+    }
+    const data = new FormData();
+    if (!this.validation.isNullEmptyUndefined(CustToken)) {
+      data.append("cusToken", CustToken.token);
+    }
+    if (!this.validation.isNullEmptyUndefined(AgentToken)) {
+      data.append("agsToken", AgentToken.token);
+    }
+    this.api.post("auth/customer/logout-customer-agent", data, true).subscribe(response => {
+      if (response.response.n == 1) {
+        this.isLoggedIn = false;
+        localStorage.clear();
+        this.isOTPSent = false;
+        this.ResetModal();
+        this.handleOpenCloseNav();
+        this.CommonUrl = this.CommonUrl.replace("{LOGOUT}", "true");
+        window.location.href = this.CommonUrl;
+      }
+    })
   }
 
   async verifyOtpBtn() {
@@ -281,39 +301,39 @@ export class HeaderComponent implements OnInit, DoCheck {
               //   this.GoToAgent('/overview');
               // }
               if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
-                this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
+                this.redirect.GoToAAPTAgentCommon('/agent-overview', true, true);
               }
               else if (response.agentType.Insurance == true) {
                 if (response.agentKyc.Insurance == true) {
-                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard',true,true);
+                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard', true, true);
                 }
                 else {
-                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding',true,true);
+                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding', true, true);
                 }
               }
               else if (response.agentType.Insurance != true) {
 
                 if (response.agentType.credit == true && response.agentType.wealth == true) {
-                  this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-overview', true, true);
                 }
                 else if (response.agentType.credit == true) {
                   if (response.agentKyc.credit == true) {
-                    this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard',true,true);
+                    this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard', true, true);
                   }
                   else {
-                    this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding',true,true);
+                    this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding', true, true);
                   }
                 }
                 else if (response.agentType.wealth == true) {
                   if (response.agentKyc.wealth == true) {
-                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard',true,true);
+                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard', true, true);
                   }
                   else {
-                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding',true,true);
+                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding', true, true);
                   }
                 }
                 else {
-                  this.redirect.GoToAAPTAgentCommon('/agent-type',true,true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-type', true, true);
                 }
               }
             }
@@ -321,7 +341,7 @@ export class HeaderComponent implements OnInit, DoCheck {
               setTimeout(() => {
                 // console.log('route url', this.route.url);
                 if (this.route.url == '/') {
-                  this.redirect.GoToAAPTCommon('/overview',true,true);
+                  this.redirect.GoToAAPTCommon('/overview', true, true);
                 }// have to uncomment.
               }, 1000);
             }
