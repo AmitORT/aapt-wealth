@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,21 +9,11 @@ import { environment } from 'src/environments/environment';
 })
 export class DigitalGoldPurchasedSuccessfulComponent implements OnInit {
 
-  Token: any;
-  CommonUrl = environment.CommonUrl;
-
-  constructor() { }
+  constructor(public redirect: RedirectionsService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('DGAction');
     localStorage.removeItem('DGData');
-  }
-
-  GoToCommon(para: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.CommonUrl;
   }
 
 }

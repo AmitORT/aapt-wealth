@@ -5,6 +5,7 @@ import { registerRequest } from 'src/app/models/registerRequest.model';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { EligibilityService } from 'src/app/services/eligibility/eligibility.service';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { environment } from 'src/environments/environment';
 declare var $: any;
@@ -39,20 +40,13 @@ export class FooterComponent implements OnInit {
   footerYear: number = new Date().getFullYear();
   Token: any;
   AToken: any;
-  CreditUrl = environment.CreditUrl;
-  InsuranceUrl = environment.InsuranceUrl;
-  WealthUrl = environment.WealthUrl;
-  CommonUrl = environment.CommonUrl;
-  AgentUrl = environment.AgentUrl;
   calltype: any;
   usertype: any = 'Customer';
   UrlRegister: any = 'auth/customer/register';
   UrlSendOTP: any = 'auth/customer/send-otp';
   urlValidateOTP: any = 'auth/customer/ValidateOTP';
-  AgentInsuranceUrl = environment.AgentInsuranceUrl;
-  AgentCommonUrl = environment.AgentCommonUrl;
 
-  constructor(public api: ApiService, public validation: ValidateService, public toastr: ToastrService, public route: Router, private cryptoManager: AescryptoService, public eligibility: EligibilityService) { }
+  constructor(public api: ApiService, public validation: ValidateService, public redirect: RedirectionsService, public toastr: ToastrService, public route: Router, private cryptoManager: AescryptoService, public eligibility: EligibilityService) { }
 
   ngOnInit(): void {
     this.isOTPSent = false;
@@ -98,48 +92,7 @@ export class FooterComponent implements OnInit {
     }
   }
 
-
-  CreditRouterUrl(Path: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.CreditUrl = environment.CreditUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CreditUrl = this.CreditUrl.replace("{PATH}", encodeURIComponent(Path));
-    window.location.href = this.CreditUrl;
-  }
-
-  InsurancetRouterUrl(Path: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.InsuranceUrl = environment.InsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.InsuranceUrl = this.InsuranceUrl.replace("{PATH}", encodeURIComponent(Path));
-    window.location.href = this.InsuranceUrl;
-  }
-  wealthtRouterUrl(Path: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.WealthUrl = environment.WealthUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.WealthUrl = this.WealthUrl.replace("{PATH}", encodeURIComponent(Path));
-    window.location.href = this.WealthUrl;
-  }
-  CommontRouterUrl(Path: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
-    window.location.href = this.CommonUrl;
-  }
-  GoToAgentInsurance(para: any) {
-    this.AToken = localStorage.getItem("AgentToken");
-    this.Token = localStorage.getItem("CustToken");
-    this.AgentInsuranceUrl = environment.AgentInsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
-    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.AgentInsuranceUrl;
-  }
-  GoToAgentCommon(para: any) {
-    this.AToken = localStorage.getItem("AgentToken");
-    this.Token = localStorage.getItem("CustToken");
-    this.AgentCommonUrl = environment.AgentCommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.AgentCommonUrl = this.AgentCommonUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
-    this.AgentCommonUrl = this.AgentCommonUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.AgentCommonUrl;
-  }
+ 
 
   otpToggle(event: Event, calltype?: any) {
     event.stopPropagation();
@@ -384,39 +337,39 @@ export class FooterComponent implements OnInit {
             //   this.GoToAgent('/overview');
             // }
             if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
-              this.GoToAgentCommon('agent-overview');
+              this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
             }
             else if (response.agentType.Insurance == true) {
               if (response.agentKyc.Insurance == true) {
-                this.GoToAgentInsurance('/agent-insurance-dashboard');
+                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard',true,true);
               }
               else {
-                this.GoToAgentInsurance('/agent-insurance-onboarding');
+                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding',true,true);
               }
             }
             else if (response.agentType.Insurance != true) {
 
               if (response.agentType.credit == true && response.agentType.wealth == true) {
-                this.GoToAgentCommon('agent-overview');
+                this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
               }
               else if (response.agentType.credit == true) {
                 if (response.agentKyc.credit == true) {
-                  this.GoToAgentCommon('agent-credit-dashboard');
+                  this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard',true);
                 }
                 else {
-                  this.GoToAgentCommon('agent-credit-onboarding');
+                  this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding',true);
                 }
               }
               else if (response.agentType.wealth == true) {
                 if (response.agentKyc.wealth == true) {
-                  this.GoToAgentCommon('agent-wealth-dashboard');
+                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard',true,true);
                 }
                 else {
-                  this.GoToAgentCommon('agent-wealth-onboarding');
+                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding',true,true);
                 }
               }
               else {
-                this.GoToAgentCommon('agent-type');
+                this.redirect.GoToAAPTAgentCommon('/agent-type',true,true);
               }
             }
           }
@@ -424,13 +377,11 @@ export class FooterComponent implements OnInit {
             setTimeout(() => {
               // console.log('route url', this.route.url);
               if (this.route.url == '/') {
-                this.CommontRouterUrl('/overview');
+                this.redirect.GoToAAPTCommon('/overview',true,true);
               }
             }, 1000);
           }
 
-
-          // this.CommontRouterUrl('/overview');
           $("#mob_signin").modal("hide");
           $("#mob_signup").modal("hide");
           this.MobileSiginBarFlag = false;

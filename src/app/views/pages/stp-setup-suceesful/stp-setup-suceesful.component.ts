@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 
 @Component({
   selector: 'app-stp-setup-suceesful',
@@ -8,18 +8,8 @@ import { environment } from 'src/environments/environment';
 })
 export class StpSetupSuceesfulComponent implements OnInit {
 
-  Token: any;
-  CommonUrl = environment.CommonUrl;
-  
-  constructor() { }
+  constructor(public redirect: RedirectionsService) { }
 
   ngOnInit(): void {
-  }
-
-  GoToCommon(para: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.CommonUrl;
   }
 }

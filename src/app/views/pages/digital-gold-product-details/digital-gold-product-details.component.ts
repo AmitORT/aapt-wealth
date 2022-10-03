@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { WindowRefService } from 'src/app/services/window-ref/window-ref.service';
 import { environment } from 'src/environments/environment';
@@ -27,7 +28,6 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   calculationType: any = 'A';
   paymentChannel: any = "UPI"
   Token: any;
-  CommonUrl = environment.CommonUrl;
   QuoteID: any;
 
   VPA: any;
@@ -44,7 +44,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     'QuoteID': '',
   };
 
-  constructor(public route: Router, public validate: ValidateService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
+  constructor(public route: Router, public validate: ValidateService, public redirect: RedirectionsService, private toastr: ToastrService, private crypto: AescryptoService, private api: ApiService, private winRef: WindowRefService) { }
 
   async ngOnInit(): Promise<void> {
     // debugger;
@@ -202,12 +202,8 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     this.DGData.Weight = this.Weight;
     localStorage.setItem("DGData", this.crypto.Encrypt(this.DGData));
 
-    this.Token = localStorage.getItem("CustToken");
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(path));
-    this.CommonUrl = this.CommonUrl.replace("{FROM}", encodeURIComponent('/digital-gold-product-details'))
-    // debugger
-    window.location.href = this.CommonUrl;
+    this.redirect.GoToAAPTCommon(path,true,true,'/digital-gold-product-details');
+
   }
 
   CheckLogin() {

@@ -5,6 +5,7 @@ import { registerRequest } from 'src/app/models/registerRequest.model';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.service';
 import { EligibilityService } from 'src/app/services/eligibility/eligibility.service';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { environment } from 'src/environments/environment';
 declare var $: any;
@@ -27,13 +28,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   otp1: any;
   interval: any;
   resendbuttonText = 'Resend OTP';
-  WealthUrl = environment.WealthUrl;
-  InsuranceUrl = environment.InsuranceUrl;
   CommonUrl = environment.CommonUrl;
-  CreditUrl = environment.CreditUrl;
-  AgentUrl = environment.AgentUrl;
-  AgentInsuranceUrl = environment.AgentInsuranceUrl;
-  AgentCommonUrl = environment.AgentCommonUrl;
   headotp1: string = "";
   headotp2: string = "";
   headotp3: string = "";
@@ -41,13 +36,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   headotp5: string = "";
   headotp6: string = "";
   Token: any;
-  AToken: any
-  WealthdashboardURL = '/wealth-dashboard';
-  ToolsSipUrl = '/tools-sip';
-  ToolsEmiUrl = '/tools-emi';
-  ToolsGoalUrl = '/create-goal';
-  ProfileUrl = '/profile-details';
-  commonDashboardUrl = '/overview';
+  AToken: any;
   event$: any;
   calltype: any;
   usertype: any = 'Customer';
@@ -55,7 +44,7 @@ export class HeaderComponent implements OnInit, DoCheck {
   UrlSendOTP: any = 'auth/customer/send-otp';
   urlValidateOTP: any = 'auth/customer/ValidateOTP';
 
-  constructor(public validation: ValidateService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) { }
+  constructor(public validation: ValidateService, public redirect: RedirectionsService, private toastr: ToastrService, private route: Router, private api: ApiService, private cryptoManager: AescryptoService, private eligibility: EligibilityService) { }
 
   ngDoCheck(): void {
 
@@ -103,67 +92,7 @@ export class HeaderComponent implements OnInit, DoCheck {
     $("#site-backdrop").click(function () {
       self.handleOpenCloseNav();
     });
-    // console.log("Common Uerl", this.CommonUrl);
 
-  }
-
-  GoToCommon(para: any) {
-
-    this.Token = localStorage.getItem("CustToken");
-    // console.log("Token",this.Token)
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    if (para == 'Dashboard') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.WealthdashboardURL));
-    }
-    if (para == 'tools-sip') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.ToolsSipUrl));
-    }
-    if (para == 'tools-emi') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.ToolsEmiUrl));
-    }
-    if (para == 'tools-goal') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.ToolsGoalUrl));
-    }
-    if (para == 'profile') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.ProfileUrl));
-    }
-    if (para == 'overview') {
-      this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(this.commonDashboardUrl));
-    }
-
-    // console.log("CommonUrl",this.CommonUrl)
-    window.location.href = this.CommonUrl;
-  }
-
-  GoToAgentInsurance(para: any) {
-    this.AToken = localStorage.getItem("AgentToken");
-    this.Token = localStorage.getItem("CustToken");
-    this.AgentInsuranceUrl = environment.AgentInsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
-    this.AgentInsuranceUrl = this.AgentInsuranceUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.AgentInsuranceUrl;
-  }
-  GoToAgentCommon(para: any) {
-    this.AToken = localStorage.getItem("AgentToken");
-    this.Token = localStorage.getItem("CustToken");
-    this.AgentCommonUrl = environment.AgentCommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.AgentCommonUrl = this.AgentCommonUrl.replace("{ATOKEN}", encodeURIComponent(this.AToken));
-    this.AgentCommonUrl = this.AgentCommonUrl.replace("{PATH}", encodeURIComponent(para));
-    window.location.href = this.AgentCommonUrl;
-  }
-
-
-  GotoInsurance() {
-    this.Token = localStorage.getItem("CustToken");
-    this.InsuranceUrl = environment.InsuranceUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    window.location.href = this.InsuranceUrl;
-  }
-
-  GotoCredit() {
-    // debugger;
-    this.Token = localStorage.getItem("CustToken");
-    this.CreditUrl = environment.CreditUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    window.location.href = this.CreditUrl;
   }
 
   handleOpenCloseNav() {
@@ -352,39 +281,39 @@ export class HeaderComponent implements OnInit, DoCheck {
               //   this.GoToAgent('/overview');
               // }
               if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
-                this.GoToAgentCommon('agent-overview');
+                this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
               }
               else if (response.agentType.Insurance == true) {
                 if (response.agentKyc.Insurance == true) {
-                  this.GoToAgentInsurance('/agent-insurance-dashboard');
+                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard',true,true);
                 }
                 else {
-                  this.GoToAgentInsurance('/agent-insurance-onboarding');
+                  this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding',true,true);
                 }
               }
               else if (response.agentType.Insurance != true) {
 
                 if (response.agentType.credit == true && response.agentType.wealth == true) {
-                  this.GoToAgentCommon('agent-overview');
+                  this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
                 }
                 else if (response.agentType.credit == true) {
                   if (response.agentKyc.credit == true) {
-                    this.GoToAgentCommon('agent-credit-dashboard');
+                    this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard',true,true);
                   }
                   else {
-                    this.GoToAgentCommon('agent-credit-onboarding');
+                    this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding',true,true);
                   }
                 }
                 else if (response.agentType.wealth == true) {
                   if (response.agentKyc.wealth == true) {
-                    this.GoToAgentCommon('agent-wealth-dashboard');
+                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard',true,true);
                   }
                   else {
-                    this.GoToAgentCommon('agent-wealth-onboarding');
+                    this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding',true,true);
                   }
                 }
                 else {
-                  this.GoToAgentCommon('agent-type');
+                  this.redirect.GoToAAPTAgentCommon('/agent-type',true,true);
                 }
               }
             }
@@ -392,14 +321,10 @@ export class HeaderComponent implements OnInit, DoCheck {
               setTimeout(() => {
                 // console.log('route url', this.route.url);
                 if (this.route.url == '/') {
-                  this.GoToCommon('overview');
+                  this.redirect.GoToAAPTCommon('/overview',true,true);
                 }// have to uncomment.
               }, 1000);
             }
-
-            // 
-
-            //  this.GoToCommon('overview'); 
 
             this.ResetModal();
             resolve(response);

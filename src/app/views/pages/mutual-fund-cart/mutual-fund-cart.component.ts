@@ -5,6 +5,7 @@ import { AescryptoService } from 'src/app/services/cryptomanager/aescrypto.servi
 import { ValidateService } from 'src/app/services/validate/validate.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { RedirectionsService } from 'src/app/services/redirections/redirections.service';
 declare var $: any;
 
 @Component({
@@ -30,12 +31,11 @@ export class MutualFundCartComponent implements OnInit {
   SelectedBank: any = [];
   Token: any;
   CartItems: any = [];
-  CommonUrl = environment.CommonUrl;
   ApplicantData: any;
 
   CreatedGoal: any;
 
-  constructor(public route: Router, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
+  constructor(public route: Router, public redirect: RedirectionsService, public validate: ValidateService, private crypto: AescryptoService, private api: ApiService, private toastr: ToastrService) { }
 
 
   ngOnInit(): void {
@@ -183,7 +183,7 @@ export class MutualFundCartComponent implements OnInit {
       if (resp.response.n == 1) {
         localStorage.setItem('ConfirmedCartResponse', this.crypto.Encrypt(this.ConfirmedCart));
         if (this.ApplicantData.kycVerified != true) {
-          this.CommontRouterUrl('/kyc-verification');
+          this.redirect.GoToAAPTCommon('/kyc-verification',true,true);
         }
         else if (this.ApplicantData.kycVerified == true) {
           this.route.navigate(["/mutual-funds-payment-method"]);
@@ -191,14 +191,6 @@ export class MutualFundCartComponent implements OnInit {
       }
     })
   }
-
-  CommontRouterUrl(Path: any) {
-    this.Token = localStorage.getItem("CustToken");
-    this.CommonUrl = environment.CommonUrl.replace("{TOKEN}", encodeURIComponent(this.Token));
-    this.CommonUrl = this.CommonUrl.replace("{PATH}", encodeURIComponent(Path));
-    window.location.href = this.CommonUrl;
-  }
-
   RemoveGoal(i: any) {
     this.ProductOverview[i].CreatedGoal = '';
     let encryptedProduct = this.crypto.Encrypt(this.ProductOverview);

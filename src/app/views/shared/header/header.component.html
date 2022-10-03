@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark header-nav">
   <div class="container pos-rel">
-    <a class="navbar-brand" (click)="GoToCommon('landing')">
+    <a class="navbar-brand" (click)="redirect.GoToAAPTCommon('/overview',true,true)">
       <img src="assets/img/finizon_logo.png" class="logo" alt="logo">
     </a>
     <a class="nav-link nav-toggle mobile-toggle" (click)="handleOpenCloseNav()">
@@ -11,13 +11,13 @@
       <form class="d-flex 	">
         <ul class="navbar-nav align-items-center">
           <li class="nav-item">
-            <a class="nav-link" (click)="GoToCommon('Dashboard')" [hidden]="!isLoggedIn">Dashboard</a>
+            <a class="nav-link" (click)="redirect.GoToAAPTCommon('/wealth-dashboard',true,true)" [hidden]="!isLoggedIn">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="GotoInsurance()">Insure</a>
+            <a class="nav-link" (click)="redirect.GoToAAPTInsurance('',true)">Insure</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" (click)="GotoCredit()">Credit</a>
+            <a class="nav-link" (click)="redirect.GoToAAPTCredit('',true)">Credit</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" routerLink="/">Wealth</a>
@@ -112,16 +112,16 @@
       </a>
     </span>
     <ul class="hidden-xs hidden-sm">
-      <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
+      <li [hidden]="!isLoggedIn" (click)="redirect.GoToAAPTCommon('/profile-details',true,true)"><a>My Profile</a></li>
       <!-- <li><a href="#">Tools</a></li> -->
       <li><a data-bs-toggle="collapse" href="#Toolscollapse" role="button" aria-expanded="false"
           aria-controls="collapseExample" class="drop-menu collapsed">Tools</a></li>
       <div class="collapse" id="Toolscollapse">
         <div class="card card-body">
           <ul>
-            <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
-            <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
-            <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/tools-sip',true,true)">SIP Calculator</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/tools-emi',true,true)">EMI Calculator</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/create-goal',true,true)">Plan Goals</a></li>
           </ul>
         </div>
       </div>
@@ -131,9 +131,9 @@
       <li><a href="javascript:void(0)" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
     <ul class="hidden-lg mob-nav-scroll">
-      <li [hidden]="!isLoggedIn" (click)="GoToCommon('profile')"><a>My Profile</a></li>
-      <li><a (click)="GotoInsurance()">Insure</a></li>
-      <li><a (click)="GotoCredit()">Credit</a></li>
+      <li [hidden]="!isLoggedIn" (click)="redirect.GoToAAPTCommon('/profile-details',true,true)"><a>My Profile</a></li>
+      <li><a (click)="redirect.GoToAAPTInsurance('',true)">Insure</a></li>
+      <li><a (click)="redirect.GoToAAPTCredit('',true)">Credit</a></li>
       <li><a [routerLink]="['/']">Wealth</a></li>
       <!-- <li><a href="#">Tools</a></li> -->
       <li><a data-bs-toggle="collapse" href="#Toolscollapse1" role="button" aria-expanded="false"
@@ -141,16 +141,16 @@
       <div class="collapse" id="Toolscollapse1">
         <div class="card card-body">
           <ul>
-            <li><a (click)="GoToCommon('tools-sip')">SIP Calculator</a></li>
-            <li><a (click)="GoToCommon('tools-emi')">EMI Calculator</a></li>
-            <li><a (click)="GoToCommon('tools-goal')">Plan Goals</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/tools-sip',true,true)">SIP Calculator</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/tools-emi',true,true)">EMI Calculator</a></li>
+            <li><a (click)="redirect.GoToAAPTCommon('/create-goal',true,true)">Plan Goals</a></li>
           </ul>
         </div>
       </div>
       <li><a href="javascript:void(0)">About Us</a></li>
       <li><a href="javascript:void(0)">Knowledge Center</a></li>
       <li><a href="javascript:void(0)">Support</a></li>
-      <li><a (click)="GoToCommon('Dashboard')" [hidden]="!isLoggedIn">Dashboard</a></li>
+      <li><a (click)="redirect.GoToAAPTCommon('/wealth-dashboard',true,true)" [hidden]="!isLoggedIn">Dashboard</a></li>
       <li><a href="javascript:void(0)" (click)="Logout()" [hidden]="!isLoggedIn">Logout</a></li>
     </ul>
     <div class="nav-footer">

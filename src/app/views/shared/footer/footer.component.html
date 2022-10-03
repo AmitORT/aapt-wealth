@@ -92,21 +92,21 @@
 			<div class="col col-half">
 				<h5 class="footer-head">Insurance</h5>
 				<ul class="footer-link">
-					<li><a (click)="InsurancetRouterUrl('/term-applicant-details')">Term Life Insurance</a></li>			
-					<li><a (click)="InsurancetRouterUrl('/health-select-members')">Health Insurance</a></li>			
-					<li><a (click)="InsurancetRouterUrl('/car-insurance')">Car Insurance</a></li>			
-					<li><a (click)="InsurancetRouterUrl('/two-wheeler-insurance')">2 - Wheeler Insurance</a></li>			
-					<li><a (click)="InsurancetRouterUrl('/unit-insurance-your-details')">4 - Wheeler Insurance</a></li>				
+					<li><a (click)="redirect.GoToAAPTInsurance('/term-applicant-details',true)">Term Life Insurance</a></li>			
+					<li><a (click)="redirect.GoToAAPTInsurance('/health-select-members',true)">Health Insurance</a></li>			
+					<li><a (click)="redirect.GoToAAPTInsurance('/car-insurance',true)">Car Insurance</a></li>			
+					<li><a (click)="redirect.GoToAAPTInsurance('/two-wheeler-insurance',true)">2 - Wheeler Insurance</a></li>			
+					<li><a (click)="redirect.GoToAAPTInsurance('/unit-insurance-your-details',true)">4 - Wheeler Insurance</a></li>				
 				</ul>
 			</div>
 			<div class="col col-half">
 				<h5 class="footer-head">Credit Line</h5>
 				<ul class="footer-link">
-					<li><a (click)="CreditRouterUrl('/recommended-offers')">Personal Loan</a></li>			
-					<li><a (click)="CreditRouterUrl('/homeloan-recommended-offer')">Home Loan</a></li>			
-					<li><a (click)="CreditRouterUrl('/educationloan-recommended-offer')">Education Loan</a></li>			
-					<li><a (click)="CreditRouterUrl('/businessloan-recommendedoffer')">Business Loan</a></li>			
-					<li><a (click)="CreditRouterUrl('/propertyloan-recommendedoffer')">Loan Against Property</a></li>
+					<li><a (click)="redirect.GoToAAPTCredit('/recommended-offers',true)">Personal Loan</a></li>			
+					<li><a (click)="redirect.GoToAAPTCredit('/homeloan-recommended-offer',true)">Home Loan</a></li>			
+					<li><a (click)="redirect.GoToAAPTCredit('/educationloan-recommended-offer',true)">Education Loan</a></li>			
+					<li><a (click)="redirect.GoToAAPTCredit('/businessloan-recommendedoffer',true)">Business Loan</a></li>			
+					<li><a (click)="redirect.GoToAAPTCredit('/propertyloan-recommendedoffer',true)">Loan Against Property</a></li>
 				</ul>
 			</div>
 			<div class="col col-half">
@@ -122,9 +122,9 @@
 			<div class="col col-half">
 				<h5 class="footer-head">General</h5>
 				<ul class="footer-link">
-					<li><a (click)="CommontRouterUrl('/tools-sip')">SIP Calculator</a></li>			
-					<li><a (click)="CommontRouterUrl('/tools-emi')">Emi Calculator</a></li>			
-					<li><a (click)="CommontRouterUrl('/create-goal')">Goal Planning</a></li>			
+					<li><a (click)="redirect.GoToAAPTCommon('/tools-sip',true,true)">SIP Calculator</a></li>			
+					<li><a (click)="redirect.GoToAAPTCommon('/tools-emi',true,true)">Emi Calculator</a></li>			
+					<li><a (click)="redirect.GoToAAPTCommon('/create-goal',true,true)">Goal Planning</a></li>			
 					<li><a href="javascript:void(0)">About Us</a></li>			
 					<li><a href="javascript:void(0)">Support</a></li>			
 				</ul>
