@@ -19,11 +19,10 @@ export class FooterComponent implements OnInit {
 
   isOTPSent: any = false;
   isLoggedIn: any = false;
-  FormEmail: any;
-  FormPassword: any;
-  FormFirstName: any;
-  FormLastName: any;
-  FormMobileNo: any;
+  FormEmail: any="";
+  FormFirstName: any="";
+  FormLastName: any="";
+  FormMobileNo: any="";
   FormCheckbox: any;
   otp1: any;
   MobileSiginBarFlag: any = true;
@@ -92,73 +91,71 @@ export class FooterComponent implements OnInit {
     }
   }
 
- 
+
 
   otpToggle(event: Event, calltype?: any) {
     event.stopPropagation();
-    if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
-      this.toastr.error("Please enter a valid email");
-    }
-    else {
-      this.ResetOTP();
-      setTimeout(() => {
-        if (calltype == 'login') {
-          this.calltype = 'login';
-          this.Login(event);
-        }
-        else {
-          if (this.validation.isNullEmptyUndefined(this.FormEmail) || this.validation.isNullEmptyUndefined(this.FormFirstName) || this.validation.isNullEmptyUndefined(this.FormLastName) || this.validation.isNullEmptyUndefined(this.FormMobileNo) || this.FormCheckbox == 0) {
-            this.toastr.error("All fields are mandatory");
-          } else {
-            this.calltype = 'register';
-            this.RegisterCust(event);
-          }
-        }
-      }, 0);
-    }
+    this.ResetOTP();
+    setTimeout(() => {
+      if (calltype == 'login') {
+        this.calltype = 'login';
+        this.Login(event);
+      }
+      else {
+          this.calltype = 'register';
+          this.RegisterCust(event);
+      }
+    }, 0);
   }
 
   Login(event: Event) {
-    try {
-      event.stopImmediatePropagation();
-      let loginData = new FormData();
-      loginData.append('email', this.FormEmail);
-      this.api.post('auth/customer/login', loginData, false).subscribe(async response => {
-        if (response.response.n == 1) {
-          // console.log('response', response);
-          this.isOTPSent = true;
-          $("#mob_signin").modal("hide");
-          this.resendbuttonText = "0:60";
-          $("#Footerotp-screen").modal("show");
-          this.toastr.success(response.response.Msg);
-          // this.resendbuttonText = "0:60";
-          this.countdownforOTP();
-        }
-        else {
-          this.toastr.error(response.response.Msg);
-          this.isOTPSent = false;
-          // localStorage.clear();
-          // this.route.navigate(['/']);
-        }
-      });
+    if (this.validation.isNullEmptyUndefined(this.FormEmail.trim())) {
+      this.toastr.error("Please enter a valid email");
     }
-    catch (ex) {
-      // console.log(ex);
+    else if (!this.validation.validateEmail(this.FormEmail.trim())) {
+      this.toastr.error("Please enter valid Email id");
+    }
+    else {
+      try {
+        event.stopImmediatePropagation();
+        let loginData = new FormData();
+        loginData.append('email', this.FormEmail);
+        this.api.post('auth/customer/login', loginData, false).subscribe(async response => {
+          if (response.response.n == 1) {
+            // console.log('response', response);
+            this.isOTPSent = true;
+            $("#mob_signin").modal("hide");
+            this.resendbuttonText = "0:60";
+            $("#Footerotp-screen").modal("show");
+            this.toastr.success(response.response.Msg);
+            // this.resendbuttonText = "0:60";
+            this.countdownforOTP();
+          }
+          else {
+            this.toastr.error(response.response.Msg);
+            this.isOTPSent = false;
+            // localStorage.clear();
+            // this.route.navigate(['/']);
+          }
+        });
+      }
+      catch (ex) {
+        // console.log(ex);
+      }
     }
   }
 
   RegisterCust(event: Event) {
-
-    if (this.validation.isNullEmptyUndefined(this.FormFirstName)) {
+    if (this.validation.isNullEmptyUndefined(this.FormFirstName.trim())) {
       this.toastr.error("First Name is Mandatory");
     }
-    else if (this.validation.isNullEmptyUndefined(this.FormLastName)) {
+    else if (this.validation.isNullEmptyUndefined(this.FormLastName.trim())) {
       this.toastr.error("Last Name is Mandatory");
     }
-    else if (this.validation.isNullEmptyUndefined(this.FormEmail)) {
+    else if (this.validation.isNullEmptyUndefined(this.FormEmail.trim())) {
       this.toastr.error("Email id is Mandatory");
     }
-    else if (!this.validation.validateEmail(this.FormEmail)) {
+    else if (!this.validation.validateEmail(this.FormEmail.trim())) {
       this.toastr.error("Please enter valid Email id");
     }
     else if (this.validation.isNullEmptyUndefined((this.FormMobileNo.toString()).trim())) {
@@ -337,39 +334,39 @@ export class FooterComponent implements OnInit {
             //   this.GoToAgent('/overview');
             // }
             if (response.agentType.Insurance == true && (response.agentType.credit == true || response.agentType.wealth == true)) {
-              this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
+              this.redirect.GoToAAPTAgentCommon('/agent-overview', true, true);
             }
             else if (response.agentType.Insurance == true) {
               if (response.agentKyc.Insurance == true) {
-                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard',true,true);
+                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-dashboard', true, true);
               }
               else {
-                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding',true,true);
+                this.redirect.GoToAAPTAgentInsurance('/agent-insurance-onboarding', true, true);
               }
             }
             else if (response.agentType.Insurance != true) {
 
               if (response.agentType.credit == true && response.agentType.wealth == true) {
-                this.redirect.GoToAAPTAgentCommon('/agent-overview',true,true);
+                this.redirect.GoToAAPTAgentCommon('/agent-overview', true, true);
               }
               else if (response.agentType.credit == true) {
                 if (response.agentKyc.credit == true) {
-                  this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard',true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-credit-dashboard', true);
                 }
                 else {
-                  this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding',true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-credit-onboarding', true);
                 }
               }
               else if (response.agentType.wealth == true) {
                 if (response.agentKyc.wealth == true) {
-                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard',true,true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-dashboard', true, true);
                 }
                 else {
-                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding',true,true);
+                  this.redirect.GoToAAPTAgentCommon('/agent-wealth-onboarding', true, true);
                 }
               }
               else {
-                this.redirect.GoToAAPTAgentCommon('/agent-type',true,true);
+                this.redirect.GoToAAPTAgentCommon('/agent-type', true, true);
               }
             }
           }
@@ -377,7 +374,7 @@ export class FooterComponent implements OnInit {
             setTimeout(() => {
               // console.log('route url', this.route.url);
               if (this.route.url == '/') {
-                this.redirect.GoToAAPTCommon('/overview',true,true);
+                this.redirect.GoToAAPTCommon('/overview', true, true);
               }
             }, 1000);
           }

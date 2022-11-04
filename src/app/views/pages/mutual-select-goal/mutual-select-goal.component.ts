@@ -162,13 +162,14 @@ export class MutualSelectGoalComponent implements OnInit {
   }
 
   InvestWithoutGoal() {
+    debugger
     var postData = new FormData();
     postData.append("transactionTypeId", "1");
     postData.append("instrumentId",this.SelectedMutualFund.id);
     postData.append("totalAmount", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == '1'? this.SelectedMutualFund.ModeOfInvestment.monthly_amt : this.SelectedMutualFund.ModeOfInvestment.yearly_amt );
     postData.append("modeOfTransaction", this.SelectedMutualFund.ModeOfInvestment.Payment_mode);
     postData.append("frequency", "4");
-    postData.append("transactionSubType", "2");
+    postData.append("transactionSubType", this.SelectedMutualFund.ModeOfInvestment.Payment_mode == "1" ? "2" : "1");
     // postData.append("frequencyDay", "1");
     postData.append("serviceProviderAccountId", this.SelectedMutualFund.serviceProviderId);
     this.api.post("wealthfy/proceed-to-cart", postData).subscribe(resp => {

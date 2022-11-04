@@ -26,13 +26,11 @@
             <a class="nav-link active btn btn-primary theme-button ms-2 dropdown-toggle" [hidden]="isLoggedIn"
               data-bs-toggle="dropdown" data-bs-display="dynamic" aria-expanded="false" href="javascript:void(0)">Login
               / Register</a>
-            <!-- <a class="nav-link btn btn-primary theme-button ms-2 dropdown-toggle" data-bs-display="dynamic"
-              (click)="Logout()" [hidden]="!isLoggedIn" aria-expanded="false" href="javascript:void(0)">Logout</a> -->
             <div [hidden]="isLoggedIn" class="login-popup dropdown-menu dropdown-menu-lg-end">
               <div class="sign-in">
                 <div class="mb-3">
                   <input [disabled]="isOTPSent" type="email" name="email" [(ngModel)]="FormEmail" class="form-control"
-                    id="emailmobile" placeholder="Email Id/Mobile No.">
+                    id="emailmobile" placeholder="Email Id">
                 </div>
                 <!-- <div class="mb-3">
                   <input [hidden]="!isOTPSent" type="email" name="otpLogin1" [(ngModel)]="otp1" class="form-control"
@@ -55,18 +53,18 @@
                   <label for="switch_right">Partner</label>
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName"
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" onpaste="return false;" [(ngModel)]="FormFirstName"
                     class="form-control" name="FirstName" placeholder="First Name">
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName"
+                  <input type="text" (keypress)="validation.alphabetOnly($event)" onpaste="return false;" [(ngModel)]="FormLastName"
                     class="form-control" name="LastName" placeholder="Last Name">
                 </div>
                 <div class="mb-3">
-                  <input type="email" [(ngModel)]="FormEmail" class="form-control" name="email1" placeholder="Email Id">
+                  <input type="email" [(ngModel)]="FormEmail" class="form-control" onpaste="return false;" name="email1" placeholder="Email Id">
                 </div>
                 <div class="mb-3">
-                  <input type="text" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo"
+                  <input type="text" (keypress)="validation.numberOnly($event)" onpaste="return false;" [(ngModel)]="FormMobileNo"
                     class="form-control" name="mnumber1" maxlength="10" placeholder="Mobile Number">
                 </div>
                 <!-- <div [hidden]="!isOTPSent" class="mb-3">

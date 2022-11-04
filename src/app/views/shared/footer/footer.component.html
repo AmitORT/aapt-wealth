@@ -17,7 +17,7 @@
 				<div class="modal-topborder"></div>
 				<h3 class="mb-3">Sign In</h3>
 				<div class="mb-3">      
-					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id/Mobile No//.">
+					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id">
 				</div>
 				<div [hidden]="isOTPSent" class="mb-3 text-end">
 					<button (click)="otpToggle($event, 'login')" class="btn btn-primary theme-button font14"><i class="fa fa-arrow-right"></i></button>
@@ -41,16 +41,16 @@
 					<label for="switch_right1">Partner</label>
 				</div>
 				<div class="mb-3">      
-					<input type="text" class="form-control" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName" id="firstName" placeholder="First Name">
+					<input type="text" class="form-control" onpaste="return false;" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormFirstName" id="firstName" placeholder="First Name">
 				</div>
 				<div class="mb-3">      
-					<input type="text" class="form-control" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName" id="lastName" placeholder="Last Name">
+					<input type="text" class="form-control" onpaste="return false;" (keypress)="validation.alphabetOnly($event)" [(ngModel)]="FormLastName" id="lastName" placeholder="Last Name">
 				</div>
 				<div class="mb-3">      
-					<input type="email" class="form-control" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id/Mobile No.">
+					<input type="email" class="form-control" onpaste="return false;" [(ngModel)]="FormEmail" id="exampleFormControlInput1" placeholder="Email Id">
 				</div>
 				<div class="mb-3">        
-					<input type="text" class="form-control" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo" id="exampleFormControlInput1" placeholder="Mobile Number" maxlength="10">
+					<input type="text" class="form-control" onpaste="return false;" (keypress)="validation.numberOnly($event)" [(ngModel)]="FormMobileNo" id="exampleFormControlInput1" placeholder="Mobile Number" maxlength="10">
 				</div>
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" [(ngModel)]="FormCheckbox"  id="check1" name="option1" value="something" checked>

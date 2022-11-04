@@ -53,9 +53,9 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
     // this.Amount = '';
     // this.Weight = '';
     // debugger
-    if (this.validate.isNullEmptyUndefined(localStorage.getItem("ApplicantData") || '{}')) {
+    if (!this.validate.isNullEmptyUndefined(localStorage.getItem("ApplicantData") || '{}')) {
       this.ApplicantData = this.crypto.Decrypt(localStorage.getItem("ApplicantData"));
-      console.log(this.ApplicantData);
+      console.log('ApplicantData',this.ApplicantData);
       this.AccountNumber = this.ApplicantData.account_number;
       this.BankName = this.ApplicantData.bank_name;
       this.IFSCCode = this.ApplicantData.IFSC_name;
@@ -207,7 +207,7 @@ export class DigitalGoldProductDetailsComponent implements OnInit {
   }
 
   CheckLogin() {
-    // debugger
+    debugger
 
     var total = Number(this.Amount) + this.ApplicantData?.totalAmount;
 

@@ -253,6 +253,7 @@ export class WealthProductListingComponent implements OnInit {
   }
 
   getOffersProductList() {
+    debugger
     this.ProductList = [];
 
     this.AMCFiltercheckedList = this.AMCFilterList?.filter((x: { checked: any; }) => x.checked).map((x: { id: any; }) => x.id).join(",");
@@ -308,7 +309,7 @@ export class WealthProductListingComponent implements OnInit {
     this.OfferListingLoader = true;
     this.api.post("wealthfy/product-offerings", postData).subscribe((resp: any) => {
       this.OfferListingLoader = false;
-      // console.log("ProductList", resp)
+      console.log("ProductList", resp)
       if (resp.response.n != 0) {
         this.ProductList = resp.data;
         localStorage.setItem("MutualProductCompareFund", this.crypto.Encrypt(this.ProductList));
